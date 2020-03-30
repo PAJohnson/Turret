@@ -48,7 +48,7 @@ class trajectoryPlanner:
             self.cubicInterpolate()
         elif method == "quintic":
             #quintic interpolation
-            pass
+            self.quinticInterpolate()
             
     def cubicInterpolate(self):
         #for each joint, calculate the coefficients for the cubic
@@ -100,7 +100,69 @@ class trajectoryPlanner:
                 
         
     def quinticInterpolate(self):
-        pass
+        #same as cubic but with continuous accelerations
+        
+        #modify joints from [position,time] to [position,velocity,accel,time]
+        self.quinticCoeffs = []
+        for j in self.joints:
+            self.quinticCoeffs.append([])
+        
+        #null starting and ending velocity and acceleration
+        for j in self.joints:
+            for i in range(len(j)):
+                j[i].insert(1,0)
+                j[i].insert(1,0)
+            
+        #compute intermediate velocities
+        #if the last and next velocities are of different sign, make 
+        #velocity = 0 at that point.    
+        for j in self.joints:
+            for i in range(1,len(j)-1):
+                #(pos-lastPos)/(tdiffLast)
+                velBefore = (j[i][0]-j[i-1][0])/(j[i][-1]-j[i-1][-1])
+                #(nextPos-pos)/(tdiffNext)
+                velAfter = (j[i+1][0]-j[i][0])/(j[i+1][-1]-j[i][-1])
+                if sign(velBefore) == sign(velAfter):
+                    intermediateVelocity = (1/2)*(velBefore+velAfter)
+                else:
+                    intermediateVelocity = 0
+                j[i][1] = intermediateVelocity
+                
+        #compute intermediate accelerations
+        #if the last an next accel are diff sign, make accel = 0
+        #at midpoint
+        for j in self.joints:
+            for i in range(1,len(j)-1):
+                #(vel-lastVel)/(tdiffLast)
+                accelBefore = (j[i][1]-j[i-1][1])/(j[i][-1]-j[i-1][-1])
+                #(nextVel-vel)/(tdiffNext)
+                accelAfter = (j[i+1][1]-j[i][1])/(j[i+1][-1]-j[i][-1])
+                if sign(accelBefore) == sign(accelAfter):
+                    intermediateAccel = (1/2)*(accelBefore+accelAfter)
+                else:
+                    intermediateAccel = 0
+                j[i][2] = intermediateAccel
+        
+        #now, do the interpolation
+        #treat each points starting time as 0, simpler math
+        for j in self.joints:
+            for i in range(len(j)-1):
+                #calculate a3...a0 for the cubic polynomial between
+                #each pair of points
+                
+                qi = j[i][0]
+                qi_dot = j[i][1]
+                qi_ddot = j[i][2]
+                qf = j[i+1][0]
+                qf_dot = j[i+1][1]
+                qf_ddot = j[i+1][2]
+                tf = j[i+1][-1]-j[i][-1]
+                
+                A = np.array([[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,2,0,0,0],[1,tf,tf**2,tf**3,tf**4,tf**5],[0,1,2*tf,3*tf**2,4*tf**3,5*tf**4],[0,0,2,6*tf,12*tf**2,20*tf**3]])
+                B = np.array([[qi],[qi_dot],[qi_ddot],[qf],[qf_dot],[qf_ddot]])
+                coeffs = np.linalg.solve(A,B)
+                coeffs = np.append(coeffs,tf)
+                self.quinticCoeffs[self.joints.index(j)].append(coeffs)
         
     def calcOutputs(self,Ts):
         
@@ -135,7 +197,24 @@ class trajectoryPlanner:
                         
                 i = i + 1
         elif self.method == "quintic":
-            pass
+            i = 0
+            for joint in self.quinticCoeffs:
+                for j, c in enumerate(joint):
+                    if j == 0:
+                        #create 1st value
+                        _t = 0
+                        p = c[0] + c[1]*_t + c[2]*_t**2 + c[3]*_t**3 + c[4]*_t**4 + c[5]*_t**5
+                        v = c[1] + 2*c[2]*_t + 3*c[3]*_t**2 + 4*c[4]*_t**3 + 5*c[5]*_t**4
+                        a = 2*c[2] + 6*c[3]*_t + 12*c[4]*_t**2 + 20*c[5]*_t**3
+                        self.outputs[i].append([p,v,a])
+                        
+                    for _t in np.arange(Ts,c[-1]+Ts,Ts):
+                        p = c[0] + c[1]*_t + c[2]*_t**2 + c[3]*_t**3 + c[4]*_t**4 + c[5]*_t**5
+                        v = c[1] + 2*c[2]*_t + 3*c[3]*_t**2 + 4*c[4]*_t**3 + 5*c[5]*_t**4
+                        a = 2*c[2] + 6*c[3]*_t + 12*c[4]*_t**2 + 20*c[5]*_t**3
+                        self.outputs[i].append([p,v,a])
+                        
+                i = i + 1
         else:
             return
         
@@ -152,3 +231,10 @@ if __name__ == "__main__":
     waypoints = [(1,0,0),(4,0,2),(1,0,4)]
     bot.waypointsParse(waypoints,"cubic")
     bot.calcOutputs(0.01)
+    
+    botq = trajectoryPlanner(2)
+    botq.waypointsParse(waypoints,"quintic")
+    botq.calcOutputs(0.01)
+    
+    for i in range(len(bot.outputs[0])):
+        print(str(bot.outputs[0][i]) + str(botq.outputs[0][i]))
