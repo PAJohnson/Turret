@@ -146,8 +146,9 @@ def sign(num):
         return -1
     else:
         return 0
-        
-bot = trajectoryPlanner(2)
-waypoints = [(1,0,0),(4,0,2),(1,0,4)]
-bot.waypointsParse(waypoints,"cubic")
-bot.calcOutputs(0.01)
+
+if __name__ == "__main__":
+    bot = trajectoryPlanner(2)
+    waypoints = [(1,0,0),(4,0,2),(1,0,4)]
+    bot.waypointsParse(waypoints,"cubic")
+    bot.calcOutputs(0.01)
