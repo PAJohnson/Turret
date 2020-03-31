@@ -98,6 +98,7 @@ class trajectoryPlanner:
                 coeffs = np.append(coeffs,tf)
                 self.cubicCoeffs[self.joints.index(j)].append(coeffs)
                 
+                
         
     def quinticInterpolate(self):
         #same as cubic but with continuous accelerations
@@ -163,6 +164,7 @@ class trajectoryPlanner:
                 coeffs = np.linalg.solve(A,B)
                 coeffs = np.append(coeffs,tf)
                 self.quinticCoeffs[self.joints.index(j)].append(coeffs)
+                print(coeffs)
         
     def calcOutputs(self,Ts):
         
@@ -226,15 +228,38 @@ def sign(num):
     else:
         return 0
 
+def speedChange(waypoints, multiplier):
+    newPoints = []
+    for i in range(len(waypoints)):
+        newPoints.append((waypoints[i][0],waypoints[i][1],waypoints[i][2]*multiplier))
+        
+    return newPoints
+
 if __name__ == "__main__":
     bot = trajectoryPlanner(2)
-    waypoints = [(1,0,0),(4,0,2),(1,0,4)]
-    bot.waypointsParse(waypoints,"cubic")
+    waypoints = [(0,0,0),\
+                (30,0,1),\
+                (21.2,21.2,2),\
+                (0,30,3),\
+                (-21.2,21.2,4),\
+                (-30,0,5),\
+                (-21.2,-21.2,6),\
+                (0,-30,7),\
+                (21.2,-21.2,8),\
+                (30,0,9),\
+                (0,0,10)]
+    bot.waypointsParse(speedChange(waypoints,0.1),"cubic")
     bot.calcOutputs(0.01)
     
     botq = trajectoryPlanner(2)
-    botq.waypointsParse(waypoints,"quintic")
-    botq.calcOutputs(0.01)
+    botq.waypointsParse(speedChange(waypoints,0.1),"quintic")
+    botq.calcOutputs(0.0001)
     
     for i in range(len(bot.outputs[0])):
         print(str(bot.outputs[0][i]) + str(botq.outputs[0][i]))
+        
+    #f = open("testdata.csv", "w")
+    #for i in range(len(bot.outputs[0])):
+    #    f.write(str(bot.outputs[0][i][0]) + ',' + str(bot.outputs[0][i][1]) + ',' + str(bot.outputs[0][i][2]) + ',' + str(botq.outputs[0][i][0]) + ',' + str(botq.outputs[0][i][1]) + ',' + str(botq.outputs[0][i][2]) + '\r')
+    #f.close()
+    
