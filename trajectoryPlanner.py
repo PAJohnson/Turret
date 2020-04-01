@@ -81,7 +81,7 @@ class trajectoryPlanner:
         
         #now, do the interpolation
         #treat each points starting time as 0, simpler math
-        for j in self.joints:
+        for num,j in enumerate(self.joints):
             for i in range(len(j)-1):
                 #calculate a3...a0 for the cubic polynomial between
                 #each pair of points
@@ -96,7 +96,7 @@ class trajectoryPlanner:
                 B = np.array([[qi],[qi_dot],[qf],[qf_dot]])
                 coeffs = np.linalg.solve(A,B)
                 coeffs = np.append(coeffs,tf)
-                self.cubicCoeffs[self.joints.index(j)].append(coeffs)
+                self.cubicCoeffs[num].append(coeffs)
                 
                 
         
@@ -146,7 +146,7 @@ class trajectoryPlanner:
         
         #now, do the interpolation
         #treat each points starting time as 0, simpler math
-        for j in self.joints:
+        for num,j in enumerate(self.joints):
             for i in range(len(j)-1):
                 #calculate a3...a0 for the cubic polynomial between
                 #each pair of points
@@ -163,8 +163,7 @@ class trajectoryPlanner:
                 B = np.array([[qi],[qi_dot],[qi_ddot],[qf],[qf_dot],[qf_ddot]])
                 coeffs = np.linalg.solve(A,B)
                 coeffs = np.append(coeffs,tf)
-                self.quinticCoeffs[self.joints.index(j)].append(coeffs)
-                print(coeffs)
+                self.quinticCoeffs[num].append(coeffs)
         
     def calcOutputs(self,Ts):
         
@@ -248,18 +247,10 @@ if __name__ == "__main__":
                 (21.2,-21.2,8),\
                 (30,0,9),\
                 (0,0,10)]
-    bot.waypointsParse(speedChange(waypoints,0.1),"cubic")
+    wp = [(0,0,0),(30,30,1)]
+    
+    bot.waypointsParse(wp,"cubic")
     bot.calcOutputs(0.01)
-    
-    botq = trajectoryPlanner(2)
-    botq.waypointsParse(speedChange(waypoints,0.1),"quintic")
-    botq.calcOutputs(0.0001)
-    
-    for i in range(len(bot.outputs[0])):
-        print(str(bot.outputs[0][i]) + str(botq.outputs[0][i]))
-        
-    #f = open("testdata.csv", "w")
-    #for i in range(len(bot.outputs[0])):
-    #    f.write(str(bot.outputs[0][i][0]) + ',' + str(bot.outputs[0][i][1]) + ',' + str(bot.outputs[0][i][2]) + ',' + str(botq.outputs[0][i][0]) + ',' + str(botq.outputs[0][i][1]) + ',' + str(botq.outputs[0][i][2]) + '\r')
-    #f.close()
+    for ts in bot.outputs[0]:
+        print(ts)
     
