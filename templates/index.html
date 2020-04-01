@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Turret Interface</title>
+		<link rel="stylesheet" href="../static/styles.css">
+		<script>
+			window.onload = function(){
+				document.getElementById('Jog_CW').addEventListener('click', ()=>{
+					var move = {base: 5, shaft: 0, time: 0.5}
+                    
+                    fetch("/move/relative.json", {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(move),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+				});
+				document.getElementById('Jog_CCW').addEventListener('click', ()=>{
+					var move = {base: -5, shaft: 0, time: 0.5}
+                    
+                    fetch("/move/relative.json", {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(move),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+				});
+				document.getElementById('Jog_Up').addEventListener('click', ()=>{
+					var move = {base: 0, shaft: 5, time: 0.5}
+                    
+                    fetch("/move/relative.json", {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(move),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+				});
+				document.getElementById('Jog_Down').addEventListener('click', ()=>{
+					var move = {base: 0, shaft: -5, time: 0.5}
+                    
+                    fetch("/move/relative.json", {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(move),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+				});
+			}
+		</script>
+	</head>
+	<body> 
+		<div class="page">
+			<section class="left_panel" id="left_panel">
+				<div>ACTIONS</div>
+				<button id="Jog_CW">Jog CW</button>
+				<button id="Jog_CCW">Jog CCW</button>
+				<button id="Jog_Up">Jog Up</button>
+				<button id ="Jog_Down">Jog Down</button>
+			</section>
+		</div>
+	</body>
+</html>
