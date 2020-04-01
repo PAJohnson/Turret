@@ -2,6 +2,7 @@ import time
 import pigpio
 import math
 import trajectoryPlanner as tp
+import queue
 
 #mechanical constants
 #command degrees
@@ -97,11 +98,13 @@ def speed_change(waypoints,multiplier):
 	return newPoints
 
 def runOutputs(states,Ts):
+    runLock = True
 	for i in range(len(states[0])):
 		base_speed_set(states[0][i][1]/BASE_DEG_PER_STEP)
 		shaft_speed_set(states[1][i][1]/SHAFT_DEG_PER_STEP)
 		#print(states[0][i][1])
 		time.sleep(Ts)
+    runLock = False
 
 def csvToRun(filename, warp = 1.0, method = "cubic", Ts = 0.01):
 	newWP = tp.wayPoints(filename)
@@ -110,13 +113,17 @@ def csvToRun(filename, warp = 1.0, method = "cubic", Ts = 0.01):
 	runOutputs(bot.outputs,Ts)
 
 def moveRelative(newPoint, method = "cubic", Ts = 0.01):
-	waypoints = [(0,0,0),newPoint]
-	bot.waypointsParse(waypoints,method)
-	bot.calcOutputs(Ts)
-	runOutputs(bot.outputs,Ts)
+	moveRelQ.put([(0,0,0),newPoint])
+    if runLock == False:
+        while not moveRelQ.empty():
+            bot.waypointsParse(moveRelQ.get(),method)
+            bot.calcOutputs(Ts)
+            runOutputs(bot.outputs,Ts)
 
 
 bot = tp.trajectoryPlanner(2)
+moveRelQ = queue.Queue()
+runLock = False
 
 if __name__ == "__main__":
 	wp = [(0,0,0), (30,30,1), (0,0,2), (30,30,3), (0,0,4), (30,30,5), (0,0,6),(0,0,6.1)]
