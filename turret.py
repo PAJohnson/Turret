@@ -105,17 +105,18 @@ def runOutputs(states,Ts):
 
 def csvToRun(filename, warp = 1.0, method = "cubic", Ts = 0.01):
 	newWP = tp.wayPoints(filename)
-	bot = tp.trajectoryPlanner(2)
 	bot.waypointsParse(speed_change(newWP.waypoints,warp),method)
 	bot.calcOutputs(Ts)
 	runOutputs(bot.outputs,Ts)
 
 def moveRelative(newPoint, method = "cubic", Ts = 0.01):
 	waypoints = [(0,0,0),newPoint]
-	bot = tp.trajectoryPlanner(2)
 	bot.waypointsParse(waypoints,method)
 	bot.calcOutputs(Ts)
 	runOutputs(bot.outputs,Ts)
+
+
+bot = tp.trajectoryPlanner(2)
 
 if __name__ == "__main__":
 	wp = [(0,0,0), (30,30,1), (0,0,2), (30,30,3), (0,0,4), (30,30,5), (0,0,6),(0,0,6.1)]
