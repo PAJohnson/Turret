@@ -4,6 +4,25 @@
 #given a list of waypoints, this will output position/velocity/acceleration
 #values for each joint at a desired sampling interval.
 import numpy as np
+import csv
+
+class wayPoints:
+    def __init__(self,filename = None):
+        self.waypoints = []
+        if filename != None:
+            self.readFromFile(filename)
+        
+    def addWP(self,wp):
+        #wp is (j1,j2,jn,t) tuple
+        self.waypoints.append(wp)
+        
+    def readFromFile(self,filename):
+        #assuming CSV file
+        with open(filename,newline='') as wpFile:
+            wpReader = csv.reader(wpFile, delimiter=',', quotechar='|')
+            for wp in wpReader:
+                newRow = [float(val) for val in wp]
+                self.addWP(tuple(newRow))
 
 class trajectoryPlanner:
     def __init__(self, jointNum):
@@ -49,6 +68,17 @@ class trajectoryPlanner:
         elif method == "quintic":
             #quintic interpolation
             self.quinticInterpolate()
+        elif method == "trapVel":
+            self.trapVelInterpolate()
+        else:
+            pass
+            
+    def trapVelInterpolate(self):
+        #interpolate between points with trapezoidal velocity
+        #later - respect max velocity and acceleration constraints
+        #no blending - stop at waypoints.
+        pass
+        
             
     def cubicInterpolate(self):
         #for each joint, calculate the coefficients for the cubic
@@ -216,6 +246,8 @@ class trajectoryPlanner:
                         self.outputs[i].append([p,v,a])
                         
                 i = i + 1
+        elif self.method == "trapVel":
+            pass
         else:
             return
         
@@ -235,22 +267,7 @@ def speedChange(waypoints, multiplier):
     return newPoints
 
 if __name__ == "__main__":
-    bot = trajectoryPlanner(2)
-    waypoints = [(0,0,0),\
-                (30,0,1),\
-                (21.2,21.2,2),\
-                (0,30,3),\
-                (-21.2,21.2,4),\
-                (-30,0,5),\
-                (-21.2,-21.2,6),\
-                (0,-30,7),\
-                (21.2,-21.2,8),\
-                (30,0,9),\
-                (0,0,10)]
-    wp = [(0,0,0),(30,30,1)]
-    
-    bot.waypointsParse(wp,"cubic")
-    bot.calcOutputs(0.01)
-    for ts in bot.outputs[0]:
-        print(ts)
+    newWP = wayPoints()
+    newWP.readFromFile('circle.csv')
+    print(newWP.waypoints)
     
