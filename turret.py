@@ -2,13 +2,14 @@ import time
 import pigpio
 import math
 import numpy as np
+import trajectoryPlanner as tp
 
 #mechanical constants
 #command degrees
 
-BASE_TEETH = 50
+BASE_TEETH = 75
 BASE_STEP_TEETH = 10
-SHAFT_TEETH = 20
+SHAFT_TEETH = 40
 SHAFT_STEP_TEETH = 10
 STEP_PER_REV = 3200
 
@@ -236,9 +237,63 @@ def test():
 		traj_gen(p_to_p((30,30),(-30,30),1),1)
 		traj_gen(p_to_p((-30,30),(0,0),1),1)
 
-#test waypoints
-waypoints = [(0,0,0),(10,30,0.5),(30,0,1),(5,-30,1.5),(0,0,2)]
+def speed_change(waypoints,multiplier):
+	#even change in speed for waypoints
+	newPoints = []
+	for i in range(len(waypoints)):
+		newPoints.append((waypoints[i][0],waypoints[i][1],waypoints[i][2]*multiplier))
 
-polys = points_parse(waypoints)
-speeds = compute_speeds(polys)
-execute_traj(speeds)
+	return newPoints
+
+def runOutputs(states,Ts):
+	for i in range(len(states[0])):
+		base_speed_set(states[0][i][1])
+		shaft_speed_set(states[1][i][1])
+		#print(states[0][i][1])
+		time.sleep(Ts)
+
+#test waypoints
+waypoints1 = [(0,0,0), \
+		(0,30,0.5), \
+		(60,30,1), \
+		(60,-30,1.5), \
+		(0,-30,2), \
+		(0,0,2.5), \
+		(10,30,3), \
+		(20,-30,3.5),\
+		(30,30,4),\
+		(40,-30,4.5),\
+		(50,30,5),\
+		(60,0,5.5),\
+		(0,0,6)]
+
+waypoints2 = [	(30,0,0),\
+		(21.2,21.2,1),\
+		(0,30,2),\
+		(-21.2,21.2,3),\
+		(-30,0,4),\
+		(-21.2,-21.2,5),\
+		(0,-30,6),\
+		(21.2,-21.2,7),\
+		(30,0,8),\
+		(21.2,21.2,9),\
+		(0,30,10),\
+		(-21.2,21.2,11),\
+		(-30,0,12),\
+		(-21.2,-21.2,13),\
+		(0,-30,14),\
+		(21.2,-21.2,15),\
+		(30,0,16),\
+		(30,0,16.5)]
+
+
+
+if __name__ == "__main__":
+	wp = [(0,0,0), (30,30,1), (0,0,2), (30,30,3), (0,0,4), (30,30,5), (0,0,6),(0,0,6.1)]
+
+	T = 0.01
+
+	bot = tp.trajectoryPlanner(2)
+	bot.waypointsParse(speed_change(wp,0.3),"quintic")
+	bot.calcOutputs(T)
+	runOutputs(bot.states,T)
