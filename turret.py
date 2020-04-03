@@ -103,11 +103,6 @@ class Turret:
                 self.runOutputs(bot.outputs,Ts)
 
 if __name__ == "__main__":
-    wp = [(0,0,0), (30,30,1), (0,0,2), (30,30,3), (0,0,4), (30,30,5), (0,0,6),(0,0,6.1)]
-
-    T = 0.01
-
-    bot = Turret()
-    bot.waypointsParse(speed_change(wp,0.3),"quintic")
-    bot.calcOutputs(T)
-    bot.runOutputs(bot.outputs,T)
+    
+    turret = Turret()
+    turret.csvToRun(circle.csv)
