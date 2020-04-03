@@ -110,4 +110,4 @@ if __name__ == "__main__":
     bot = Turret()
     bot.waypointsParse(speed_change(wp,0.3),"quintic")
     bot.calcOutputs(T)
-    bot.runOutputs(bot.states,T)
+    bot.runOutputs(bot.outputs,T)
