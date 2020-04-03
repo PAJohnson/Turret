@@ -9,7 +9,8 @@ import trajectoryPlanner as tp
 config = str(sys.argv[1])
 
 if config == "rpi":
-	import turret as robot
+	import turret
+	robot = turret.Turret()
 else:
 	pass
     

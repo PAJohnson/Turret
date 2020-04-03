@@ -42,22 +42,22 @@ class Turret:
 
     def shaft_speed_set(self, speed):
         if(speed > 0):
-            direction = UP
+            direction = self.UP
         elif(speed < 0):
-            direction = DOWN
+            direction = self.DOWN
         else:
-            direction = DOWN
-        self.pi.write(DIR2, direction)
+            direction = self.DOWN
+        self.pi.write(self.DIR2, direction)
         self.pi.hardware_PWM(self.STEP2, int(abs(speed)), 500000)
 
     def base_speed_set(self, speed):
         if(speed > 0):
-            direction = CW
+            direction = self.CW
         elif(speed < 0):
-            direction = CCW
+            direction = self.CCW
         else:
-            direction = CW
-        self.pi.write(DIR1, direction)
+            direction = self.CW
+        self.pi.write(self.DIR1, direction)
         self.pi.hardware_PWM(self.STEP1, int(abs(speed)), 500000)
 
     def sign(self, number):
@@ -87,12 +87,12 @@ class Turret:
 
     def csvToRun(self, filename, warp = 1.0, method = "cubic", Ts = 0.01):
         newWP = tp.wayPoints(filename)
-        self.wpToRun(newWp,warp,method,Ts)
+        self.wpToRun(newWP,warp,method,Ts)
         
     def wpToRun(self, wp, warp = 1.0, method = "cubic", Ts = 0.01):
         self.bot.waypointsParse(self.speed_change(wp.waypoints,warp),method)
         self.bot.calcOutputs(Ts)
-        self.runOutputs(bot.outputs,Ts)
+        self.runOutputs(self.bot.outputs,Ts)
 
     def moveRelative(self, newPoint, method = "cubic", Ts = 0.01):
         self.moveRelQ.put([(0,0,0),newPoint])
@@ -100,9 +100,9 @@ class Turret:
             while not self.moveRelQ.empty():
                 self.bot.waypointsParse(self.moveRelQ.get(),method)
                 self.bot.calcOutputs(Ts)
-                self.runOutputs(bot.outputs,Ts)
+                self.runOutputs(self.bot.outputs,Ts)
 
 if __name__ == "__main__":
     
     turret = Turret()
-    turret.csvToRun(circle.csv)
+    turret.csvToRun('circle.csv')
