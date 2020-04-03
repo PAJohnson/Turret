@@ -1,3 +1,5 @@
+#Patrick Johnson 2020
+
 import time
 import pigpio
 import math

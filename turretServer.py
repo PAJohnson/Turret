@@ -1,3 +1,5 @@
+#Patrick Johnson 2020
+
 #zmq server test
 import time
 import zmq
