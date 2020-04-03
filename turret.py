@@ -6,135 +6,108 @@ import queue
 
 #mechanical constants
 #command degrees
+class Turret:
+    def __init__(self):
+        self.BASE_TEETH = 75
+        self.BASE_STEP_TEETH = 10
+        self.SHAFT_TEETH = 40
+        self.SHAFT_STEP_TEETH = 10
+        self.STEP_PER_REV = 3200
 
-BASE_TEETH = 75
-BASE_STEP_TEETH = 10
-SHAFT_TEETH = 40
-SHAFT_STEP_TEETH = 10
-STEP_PER_REV = 3200
+        self.BASE_DEG_PER_STEP = (360.0)/(self.STEP_PER_REV*self.BASE_TEETH/self.BASE_STEP_TEETH)
+        self.SHAFT_DEG_PER_STEP = (360.0)/(self.STEP_PER_REV*self.SHAFT_TEETH/self.SHAFT_STEP_TEETH)
 
-BASE_DEG_PER_STEP = (360.0)/(STEP_PER_REV*BASE_TEETH/BASE_STEP_TEETH)
-SHAFT_DEG_PER_STEP = (360.0)/(STEP_PER_REV*SHAFT_TEETH/SHAFT_STEP_TEETH)
+        self.UP = 1
+        self.DOWN = 0
 
-UP = 1
-DOWN = 0
+        self.CW = 0
+        self.CCW = 1
 
-CW = 0
-CCW = 1
+        self.DIR1 = 6
+        self.STEP1 = 13
+        self.DIR2 = 5
+        self.STEP2 = 18
 
-DIR1 = 6
-STEP1 = 13
-DIR2 = 5
-STEP2 = 18
+        self.pi = pigpio.pi()
 
-T_STEP = 0.01
+        self.pi.set_mode(self.DIR1, pigpio.OUTPUT)
+        self.pi.set_mode(self.DIR2, pigpio.OUTPUT)
+        self.pi.set_mode(self.STEP1, pigpio.OUTPUT)
+        self.pi.set_mode(self.STEP2, pigpio.OUTPUT)
+        
+        self.bot = tp.trajectoryPlanner(2)
+        self.moveRelQ = queue.Queue()
+        self.runLock = False
+        self.programs = {}
 
-pi = pigpio.pi()
+    def shaft_speed_set(self, speed):
+        if(speed > 0):
+            direction = UP
+        elif(speed < 0):
+            direction = DOWN
+        else:
+            direction = DOWN
+        self.pi.write(DIR2, direction)
+        self.pi.hardware_PWM(self.STEP2, int(abs(speed)), 500000)
 
-pi.set_mode(DIR1, pigpio.OUTPUT)
-pi.set_mode(DIR2, pigpio.OUTPUT)
-pi.set_mode(STEP1, pigpio.OUTPUT)
-pi.set_mode(STEP2, pigpio.OUTPUT)
+    def base_speed_set(self, speed):
+        if(speed > 0):
+            direction = CW
+        elif(speed < 0):
+            direction = CCW
+        else:
+            direction = CW
+        self.pi.write(DIR1, direction)
+        self.pi.hardware_PWM(self.STEP1, int(abs(speed)), 500000)
 
-def move_shaft(distance, _time):
-    # distance in degrees, time in seconds
-    if(distance > 0):
-        direction = UP
-    elif(distance < 0):
-        direction = DOWN
+    def sign(self, number):
+        if number > 0:
+            return 1
+        elif number < 0:
+            return -1
+        else:
+            return 0
 
-    speed = int(abs(distance/SHAFT_DEG_PER_STEP/_time))
-    pi.write(DIR2, direction)
-    pi.hardware_PWM(STEP2, speed, 500000)
-    time.sleep(_time)
-    pi.hardware_PWM(STEP2, 0, 500000)
+    def speed_change(self, waypoints, multiplier):
+        #even change in speed for waypoints
+        newPoints = []
+        for i in range(len(waypoints)):
+            newPoints.append((waypoints[i][0],waypoints[i][1],waypoints[i][2]*multiplier))
 
-def move_base(distance, _time):
-    if(distance > 0):
-        direction = CW
-    elif(distance < 0):
-        direction = CCW
-    speed = int(abs(distance/BASE_DEG_PER_STEP/_time))
-    print(speed)
-    pi.write(DIR1, direction)
-    pi.hardware_PWM(STEP1, speed, 500000)
-    time.sleep(_time)
-    pi.hardware_PWM(STEP1, 0, 500000)
+        return newPoints
 
-def shaft_speed_set(speed):
-    if(speed > 0):
-        direction = UP
-    elif(speed < 0):
-        direction = DOWN
-    else:
-        direction = DOWN
-    pi.write(DIR2, direction)
-    pi.hardware_PWM(STEP2, int(abs(speed)), 500000)
+    def runOutputs(self, states, Ts):
+        self.runLock = True
+        for i in range(len(states[0])):
+            self.base_speed_set(states[0][i][1]/self.BASE_DEG_PER_STEP)
+            self.shaft_speed_set(states[1][i][1]/self.SHAFT_DEG_PER_STEP)
+            #print(states[0][i][1])
+            time.sleep(Ts)
+        self.runLock = False
 
-def base_speed_set(speed):
-    if(speed > 0):
-        direction = CW
-    elif(speed < 0):
-        direction = CCW
-    else:
-        direction = CW
-    pi.write(DIR1, direction)
-    pi.hardware_PWM(STEP1, int(abs(speed)), 500000)
+    def csvToRun(self, filename, warp = 1.0, method = "cubic", Ts = 0.01):
+        newWP = tp.wayPoints(filename)
+        self.wpToRun(newWp,warp,method,Ts)
+        
+    def wpToRun(self, wp, warp = 1.0, method = "cubic", Ts = 0.01):
+        self.bot.waypointsParse(self.speed_change(wp.waypoints,warp),method)
+        self.bot.calcOutputs(Ts)
+        self.runOutputs(bot.outputs,Ts)
 
-def sign(number):
-    if number > 0:
-        return 1
-    elif number < 0:
-        return -1
-    else:
-        return 0
-
-def speed_change(waypoints,multiplier):
-    #even change in speed for waypoints
-    newPoints = []
-    for i in range(len(waypoints)):
-        newPoints.append((waypoints[i][0],waypoints[i][1],waypoints[i][2]*multiplier))
-
-    return newPoints
-
-def runOutputs(states,Ts):
-    runLock = True
-    for i in range(len(states[0])):
-        base_speed_set(states[0][i][1]/BASE_DEG_PER_STEP)
-        shaft_speed_set(states[1][i][1]/SHAFT_DEG_PER_STEP)
-        #print(states[0][i][1])
-        time.sleep(Ts)
-    runLock = False
-
-def csvToRun(filename, warp = 1.0, method = "cubic", Ts = 0.01):
-    newWP = tp.wayPoints(filename)
-    bot.waypointsParse(speed_change(newWP.waypoints,warp),method)
-    bot.calcOutputs(Ts)
-    runOutputs(bot.outputs,Ts)
-    
-def wpToRun(wp, warp = 1.0, method = "cubic", Ts = 0.01):
-    bot.waypointsParse(speed_change(wp.waypoints,warp),method)
-    bot.calcOutputs(Ts)
-    runOutputs(bot.outputs,Ts)
-
-def moveRelative(newPoint, method = "cubic", Ts = 0.01):
-    moveRelQ.put([(0,0,0),newPoint])
-    if runLock == False:
-        while not moveRelQ.empty():
-            bot.waypointsParse(moveRelQ.get(),method)
-            bot.calcOutputs(Ts)
-            runOutputs(bot.outputs,Ts)
-
-bot = tp.trajectoryPlanner(2)
-moveRelQ = queue.Queue()
-runLock = False
+    def moveRelative(self, newPoint, method = "cubic", Ts = 0.01):
+        self.moveRelQ.put([(0,0,0),newPoint])
+        if self.runLock == False:
+            while not self.moveRelQ.empty():
+                self.bot.waypointsParse(self.moveRelQ.get(),method)
+                self.bot.calcOutputs(Ts)
+                self.runOutputs(bot.outputs,Ts)
 
 if __name__ == "__main__":
     wp = [(0,0,0), (30,30,1), (0,0,2), (30,30,3), (0,0,4), (30,30,5), (0,0,6),(0,0,6.1)]
 
     T = 0.01
 
-    bot = tp.trajectoryPlanner(2)
+    bot = Turret()
     bot.waypointsParse(speed_change(wp,0.3),"quintic")
     bot.calcOutputs(T)
-    runOutputs(bot.states,T)
+    bot.runOutputs(bot.states,T)
