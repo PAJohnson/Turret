@@ -267,7 +267,25 @@ def speedChange(waypoints, multiplier):
     return newPoints
 
 if __name__ == "__main__":
+    
+    #example usage
+    #create a wayPoints class and parse a file of waypoints
     newWP = wayPoints()
     newWP.readFromFile('circle.csv')
-    print(newWP.waypoints)
+    print("Waypoints: " + str(newWP.waypoints))
+    
+    #instantiate a trajectoryPlanner with the correct number of joints
+    tp = trajectoryPlanner(2)
+    
+    #parse the waypoints and generate the polynomials to interpolate
+    #between them
+    tp.waypointsParse(newWP.waypoints, "cubic")
+    
+    #sample the polynomial sequence at the desired period
+    tp.calcOutputs(0.01)
+    
+    #tp.outputs[0] is the sequence of P,V,A values for joint 0
+    #tp.outputs[1] is the same for joint 1
+    print("Outputs")
+    print(tp.outputs[1])
     
