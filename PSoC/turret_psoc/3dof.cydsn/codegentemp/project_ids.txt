@@ -1,0 +1,7 @@
+C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\3dof.cyprj|a75ebeee-c5a4-491b-911d-92d2c074fb3a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|d5b55288-00c0-488f-91e3-e17e3091c00c
+C:\Users\pajoh\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|e5471865-28f6-49ba-8942-75c5ebd85c50
+C:\Users\pajoh\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|861704e1-7306-4896-948d-e2b199578a84
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f8c3d06f-33f9-4807-be26-7df5f5d2f19d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1e42a605-7a04-4501-8f07-30b2afcc4aac
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5364d235-9017-4b94-b106-51eae4b34c0d

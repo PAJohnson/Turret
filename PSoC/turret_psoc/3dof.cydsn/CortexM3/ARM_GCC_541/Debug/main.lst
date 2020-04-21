@@ -1,0 +1,3108 @@
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include "stdio.h"
+  14:main.c        **** #include "comms.h"
+  15:main.c        **** 
+  16:main.c        **** #define BUFF_SIZE 80
+  17:main.c        **** #define J1_HOME 2680000
+  18:main.c        **** #define TRUE 1
+  19:main.c        **** #define FALSE 0
+  20:main.c        **** 
+  21:main.c        **** //serial communication brainstorming
+  22:main.c        **** //messages defined as <command><joint><data><delimiter>
+  23:main.c        **** 
+  24:main.c        **** 
+  25:main.c        **** //all correct - all move clockwise when facing back of J3 stepper motor
+  26:main.c        **** #define J1_FWD 0
+  27:main.c        **** #define J1_REV 1
+  28:main.c        **** #define J2_FWD 0
+  29:main.c        **** #define J2_REV 1
+  30:main.c        **** #define J3_FWD 0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 2
+
+
+  31:main.c        **** #define J3_REV 1
+  32:main.c        **** 
+  33:main.c        **** char limit[2];
+  34:main.c        **** 
+  35:main.c        **** char j2_limit;
+  36:main.c        **** char j3_limit;
+  37:main.c        **** 
+  38:main.c        **** int32 j1_pos = 0;
+  39:main.c        **** int32 j2_pos = 0;
+  40:main.c        **** int32 j3_pos = 0;
+  41:main.c        **** 
+  42:main.c        **** int32 j1_home = J1_HOME;
+  43:main.c        **** 
+  44:main.c        **** char moveJ1 = FALSE;
+  45:main.c        **** char moveJ2 = FALSE;
+  46:main.c        **** char moveJ3 = FALSE;
+  47:main.c        **** 
+  48:main.c        **** char home = FALSE;
+  49:main.c        **** 
+  50:main.c        **** char J1_ctrl_val = 0;
+  51:main.c        **** char J2_ctrl_val = 0;
+  52:main.c        **** char J3_ctrl_val = 0;
+  53:main.c        **** 
+  54:main.c        **** //UART stuff
+  55:main.c        **** uint8 Ch;
+  56:main.c        **** char TransmitBuffer[BUFF_SIZE];
+  57:main.c        **** 
+  58:main.c        **** //NCOs for joint speed control
+  59:main.c        **** volatile uint32 J1_tuningWord = 0;
+  60:main.c        **** volatile uint32 J2_tuningWord = 0;
+  61:main.c        **** volatile uint32 J3_tuningWord = 0;
+  62:main.c        **** volatile uint32 J1_accumulator = 0;
+  63:main.c        **** volatile uint32 J2_accumulator = 0;
+  64:main.c        **** volatile uint32 J3_accumulator = 0;
+  65:main.c        **** volatile char J1_step = 0;
+  66:main.c        **** volatile char J2_step = 0;
+  67:main.c        **** volatile char J3_step = 0;
+  68:main.c        **** volatile char J1_dir = 0;
+  69:main.c        **** volatile char J2_dir = 0;
+  70:main.c        **** volatile char J3_dir = 0;
+  71:main.c        **** 
+  72:main.c        **** 
+  73:main.c        **** volatile Message_Buff msg_buff;
+  74:main.c        **** volatile Move_Queue move_queue;
+  75:main.c        **** volatile char rx_buffer[RX_SIZE];
+  76:main.c        **** volatile int rx_index = 0;
+  77:main.c        **** 
+  78:main.c        **** void home_joints(void);
+  79:main.c        **** void update_positions(void);
+  80:main.c        **** void set_velocity(int joint, int32 tuningWord, char direction);
+  81:main.c        **** uint32 vel_to_tuningWord(uint32 velocity);
+  82:main.c        **** 
+  83:main.c        **** int main(void)
+  84:main.c        **** {
+  28              		.loc 1 84 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 3
+
+
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  85:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  36              		.loc 1 85 0
+  37              		.syntax unified
+  38              	@ 85 "main.c" 1
+  39 0002 62B6     		CPSIE   i
+  40              	@ 0 "" 2
+  86:main.c        ****     UART_1_Start();
+  41              		.loc 1 86 0
+  42              		.thumb
+  43              		.syntax unified
+  44 0004 FFF7FEFF 		bl	UART_1_Start
+  45              	.LVL0:
+  87:main.c        ****     SPIM_1_Start();
+  46              		.loc 1 87 0
+  47 0008 FFF7FEFF 		bl	SPIM_1_Start
+  48              	.LVL1:
+  88:main.c        ****     ADC_DelSig_1_Start();
+  49              		.loc 1 88 0
+  50 000c FFF7FEFF 		bl	ADC_DelSig_1_Start
+  51              	.LVL2:
+  89:main.c        ****     ADC_DelSig_1_StartConvert();
+  52              		.loc 1 89 0
+  53 0010 FFF7FEFF 		bl	ADC_DelSig_1_StartConvert
+  54              	.LVL3:
+  90:main.c        ****     NCO_ISR_Start();
+  55              		.loc 1 90 0
+  56 0014 FFF7FEFF 		bl	NCO_ISR_Start
+  57              	.LVL4:
+  91:main.c        ****     rx_isr_Start();
+  58              		.loc 1 91 0
+  59 0018 FFF7FEFF 		bl	rx_isr_Start
+  60              	.LVL5:
+  92:main.c        ****     int i = 0;
+  93:main.c        ****     
+  94:main.c        ****     j2_limit = J2_LIM_Read();
+  61              		.loc 1 94 0
+  62 001c FFF7FEFF 		bl	J2_LIM_Read
+  63              	.LVL6:
+  64 0020 164B     		ldr	r3, .L6
+  65 0022 1870     		strb	r0, [r3]
+  95:main.c        ****     j3_limit = J3_LIM_Read();
+  66              		.loc 1 95 0
+  67 0024 FFF7FEFF 		bl	J3_LIM_Read
+  68              	.LVL7:
+  69 0028 154B     		ldr	r3, .L6+4
+  70 002a 1870     		strb	r0, [r3]
+  96:main.c        ****     if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_WAIT_FOR_RESULT)){
+  71              		.loc 1 96 0
+  72 002c 0020     		movs	r0, #0
+  73 002e FFF7FEFF 		bl	ADC_DelSig_1_IsEndConversion
+  74              	.LVL8:
+  75 0032 28B1     		cbz	r0, .L2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 4
+
+
+  97:main.c        ****         j1_pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
+  76              		.loc 1 97 0
+  77 0034 FFF7FEFF 		bl	ADC_DelSig_1_GetResult32
+  78              	.LVL9:
+  79 0038 FFF7FEFF 		bl	ADC_DelSig_1_CountsTo_uVolts
+  80              	.LVL10:
+  81 003c 114B     		ldr	r3, .L6+8
+  82 003e 1860     		str	r0, [r3]
+  83              	.L2:
+  98:main.c        ****     }
+  99:main.c        ****     
+ 100:main.c        ****     message_buff_init(&msg_buff);
+  84              		.loc 1 100 0
+  85 0040 1148     		ldr	r0, .L6+12
+  86 0042 FFF7FEFF 		bl	message_buff_init
+  87              	.LVL11:
+ 101:main.c        ****     move_queue_init(&move_queue);
+  88              		.loc 1 101 0
+  89 0046 1148     		ldr	r0, .L6+16
+  90 0048 FFF7FEFF 		bl	move_queue_init
+  91              	.LVL12:
+ 102:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ 103:main.c        **** 
+ 104:main.c        ****     UART_1_PutString("COM port open");
+  92              		.loc 1 104 0
+  93 004c 1048     		ldr	r0, .L6+20
+  94 004e FFF7FEFF 		bl	UART_1_PutString
+  95              	.LVL13:
+  96              	.L4:
+ 105:main.c        ****     
+ 106:main.c        ****     for(;;)
+ 107:main.c        ****     {
+ 108:main.c        ****         /* Place your application code here. */
+ 109:main.c        ****         
+ 110:main.c        ****         //grab and interpret UART commands
+ 111:main.c        ****         if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_WAIT_FOR_RESULT)){
+  97              		.loc 1 111 0
+  98 0052 0020     		movs	r0, #0
+  99 0054 FFF7FEFF 		bl	ADC_DelSig_1_IsEndConversion
+ 100              	.LVL14:
+ 101 0058 28B1     		cbz	r0, .L3
+ 112:main.c        ****             j1_pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
+ 102              		.loc 1 112 0
+ 103 005a FFF7FEFF 		bl	ADC_DelSig_1_GetResult32
+ 104              	.LVL15:
+ 105 005e FFF7FEFF 		bl	ADC_DelSig_1_CountsTo_uVolts
+ 106              	.LVL16:
+ 107 0062 084B     		ldr	r3, .L6+8
+ 108 0064 1860     		str	r0, [r3]
+ 109              	.L3:
+ 113:main.c        ****         }
+ 114:main.c        ****         limit[0] = J2_LIM_Read();
+ 110              		.loc 1 114 0
+ 111 0066 FFF7FEFF 		bl	J2_LIM_Read
+ 112              	.LVL17:
+ 113 006a 0A4C     		ldr	r4, .L6+24
+ 114 006c 2070     		strb	r0, [r4]
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 5
+
+
+ 115:main.c        ****         limit[1] = J3_LIM_Read();
+ 115              		.loc 1 115 0
+ 116 006e FFF7FEFF 		bl	J3_LIM_Read
+ 117              	.LVL18:
+ 118 0072 6070     		strb	r0, [r4, #1]
+ 116:main.c        ****         message_buff_execute(&msg_buff);
+ 119              		.loc 1 116 0
+ 120 0074 0448     		ldr	r0, .L6+12
+ 121 0076 FFF7FEFF 		bl	message_buff_execute
+ 122              	.LVL19:
+ 117:main.c        ****     }
+ 123              		.loc 1 117 0
+ 124 007a EAE7     		b	.L4
+ 125              	.L7:
+ 126              		.align	2
+ 127              	.L6:
+ 128 007c 00000000 		.word	j2_limit
+ 129 0080 00000000 		.word	j3_limit
+ 130 0084 00000000 		.word	.LANCHOR0
+ 131 0088 00000000 		.word	msg_buff
+ 132 008c 00000000 		.word	move_queue
+ 133 0090 00000000 		.word	.LC0
+ 134 0094 00000000 		.word	limit
+ 135              		.cfi_endproc
+ 136              	.LFE64:
+ 137              		.size	main, .-main
+ 138              		.section	.text.update_positions,"ax",%progbits
+ 139              		.align	2
+ 140              		.global	update_positions
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.type	update_positions, %function
+ 144              	update_positions:
+ 145              	.LFB66:
+ 118:main.c        **** }
+ 119:main.c        **** 
+ 120:main.c        **** void home_joints(void){
+ 121:main.c        ****     //home joints
+ 122:main.c        ****     J1_EN_Write(0);
+ 123:main.c        ****     J2_EN_Write(0);
+ 124:main.c        ****     J3_EN_Write(0);
+ 125:main.c        ****     update_positions();
+ 126:main.c        ****     while(j1_pos > j1_home + 100 || j1_pos < j1_home - 100){
+ 127:main.c        ****         //home J1
+ 128:main.c        ****         update_positions();
+ 129:main.c        ****         if(j1_pos - j1_home > 0){
+ 130:main.c        ****             set_velocity(1,vel_to_tuningWord(1000),J1_REV);
+ 131:main.c        ****         }
+ 132:main.c        ****         if(j1_pos - j1_home < 0){
+ 133:main.c        ****             set_velocity(1,vel_to_tuningWord(1000),J1_FWD);   
+ 134:main.c        ****         }
+ 135:main.c        ****     }
+ 136:main.c        ****     set_velocity(1,0,J1_FWD);
+ 137:main.c        ****     update_positions();
+ 138:main.c        ****     while(j2_limit != 0){
+ 139:main.c        ****         update_positions();
+ 140:main.c        ****         J2_DIR_Write(J2_FWD);
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 6
+
+
+ 141:main.c        ****         J3_DIR_Write(J3_FWD);
+ 142:main.c        ****         set_velocity(2,vel_to_tuningWord(1000),J2_FWD);
+ 143:main.c        ****         set_velocity(3,vel_to_tuningWord(1000),J3_FWD);
+ 144:main.c        ****     }
+ 145:main.c        ****     set_velocity(2,vel_to_tuningWord(0),J2_FWD);
+ 146:main.c        ****     set_velocity(3,vel_to_tuningWord(0),J3_FWD);
+ 147:main.c        ****     update_positions();
+ 148:main.c        ****     while(j3_limit != 0){
+ 149:main.c        ****         update_positions();
+ 150:main.c        ****         set_velocity(3,vel_to_tuningWord(1000),J3_REV);
+ 151:main.c        ****     }
+ 152:main.c        ****     set_velocity(3,vel_to_tuningWord(0),J3_REV);
+ 153:main.c        ****     J1_EN_Write(1);
+ 154:main.c        ****     J2_EN_Write(1);
+ 155:main.c        ****     J3_EN_Write(1);
+ 156:main.c        ****     return;
+ 157:main.c        **** }
+ 158:main.c        **** 
+ 159:main.c        **** void update_positions(void){
+ 146              		.loc 1 159 0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150 0000 08B5     		push	{r3, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 3, -8
+ 153              		.cfi_offset 14, -4
+ 160:main.c        ****     //joint 1, pot for position and home
+ 161:main.c        ****     if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_WAIT_FOR_RESULT)){
+ 154              		.loc 1 161 0
+ 155 0002 0020     		movs	r0, #0
+ 156 0004 FFF7FEFF 		bl	ADC_DelSig_1_IsEndConversion
+ 157              	.LVL20:
+ 158 0008 28B1     		cbz	r0, .L9
+ 162:main.c        ****         j1_pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
+ 159              		.loc 1 162 0
+ 160 000a FFF7FEFF 		bl	ADC_DelSig_1_GetResult32
+ 161              	.LVL21:
+ 162 000e FFF7FEFF 		bl	ADC_DelSig_1_CountsTo_uVolts
+ 163              	.LVL22:
+ 164 0012 054B     		ldr	r3, .L11
+ 165 0014 1860     		str	r0, [r3]
+ 166              	.L9:
+ 163:main.c        ****     }
+ 164:main.c        ****     //joint 2, SPI for position
+ 165:main.c        ****     j2_limit = J2_LIM_Read();
+ 167              		.loc 1 165 0
+ 168 0016 FFF7FEFF 		bl	J2_LIM_Read
+ 169              	.LVL23:
+ 170 001a 044B     		ldr	r3, .L11+4
+ 171 001c 1870     		strb	r0, [r3]
+ 166:main.c        ****     //joint 3, SPI for position
+ 167:main.c        ****     j3_limit = J3_LIM_Read();
+ 172              		.loc 1 167 0
+ 173 001e FFF7FEFF 		bl	J3_LIM_Read
+ 174              	.LVL24:
+ 175 0022 034B     		ldr	r3, .L11+8
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 7
+
+
+ 176 0024 1870     		strb	r0, [r3]
+ 177 0026 08BD     		pop	{r3, pc}
+ 178              	.L12:
+ 179              		.align	2
+ 180              	.L11:
+ 181 0028 00000000 		.word	.LANCHOR0
+ 182 002c 00000000 		.word	j2_limit
+ 183 0030 00000000 		.word	j3_limit
+ 184              		.cfi_endproc
+ 185              	.LFE66:
+ 186              		.size	update_positions, .-update_positions
+ 187              		.section	.text.set_velocity,"ax",%progbits
+ 188              		.align	2
+ 189              		.global	set_velocity
+ 190              		.thumb
+ 191              		.thumb_func
+ 192              		.type	set_velocity, %function
+ 193              	set_velocity:
+ 194              	.LFB67:
+ 168:main.c        **** }
+ 169:main.c        **** 
+ 170:main.c        **** void set_velocity(int joint, int32 tuningWord, char direction){
+ 195              		.loc 1 170 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199              		@ link register save eliminated.
+ 200              	.LVL25:
+ 171:main.c        ****     //set tuning word for each joint
+ 172:main.c        ****     switch(joint){
+ 201              		.loc 1 172 0
+ 202 0000 0228     		cmp	r0, #2
+ 203 0002 07D0     		beq	.L15
+ 204 0004 0328     		cmp	r0, #3
+ 205 0006 09D0     		beq	.L16
+ 206 0008 0128     		cmp	r0, #1
+ 207 000a 0AD1     		bne	.L13
+ 173:main.c        ****         case 1:
+ 174:main.c        ****             J1_tuningWord = tuningWord;
+ 208              		.loc 1 174 0
+ 209 000c 054B     		ldr	r3, .L18
+ 210 000e 5960     		str	r1, [r3, #4]
+ 175:main.c        ****             J1_dir = direction;
+ 211              		.loc 1 175 0
+ 212 0010 1A72     		strb	r2, [r3, #8]
+ 176:main.c        ****             break;
+ 213              		.loc 1 176 0
+ 214 0012 7047     		bx	lr
+ 215              	.L15:
+ 177:main.c        ****         case 2:
+ 178:main.c        ****             J2_tuningWord = tuningWord;
+ 216              		.loc 1 178 0
+ 217 0014 034B     		ldr	r3, .L18
+ 218 0016 D960     		str	r1, [r3, #12]
+ 179:main.c        ****             J2_dir = direction;
+ 219              		.loc 1 179 0
+ 220 0018 1A74     		strb	r2, [r3, #16]
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 8
+
+
+ 180:main.c        ****             break;
+ 221              		.loc 1 180 0
+ 222 001a 7047     		bx	lr
+ 223              	.L16:
+ 181:main.c        ****         case 3:
+ 182:main.c        ****             J3_tuningWord = tuningWord;
+ 224              		.loc 1 182 0
+ 225 001c 014B     		ldr	r3, .L18
+ 226 001e 5961     		str	r1, [r3, #20]
+ 183:main.c        ****             J3_dir = direction;
+ 227              		.loc 1 183 0
+ 228 0020 1A76     		strb	r2, [r3, #24]
+ 229              	.L13:
+ 230 0022 7047     		bx	lr
+ 231              	.L19:
+ 232              		.align	2
+ 233              	.L18:
+ 234 0024 00000000 		.word	.LANCHOR0
+ 235              		.cfi_endproc
+ 236              	.LFE67:
+ 237              		.size	set_velocity, .-set_velocity
+ 238              		.global	__aeabi_uldivmod
+ 239              		.section	.text.vel_to_tuningWord,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	vel_to_tuningWord
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.type	vel_to_tuningWord, %function
+ 245              	vel_to_tuningWord:
+ 246              	.LFB68:
+ 184:main.c        ****             break;
+ 185:main.c        ****         default:
+ 186:main.c        ****             break;
+ 187:main.c        ****     }
+ 188:main.c        **** }
+ 189:main.c        **** 
+ 190:main.c        **** uint32 vel_to_tuningWord(uint32 velocity){
+ 247              		.loc 1 190 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251              	.LVL26:
+ 252 0000 08B5     		push	{r3, lr}
+ 253              		.cfi_def_cfa_offset 8
+ 254              		.cfi_offset 3, -8
+ 255              		.cfi_offset 14, -4
+ 256 0002 0146     		mov	r1, r0
+ 191:main.c        ****     uint64 tw = ((uint64)velocity * 16777216) / 10000;
+ 257              		.loc 1 191 0
+ 258 0004 42F21072 		movw	r2, #10000
+ 259 0008 0023     		movs	r3, #0
+ 260 000a 0006     		lsls	r0, r0, #24
+ 261              	.LVL27:
+ 262 000c 090A     		lsrs	r1, r1, #8
+ 263              	.LVL28:
+ 264 000e FFF7FEFF 		bl	__aeabi_uldivmod
+ 265              	.LVL29:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 9
+
+
+ 192:main.c        ****     return (uint32)tw;
+ 193:main.c        **** }
+ 266              		.loc 1 193 0
+ 267 0012 08BD     		pop	{r3, pc}
+ 268              		.cfi_endproc
+ 269              	.LFE68:
+ 270              		.size	vel_to_tuningWord, .-vel_to_tuningWord
+ 271              		.section	.text.home_joints,"ax",%progbits
+ 272              		.align	2
+ 273              		.global	home_joints
+ 274              		.thumb
+ 275              		.thumb_func
+ 276              		.type	home_joints, %function
+ 277              	home_joints:
+ 278              	.LFB65:
+ 120:main.c        ****     //home joints
+ 279              		.loc 1 120 0
+ 280              		.cfi_startproc
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283 0000 10B5     		push	{r4, lr}
+ 284              		.cfi_def_cfa_offset 8
+ 285              		.cfi_offset 4, -8
+ 286              		.cfi_offset 14, -4
+ 122:main.c        ****     J2_EN_Write(0);
+ 287              		.loc 1 122 0
+ 288 0002 0020     		movs	r0, #0
+ 289 0004 FFF7FEFF 		bl	J1_EN_Write
+ 290              	.LVL30:
+ 123:main.c        ****     J3_EN_Write(0);
+ 291              		.loc 1 123 0
+ 292 0008 0020     		movs	r0, #0
+ 293 000a FFF7FEFF 		bl	J2_EN_Write
+ 294              	.LVL31:
+ 124:main.c        ****     update_positions();
+ 295              		.loc 1 124 0
+ 296 000e 0020     		movs	r0, #0
+ 297 0010 FFF7FEFF 		bl	J3_EN_Write
+ 298              	.LVL32:
+ 125:main.c        ****     while(j1_pos > j1_home + 100 || j1_pos < j1_home - 100){
+ 299              		.loc 1 125 0
+ 300 0014 FFF7FEFF 		bl	update_positions
+ 301              	.LVL33:
+ 126:main.c        ****         //home J1
+ 302              		.loc 1 126 0
+ 303 0018 21E0     		b	.L25
+ 304              	.L26:
+ 128:main.c        ****         if(j1_pos - j1_home > 0){
+ 305              		.loc 1 128 0
+ 306 001a FFF7FEFF 		bl	update_positions
+ 307              	.LVL34:
+ 129:main.c        ****             set_velocity(1,vel_to_tuningWord(1000),J1_REV);
+ 308              		.loc 1 129 0
+ 309 001e 3E4B     		ldr	r3, .L32
+ 310 0020 1B68     		ldr	r3, [r3]
+ 311 0022 3E4A     		ldr	r2, .L32+4
+ 312 0024 1268     		ldr	r2, [r2]
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 10
+
+
+ 313 0026 9B1A     		subs	r3, r3, r2
+ 314 0028 002B     		cmp	r3, #0
+ 315 002a 08DD     		ble	.L24
+ 130:main.c        ****         }
+ 316              		.loc 1 130 0
+ 317 002c 4FF47A70 		mov	r0, #1000
+ 318 0030 FFF7FEFF 		bl	vel_to_tuningWord
+ 319              	.LVL35:
+ 320 0034 0122     		movs	r2, #1
+ 321 0036 0146     		mov	r1, r0
+ 322 0038 1046     		mov	r0, r2
+ 323 003a FFF7FEFF 		bl	set_velocity
+ 324              	.LVL36:
+ 325              	.L24:
+ 132:main.c        ****             set_velocity(1,vel_to_tuningWord(1000),J1_FWD);   
+ 326              		.loc 1 132 0
+ 327 003e 364B     		ldr	r3, .L32
+ 328 0040 1B68     		ldr	r3, [r3]
+ 329 0042 364A     		ldr	r2, .L32+4
+ 330 0044 1268     		ldr	r2, [r2]
+ 331 0046 9B1A     		subs	r3, r3, r2
+ 332 0048 002B     		cmp	r3, #0
+ 333 004a 08DA     		bge	.L25
+ 133:main.c        ****         }
+ 334              		.loc 1 133 0
+ 335 004c 4FF47A70 		mov	r0, #1000
+ 336 0050 FFF7FEFF 		bl	vel_to_tuningWord
+ 337              	.LVL37:
+ 338 0054 0022     		movs	r2, #0
+ 339 0056 0146     		mov	r1, r0
+ 340 0058 0120     		movs	r0, #1
+ 341 005a FFF7FEFF 		bl	set_velocity
+ 342              	.LVL38:
+ 343              	.L25:
+ 126:main.c        ****         //home J1
+ 344              		.loc 1 126 0
+ 345 005e 2F4B     		ldr	r3, .L32+4
+ 346 0060 1B68     		ldr	r3, [r3]
+ 347 0062 03F16401 		add	r1, r3, #100
+ 348 0066 2C4A     		ldr	r2, .L32
+ 349 0068 1268     		ldr	r2, [r2]
+ 350 006a 9142     		cmp	r1, r2
+ 351 006c D5DB     		blt	.L26
+ 126:main.c        ****         //home J1
+ 352              		.loc 1 126 0 is_stmt 0 discriminator 1
+ 353 006e 643B     		subs	r3, r3, #100
+ 354 0070 9A42     		cmp	r2, r3
+ 355 0072 D2DB     		blt	.L26
+ 136:main.c        ****     update_positions();
+ 356              		.loc 1 136 0 is_stmt 1
+ 357 0074 0022     		movs	r2, #0
+ 358 0076 1146     		mov	r1, r2
+ 359 0078 0120     		movs	r0, #1
+ 360 007a FFF7FEFF 		bl	set_velocity
+ 361              	.LVL39:
+ 137:main.c        ****     while(j2_limit != 0){
+ 362              		.loc 1 137 0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 11
+
+
+ 363 007e FFF7FEFF 		bl	update_positions
+ 364              	.LVL40:
+ 138:main.c        ****         update_positions();
+ 365              		.loc 1 138 0
+ 366 0082 16E0     		b	.L27
+ 367              	.L28:
+ 139:main.c        ****         J2_DIR_Write(J2_FWD);
+ 368              		.loc 1 139 0
+ 369 0084 FFF7FEFF 		bl	update_positions
+ 370              	.LVL41:
+ 140:main.c        ****         J3_DIR_Write(J3_FWD);
+ 371              		.loc 1 140 0
+ 372 0088 0020     		movs	r0, #0
+ 373 008a FFF7FEFF 		bl	J2_DIR_Write
+ 374              	.LVL42:
+ 141:main.c        ****         set_velocity(2,vel_to_tuningWord(1000),J2_FWD);
+ 375              		.loc 1 141 0
+ 376 008e 0020     		movs	r0, #0
+ 377 0090 FFF7FEFF 		bl	J3_DIR_Write
+ 378              	.LVL43:
+ 142:main.c        ****         set_velocity(3,vel_to_tuningWord(1000),J3_FWD);
+ 379              		.loc 1 142 0
+ 380 0094 4FF47A70 		mov	r0, #1000
+ 381 0098 FFF7FEFF 		bl	vel_to_tuningWord
+ 382              	.LVL44:
+ 383 009c 0446     		mov	r4, r0
+ 384 009e 0022     		movs	r2, #0
+ 385 00a0 0146     		mov	r1, r0
+ 386 00a2 0220     		movs	r0, #2
+ 387 00a4 FFF7FEFF 		bl	set_velocity
+ 388              	.LVL45:
+ 143:main.c        ****     }
+ 389              		.loc 1 143 0
+ 390 00a8 0022     		movs	r2, #0
+ 391 00aa 2146     		mov	r1, r4
+ 392 00ac 0320     		movs	r0, #3
+ 393 00ae FFF7FEFF 		bl	set_velocity
+ 394              	.LVL46:
+ 395              	.L27:
+ 138:main.c        ****         update_positions();
+ 396              		.loc 1 138 0
+ 397 00b2 1B4B     		ldr	r3, .L32+8
+ 398 00b4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 399 00b6 002B     		cmp	r3, #0
+ 400 00b8 E4D1     		bne	.L28
+ 145:main.c        ****     set_velocity(3,vel_to_tuningWord(0),J3_FWD);
+ 401              		.loc 1 145 0
+ 402 00ba 0020     		movs	r0, #0
+ 403 00bc FFF7FEFF 		bl	vel_to_tuningWord
+ 404              	.LVL47:
+ 405 00c0 0446     		mov	r4, r0
+ 406 00c2 0022     		movs	r2, #0
+ 407 00c4 0146     		mov	r1, r0
+ 408 00c6 0220     		movs	r0, #2
+ 409 00c8 FFF7FEFF 		bl	set_velocity
+ 410              	.LVL48:
+ 146:main.c        ****     update_positions();
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 12
+
+
+ 411              		.loc 1 146 0
+ 412 00cc 0022     		movs	r2, #0
+ 413 00ce 2146     		mov	r1, r4
+ 414 00d0 0320     		movs	r0, #3
+ 415 00d2 FFF7FEFF 		bl	set_velocity
+ 416              	.LVL49:
+ 147:main.c        ****     while(j3_limit != 0){
+ 417              		.loc 1 147 0
+ 418 00d6 FFF7FEFF 		bl	update_positions
+ 419              	.LVL50:
+ 148:main.c        ****         update_positions();
+ 420              		.loc 1 148 0
+ 421 00da 0AE0     		b	.L29
+ 422              	.L30:
+ 149:main.c        ****         set_velocity(3,vel_to_tuningWord(1000),J3_REV);
+ 423              		.loc 1 149 0
+ 424 00dc FFF7FEFF 		bl	update_positions
+ 425              	.LVL51:
+ 150:main.c        ****     }
+ 426              		.loc 1 150 0
+ 427 00e0 4FF47A70 		mov	r0, #1000
+ 428 00e4 FFF7FEFF 		bl	vel_to_tuningWord
+ 429              	.LVL52:
+ 430 00e8 0122     		movs	r2, #1
+ 431 00ea 0146     		mov	r1, r0
+ 432 00ec 0320     		movs	r0, #3
+ 433 00ee FFF7FEFF 		bl	set_velocity
+ 434              	.LVL53:
+ 435              	.L29:
+ 148:main.c        ****         update_positions();
+ 436              		.loc 1 148 0
+ 437 00f2 0C4B     		ldr	r3, .L32+12
+ 438 00f4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 439 00f6 002B     		cmp	r3, #0
+ 440 00f8 F0D1     		bne	.L30
+ 152:main.c        ****     J1_EN_Write(1);
+ 441              		.loc 1 152 0
+ 442 00fa 0122     		movs	r2, #1
+ 443 00fc 2146     		mov	r1, r4
+ 444 00fe 0320     		movs	r0, #3
+ 445 0100 FFF7FEFF 		bl	set_velocity
+ 446              	.LVL54:
+ 153:main.c        ****     J2_EN_Write(1);
+ 447              		.loc 1 153 0
+ 448 0104 0120     		movs	r0, #1
+ 449 0106 FFF7FEFF 		bl	J1_EN_Write
+ 450              	.LVL55:
+ 154:main.c        ****     J3_EN_Write(1);
+ 451              		.loc 1 154 0
+ 452 010a 0120     		movs	r0, #1
+ 453 010c FFF7FEFF 		bl	J2_EN_Write
+ 454              	.LVL56:
+ 155:main.c        ****     return;
+ 455              		.loc 1 155 0
+ 456 0110 0120     		movs	r0, #1
+ 457 0112 FFF7FEFF 		bl	J3_EN_Write
+ 458              	.LVL57:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 13
+
+
+ 459 0116 10BD     		pop	{r4, pc}
+ 460              	.L33:
+ 461              		.align	2
+ 462              	.L32:
+ 463 0118 00000000 		.word	.LANCHOR0
+ 464 011c 00000000 		.word	.LANCHOR1
+ 465 0120 00000000 		.word	j2_limit
+ 466 0124 00000000 		.word	j3_limit
+ 467              		.cfi_endproc
+ 468              	.LFE65:
+ 469              		.size	home_joints, .-home_joints
+ 470              		.global	rx_index
+ 471              		.comm	rx_buffer,80,4
+ 472              		.comm	move_queue,1208,4
+ 473              		.comm	msg_buff,2006,4
+ 474              		.global	J3_dir
+ 475              		.global	J2_dir
+ 476              		.global	J1_dir
+ 477              		.global	J3_step
+ 478              		.global	J2_step
+ 479              		.global	J1_step
+ 480              		.global	J3_accumulator
+ 481              		.global	J2_accumulator
+ 482              		.global	J1_accumulator
+ 483              		.global	J3_tuningWord
+ 484              		.global	J2_tuningWord
+ 485              		.global	J1_tuningWord
+ 486              		.comm	TransmitBuffer,80,4
+ 487              		.comm	Ch,1,1
+ 488              		.global	J3_ctrl_val
+ 489              		.global	J2_ctrl_val
+ 490              		.global	J1_ctrl_val
+ 491              		.global	home
+ 492              		.global	moveJ3
+ 493              		.global	moveJ2
+ 494              		.global	moveJ1
+ 495              		.global	j1_home
+ 496              		.global	j3_pos
+ 497              		.global	j2_pos
+ 498              		.global	j1_pos
+ 499              		.comm	j3_limit,1,1
+ 500              		.comm	j2_limit,1,1
+ 501              		.comm	limit,2,4
+ 502              		.data
+ 503              		.align	2
+ 504              		.set	.LANCHOR1,. + 0
+ 505              		.type	j1_home, %object
+ 506              		.size	j1_home, 4
+ 507              	j1_home:
+ 508 0000 C0E42800 		.word	2680000
+ 509              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 510              		.align	2
+ 511              	.LC0:
+ 512 0000 434F4D20 		.ascii	"COM port open\000"
+ 512      706F7274 
+ 512      206F7065 
+ 512      6E00
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 14
+
+
+ 513              		.bss
+ 514              		.align	2
+ 515              		.set	.LANCHOR0,. + 0
+ 516              		.type	j1_pos, %object
+ 517              		.size	j1_pos, 4
+ 518              	j1_pos:
+ 519 0000 00000000 		.space	4
+ 520              		.type	J1_tuningWord, %object
+ 521              		.size	J1_tuningWord, 4
+ 522              	J1_tuningWord:
+ 523 0004 00000000 		.space	4
+ 524              		.type	J1_dir, %object
+ 525              		.size	J1_dir, 1
+ 526              	J1_dir:
+ 527 0008 00       		.space	1
+ 528 0009 000000   		.space	3
+ 529              		.type	J2_tuningWord, %object
+ 530              		.size	J2_tuningWord, 4
+ 531              	J2_tuningWord:
+ 532 000c 00000000 		.space	4
+ 533              		.type	J2_dir, %object
+ 534              		.size	J2_dir, 1
+ 535              	J2_dir:
+ 536 0010 00       		.space	1
+ 537 0011 000000   		.space	3
+ 538              		.type	J3_tuningWord, %object
+ 539              		.size	J3_tuningWord, 4
+ 540              	J3_tuningWord:
+ 541 0014 00000000 		.space	4
+ 542              		.type	J3_dir, %object
+ 543              		.size	J3_dir, 1
+ 544              	J3_dir:
+ 545 0018 00       		.space	1
+ 546 0019 000000   		.space	3
+ 547              		.type	rx_index, %object
+ 548              		.size	rx_index, 4
+ 549              	rx_index:
+ 550 001c 00000000 		.space	4
+ 551              		.type	J3_step, %object
+ 552              		.size	J3_step, 1
+ 553              	J3_step:
+ 554 0020 00       		.space	1
+ 555              		.type	J2_step, %object
+ 556              		.size	J2_step, 1
+ 557              	J2_step:
+ 558 0021 00       		.space	1
+ 559              		.type	J1_step, %object
+ 560              		.size	J1_step, 1
+ 561              	J1_step:
+ 562 0022 00       		.space	1
+ 563 0023 00       		.space	1
+ 564              		.type	J3_accumulator, %object
+ 565              		.size	J3_accumulator, 4
+ 566              	J3_accumulator:
+ 567 0024 00000000 		.space	4
+ 568              		.type	J2_accumulator, %object
+ 569              		.size	J2_accumulator, 4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 15
+
+
+ 570              	J2_accumulator:
+ 571 0028 00000000 		.space	4
+ 572              		.type	J1_accumulator, %object
+ 573              		.size	J1_accumulator, 4
+ 574              	J1_accumulator:
+ 575 002c 00000000 		.space	4
+ 576              		.type	J3_ctrl_val, %object
+ 577              		.size	J3_ctrl_val, 1
+ 578              	J3_ctrl_val:
+ 579 0030 00       		.space	1
+ 580              		.type	J2_ctrl_val, %object
+ 581              		.size	J2_ctrl_val, 1
+ 582              	J2_ctrl_val:
+ 583 0031 00       		.space	1
+ 584              		.type	J1_ctrl_val, %object
+ 585              		.size	J1_ctrl_val, 1
+ 586              	J1_ctrl_val:
+ 587 0032 00       		.space	1
+ 588              		.type	home, %object
+ 589              		.size	home, 1
+ 590              	home:
+ 591 0033 00       		.space	1
+ 592              		.type	moveJ3, %object
+ 593              		.size	moveJ3, 1
+ 594              	moveJ3:
+ 595 0034 00       		.space	1
+ 596              		.type	moveJ2, %object
+ 597              		.size	moveJ2, 1
+ 598              	moveJ2:
+ 599 0035 00       		.space	1
+ 600              		.type	moveJ1, %object
+ 601              		.size	moveJ1, 1
+ 602              	moveJ1:
+ 603 0036 00       		.space	1
+ 604 0037 00       		.space	1
+ 605              		.type	j3_pos, %object
+ 606              		.size	j3_pos, 4
+ 607              	j3_pos:
+ 608 0038 00000000 		.space	4
+ 609              		.type	j2_pos, %object
+ 610              		.size	j2_pos, 4
+ 611              	j2_pos:
+ 612 003c 00000000 		.space	4
+ 613              		.text
+ 614              	.Letext0:
+ 615              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 616              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 617              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 618              		.file 5 "comms.h"
+ 619              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 620              		.file 7 "Generated_Source\\PSoC5/UART_1.h"
+ 621              		.file 8 "Generated_Source\\PSoC5/SPIM_1.h"
+ 622              		.file 9 "Generated_Source\\PSoC5/ADC_DelSig_1.h"
+ 623              		.file 10 "Generated_Source\\PSoC5/NCO_ISR.h"
+ 624              		.file 11 "Generated_Source\\PSoC5/rx_isr.h"
+ 625              		.file 12 "Generated_Source\\PSoC5/J2_LIM.h"
+ 626              		.file 13 "Generated_Source\\PSoC5/J3_LIM.h"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 16
+
+
+ 627              		.file 14 "Generated_Source\\PSoC5/J1_EN.h"
+ 628              		.file 15 "Generated_Source\\PSoC5/J2_EN.h"
+ 629              		.file 16 "Generated_Source\\PSoC5/J3_EN.h"
+ 630              		.file 17 "Generated_Source\\PSoC5/J2_DIR.h"
+ 631              		.file 18 "Generated_Source\\PSoC5/J3_DIR.h"
+ 632              		.section	.debug_info,"",%progbits
+ 633              	.Ldebug_info0:
+ 634 0000 96090000 		.4byte	0x996
+ 635 0004 0400     		.2byte	0x4
+ 636 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 637 000a 04       		.byte	0x4
+ 638 000b 01       		.uleb128 0x1
+ 639 000c 52040000 		.4byte	.LASF92
+ 640 0010 0C       		.byte	0xc
+ 641 0011 3F030000 		.4byte	.LASF93
+ 642 0015 09000000 		.4byte	.LASF94
+ 643 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 644 001d 00000000 		.4byte	0
+ 645 0021 00000000 		.4byte	.Ldebug_line0
+ 646 0025 02       		.uleb128 0x2
+ 647 0026 01       		.byte	0x1
+ 648 0027 06       		.byte	0x6
+ 649 0028 1B020000 		.4byte	.LASF0
+ 650 002c 02       		.uleb128 0x2
+ 651 002d 01       		.byte	0x1
+ 652 002e 08       		.byte	0x8
+ 653 002f 0D020000 		.4byte	.LASF1
+ 654 0033 02       		.uleb128 0x2
+ 655 0034 02       		.byte	0x2
+ 656 0035 05       		.byte	0x5
+ 657 0036 84000000 		.4byte	.LASF2
+ 658 003a 02       		.uleb128 0x2
+ 659 003b 02       		.byte	0x2
+ 660 003c 07       		.byte	0x7
+ 661 003d 1D040000 		.4byte	.LASF3
+ 662 0041 03       		.uleb128 0x3
+ 663 0042 C1030000 		.4byte	.LASF9
+ 664 0046 02       		.byte	0x2
+ 665 0047 3F       		.byte	0x3f
+ 666 0048 4C000000 		.4byte	0x4c
+ 667 004c 02       		.uleb128 0x2
+ 668 004d 04       		.byte	0x4
+ 669 004e 05       		.byte	0x5
+ 670 004f DB020000 		.4byte	.LASF4
+ 671 0053 02       		.uleb128 0x2
+ 672 0054 04       		.byte	0x4
+ 673 0055 07       		.byte	0x7
+ 674 0056 86020000 		.4byte	.LASF5
+ 675 005a 02       		.uleb128 0x2
+ 676 005b 08       		.byte	0x8
+ 677 005c 05       		.byte	0x5
+ 678 005d 4C010000 		.4byte	.LASF6
+ 679 0061 02       		.uleb128 0x2
+ 680 0062 08       		.byte	0x8
+ 681 0063 07       		.byte	0x7
+ 682 0064 32020000 		.4byte	.LASF7
+ 683 0068 04       		.uleb128 0x4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 17
+
+
+ 684 0069 04       		.byte	0x4
+ 685 006a 05       		.byte	0x5
+ 686 006b 696E7400 		.ascii	"int\000"
+ 687 006f 02       		.uleb128 0x2
+ 688 0070 04       		.byte	0x4
+ 689 0071 07       		.byte	0x7
+ 690 0072 62020000 		.4byte	.LASF8
+ 691 0076 03       		.uleb128 0x3
+ 692 0077 F6020000 		.4byte	.LASF10
+ 693 007b 03       		.byte	0x3
+ 694 007c 2C       		.byte	0x2c
+ 695 007d 41000000 		.4byte	0x41
+ 696 0081 05       		.uleb128 0x5
+ 697 0082 27010000 		.4byte	.LASF11
+ 698 0086 04       		.byte	0x4
+ 699 0087 E401     		.2byte	0x1e4
+ 700 0089 2C000000 		.4byte	0x2c
+ 701 008d 05       		.uleb128 0x5
+ 702 008e 1C030000 		.4byte	.LASF12
+ 703 0092 04       		.byte	0x4
+ 704 0093 E501     		.2byte	0x1e5
+ 705 0095 3A000000 		.4byte	0x3a
+ 706 0099 05       		.uleb128 0x5
+ 707 009a 38030000 		.4byte	.LASF13
+ 708 009e 04       		.byte	0x4
+ 709 009f E601     		.2byte	0x1e6
+ 710 00a1 53000000 		.4byte	0x53
+ 711 00a5 05       		.uleb128 0x5
+ 712 00a6 6B030000 		.4byte	.LASF14
+ 713 00aa 04       		.byte	0x4
+ 714 00ab E901     		.2byte	0x1e9
+ 715 00ad 4C000000 		.4byte	0x4c
+ 716 00b1 02       		.uleb128 0x2
+ 717 00b2 04       		.byte	0x4
+ 718 00b3 04       		.byte	0x4
+ 719 00b4 3F010000 		.4byte	.LASF15
+ 720 00b8 02       		.uleb128 0x2
+ 721 00b9 08       		.byte	0x8
+ 722 00ba 04       		.byte	0x4
+ 723 00bb 6E000000 		.4byte	.LASF16
+ 724 00bf 05       		.uleb128 0x5
+ 725 00c0 98010000 		.4byte	.LASF17
+ 726 00c4 04       		.byte	0x4
+ 727 00c5 F001     		.2byte	0x1f0
+ 728 00c7 61000000 		.4byte	0x61
+ 729 00cb 02       		.uleb128 0x2
+ 730 00cc 01       		.byte	0x1
+ 731 00cd 08       		.byte	0x8
+ 732 00ce D6020000 		.4byte	.LASF18
+ 733 00d2 06       		.uleb128 0x6
+ 734 00d3 99000000 		.4byte	0x99
+ 735 00d7 02       		.uleb128 0x2
+ 736 00d8 08       		.byte	0x8
+ 737 00d9 04       		.byte	0x4
+ 738 00da FC010000 		.4byte	.LASF19
+ 739 00de 02       		.uleb128 0x2
+ 740 00df 04       		.byte	0x4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 18
+
+
+ 741 00e0 07       		.byte	0x7
+ 742 00e1 95000000 		.4byte	.LASF20
+ 743 00e5 07       		.uleb128 0x7
+ 744 00e6 46030000 		.4byte	.LASF95
+ 745 00ea 14       		.byte	0x14
+ 746 00eb 05       		.byte	0x5
+ 747 00ec 1A       		.byte	0x1a
+ 748 00ed 16010000 		.4byte	0x116
+ 749 00f1 08       		.uleb128 0x8
+ 750 00f2 F5040000 		.4byte	.LASF21
+ 751 00f6 05       		.byte	0x5
+ 752 00f7 1B       		.byte	0x1b
+ 753 00f8 8D000000 		.4byte	0x8d
+ 754 00fc 00       		.byte	0
+ 755 00fd 08       		.uleb128 0x8
+ 756 00fe F0020000 		.4byte	.LASF22
+ 757 0102 05       		.byte	0x5
+ 758 0103 1C       		.byte	0x1c
+ 759 0104 81000000 		.4byte	0x81
+ 760 0108 02       		.byte	0x2
+ 761 0109 08       		.uleb128 0x8
+ 762 010a 17030000 		.4byte	.LASF23
+ 763 010e 05       		.byte	0x5
+ 764 010f 1D       		.byte	0x1d
+ 765 0110 16010000 		.4byte	0x116
+ 766 0114 03       		.byte	0x3
+ 767 0115 00       		.byte	0
+ 768 0116 09       		.uleb128 0x9
+ 769 0117 81000000 		.4byte	0x81
+ 770 011b 26010000 		.4byte	0x126
+ 771 011f 0A       		.uleb128 0xa
+ 772 0120 DE000000 		.4byte	0xde
+ 773 0124 0F       		.byte	0xf
+ 774 0125 00       		.byte	0
+ 775 0126 03       		.uleb128 0x3
+ 776 0127 15040000 		.4byte	.LASF24
+ 777 012b 05       		.byte	0x5
+ 778 012c 1E       		.byte	0x1e
+ 779 012d E5000000 		.4byte	0xe5
+ 780 0131 0B       		.uleb128 0xb
+ 781 0132 D607     		.2byte	0x7d6
+ 782 0134 05       		.byte	0x5
+ 783 0135 20       		.byte	0x20
+ 784 0136 6E010000 		.4byte	0x16e
+ 785 013a 08       		.uleb128 0x8
+ 786 013b 6F020000 		.4byte	.LASF25
+ 787 013f 05       		.byte	0x5
+ 788 0140 21       		.byte	0x21
+ 789 0141 6E010000 		.4byte	0x16e
+ 790 0145 00       		.byte	0
+ 791 0146 0C       		.uleb128 0xc
+ 792 0147 F2000000 		.4byte	.LASF26
+ 793 014b 05       		.byte	0x5
+ 794 014c 22       		.byte	0x22
+ 795 014d 8D000000 		.4byte	0x8d
+ 796 0151 D007     		.2byte	0x7d0
+ 797 0153 0C       		.uleb128 0xc
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 19
+
+
+ 798 0154 08020000 		.4byte	.LASF27
+ 799 0158 05       		.byte	0x5
+ 800 0159 23       		.byte	0x23
+ 801 015a 8D000000 		.4byte	0x8d
+ 802 015e D207     		.2byte	0x7d2
+ 803 0160 0C       		.uleb128 0xc
+ 804 0161 D1020000 		.4byte	.LASF28
+ 805 0165 05       		.byte	0x5
+ 806 0166 24       		.byte	0x24
+ 807 0167 8D000000 		.4byte	0x8d
+ 808 016b D407     		.2byte	0x7d4
+ 809 016d 00       		.byte	0
+ 810 016e 09       		.uleb128 0x9
+ 811 016f 26010000 		.4byte	0x126
+ 812 0173 7E010000 		.4byte	0x17e
+ 813 0177 0A       		.uleb128 0xa
+ 814 0178 DE000000 		.4byte	0xde
+ 815 017c 63       		.byte	0x63
+ 816 017d 00       		.byte	0
+ 817 017e 03       		.uleb128 0x3
+ 818 017f 55020000 		.4byte	.LASF29
+ 819 0183 05       		.byte	0x5
+ 820 0184 25       		.byte	0x25
+ 821 0185 31010000 		.4byte	0x131
+ 822 0189 0D       		.uleb128 0xd
+ 823 018a 0C       		.byte	0xc
+ 824 018b 05       		.byte	0x5
+ 825 018c 27       		.byte	0x27
+ 826 018d C2010000 		.4byte	0x1c2
+ 827 0191 08       		.uleb128 0x8
+ 828 0192 F0020000 		.4byte	.LASF22
+ 829 0196 05       		.byte	0x5
+ 830 0197 28       		.byte	0x28
+ 831 0198 81000000 		.4byte	0x81
+ 832 019c 00       		.byte	0
+ 833 019d 08       		.uleb128 0x8
+ 834 019e B9000000 		.4byte	.LASF30
+ 835 01a2 05       		.byte	0x5
+ 836 01a3 29       		.byte	0x29
+ 837 01a4 81000000 		.4byte	0x81
+ 838 01a8 01       		.byte	0x1
+ 839 01a9 08       		.uleb128 0x8
+ 840 01aa D1000000 		.4byte	.LASF31
+ 841 01ae 05       		.byte	0x5
+ 842 01af 2A       		.byte	0x2a
+ 843 01b0 99000000 		.4byte	0x99
+ 844 01b4 04       		.byte	0x4
+ 845 01b5 08       		.uleb128 0x8
+ 846 01b6 23030000 		.4byte	.LASF32
+ 847 01ba 05       		.byte	0x5
+ 848 01bb 2B       		.byte	0x2b
+ 849 01bc 99000000 		.4byte	0x99
+ 850 01c0 08       		.byte	0x8
+ 851 01c1 00       		.byte	0
+ 852 01c2 03       		.uleb128 0x3
+ 853 01c3 05030000 		.4byte	.LASF33
+ 854 01c7 05       		.byte	0x5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 20
+
+
+ 855 01c8 2C       		.byte	0x2c
+ 856 01c9 89010000 		.4byte	0x189
+ 857 01cd 0B       		.uleb128 0xb
+ 858 01ce B804     		.2byte	0x4b8
+ 859 01d0 05       		.byte	0x5
+ 860 01d1 30       		.byte	0x30
+ 861 01d2 0A020000 		.4byte	0x20a
+ 862 01d6 08       		.uleb128 0x8
+ 863 01d7 9B030000 		.4byte	.LASF34
+ 864 01db 05       		.byte	0x5
+ 865 01dc 31       		.byte	0x31
+ 866 01dd 0A020000 		.4byte	0x20a
+ 867 01e1 00       		.byte	0
+ 868 01e2 0C       		.uleb128 0xc
+ 869 01e3 F2000000 		.4byte	.LASF26
+ 870 01e7 05       		.byte	0x5
+ 871 01e8 32       		.byte	0x32
+ 872 01e9 8D000000 		.4byte	0x8d
+ 873 01ed B004     		.2byte	0x4b0
+ 874 01ef 0C       		.uleb128 0xc
+ 875 01f0 08020000 		.4byte	.LASF27
+ 876 01f4 05       		.byte	0x5
+ 877 01f5 33       		.byte	0x33
+ 878 01f6 8D000000 		.4byte	0x8d
+ 879 01fa B204     		.2byte	0x4b2
+ 880 01fc 0C       		.uleb128 0xc
+ 881 01fd D1020000 		.4byte	.LASF28
+ 882 0201 05       		.byte	0x5
+ 883 0202 34       		.byte	0x34
+ 884 0203 8D000000 		.4byte	0x8d
+ 885 0207 B404     		.2byte	0x4b4
+ 886 0209 00       		.byte	0
+ 887 020a 09       		.uleb128 0x9
+ 888 020b C2010000 		.4byte	0x1c2
+ 889 020f 1A020000 		.4byte	0x21a
+ 890 0213 0A       		.uleb128 0xa
+ 891 0214 DE000000 		.4byte	0xde
+ 892 0218 63       		.byte	0x63
+ 893 0219 00       		.byte	0
+ 894 021a 03       		.uleb128 0x3
+ 895 021b 27020000 		.4byte	.LASF35
+ 896 021f 05       		.byte	0x5
+ 897 0220 35       		.byte	0x35
+ 898 0221 CD010000 		.4byte	0x1cd
+ 899 0225 0E       		.uleb128 0xe
+ 900 0226 C3000000 		.4byte	.LASF96
+ 901 022a 01       		.byte	0x1
+ 902 022b 53       		.byte	0x53
+ 903 022c 68000000 		.4byte	0x68
+ 904 0230 00000000 		.4byte	.LFB64
+ 905 0234 98000000 		.4byte	.LFE64-.LFB64
+ 906 0238 01       		.uleb128 0x1
+ 907 0239 9C       		.byte	0x9c
+ 908 023a 45030000 		.4byte	0x345
+ 909 023e 0F       		.uleb128 0xf
+ 910 023f 6900     		.ascii	"i\000"
+ 911 0241 01       		.byte	0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 21
+
+
+ 912 0242 5C       		.byte	0x5c
+ 913 0243 68000000 		.4byte	0x68
+ 914 0247 00       		.byte	0
+ 915 0248 10       		.uleb128 0x10
+ 916 0249 08000000 		.4byte	.LVL0
+ 917 024d BD080000 		.4byte	0x8bd
+ 918 0251 10       		.uleb128 0x10
+ 919 0252 0C000000 		.4byte	.LVL1
+ 920 0256 C8080000 		.4byte	0x8c8
+ 921 025a 10       		.uleb128 0x10
+ 922 025b 10000000 		.4byte	.LVL2
+ 923 025f D3080000 		.4byte	0x8d3
+ 924 0263 10       		.uleb128 0x10
+ 925 0264 14000000 		.4byte	.LVL3
+ 926 0268 DE080000 		.4byte	0x8de
+ 927 026c 10       		.uleb128 0x10
+ 928 026d 18000000 		.4byte	.LVL4
+ 929 0271 E9080000 		.4byte	0x8e9
+ 930 0275 10       		.uleb128 0x10
+ 931 0276 1C000000 		.4byte	.LVL5
+ 932 027a F4080000 		.4byte	0x8f4
+ 933 027e 10       		.uleb128 0x10
+ 934 027f 20000000 		.4byte	.LVL6
+ 935 0283 FF080000 		.4byte	0x8ff
+ 936 0287 10       		.uleb128 0x10
+ 937 0288 28000000 		.4byte	.LVL7
+ 938 028c 0A090000 		.4byte	0x90a
+ 939 0290 11       		.uleb128 0x11
+ 940 0291 32000000 		.4byte	.LVL8
+ 941 0295 15090000 		.4byte	0x915
+ 942 0299 A3020000 		.4byte	0x2a3
+ 943 029d 12       		.uleb128 0x12
+ 944 029e 01       		.uleb128 0x1
+ 945 029f 50       		.byte	0x50
+ 946 02a0 01       		.uleb128 0x1
+ 947 02a1 30       		.byte	0x30
+ 948 02a2 00       		.byte	0
+ 949 02a3 10       		.uleb128 0x10
+ 950 02a4 38000000 		.4byte	.LVL9
+ 951 02a8 20090000 		.4byte	0x920
+ 952 02ac 10       		.uleb128 0x10
+ 953 02ad 3C000000 		.4byte	.LVL10
+ 954 02b1 2B090000 		.4byte	0x92b
+ 955 02b5 11       		.uleb128 0x11
+ 956 02b6 46000000 		.4byte	.LVL11
+ 957 02ba 36090000 		.4byte	0x936
+ 958 02be CC020000 		.4byte	0x2cc
+ 959 02c2 12       		.uleb128 0x12
+ 960 02c3 01       		.uleb128 0x1
+ 961 02c4 50       		.byte	0x50
+ 962 02c5 05       		.uleb128 0x5
+ 963 02c6 03       		.byte	0x3
+ 964 02c7 00000000 		.4byte	msg_buff
+ 965 02cb 00       		.byte	0
+ 966 02cc 11       		.uleb128 0x11
+ 967 02cd 4C000000 		.4byte	.LVL12
+ 968 02d1 41090000 		.4byte	0x941
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 22
+
+
+ 969 02d5 E3020000 		.4byte	0x2e3
+ 970 02d9 12       		.uleb128 0x12
+ 971 02da 01       		.uleb128 0x1
+ 972 02db 50       		.byte	0x50
+ 973 02dc 05       		.uleb128 0x5
+ 974 02dd 03       		.byte	0x3
+ 975 02de 00000000 		.4byte	move_queue
+ 976 02e2 00       		.byte	0
+ 977 02e3 11       		.uleb128 0x11
+ 978 02e4 52000000 		.4byte	.LVL13
+ 979 02e8 4C090000 		.4byte	0x94c
+ 980 02ec FA020000 		.4byte	0x2fa
+ 981 02f0 12       		.uleb128 0x12
+ 982 02f1 01       		.uleb128 0x1
+ 983 02f2 50       		.byte	0x50
+ 984 02f3 05       		.uleb128 0x5
+ 985 02f4 03       		.byte	0x3
+ 986 02f5 00000000 		.4byte	.LC0
+ 987 02f9 00       		.byte	0
+ 988 02fa 11       		.uleb128 0x11
+ 989 02fb 58000000 		.4byte	.LVL14
+ 990 02ff 15090000 		.4byte	0x915
+ 991 0303 0D030000 		.4byte	0x30d
+ 992 0307 12       		.uleb128 0x12
+ 993 0308 01       		.uleb128 0x1
+ 994 0309 50       		.byte	0x50
+ 995 030a 01       		.uleb128 0x1
+ 996 030b 30       		.byte	0x30
+ 997 030c 00       		.byte	0
+ 998 030d 10       		.uleb128 0x10
+ 999 030e 5E000000 		.4byte	.LVL15
+ 1000 0312 20090000 		.4byte	0x920
+ 1001 0316 10       		.uleb128 0x10
+ 1002 0317 62000000 		.4byte	.LVL16
+ 1003 031b 2B090000 		.4byte	0x92b
+ 1004 031f 10       		.uleb128 0x10
+ 1005 0320 6A000000 		.4byte	.LVL17
+ 1006 0324 FF080000 		.4byte	0x8ff
+ 1007 0328 10       		.uleb128 0x10
+ 1008 0329 72000000 		.4byte	.LVL18
+ 1009 032d 0A090000 		.4byte	0x90a
+ 1010 0331 13       		.uleb128 0x13
+ 1011 0332 7A000000 		.4byte	.LVL19
+ 1012 0336 57090000 		.4byte	0x957
+ 1013 033a 12       		.uleb128 0x12
+ 1014 033b 01       		.uleb128 0x1
+ 1015 033c 50       		.byte	0x50
+ 1016 033d 05       		.uleb128 0x5
+ 1017 033e 03       		.byte	0x3
+ 1018 033f 00000000 		.4byte	msg_buff
+ 1019 0343 00       		.byte	0
+ 1020 0344 00       		.byte	0
+ 1021 0345 14       		.uleb128 0x14
+ 1022 0346 A5020000 		.4byte	.LASF36
+ 1023 034a 01       		.byte	0x1
+ 1024 034b 9F       		.byte	0x9f
+ 1025 034c 00000000 		.4byte	.LFB66
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 23
+
+
+ 1026 0350 34000000 		.4byte	.LFE66-.LFB66
+ 1027 0354 01       		.uleb128 0x1
+ 1028 0355 9C       		.byte	0x9c
+ 1029 0356 92030000 		.4byte	0x392
+ 1030 035a 11       		.uleb128 0x11
+ 1031 035b 08000000 		.4byte	.LVL20
+ 1032 035f 15090000 		.4byte	0x915
+ 1033 0363 6D030000 		.4byte	0x36d
+ 1034 0367 12       		.uleb128 0x12
+ 1035 0368 01       		.uleb128 0x1
+ 1036 0369 50       		.byte	0x50
+ 1037 036a 01       		.uleb128 0x1
+ 1038 036b 30       		.byte	0x30
+ 1039 036c 00       		.byte	0
+ 1040 036d 10       		.uleb128 0x10
+ 1041 036e 0E000000 		.4byte	.LVL21
+ 1042 0372 20090000 		.4byte	0x920
+ 1043 0376 10       		.uleb128 0x10
+ 1044 0377 12000000 		.4byte	.LVL22
+ 1045 037b 2B090000 		.4byte	0x92b
+ 1046 037f 10       		.uleb128 0x10
+ 1047 0380 1A000000 		.4byte	.LVL23
+ 1048 0384 FF080000 		.4byte	0x8ff
+ 1049 0388 10       		.uleb128 0x10
+ 1050 0389 22000000 		.4byte	.LVL24
+ 1051 038d 0A090000 		.4byte	0x90a
+ 1052 0391 00       		.byte	0
+ 1053 0392 14       		.uleb128 0x14
+ 1054 0393 EF010000 		.4byte	.LASF37
+ 1055 0397 01       		.byte	0x1
+ 1056 0398 AA       		.byte	0xaa
+ 1057 0399 00000000 		.4byte	.LFB67
+ 1058 039d 28000000 		.4byte	.LFE67-.LFB67
+ 1059 03a1 01       		.uleb128 0x1
+ 1060 03a2 9C       		.byte	0x9c
+ 1061 03a3 CF030000 		.4byte	0x3cf
+ 1062 03a7 15       		.uleb128 0x15
+ 1063 03a8 F0020000 		.4byte	.LASF22
+ 1064 03ac 01       		.byte	0x1
+ 1065 03ad AA       		.byte	0xaa
+ 1066 03ae 68000000 		.4byte	0x68
+ 1067 03b2 01       		.uleb128 0x1
+ 1068 03b3 50       		.byte	0x50
+ 1069 03b4 15       		.uleb128 0x15
+ 1070 03b5 D1000000 		.4byte	.LASF31
+ 1071 03b9 01       		.byte	0x1
+ 1072 03ba AA       		.byte	0xaa
+ 1073 03bb A5000000 		.4byte	0xa5
+ 1074 03bf 01       		.uleb128 0x1
+ 1075 03c0 51       		.byte	0x51
+ 1076 03c1 15       		.uleb128 0x15
+ 1077 03c2 B9000000 		.4byte	.LASF30
+ 1078 03c6 01       		.byte	0x1
+ 1079 03c7 AA       		.byte	0xaa
+ 1080 03c8 CB000000 		.4byte	0xcb
+ 1081 03cc 01       		.uleb128 0x1
+ 1082 03cd 52       		.byte	0x52
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 24
+
+
+ 1083 03ce 00       		.byte	0
+ 1084 03cf 16       		.uleb128 0x16
+ 1085 03d0 9E000000 		.4byte	.LASF97
+ 1086 03d4 01       		.byte	0x1
+ 1087 03d5 BE       		.byte	0xbe
+ 1088 03d6 99000000 		.4byte	0x99
+ 1089 03da 00000000 		.4byte	.LFB68
+ 1090 03de 14000000 		.4byte	.LFE68-.LFB68
+ 1091 03e2 01       		.uleb128 0x1
+ 1092 03e3 9C       		.byte	0x9c
+ 1093 03e4 02040000 		.4byte	0x402
+ 1094 03e8 17       		.uleb128 0x17
+ 1095 03e9 C8000000 		.4byte	.LASF38
+ 1096 03ed 01       		.byte	0x1
+ 1097 03ee BE       		.byte	0xbe
+ 1098 03ef 99000000 		.4byte	0x99
+ 1099 03f3 00000000 		.4byte	.LLST0
+ 1100 03f7 18       		.uleb128 0x18
+ 1101 03f8 747700   		.ascii	"tw\000"
+ 1102 03fb 01       		.byte	0x1
+ 1103 03fc BF       		.byte	0xbf
+ 1104 03fd BF000000 		.4byte	0xbf
+ 1105 0401 00       		.byte	0
+ 1106 0402 14       		.uleb128 0x14
+ 1107 0403 E9040000 		.4byte	.LASF39
+ 1108 0407 01       		.byte	0x1
+ 1109 0408 78       		.byte	0x78
+ 1110 0409 00000000 		.4byte	.LFB65
+ 1111 040d 28010000 		.4byte	.LFE65-.LFB65
+ 1112 0411 01       		.uleb128 0x1
+ 1113 0412 9C       		.byte	0x9c
+ 1114 0413 44060000 		.4byte	0x644
+ 1115 0417 11       		.uleb128 0x11
+ 1116 0418 08000000 		.4byte	.LVL30
+ 1117 041c 62090000 		.4byte	0x962
+ 1118 0420 2A040000 		.4byte	0x42a
+ 1119 0424 12       		.uleb128 0x12
+ 1120 0425 01       		.uleb128 0x1
+ 1121 0426 50       		.byte	0x50
+ 1122 0427 01       		.uleb128 0x1
+ 1123 0428 30       		.byte	0x30
+ 1124 0429 00       		.byte	0
+ 1125 042a 11       		.uleb128 0x11
+ 1126 042b 0E000000 		.4byte	.LVL31
+ 1127 042f 6D090000 		.4byte	0x96d
+ 1128 0433 3D040000 		.4byte	0x43d
+ 1129 0437 12       		.uleb128 0x12
+ 1130 0438 01       		.uleb128 0x1
+ 1131 0439 50       		.byte	0x50
+ 1132 043a 01       		.uleb128 0x1
+ 1133 043b 30       		.byte	0x30
+ 1134 043c 00       		.byte	0
+ 1135 043d 11       		.uleb128 0x11
+ 1136 043e 14000000 		.4byte	.LVL32
+ 1137 0442 78090000 		.4byte	0x978
+ 1138 0446 50040000 		.4byte	0x450
+ 1139 044a 12       		.uleb128 0x12
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 25
+
+
+ 1140 044b 01       		.uleb128 0x1
+ 1141 044c 50       		.byte	0x50
+ 1142 044d 01       		.uleb128 0x1
+ 1143 044e 30       		.byte	0x30
+ 1144 044f 00       		.byte	0
+ 1145 0450 10       		.uleb128 0x10
+ 1146 0451 18000000 		.4byte	.LVL33
+ 1147 0455 45030000 		.4byte	0x345
+ 1148 0459 10       		.uleb128 0x10
+ 1149 045a 1E000000 		.4byte	.LVL34
+ 1150 045e 45030000 		.4byte	0x345
+ 1151 0462 11       		.uleb128 0x11
+ 1152 0463 34000000 		.4byte	.LVL35
+ 1153 0467 CF030000 		.4byte	0x3cf
+ 1154 046b 77040000 		.4byte	0x477
+ 1155 046f 12       		.uleb128 0x12
+ 1156 0470 01       		.uleb128 0x1
+ 1157 0471 50       		.byte	0x50
+ 1158 0472 03       		.uleb128 0x3
+ 1159 0473 0A       		.byte	0xa
+ 1160 0474 E803     		.2byte	0x3e8
+ 1161 0476 00       		.byte	0
+ 1162 0477 11       		.uleb128 0x11
+ 1163 0478 3E000000 		.4byte	.LVL36
+ 1164 047c 92030000 		.4byte	0x392
+ 1165 0480 8F040000 		.4byte	0x48f
+ 1166 0484 12       		.uleb128 0x12
+ 1167 0485 01       		.uleb128 0x1
+ 1168 0486 50       		.byte	0x50
+ 1169 0487 01       		.uleb128 0x1
+ 1170 0488 31       		.byte	0x31
+ 1171 0489 12       		.uleb128 0x12
+ 1172 048a 01       		.uleb128 0x1
+ 1173 048b 52       		.byte	0x52
+ 1174 048c 01       		.uleb128 0x1
+ 1175 048d 31       		.byte	0x31
+ 1176 048e 00       		.byte	0
+ 1177 048f 11       		.uleb128 0x11
+ 1178 0490 54000000 		.4byte	.LVL37
+ 1179 0494 CF030000 		.4byte	0x3cf
+ 1180 0498 A4040000 		.4byte	0x4a4
+ 1181 049c 12       		.uleb128 0x12
+ 1182 049d 01       		.uleb128 0x1
+ 1183 049e 50       		.byte	0x50
+ 1184 049f 03       		.uleb128 0x3
+ 1185 04a0 0A       		.byte	0xa
+ 1186 04a1 E803     		.2byte	0x3e8
+ 1187 04a3 00       		.byte	0
+ 1188 04a4 11       		.uleb128 0x11
+ 1189 04a5 5E000000 		.4byte	.LVL38
+ 1190 04a9 92030000 		.4byte	0x392
+ 1191 04ad BC040000 		.4byte	0x4bc
+ 1192 04b1 12       		.uleb128 0x12
+ 1193 04b2 01       		.uleb128 0x1
+ 1194 04b3 50       		.byte	0x50
+ 1195 04b4 01       		.uleb128 0x1
+ 1196 04b5 31       		.byte	0x31
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 26
+
+
+ 1197 04b6 12       		.uleb128 0x12
+ 1198 04b7 01       		.uleb128 0x1
+ 1199 04b8 52       		.byte	0x52
+ 1200 04b9 01       		.uleb128 0x1
+ 1201 04ba 30       		.byte	0x30
+ 1202 04bb 00       		.byte	0
+ 1203 04bc 11       		.uleb128 0x11
+ 1204 04bd 7E000000 		.4byte	.LVL39
+ 1205 04c1 92030000 		.4byte	0x392
+ 1206 04c5 D9040000 		.4byte	0x4d9
+ 1207 04c9 12       		.uleb128 0x12
+ 1208 04ca 01       		.uleb128 0x1
+ 1209 04cb 50       		.byte	0x50
+ 1210 04cc 01       		.uleb128 0x1
+ 1211 04cd 31       		.byte	0x31
+ 1212 04ce 12       		.uleb128 0x12
+ 1213 04cf 01       		.uleb128 0x1
+ 1214 04d0 51       		.byte	0x51
+ 1215 04d1 01       		.uleb128 0x1
+ 1216 04d2 30       		.byte	0x30
+ 1217 04d3 12       		.uleb128 0x12
+ 1218 04d4 01       		.uleb128 0x1
+ 1219 04d5 52       		.byte	0x52
+ 1220 04d6 01       		.uleb128 0x1
+ 1221 04d7 30       		.byte	0x30
+ 1222 04d8 00       		.byte	0
+ 1223 04d9 10       		.uleb128 0x10
+ 1224 04da 82000000 		.4byte	.LVL40
+ 1225 04de 45030000 		.4byte	0x345
+ 1226 04e2 10       		.uleb128 0x10
+ 1227 04e3 88000000 		.4byte	.LVL41
+ 1228 04e7 45030000 		.4byte	0x345
+ 1229 04eb 11       		.uleb128 0x11
+ 1230 04ec 8E000000 		.4byte	.LVL42
+ 1231 04f0 83090000 		.4byte	0x983
+ 1232 04f4 FE040000 		.4byte	0x4fe
+ 1233 04f8 12       		.uleb128 0x12
+ 1234 04f9 01       		.uleb128 0x1
+ 1235 04fa 50       		.byte	0x50
+ 1236 04fb 01       		.uleb128 0x1
+ 1237 04fc 30       		.byte	0x30
+ 1238 04fd 00       		.byte	0
+ 1239 04fe 11       		.uleb128 0x11
+ 1240 04ff 94000000 		.4byte	.LVL43
+ 1241 0503 8E090000 		.4byte	0x98e
+ 1242 0507 11050000 		.4byte	0x511
+ 1243 050b 12       		.uleb128 0x12
+ 1244 050c 01       		.uleb128 0x1
+ 1245 050d 50       		.byte	0x50
+ 1246 050e 01       		.uleb128 0x1
+ 1247 050f 30       		.byte	0x30
+ 1248 0510 00       		.byte	0
+ 1249 0511 11       		.uleb128 0x11
+ 1250 0512 9C000000 		.4byte	.LVL44
+ 1251 0516 CF030000 		.4byte	0x3cf
+ 1252 051a 26050000 		.4byte	0x526
+ 1253 051e 12       		.uleb128 0x12
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 27
+
+
+ 1254 051f 01       		.uleb128 0x1
+ 1255 0520 50       		.byte	0x50
+ 1256 0521 03       		.uleb128 0x3
+ 1257 0522 0A       		.byte	0xa
+ 1258 0523 E803     		.2byte	0x3e8
+ 1259 0525 00       		.byte	0
+ 1260 0526 11       		.uleb128 0x11
+ 1261 0527 A8000000 		.4byte	.LVL45
+ 1262 052b 92030000 		.4byte	0x392
+ 1263 052f 44050000 		.4byte	0x544
+ 1264 0533 12       		.uleb128 0x12
+ 1265 0534 01       		.uleb128 0x1
+ 1266 0535 50       		.byte	0x50
+ 1267 0536 01       		.uleb128 0x1
+ 1268 0537 32       		.byte	0x32
+ 1269 0538 12       		.uleb128 0x12
+ 1270 0539 01       		.uleb128 0x1
+ 1271 053a 51       		.byte	0x51
+ 1272 053b 02       		.uleb128 0x2
+ 1273 053c 74       		.byte	0x74
+ 1274 053d 00       		.sleb128 0
+ 1275 053e 12       		.uleb128 0x12
+ 1276 053f 01       		.uleb128 0x1
+ 1277 0540 52       		.byte	0x52
+ 1278 0541 01       		.uleb128 0x1
+ 1279 0542 30       		.byte	0x30
+ 1280 0543 00       		.byte	0
+ 1281 0544 11       		.uleb128 0x11
+ 1282 0545 B2000000 		.4byte	.LVL46
+ 1283 0549 92030000 		.4byte	0x392
+ 1284 054d 62050000 		.4byte	0x562
+ 1285 0551 12       		.uleb128 0x12
+ 1286 0552 01       		.uleb128 0x1
+ 1287 0553 50       		.byte	0x50
+ 1288 0554 01       		.uleb128 0x1
+ 1289 0555 33       		.byte	0x33
+ 1290 0556 12       		.uleb128 0x12
+ 1291 0557 01       		.uleb128 0x1
+ 1292 0558 51       		.byte	0x51
+ 1293 0559 02       		.uleb128 0x2
+ 1294 055a 74       		.byte	0x74
+ 1295 055b 00       		.sleb128 0
+ 1296 055c 12       		.uleb128 0x12
+ 1297 055d 01       		.uleb128 0x1
+ 1298 055e 52       		.byte	0x52
+ 1299 055f 01       		.uleb128 0x1
+ 1300 0560 30       		.byte	0x30
+ 1301 0561 00       		.byte	0
+ 1302 0562 11       		.uleb128 0x11
+ 1303 0563 C0000000 		.4byte	.LVL47
+ 1304 0567 CF030000 		.4byte	0x3cf
+ 1305 056b 75050000 		.4byte	0x575
+ 1306 056f 12       		.uleb128 0x12
+ 1307 0570 01       		.uleb128 0x1
+ 1308 0571 50       		.byte	0x50
+ 1309 0572 01       		.uleb128 0x1
+ 1310 0573 30       		.byte	0x30
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 28
+
+
+ 1311 0574 00       		.byte	0
+ 1312 0575 11       		.uleb128 0x11
+ 1313 0576 CC000000 		.4byte	.LVL48
+ 1314 057a 92030000 		.4byte	0x392
+ 1315 057e 93050000 		.4byte	0x593
+ 1316 0582 12       		.uleb128 0x12
+ 1317 0583 01       		.uleb128 0x1
+ 1318 0584 50       		.byte	0x50
+ 1319 0585 01       		.uleb128 0x1
+ 1320 0586 32       		.byte	0x32
+ 1321 0587 12       		.uleb128 0x12
+ 1322 0588 01       		.uleb128 0x1
+ 1323 0589 51       		.byte	0x51
+ 1324 058a 02       		.uleb128 0x2
+ 1325 058b 74       		.byte	0x74
+ 1326 058c 00       		.sleb128 0
+ 1327 058d 12       		.uleb128 0x12
+ 1328 058e 01       		.uleb128 0x1
+ 1329 058f 52       		.byte	0x52
+ 1330 0590 01       		.uleb128 0x1
+ 1331 0591 30       		.byte	0x30
+ 1332 0592 00       		.byte	0
+ 1333 0593 11       		.uleb128 0x11
+ 1334 0594 D6000000 		.4byte	.LVL49
+ 1335 0598 92030000 		.4byte	0x392
+ 1336 059c B1050000 		.4byte	0x5b1
+ 1337 05a0 12       		.uleb128 0x12
+ 1338 05a1 01       		.uleb128 0x1
+ 1339 05a2 50       		.byte	0x50
+ 1340 05a3 01       		.uleb128 0x1
+ 1341 05a4 33       		.byte	0x33
+ 1342 05a5 12       		.uleb128 0x12
+ 1343 05a6 01       		.uleb128 0x1
+ 1344 05a7 51       		.byte	0x51
+ 1345 05a8 02       		.uleb128 0x2
+ 1346 05a9 74       		.byte	0x74
+ 1347 05aa 00       		.sleb128 0
+ 1348 05ab 12       		.uleb128 0x12
+ 1349 05ac 01       		.uleb128 0x1
+ 1350 05ad 52       		.byte	0x52
+ 1351 05ae 01       		.uleb128 0x1
+ 1352 05af 30       		.byte	0x30
+ 1353 05b0 00       		.byte	0
+ 1354 05b1 10       		.uleb128 0x10
+ 1355 05b2 DA000000 		.4byte	.LVL50
+ 1356 05b6 45030000 		.4byte	0x345
+ 1357 05ba 10       		.uleb128 0x10
+ 1358 05bb E0000000 		.4byte	.LVL51
+ 1359 05bf 45030000 		.4byte	0x345
+ 1360 05c3 11       		.uleb128 0x11
+ 1361 05c4 E8000000 		.4byte	.LVL52
+ 1362 05c8 CF030000 		.4byte	0x3cf
+ 1363 05cc D8050000 		.4byte	0x5d8
+ 1364 05d0 12       		.uleb128 0x12
+ 1365 05d1 01       		.uleb128 0x1
+ 1366 05d2 50       		.byte	0x50
+ 1367 05d3 03       		.uleb128 0x3
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 29
+
+
+ 1368 05d4 0A       		.byte	0xa
+ 1369 05d5 E803     		.2byte	0x3e8
+ 1370 05d7 00       		.byte	0
+ 1371 05d8 11       		.uleb128 0x11
+ 1372 05d9 F2000000 		.4byte	.LVL53
+ 1373 05dd 92030000 		.4byte	0x392
+ 1374 05e1 F0050000 		.4byte	0x5f0
+ 1375 05e5 12       		.uleb128 0x12
+ 1376 05e6 01       		.uleb128 0x1
+ 1377 05e7 50       		.byte	0x50
+ 1378 05e8 01       		.uleb128 0x1
+ 1379 05e9 33       		.byte	0x33
+ 1380 05ea 12       		.uleb128 0x12
+ 1381 05eb 01       		.uleb128 0x1
+ 1382 05ec 52       		.byte	0x52
+ 1383 05ed 01       		.uleb128 0x1
+ 1384 05ee 31       		.byte	0x31
+ 1385 05ef 00       		.byte	0
+ 1386 05f0 11       		.uleb128 0x11
+ 1387 05f1 04010000 		.4byte	.LVL54
+ 1388 05f5 92030000 		.4byte	0x392
+ 1389 05f9 0E060000 		.4byte	0x60e
+ 1390 05fd 12       		.uleb128 0x12
+ 1391 05fe 01       		.uleb128 0x1
+ 1392 05ff 50       		.byte	0x50
+ 1393 0600 01       		.uleb128 0x1
+ 1394 0601 33       		.byte	0x33
+ 1395 0602 12       		.uleb128 0x12
+ 1396 0603 01       		.uleb128 0x1
+ 1397 0604 51       		.byte	0x51
+ 1398 0605 02       		.uleb128 0x2
+ 1399 0606 74       		.byte	0x74
+ 1400 0607 00       		.sleb128 0
+ 1401 0608 12       		.uleb128 0x12
+ 1402 0609 01       		.uleb128 0x1
+ 1403 060a 52       		.byte	0x52
+ 1404 060b 01       		.uleb128 0x1
+ 1405 060c 31       		.byte	0x31
+ 1406 060d 00       		.byte	0
+ 1407 060e 11       		.uleb128 0x11
+ 1408 060f 0A010000 		.4byte	.LVL55
+ 1409 0613 62090000 		.4byte	0x962
+ 1410 0617 21060000 		.4byte	0x621
+ 1411 061b 12       		.uleb128 0x12
+ 1412 061c 01       		.uleb128 0x1
+ 1413 061d 50       		.byte	0x50
+ 1414 061e 01       		.uleb128 0x1
+ 1415 061f 31       		.byte	0x31
+ 1416 0620 00       		.byte	0
+ 1417 0621 11       		.uleb128 0x11
+ 1418 0622 10010000 		.4byte	.LVL56
+ 1419 0626 6D090000 		.4byte	0x96d
+ 1420 062a 34060000 		.4byte	0x634
+ 1421 062e 12       		.uleb128 0x12
+ 1422 062f 01       		.uleb128 0x1
+ 1423 0630 50       		.byte	0x50
+ 1424 0631 01       		.uleb128 0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 30
+
+
+ 1425 0632 31       		.byte	0x31
+ 1426 0633 00       		.byte	0
+ 1427 0634 13       		.uleb128 0x13
+ 1428 0635 16010000 		.4byte	.LVL57
+ 1429 0639 78090000 		.4byte	0x978
+ 1430 063d 12       		.uleb128 0x12
+ 1431 063e 01       		.uleb128 0x1
+ 1432 063f 50       		.byte	0x50
+ 1433 0640 01       		.uleb128 0x1
+ 1434 0641 31       		.byte	0x31
+ 1435 0642 00       		.byte	0
+ 1436 0643 00       		.byte	0
+ 1437 0644 19       		.uleb128 0x19
+ 1438 0645 45040000 		.4byte	.LASF40
+ 1439 0649 06       		.byte	0x6
+ 1440 064a 1207     		.2byte	0x712
+ 1441 064c 50060000 		.4byte	0x650
+ 1442 0650 06       		.uleb128 0x6
+ 1443 0651 76000000 		.4byte	0x76
+ 1444 0655 1A       		.uleb128 0x1a
+ 1445 0656 B0000000 		.4byte	.LASF41
+ 1446 065a 01       		.byte	0x1
+ 1447 065b 49       		.byte	0x49
+ 1448 065c 66060000 		.4byte	0x666
+ 1449 0660 05       		.uleb128 0x5
+ 1450 0661 03       		.byte	0x3
+ 1451 0662 00000000 		.4byte	msg_buff
+ 1452 0666 06       		.uleb128 0x6
+ 1453 0667 7E010000 		.4byte	0x17e
+ 1454 066b 1A       		.uleb128 0x1a
+ 1455 066c DA030000 		.4byte	.LASF42
+ 1456 0670 01       		.byte	0x1
+ 1457 0671 4A       		.byte	0x4a
+ 1458 0672 7C060000 		.4byte	0x67c
+ 1459 0676 05       		.uleb128 0x5
+ 1460 0677 03       		.byte	0x3
+ 1461 0678 00000000 		.4byte	move_queue
+ 1462 067c 06       		.uleb128 0x6
+ 1463 067d 1A020000 		.4byte	0x21a
+ 1464 0681 09       		.uleb128 0x9
+ 1465 0682 91060000 		.4byte	0x691
+ 1466 0686 91060000 		.4byte	0x691
+ 1467 068a 0A       		.uleb128 0xa
+ 1468 068b DE000000 		.4byte	0xde
+ 1469 068f 4F       		.byte	0x4f
+ 1470 0690 00       		.byte	0
+ 1471 0691 06       		.uleb128 0x6
+ 1472 0692 CB000000 		.4byte	0xcb
+ 1473 0696 1A       		.uleb128 0x1a
+ 1474 0697 9F010000 		.4byte	.LASF43
+ 1475 069b 01       		.byte	0x1
+ 1476 069c 4B       		.byte	0x4b
+ 1477 069d A7060000 		.4byte	0x6a7
+ 1478 06a1 05       		.uleb128 0x5
+ 1479 06a2 03       		.byte	0x3
+ 1480 06a3 00000000 		.4byte	rx_buffer
+ 1481 06a7 06       		.uleb128 0x6
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 31
+
+
+ 1482 06a8 81060000 		.4byte	0x681
+ 1483 06ac 1A       		.uleb128 0x1a
+ 1484 06ad 00000000 		.4byte	.LASF44
+ 1485 06b1 01       		.byte	0x1
+ 1486 06b2 4C       		.byte	0x4c
+ 1487 06b3 BD060000 		.4byte	0x6bd
+ 1488 06b7 05       		.uleb128 0x5
+ 1489 06b8 03       		.byte	0x3
+ 1490 06b9 00000000 		.4byte	rx_index
+ 1491 06bd 06       		.uleb128 0x6
+ 1492 06be 68000000 		.4byte	0x68
+ 1493 06c2 09       		.uleb128 0x9
+ 1494 06c3 CB000000 		.4byte	0xcb
+ 1495 06c7 D2060000 		.4byte	0x6d2
+ 1496 06cb 0A       		.uleb128 0xa
+ 1497 06cc DE000000 		.4byte	0xde
+ 1498 06d0 01       		.byte	0x1
+ 1499 06d1 00       		.byte	0
+ 1500 06d2 1A       		.uleb128 0x1a
+ 1501 06d3 6F010000 		.4byte	.LASF45
+ 1502 06d7 01       		.byte	0x1
+ 1503 06d8 21       		.byte	0x21
+ 1504 06d9 C2060000 		.4byte	0x6c2
+ 1505 06dd 05       		.uleb128 0x5
+ 1506 06de 03       		.byte	0x3
+ 1507 06df 00000000 		.4byte	limit
+ 1508 06e3 1A       		.uleb128 0x1a
+ 1509 06e4 E0040000 		.4byte	.LASF46
+ 1510 06e8 01       		.byte	0x1
+ 1511 06e9 23       		.byte	0x23
+ 1512 06ea CB000000 		.4byte	0xcb
+ 1513 06ee 05       		.uleb128 0x5
+ 1514 06ef 03       		.byte	0x3
+ 1515 06f0 00000000 		.4byte	j2_limit
+ 1516 06f4 1A       		.uleb128 0x1a
+ 1517 06f5 81010000 		.4byte	.LASF47
+ 1518 06f9 01       		.byte	0x1
+ 1519 06fa 24       		.byte	0x24
+ 1520 06fb CB000000 		.4byte	0xcb
+ 1521 06ff 05       		.uleb128 0x5
+ 1522 0700 03       		.byte	0x3
+ 1523 0701 00000000 		.4byte	j3_limit
+ 1524 0705 1A       		.uleb128 0x1a
+ 1525 0706 8E000000 		.4byte	.LASF48
+ 1526 070a 01       		.byte	0x1
+ 1527 070b 26       		.byte	0x26
+ 1528 070c A5000000 		.4byte	0xa5
+ 1529 0710 05       		.uleb128 0x5
+ 1530 0711 03       		.byte	0x3
+ 1531 0712 00000000 		.4byte	j1_pos
+ 1532 0716 1A       		.uleb128 0x1a
+ 1533 0717 CC010000 		.4byte	.LASF49
+ 1534 071b 01       		.byte	0x1
+ 1535 071c 27       		.byte	0x27
+ 1536 071d A5000000 		.4byte	0xa5
+ 1537 0721 05       		.uleb128 0x5
+ 1538 0722 03       		.byte	0x3
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 32
+
+
+ 1539 0723 00000000 		.4byte	j2_pos
+ 1540 0727 1A       		.uleb128 0x1a
+ 1541 0728 DC000000 		.4byte	.LASF50
+ 1542 072c 01       		.byte	0x1
+ 1543 072d 28       		.byte	0x28
+ 1544 072e A5000000 		.4byte	0xa5
+ 1545 0732 05       		.uleb128 0x5
+ 1546 0733 03       		.byte	0x3
+ 1547 0734 00000000 		.4byte	j3_pos
+ 1548 0738 1A       		.uleb128 0x1a
+ 1549 0739 B6020000 		.4byte	.LASF51
+ 1550 073d 01       		.byte	0x1
+ 1551 073e 2A       		.byte	0x2a
+ 1552 073f A5000000 		.4byte	0xa5
+ 1553 0743 05       		.uleb128 0x5
+ 1554 0744 03       		.byte	0x3
+ 1555 0745 00000000 		.4byte	j1_home
+ 1556 0749 1A       		.uleb128 0x1a
+ 1557 074a BA030000 		.4byte	.LASF52
+ 1558 074e 01       		.byte	0x1
+ 1559 074f 2C       		.byte	0x2c
+ 1560 0750 CB000000 		.4byte	0xcb
+ 1561 0754 05       		.uleb128 0x5
+ 1562 0755 03       		.byte	0x3
+ 1563 0756 00000000 		.4byte	moveJ1
+ 1564 075a 1A       		.uleb128 0x1a
+ 1565 075b 68010000 		.4byte	.LASF53
+ 1566 075f 01       		.byte	0x1
+ 1567 0760 2D       		.byte	0x2d
+ 1568 0761 CB000000 		.4byte	0xcb
+ 1569 0765 05       		.uleb128 0x5
+ 1570 0766 03       		.byte	0x3
+ 1571 0767 00000000 		.4byte	moveJ2
+ 1572 076b 1A       		.uleb128 0x1a
+ 1573 076c 45010000 		.4byte	.LASF54
+ 1574 0770 01       		.byte	0x1
+ 1575 0771 2E       		.byte	0x2e
+ 1576 0772 CB000000 		.4byte	0xcb
+ 1577 0776 05       		.uleb128 0x5
+ 1578 0777 03       		.byte	0x3
+ 1579 0778 00000000 		.4byte	moveJ3
+ 1580 077c 1A       		.uleb128 0x1a
+ 1581 077d 2D010000 		.4byte	.LASF55
+ 1582 0781 01       		.byte	0x1
+ 1583 0782 30       		.byte	0x30
+ 1584 0783 CB000000 		.4byte	0xcb
+ 1585 0787 05       		.uleb128 0x5
+ 1586 0788 03       		.byte	0x3
+ 1587 0789 00000000 		.4byte	home
+ 1588 078d 1A       		.uleb128 0x1a
+ 1589 078e E3010000 		.4byte	.LASF56
+ 1590 0792 01       		.byte	0x1
+ 1591 0793 32       		.byte	0x32
+ 1592 0794 CB000000 		.4byte	0xcb
+ 1593 0798 05       		.uleb128 0x5
+ 1594 0799 03       		.byte	0x3
+ 1595 079a 00000000 		.4byte	J1_ctrl_val
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 33
+
+
+ 1596 079e 1A       		.uleb128 0x1a
+ 1597 079f E5030000 		.4byte	.LASF57
+ 1598 07a3 01       		.byte	0x1
+ 1599 07a4 33       		.byte	0x33
+ 1600 07a5 CB000000 		.4byte	0xcb
+ 1601 07a9 05       		.uleb128 0x5
+ 1602 07aa 03       		.byte	0x3
+ 1603 07ab 00000000 		.4byte	J2_ctrl_val
+ 1604 07af 1A       		.uleb128 0x1a
+ 1605 07b0 2C030000 		.4byte	.LASF58
+ 1606 07b4 01       		.byte	0x1
+ 1607 07b5 34       		.byte	0x34
+ 1608 07b6 CB000000 		.4byte	0xcb
+ 1609 07ba 05       		.uleb128 0x5
+ 1610 07bb 03       		.byte	0x3
+ 1611 07bc 00000000 		.4byte	J3_ctrl_val
+ 1612 07c0 1B       		.uleb128 0x1b
+ 1613 07c1 436800   		.ascii	"Ch\000"
+ 1614 07c4 01       		.byte	0x1
+ 1615 07c5 37       		.byte	0x37
+ 1616 07c6 81000000 		.4byte	0x81
+ 1617 07ca 05       		.uleb128 0x5
+ 1618 07cb 03       		.byte	0x3
+ 1619 07cc 00000000 		.4byte	Ch
+ 1620 07d0 09       		.uleb128 0x9
+ 1621 07d1 CB000000 		.4byte	0xcb
+ 1622 07d5 E0070000 		.4byte	0x7e0
+ 1623 07d9 0A       		.uleb128 0xa
+ 1624 07da DE000000 		.4byte	0xde
+ 1625 07de 4F       		.byte	0x4f
+ 1626 07df 00       		.byte	0
+ 1627 07e0 1A       		.uleb128 0x1a
+ 1628 07e1 E3000000 		.4byte	.LASF59
+ 1629 07e5 01       		.byte	0x1
+ 1630 07e6 38       		.byte	0x38
+ 1631 07e7 D0070000 		.4byte	0x7d0
+ 1632 07eb 05       		.uleb128 0x5
+ 1633 07ec 03       		.byte	0x3
+ 1634 07ed 00000000 		.4byte	TransmitBuffer
+ 1635 07f1 1A       		.uleb128 0x1a
+ 1636 07f2 8A010000 		.4byte	.LASF60
+ 1637 07f6 01       		.byte	0x1
+ 1638 07f7 3B       		.byte	0x3b
+ 1639 07f8 D2000000 		.4byte	0xd2
+ 1640 07fc 05       		.uleb128 0x5
+ 1641 07fd 03       		.byte	0x3
+ 1642 07fe 00000000 		.4byte	J1_tuningWord
+ 1643 0802 1A       		.uleb128 0x1a
+ 1644 0803 A9010000 		.4byte	.LASF61
+ 1645 0807 01       		.byte	0x1
+ 1646 0808 3C       		.byte	0x3c
+ 1647 0809 D2000000 		.4byte	0xd2
+ 1648 080d 05       		.uleb128 0x5
+ 1649 080e 03       		.byte	0x3
+ 1650 080f 00000000 		.4byte	J2_tuningWord
+ 1651 0813 1A       		.uleb128 0x1a
+ 1652 0814 5A010000 		.4byte	.LASF62
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 34
+
+
+ 1653 0818 01       		.byte	0x1
+ 1654 0819 3D       		.byte	0x3d
+ 1655 081a D2000000 		.4byte	0xd2
+ 1656 081e 05       		.uleb128 0x5
+ 1657 081f 03       		.byte	0x3
+ 1658 0820 00000000 		.4byte	J3_tuningWord
+ 1659 0824 1A       		.uleb128 0x1a
+ 1660 0825 CB030000 		.4byte	.LASF63
+ 1661 0829 01       		.byte	0x1
+ 1662 082a 3E       		.byte	0x3e
+ 1663 082b D2000000 		.4byte	0xd2
+ 1664 082f 05       		.uleb128 0x5
+ 1665 0830 03       		.byte	0x3
+ 1666 0831 00000000 		.4byte	J1_accumulator
+ 1667 0835 1A       		.uleb128 0x1a
+ 1668 0836 75000000 		.4byte	.LASF64
+ 1669 083a 01       		.byte	0x1
+ 1670 083b 3F       		.byte	0x3f
+ 1671 083c D2000000 		.4byte	0xd2
+ 1672 0840 05       		.uleb128 0x5
+ 1673 0841 03       		.byte	0x3
+ 1674 0842 00000000 		.4byte	J2_accumulator
+ 1675 0846 1A       		.uleb128 0x1a
+ 1676 0847 FF030000 		.4byte	.LASF65
+ 1677 084b 01       		.byte	0x1
+ 1678 084c 40       		.byte	0x40
+ 1679 084d D2000000 		.4byte	0xd2
+ 1680 0851 05       		.uleb128 0x5
+ 1681 0852 03       		.byte	0x3
+ 1682 0853 00000000 		.4byte	J3_accumulator
+ 1683 0857 1A       		.uleb128 0x1a
+ 1684 0858 D3010000 		.4byte	.LASF66
+ 1685 085c 01       		.byte	0x1
+ 1686 085d 41       		.byte	0x41
+ 1687 085e 91060000 		.4byte	0x691
+ 1688 0862 05       		.uleb128 0x5
+ 1689 0863 03       		.byte	0x3
+ 1690 0864 00000000 		.4byte	J1_step
+ 1691 0868 1A       		.uleb128 0x1a
+ 1692 0869 3D040000 		.4byte	.LASF67
+ 1693 086d 01       		.byte	0x1
+ 1694 086e 42       		.byte	0x42
+ 1695 086f 91060000 		.4byte	0x691
+ 1696 0873 05       		.uleb128 0x5
+ 1697 0874 03       		.byte	0x3
+ 1698 0875 00000000 		.4byte	J2_step
+ 1699 0879 1A       		.uleb128 0x1a
+ 1700 087a DB010000 		.4byte	.LASF68
+ 1701 087e 01       		.byte	0x1
+ 1702 087f 43       		.byte	0x43
+ 1703 0880 91060000 		.4byte	0x691
+ 1704 0884 05       		.uleb128 0x5
+ 1705 0885 03       		.byte	0x3
+ 1706 0886 00000000 		.4byte	J3_step
+ 1707 088a 1A       		.uleb128 0x1a
+ 1708 088b FE020000 		.4byte	.LASF69
+ 1709 088f 01       		.byte	0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 35
+
+
+ 1710 0890 44       		.byte	0x44
+ 1711 0891 91060000 		.4byte	0x691
+ 1712 0895 05       		.uleb128 0x5
+ 1713 0896 03       		.byte	0x3
+ 1714 0897 00000000 		.4byte	J1_dir
+ 1715 089b 1A       		.uleb128 0x1a
+ 1716 089c 0E040000 		.4byte	.LASF70
+ 1717 08a0 01       		.byte	0x1
+ 1718 08a1 45       		.byte	0x45
+ 1719 08a2 91060000 		.4byte	0x691
+ 1720 08a6 05       		.uleb128 0x5
+ 1721 08a7 03       		.byte	0x3
+ 1722 08a8 00000000 		.4byte	J2_dir
+ 1723 08ac 1A       		.uleb128 0x1a
+ 1724 08ad F7000000 		.4byte	.LASF71
+ 1725 08b1 01       		.byte	0x1
+ 1726 08b2 46       		.byte	0x46
+ 1727 08b3 91060000 		.4byte	0x691
+ 1728 08b7 05       		.uleb128 0x5
+ 1729 08b8 03       		.byte	0x3
+ 1730 08b9 00000000 		.4byte	J3_dir
+ 1731 08bd 1C       		.uleb128 0x1c
+ 1732 08be 32010000 		.4byte	.LASF72
+ 1733 08c2 32010000 		.4byte	.LASF72
+ 1734 08c6 07       		.byte	0x7
+ 1735 08c7 54       		.byte	0x54
+ 1736 08c8 1C       		.uleb128 0x1c
+ 1737 08c9 30040000 		.4byte	.LASF73
+ 1738 08cd 30040000 		.4byte	.LASF73
+ 1739 08d1 08       		.byte	0x8
+ 1740 08d2 4D       		.byte	0x4d
+ 1741 08d3 1C       		.uleb128 0x1c
+ 1742 08d4 BE020000 		.4byte	.LASF74
+ 1743 08d8 BE020000 		.4byte	.LASF74
+ 1744 08dc 09       		.byte	0x9
+ 1745 08dd 3A       		.byte	0x3a
+ 1746 08de 1C       		.uleb128 0x1c
+ 1747 08df 44000000 		.4byte	.LASF75
+ 1748 08e3 44000000 		.4byte	.LASF75
+ 1749 08e7 09       		.byte	0x9
+ 1750 08e8 3D       		.byte	0x3d
+ 1751 08e9 1C       		.uleb128 0x1c
+ 1752 08ea F1030000 		.4byte	.LASF76
+ 1753 08ee F1030000 		.4byte	.LASF76
+ 1754 08f2 0A       		.byte	0xa
+ 1755 08f3 17       		.byte	0x17
+ 1756 08f4 1C       		.uleb128 0x1c
+ 1757 08f5 98020000 		.4byte	.LASF77
+ 1758 08f9 98020000 		.4byte	.LASF77
+ 1759 08fd 0B       		.byte	0xb
+ 1760 08fe 17       		.byte	0x17
+ 1761 08ff 1C       		.uleb128 0x1c
+ 1762 0900 75010000 		.4byte	.LASF78
+ 1763 0904 75010000 		.4byte	.LASF78
+ 1764 0908 0C       		.byte	0xc
+ 1765 0909 29       		.byte	0x29
+ 1766 090a 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 36
+
+
+ 1767 090b 71030000 		.4byte	.LASF79
+ 1768 090f 71030000 		.4byte	.LASF79
+ 1769 0913 0D       		.byte	0xd
+ 1770 0914 29       		.byte	0x29
+ 1771 0915 1C       		.uleb128 0x1c
+ 1772 0916 FE000000 		.4byte	.LASF80
+ 1773 091a FE000000 		.4byte	.LASF80
+ 1774 091e 09       		.byte	0x9
+ 1775 091f 3F       		.byte	0x3f
+ 1776 0920 1C       		.uleb128 0x1c
+ 1777 0921 A1030000 		.4byte	.LASF81
+ 1778 0925 A1030000 		.4byte	.LASF81
+ 1779 0929 09       		.byte	0x9
+ 1780 092a 42       		.byte	0x42
+ 1781 092b 1C       		.uleb128 0x1c
+ 1782 092c 4E030000 		.4byte	.LASF82
+ 1783 0930 4E030000 		.4byte	.LASF82
+ 1784 0934 09       		.byte	0x9
+ 1785 0935 48       		.byte	0x48
+ 1786 0936 1C       		.uleb128 0x1c
+ 1787 0937 74020000 		.4byte	.LASF83
+ 1788 093b 74020000 		.4byte	.LASF83
+ 1789 093f 05       		.byte	0x5
+ 1790 0940 3C       		.byte	0x3c
+ 1791 0941 1C       		.uleb128 0x1c
+ 1792 0942 5E000000 		.4byte	.LASF84
+ 1793 0946 5E000000 		.4byte	.LASF84
+ 1794 094a 05       		.byte	0x5
+ 1795 094b 40       		.byte	0x40
+ 1796 094c 1C       		.uleb128 0x1c
+ 1797 094d 7D030000 		.4byte	.LASF85
+ 1798 0951 7D030000 		.4byte	.LASF85
+ 1799 0955 07       		.byte	0x7
+ 1800 0956 8B       		.byte	0x8b
+ 1801 0957 1C       		.uleb128 0x1c
+ 1802 0958 B7010000 		.4byte	.LASF86
+ 1803 095c B7010000 		.4byte	.LASF86
+ 1804 0960 05       		.byte	0x5
+ 1805 0961 3E       		.byte	0x3e
+ 1806 0962 1C       		.uleb128 0x1c
+ 1807 0963 1B010000 		.4byte	.LASF87
+ 1808 0967 1B010000 		.4byte	.LASF87
+ 1809 096b 0E       		.byte	0xe
+ 1810 096c 26       		.byte	0x26
+ 1811 096d 1C       		.uleb128 0x1c
+ 1812 096e E4020000 		.4byte	.LASF88
+ 1813 0972 E4020000 		.4byte	.LASF88
+ 1814 0976 0F       		.byte	0xf
+ 1815 0977 26       		.byte	0x26
+ 1816 0978 1C       		.uleb128 0x1c
+ 1817 0979 49020000 		.4byte	.LASF89
+ 1818 097d 49020000 		.4byte	.LASF89
+ 1819 0981 10       		.byte	0x10
+ 1820 0982 26       		.byte	0x26
+ 1821 0983 1C       		.uleb128 0x1c
+ 1822 0984 8E030000 		.4byte	.LASF90
+ 1823 0988 8E030000 		.4byte	.LASF90
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 37
+
+
+ 1824 098c 11       		.byte	0x11
+ 1825 098d 26       		.byte	0x26
+ 1826 098e 1C       		.uleb128 0x1c
+ 1827 098f 0A030000 		.4byte	.LASF91
+ 1828 0993 0A030000 		.4byte	.LASF91
+ 1829 0997 12       		.byte	0x12
+ 1830 0998 26       		.byte	0x26
+ 1831 0999 00       		.byte	0
+ 1832              		.section	.debug_abbrev,"",%progbits
+ 1833              	.Ldebug_abbrev0:
+ 1834 0000 01       		.uleb128 0x1
+ 1835 0001 11       		.uleb128 0x11
+ 1836 0002 01       		.byte	0x1
+ 1837 0003 25       		.uleb128 0x25
+ 1838 0004 0E       		.uleb128 0xe
+ 1839 0005 13       		.uleb128 0x13
+ 1840 0006 0B       		.uleb128 0xb
+ 1841 0007 03       		.uleb128 0x3
+ 1842 0008 0E       		.uleb128 0xe
+ 1843 0009 1B       		.uleb128 0x1b
+ 1844 000a 0E       		.uleb128 0xe
+ 1845 000b 55       		.uleb128 0x55
+ 1846 000c 17       		.uleb128 0x17
+ 1847 000d 11       		.uleb128 0x11
+ 1848 000e 01       		.uleb128 0x1
+ 1849 000f 10       		.uleb128 0x10
+ 1850 0010 17       		.uleb128 0x17
+ 1851 0011 00       		.byte	0
+ 1852 0012 00       		.byte	0
+ 1853 0013 02       		.uleb128 0x2
+ 1854 0014 24       		.uleb128 0x24
+ 1855 0015 00       		.byte	0
+ 1856 0016 0B       		.uleb128 0xb
+ 1857 0017 0B       		.uleb128 0xb
+ 1858 0018 3E       		.uleb128 0x3e
+ 1859 0019 0B       		.uleb128 0xb
+ 1860 001a 03       		.uleb128 0x3
+ 1861 001b 0E       		.uleb128 0xe
+ 1862 001c 00       		.byte	0
+ 1863 001d 00       		.byte	0
+ 1864 001e 03       		.uleb128 0x3
+ 1865 001f 16       		.uleb128 0x16
+ 1866 0020 00       		.byte	0
+ 1867 0021 03       		.uleb128 0x3
+ 1868 0022 0E       		.uleb128 0xe
+ 1869 0023 3A       		.uleb128 0x3a
+ 1870 0024 0B       		.uleb128 0xb
+ 1871 0025 3B       		.uleb128 0x3b
+ 1872 0026 0B       		.uleb128 0xb
+ 1873 0027 49       		.uleb128 0x49
+ 1874 0028 13       		.uleb128 0x13
+ 1875 0029 00       		.byte	0
+ 1876 002a 00       		.byte	0
+ 1877 002b 04       		.uleb128 0x4
+ 1878 002c 24       		.uleb128 0x24
+ 1879 002d 00       		.byte	0
+ 1880 002e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 38
+
+
+ 1881 002f 0B       		.uleb128 0xb
+ 1882 0030 3E       		.uleb128 0x3e
+ 1883 0031 0B       		.uleb128 0xb
+ 1884 0032 03       		.uleb128 0x3
+ 1885 0033 08       		.uleb128 0x8
+ 1886 0034 00       		.byte	0
+ 1887 0035 00       		.byte	0
+ 1888 0036 05       		.uleb128 0x5
+ 1889 0037 16       		.uleb128 0x16
+ 1890 0038 00       		.byte	0
+ 1891 0039 03       		.uleb128 0x3
+ 1892 003a 0E       		.uleb128 0xe
+ 1893 003b 3A       		.uleb128 0x3a
+ 1894 003c 0B       		.uleb128 0xb
+ 1895 003d 3B       		.uleb128 0x3b
+ 1896 003e 05       		.uleb128 0x5
+ 1897 003f 49       		.uleb128 0x49
+ 1898 0040 13       		.uleb128 0x13
+ 1899 0041 00       		.byte	0
+ 1900 0042 00       		.byte	0
+ 1901 0043 06       		.uleb128 0x6
+ 1902 0044 35       		.uleb128 0x35
+ 1903 0045 00       		.byte	0
+ 1904 0046 49       		.uleb128 0x49
+ 1905 0047 13       		.uleb128 0x13
+ 1906 0048 00       		.byte	0
+ 1907 0049 00       		.byte	0
+ 1908 004a 07       		.uleb128 0x7
+ 1909 004b 13       		.uleb128 0x13
+ 1910 004c 01       		.byte	0x1
+ 1911 004d 03       		.uleb128 0x3
+ 1912 004e 0E       		.uleb128 0xe
+ 1913 004f 0B       		.uleb128 0xb
+ 1914 0050 0B       		.uleb128 0xb
+ 1915 0051 3A       		.uleb128 0x3a
+ 1916 0052 0B       		.uleb128 0xb
+ 1917 0053 3B       		.uleb128 0x3b
+ 1918 0054 0B       		.uleb128 0xb
+ 1919 0055 01       		.uleb128 0x1
+ 1920 0056 13       		.uleb128 0x13
+ 1921 0057 00       		.byte	0
+ 1922 0058 00       		.byte	0
+ 1923 0059 08       		.uleb128 0x8
+ 1924 005a 0D       		.uleb128 0xd
+ 1925 005b 00       		.byte	0
+ 1926 005c 03       		.uleb128 0x3
+ 1927 005d 0E       		.uleb128 0xe
+ 1928 005e 3A       		.uleb128 0x3a
+ 1929 005f 0B       		.uleb128 0xb
+ 1930 0060 3B       		.uleb128 0x3b
+ 1931 0061 0B       		.uleb128 0xb
+ 1932 0062 49       		.uleb128 0x49
+ 1933 0063 13       		.uleb128 0x13
+ 1934 0064 38       		.uleb128 0x38
+ 1935 0065 0B       		.uleb128 0xb
+ 1936 0066 00       		.byte	0
+ 1937 0067 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 39
+
+
+ 1938 0068 09       		.uleb128 0x9
+ 1939 0069 01       		.uleb128 0x1
+ 1940 006a 01       		.byte	0x1
+ 1941 006b 49       		.uleb128 0x49
+ 1942 006c 13       		.uleb128 0x13
+ 1943 006d 01       		.uleb128 0x1
+ 1944 006e 13       		.uleb128 0x13
+ 1945 006f 00       		.byte	0
+ 1946 0070 00       		.byte	0
+ 1947 0071 0A       		.uleb128 0xa
+ 1948 0072 21       		.uleb128 0x21
+ 1949 0073 00       		.byte	0
+ 1950 0074 49       		.uleb128 0x49
+ 1951 0075 13       		.uleb128 0x13
+ 1952 0076 2F       		.uleb128 0x2f
+ 1953 0077 0B       		.uleb128 0xb
+ 1954 0078 00       		.byte	0
+ 1955 0079 00       		.byte	0
+ 1956 007a 0B       		.uleb128 0xb
+ 1957 007b 13       		.uleb128 0x13
+ 1958 007c 01       		.byte	0x1
+ 1959 007d 0B       		.uleb128 0xb
+ 1960 007e 05       		.uleb128 0x5
+ 1961 007f 3A       		.uleb128 0x3a
+ 1962 0080 0B       		.uleb128 0xb
+ 1963 0081 3B       		.uleb128 0x3b
+ 1964 0082 0B       		.uleb128 0xb
+ 1965 0083 01       		.uleb128 0x1
+ 1966 0084 13       		.uleb128 0x13
+ 1967 0085 00       		.byte	0
+ 1968 0086 00       		.byte	0
+ 1969 0087 0C       		.uleb128 0xc
+ 1970 0088 0D       		.uleb128 0xd
+ 1971 0089 00       		.byte	0
+ 1972 008a 03       		.uleb128 0x3
+ 1973 008b 0E       		.uleb128 0xe
+ 1974 008c 3A       		.uleb128 0x3a
+ 1975 008d 0B       		.uleb128 0xb
+ 1976 008e 3B       		.uleb128 0x3b
+ 1977 008f 0B       		.uleb128 0xb
+ 1978 0090 49       		.uleb128 0x49
+ 1979 0091 13       		.uleb128 0x13
+ 1980 0092 38       		.uleb128 0x38
+ 1981 0093 05       		.uleb128 0x5
+ 1982 0094 00       		.byte	0
+ 1983 0095 00       		.byte	0
+ 1984 0096 0D       		.uleb128 0xd
+ 1985 0097 13       		.uleb128 0x13
+ 1986 0098 01       		.byte	0x1
+ 1987 0099 0B       		.uleb128 0xb
+ 1988 009a 0B       		.uleb128 0xb
+ 1989 009b 3A       		.uleb128 0x3a
+ 1990 009c 0B       		.uleb128 0xb
+ 1991 009d 3B       		.uleb128 0x3b
+ 1992 009e 0B       		.uleb128 0xb
+ 1993 009f 01       		.uleb128 0x1
+ 1994 00a0 13       		.uleb128 0x13
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 40
+
+
+ 1995 00a1 00       		.byte	0
+ 1996 00a2 00       		.byte	0
+ 1997 00a3 0E       		.uleb128 0xe
+ 1998 00a4 2E       		.uleb128 0x2e
+ 1999 00a5 01       		.byte	0x1
+ 2000 00a6 3F       		.uleb128 0x3f
+ 2001 00a7 19       		.uleb128 0x19
+ 2002 00a8 03       		.uleb128 0x3
+ 2003 00a9 0E       		.uleb128 0xe
+ 2004 00aa 3A       		.uleb128 0x3a
+ 2005 00ab 0B       		.uleb128 0xb
+ 2006 00ac 3B       		.uleb128 0x3b
+ 2007 00ad 0B       		.uleb128 0xb
+ 2008 00ae 27       		.uleb128 0x27
+ 2009 00af 19       		.uleb128 0x19
+ 2010 00b0 49       		.uleb128 0x49
+ 2011 00b1 13       		.uleb128 0x13
+ 2012 00b2 8701     		.uleb128 0x87
+ 2013 00b4 19       		.uleb128 0x19
+ 2014 00b5 11       		.uleb128 0x11
+ 2015 00b6 01       		.uleb128 0x1
+ 2016 00b7 12       		.uleb128 0x12
+ 2017 00b8 06       		.uleb128 0x6
+ 2018 00b9 40       		.uleb128 0x40
+ 2019 00ba 18       		.uleb128 0x18
+ 2020 00bb 9742     		.uleb128 0x2117
+ 2021 00bd 19       		.uleb128 0x19
+ 2022 00be 01       		.uleb128 0x1
+ 2023 00bf 13       		.uleb128 0x13
+ 2024 00c0 00       		.byte	0
+ 2025 00c1 00       		.byte	0
+ 2026 00c2 0F       		.uleb128 0xf
+ 2027 00c3 34       		.uleb128 0x34
+ 2028 00c4 00       		.byte	0
+ 2029 00c5 03       		.uleb128 0x3
+ 2030 00c6 08       		.uleb128 0x8
+ 2031 00c7 3A       		.uleb128 0x3a
+ 2032 00c8 0B       		.uleb128 0xb
+ 2033 00c9 3B       		.uleb128 0x3b
+ 2034 00ca 0B       		.uleb128 0xb
+ 2035 00cb 49       		.uleb128 0x49
+ 2036 00cc 13       		.uleb128 0x13
+ 2037 00cd 1C       		.uleb128 0x1c
+ 2038 00ce 0B       		.uleb128 0xb
+ 2039 00cf 00       		.byte	0
+ 2040 00d0 00       		.byte	0
+ 2041 00d1 10       		.uleb128 0x10
+ 2042 00d2 898201   		.uleb128 0x4109
+ 2043 00d5 00       		.byte	0
+ 2044 00d6 11       		.uleb128 0x11
+ 2045 00d7 01       		.uleb128 0x1
+ 2046 00d8 31       		.uleb128 0x31
+ 2047 00d9 13       		.uleb128 0x13
+ 2048 00da 00       		.byte	0
+ 2049 00db 00       		.byte	0
+ 2050 00dc 11       		.uleb128 0x11
+ 2051 00dd 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 41
+
+
+ 2052 00e0 01       		.byte	0x1
+ 2053 00e1 11       		.uleb128 0x11
+ 2054 00e2 01       		.uleb128 0x1
+ 2055 00e3 31       		.uleb128 0x31
+ 2056 00e4 13       		.uleb128 0x13
+ 2057 00e5 01       		.uleb128 0x1
+ 2058 00e6 13       		.uleb128 0x13
+ 2059 00e7 00       		.byte	0
+ 2060 00e8 00       		.byte	0
+ 2061 00e9 12       		.uleb128 0x12
+ 2062 00ea 8A8201   		.uleb128 0x410a
+ 2063 00ed 00       		.byte	0
+ 2064 00ee 02       		.uleb128 0x2
+ 2065 00ef 18       		.uleb128 0x18
+ 2066 00f0 9142     		.uleb128 0x2111
+ 2067 00f2 18       		.uleb128 0x18
+ 2068 00f3 00       		.byte	0
+ 2069 00f4 00       		.byte	0
+ 2070 00f5 13       		.uleb128 0x13
+ 2071 00f6 898201   		.uleb128 0x4109
+ 2072 00f9 01       		.byte	0x1
+ 2073 00fa 11       		.uleb128 0x11
+ 2074 00fb 01       		.uleb128 0x1
+ 2075 00fc 31       		.uleb128 0x31
+ 2076 00fd 13       		.uleb128 0x13
+ 2077 00fe 00       		.byte	0
+ 2078 00ff 00       		.byte	0
+ 2079 0100 14       		.uleb128 0x14
+ 2080 0101 2E       		.uleb128 0x2e
+ 2081 0102 01       		.byte	0x1
+ 2082 0103 3F       		.uleb128 0x3f
+ 2083 0104 19       		.uleb128 0x19
+ 2084 0105 03       		.uleb128 0x3
+ 2085 0106 0E       		.uleb128 0xe
+ 2086 0107 3A       		.uleb128 0x3a
+ 2087 0108 0B       		.uleb128 0xb
+ 2088 0109 3B       		.uleb128 0x3b
+ 2089 010a 0B       		.uleb128 0xb
+ 2090 010b 27       		.uleb128 0x27
+ 2091 010c 19       		.uleb128 0x19
+ 2092 010d 11       		.uleb128 0x11
+ 2093 010e 01       		.uleb128 0x1
+ 2094 010f 12       		.uleb128 0x12
+ 2095 0110 06       		.uleb128 0x6
+ 2096 0111 40       		.uleb128 0x40
+ 2097 0112 18       		.uleb128 0x18
+ 2098 0113 9742     		.uleb128 0x2117
+ 2099 0115 19       		.uleb128 0x19
+ 2100 0116 01       		.uleb128 0x1
+ 2101 0117 13       		.uleb128 0x13
+ 2102 0118 00       		.byte	0
+ 2103 0119 00       		.byte	0
+ 2104 011a 15       		.uleb128 0x15
+ 2105 011b 05       		.uleb128 0x5
+ 2106 011c 00       		.byte	0
+ 2107 011d 03       		.uleb128 0x3
+ 2108 011e 0E       		.uleb128 0xe
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 42
+
+
+ 2109 011f 3A       		.uleb128 0x3a
+ 2110 0120 0B       		.uleb128 0xb
+ 2111 0121 3B       		.uleb128 0x3b
+ 2112 0122 0B       		.uleb128 0xb
+ 2113 0123 49       		.uleb128 0x49
+ 2114 0124 13       		.uleb128 0x13
+ 2115 0125 02       		.uleb128 0x2
+ 2116 0126 18       		.uleb128 0x18
+ 2117 0127 00       		.byte	0
+ 2118 0128 00       		.byte	0
+ 2119 0129 16       		.uleb128 0x16
+ 2120 012a 2E       		.uleb128 0x2e
+ 2121 012b 01       		.byte	0x1
+ 2122 012c 3F       		.uleb128 0x3f
+ 2123 012d 19       		.uleb128 0x19
+ 2124 012e 03       		.uleb128 0x3
+ 2125 012f 0E       		.uleb128 0xe
+ 2126 0130 3A       		.uleb128 0x3a
+ 2127 0131 0B       		.uleb128 0xb
+ 2128 0132 3B       		.uleb128 0x3b
+ 2129 0133 0B       		.uleb128 0xb
+ 2130 0134 27       		.uleb128 0x27
+ 2131 0135 19       		.uleb128 0x19
+ 2132 0136 49       		.uleb128 0x49
+ 2133 0137 13       		.uleb128 0x13
+ 2134 0138 11       		.uleb128 0x11
+ 2135 0139 01       		.uleb128 0x1
+ 2136 013a 12       		.uleb128 0x12
+ 2137 013b 06       		.uleb128 0x6
+ 2138 013c 40       		.uleb128 0x40
+ 2139 013d 18       		.uleb128 0x18
+ 2140 013e 9642     		.uleb128 0x2116
+ 2141 0140 19       		.uleb128 0x19
+ 2142 0141 01       		.uleb128 0x1
+ 2143 0142 13       		.uleb128 0x13
+ 2144 0143 00       		.byte	0
+ 2145 0144 00       		.byte	0
+ 2146 0145 17       		.uleb128 0x17
+ 2147 0146 05       		.uleb128 0x5
+ 2148 0147 00       		.byte	0
+ 2149 0148 03       		.uleb128 0x3
+ 2150 0149 0E       		.uleb128 0xe
+ 2151 014a 3A       		.uleb128 0x3a
+ 2152 014b 0B       		.uleb128 0xb
+ 2153 014c 3B       		.uleb128 0x3b
+ 2154 014d 0B       		.uleb128 0xb
+ 2155 014e 49       		.uleb128 0x49
+ 2156 014f 13       		.uleb128 0x13
+ 2157 0150 02       		.uleb128 0x2
+ 2158 0151 17       		.uleb128 0x17
+ 2159 0152 00       		.byte	0
+ 2160 0153 00       		.byte	0
+ 2161 0154 18       		.uleb128 0x18
+ 2162 0155 34       		.uleb128 0x34
+ 2163 0156 00       		.byte	0
+ 2164 0157 03       		.uleb128 0x3
+ 2165 0158 08       		.uleb128 0x8
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 43
+
+
+ 2166 0159 3A       		.uleb128 0x3a
+ 2167 015a 0B       		.uleb128 0xb
+ 2168 015b 3B       		.uleb128 0x3b
+ 2169 015c 0B       		.uleb128 0xb
+ 2170 015d 49       		.uleb128 0x49
+ 2171 015e 13       		.uleb128 0x13
+ 2172 015f 00       		.byte	0
+ 2173 0160 00       		.byte	0
+ 2174 0161 19       		.uleb128 0x19
+ 2175 0162 34       		.uleb128 0x34
+ 2176 0163 00       		.byte	0
+ 2177 0164 03       		.uleb128 0x3
+ 2178 0165 0E       		.uleb128 0xe
+ 2179 0166 3A       		.uleb128 0x3a
+ 2180 0167 0B       		.uleb128 0xb
+ 2181 0168 3B       		.uleb128 0x3b
+ 2182 0169 05       		.uleb128 0x5
+ 2183 016a 49       		.uleb128 0x49
+ 2184 016b 13       		.uleb128 0x13
+ 2185 016c 3F       		.uleb128 0x3f
+ 2186 016d 19       		.uleb128 0x19
+ 2187 016e 3C       		.uleb128 0x3c
+ 2188 016f 19       		.uleb128 0x19
+ 2189 0170 00       		.byte	0
+ 2190 0171 00       		.byte	0
+ 2191 0172 1A       		.uleb128 0x1a
+ 2192 0173 34       		.uleb128 0x34
+ 2193 0174 00       		.byte	0
+ 2194 0175 03       		.uleb128 0x3
+ 2195 0176 0E       		.uleb128 0xe
+ 2196 0177 3A       		.uleb128 0x3a
+ 2197 0178 0B       		.uleb128 0xb
+ 2198 0179 3B       		.uleb128 0x3b
+ 2199 017a 0B       		.uleb128 0xb
+ 2200 017b 49       		.uleb128 0x49
+ 2201 017c 13       		.uleb128 0x13
+ 2202 017d 3F       		.uleb128 0x3f
+ 2203 017e 19       		.uleb128 0x19
+ 2204 017f 02       		.uleb128 0x2
+ 2205 0180 18       		.uleb128 0x18
+ 2206 0181 00       		.byte	0
+ 2207 0182 00       		.byte	0
+ 2208 0183 1B       		.uleb128 0x1b
+ 2209 0184 34       		.uleb128 0x34
+ 2210 0185 00       		.byte	0
+ 2211 0186 03       		.uleb128 0x3
+ 2212 0187 08       		.uleb128 0x8
+ 2213 0188 3A       		.uleb128 0x3a
+ 2214 0189 0B       		.uleb128 0xb
+ 2215 018a 3B       		.uleb128 0x3b
+ 2216 018b 0B       		.uleb128 0xb
+ 2217 018c 49       		.uleb128 0x49
+ 2218 018d 13       		.uleb128 0x13
+ 2219 018e 3F       		.uleb128 0x3f
+ 2220 018f 19       		.uleb128 0x19
+ 2221 0190 02       		.uleb128 0x2
+ 2222 0191 18       		.uleb128 0x18
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 44
+
+
+ 2223 0192 00       		.byte	0
+ 2224 0193 00       		.byte	0
+ 2225 0194 1C       		.uleb128 0x1c
+ 2226 0195 2E       		.uleb128 0x2e
+ 2227 0196 00       		.byte	0
+ 2228 0197 3F       		.uleb128 0x3f
+ 2229 0198 19       		.uleb128 0x19
+ 2230 0199 3C       		.uleb128 0x3c
+ 2231 019a 19       		.uleb128 0x19
+ 2232 019b 6E       		.uleb128 0x6e
+ 2233 019c 0E       		.uleb128 0xe
+ 2234 019d 03       		.uleb128 0x3
+ 2235 019e 0E       		.uleb128 0xe
+ 2236 019f 3A       		.uleb128 0x3a
+ 2237 01a0 0B       		.uleb128 0xb
+ 2238 01a1 3B       		.uleb128 0x3b
+ 2239 01a2 0B       		.uleb128 0xb
+ 2240 01a3 00       		.byte	0
+ 2241 01a4 00       		.byte	0
+ 2242 01a5 00       		.byte	0
+ 2243              		.section	.debug_loc,"",%progbits
+ 2244              	.Ldebug_loc0:
+ 2245              	.LLST0:
+ 2246 0000 00000000 		.4byte	.LVL26
+ 2247 0004 0C000000 		.4byte	.LVL27
+ 2248 0008 0100     		.2byte	0x1
+ 2249 000a 50       		.byte	0x50
+ 2250 000b 0C000000 		.4byte	.LVL27
+ 2251 000f 0E000000 		.4byte	.LVL28
+ 2252 0013 0100     		.2byte	0x1
+ 2253 0015 51       		.byte	0x51
+ 2254 0016 0E000000 		.4byte	.LVL28
+ 2255 001a 14000000 		.4byte	.LFE68
+ 2256 001e 0400     		.2byte	0x4
+ 2257 0020 F3       		.byte	0xf3
+ 2258 0021 01       		.uleb128 0x1
+ 2259 0022 50       		.byte	0x50
+ 2260 0023 9F       		.byte	0x9f
+ 2261 0024 00000000 		.4byte	0
+ 2262 0028 00000000 		.4byte	0
+ 2263              		.section	.debug_aranges,"",%progbits
+ 2264 0000 3C000000 		.4byte	0x3c
+ 2265 0004 0200     		.2byte	0x2
+ 2266 0006 00000000 		.4byte	.Ldebug_info0
+ 2267 000a 04       		.byte	0x4
+ 2268 000b 00       		.byte	0
+ 2269 000c 0000     		.2byte	0
+ 2270 000e 0000     		.2byte	0
+ 2271 0010 00000000 		.4byte	.LFB64
+ 2272 0014 98000000 		.4byte	.LFE64-.LFB64
+ 2273 0018 00000000 		.4byte	.LFB66
+ 2274 001c 34000000 		.4byte	.LFE66-.LFB66
+ 2275 0020 00000000 		.4byte	.LFB67
+ 2276 0024 28000000 		.4byte	.LFE67-.LFB67
+ 2277 0028 00000000 		.4byte	.LFB68
+ 2278 002c 14000000 		.4byte	.LFE68-.LFB68
+ 2279 0030 00000000 		.4byte	.LFB65
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 45
+
+
+ 2280 0034 28010000 		.4byte	.LFE65-.LFB65
+ 2281 0038 00000000 		.4byte	0
+ 2282 003c 00000000 		.4byte	0
+ 2283              		.section	.debug_ranges,"",%progbits
+ 2284              	.Ldebug_ranges0:
+ 2285 0000 00000000 		.4byte	.LFB64
+ 2286 0004 98000000 		.4byte	.LFE64
+ 2287 0008 00000000 		.4byte	.LFB66
+ 2288 000c 34000000 		.4byte	.LFE66
+ 2289 0010 00000000 		.4byte	.LFB67
+ 2290 0014 28000000 		.4byte	.LFE67
+ 2291 0018 00000000 		.4byte	.LFB68
+ 2292 001c 14000000 		.4byte	.LFE68
+ 2293 0020 00000000 		.4byte	.LFB65
+ 2294 0024 28010000 		.4byte	.LFE65
+ 2295 0028 00000000 		.4byte	0
+ 2296 002c 00000000 		.4byte	0
+ 2297              		.section	.debug_line,"",%progbits
+ 2298              	.Ldebug_line0:
+ 2299 0000 8E020000 		.section	.debug_str,"MS",%progbits,1
+ 2299      0200EB01 
+ 2299      00000201 
+ 2299      FB0E0D00 
+ 2299      01010101 
+ 2300              	.LASF44:
+ 2301 0000 72785F69 		.ascii	"rx_index\000"
+ 2301      6E646578 
+ 2301      00
+ 2302              	.LASF94:
+ 2303 0009 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
+ 2303      73657273 
+ 2303      5C70616A 
+ 2303      6F685C70 
+ 2303      726F6A65 
+ 2304 0036 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
+ 2304      646F662E 
+ 2304      63796473 
+ 2304      6E00
+ 2305              	.LASF75:
+ 2306 0044 4144435F 		.ascii	"ADC_DelSig_1_StartConvert\000"
+ 2306      44656C53 
+ 2306      69675F31 
+ 2306      5F537461 
+ 2306      7274436F 
+ 2307              	.LASF84:
+ 2308 005e 6D6F7665 		.ascii	"move_queue_init\000"
+ 2308      5F717565 
+ 2308      75655F69 
+ 2308      6E697400 
+ 2309              	.LASF16:
+ 2310 006e 646F7562 		.ascii	"double\000"
+ 2310      6C6500
+ 2311              	.LASF64:
+ 2312 0075 4A325F61 		.ascii	"J2_accumulator\000"
+ 2312      6363756D 
+ 2312      756C6174 
+ 2312      6F7200
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 46
+
+
+ 2313              	.LASF2:
+ 2314 0084 73686F72 		.ascii	"short int\000"
+ 2314      7420696E 
+ 2314      7400
+ 2315              	.LASF48:
+ 2316 008e 6A315F70 		.ascii	"j1_pos\000"
+ 2316      6F7300
+ 2317              	.LASF20:
+ 2318 0095 73697A65 		.ascii	"sizetype\000"
+ 2318      74797065 
+ 2318      00
+ 2319              	.LASF97:
+ 2320 009e 76656C5F 		.ascii	"vel_to_tuningWord\000"
+ 2320      746F5F74 
+ 2320      756E696E 
+ 2320      67576F72 
+ 2320      6400
+ 2321              	.LASF41:
+ 2322 00b0 6D73675F 		.ascii	"msg_buff\000"
+ 2322      62756666 
+ 2322      00
+ 2323              	.LASF30:
+ 2324 00b9 64697265 		.ascii	"direction\000"
+ 2324      6374696F 
+ 2324      6E00
+ 2325              	.LASF96:
+ 2326 00c3 6D61696E 		.ascii	"main\000"
+ 2326      00
+ 2327              	.LASF38:
+ 2328 00c8 76656C6F 		.ascii	"velocity\000"
+ 2328      63697479 
+ 2328      00
+ 2329              	.LASF31:
+ 2330 00d1 74756E69 		.ascii	"tuningWord\000"
+ 2330      6E67576F 
+ 2330      726400
+ 2331              	.LASF50:
+ 2332 00dc 6A335F70 		.ascii	"j3_pos\000"
+ 2332      6F7300
+ 2333              	.LASF59:
+ 2334 00e3 5472616E 		.ascii	"TransmitBuffer\000"
+ 2334      736D6974 
+ 2334      42756666 
+ 2334      657200
+ 2335              	.LASF26:
+ 2336 00f2 68656164 		.ascii	"head\000"
+ 2336      00
+ 2337              	.LASF71:
+ 2338 00f7 4A335F64 		.ascii	"J3_dir\000"
+ 2338      697200
+ 2339              	.LASF80:
+ 2340 00fe 4144435F 		.ascii	"ADC_DelSig_1_IsEndConversion\000"
+ 2340      44656C53 
+ 2340      69675F31 
+ 2340      5F497345 
+ 2340      6E64436F 
+ 2341              	.LASF87:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 47
+
+
+ 2342 011b 4A315F45 		.ascii	"J1_EN_Write\000"
+ 2342      4E5F5772 
+ 2342      69746500 
+ 2343              	.LASF11:
+ 2344 0127 75696E74 		.ascii	"uint8\000"
+ 2344      3800
+ 2345              	.LASF55:
+ 2346 012d 686F6D65 		.ascii	"home\000"
+ 2346      00
+ 2347              	.LASF72:
+ 2348 0132 55415254 		.ascii	"UART_1_Start\000"
+ 2348      5F315F53 
+ 2348      74617274 
+ 2348      00
+ 2349              	.LASF15:
+ 2350 013f 666C6F61 		.ascii	"float\000"
+ 2350      7400
+ 2351              	.LASF54:
+ 2352 0145 6D6F7665 		.ascii	"moveJ3\000"
+ 2352      4A3300
+ 2353              	.LASF6:
+ 2354 014c 6C6F6E67 		.ascii	"long long int\000"
+ 2354      206C6F6E 
+ 2354      6720696E 
+ 2354      7400
+ 2355              	.LASF62:
+ 2356 015a 4A335F74 		.ascii	"J3_tuningWord\000"
+ 2356      756E696E 
+ 2356      67576F72 
+ 2356      6400
+ 2357              	.LASF53:
+ 2358 0168 6D6F7665 		.ascii	"moveJ2\000"
+ 2358      4A3200
+ 2359              	.LASF45:
+ 2360 016f 6C696D69 		.ascii	"limit\000"
+ 2360      7400
+ 2361              	.LASF78:
+ 2362 0175 4A325F4C 		.ascii	"J2_LIM_Read\000"
+ 2362      494D5F52 
+ 2362      65616400 
+ 2363              	.LASF47:
+ 2364 0181 6A335F6C 		.ascii	"j3_limit\000"
+ 2364      696D6974 
+ 2364      00
+ 2365              	.LASF60:
+ 2366 018a 4A315F74 		.ascii	"J1_tuningWord\000"
+ 2366      756E696E 
+ 2366      67576F72 
+ 2366      6400
+ 2367              	.LASF17:
+ 2368 0198 75696E74 		.ascii	"uint64\000"
+ 2368      363400
+ 2369              	.LASF43:
+ 2370 019f 72785F62 		.ascii	"rx_buffer\000"
+ 2370      75666665 
+ 2370      7200
+ 2371              	.LASF61:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 48
+
+
+ 2372 01a9 4A325F74 		.ascii	"J2_tuningWord\000"
+ 2372      756E696E 
+ 2372      67576F72 
+ 2372      6400
+ 2373              	.LASF86:
+ 2374 01b7 6D657373 		.ascii	"message_buff_execute\000"
+ 2374      6167655F 
+ 2374      62756666 
+ 2374      5F657865 
+ 2374      63757465 
+ 2375              	.LASF49:
+ 2376 01cc 6A325F70 		.ascii	"j2_pos\000"
+ 2376      6F7300
+ 2377              	.LASF66:
+ 2378 01d3 4A315F73 		.ascii	"J1_step\000"
+ 2378      74657000 
+ 2379              	.LASF68:
+ 2380 01db 4A335F73 		.ascii	"J3_step\000"
+ 2380      74657000 
+ 2381              	.LASF56:
+ 2382 01e3 4A315F63 		.ascii	"J1_ctrl_val\000"
+ 2382      74726C5F 
+ 2382      76616C00 
+ 2383              	.LASF37:
+ 2384 01ef 7365745F 		.ascii	"set_velocity\000"
+ 2384      76656C6F 
+ 2384      63697479 
+ 2384      00
+ 2385              	.LASF19:
+ 2386 01fc 6C6F6E67 		.ascii	"long double\000"
+ 2386      20646F75 
+ 2386      626C6500 
+ 2387              	.LASF27:
+ 2388 0208 7461696C 		.ascii	"tail\000"
+ 2388      00
+ 2389              	.LASF1:
+ 2390 020d 756E7369 		.ascii	"unsigned char\000"
+ 2390      676E6564 
+ 2390      20636861 
+ 2390      7200
+ 2391              	.LASF0:
+ 2392 021b 7369676E 		.ascii	"signed char\000"
+ 2392      65642063 
+ 2392      68617200 
+ 2393              	.LASF35:
+ 2394 0227 4D6F7665 		.ascii	"Move_Queue\000"
+ 2394      5F517565 
+ 2394      756500
+ 2395              	.LASF7:
+ 2396 0232 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2396      206C6F6E 
+ 2396      6720756E 
+ 2396      7369676E 
+ 2396      65642069 
+ 2397              	.LASF89:
+ 2398 0249 4A335F45 		.ascii	"J3_EN_Write\000"
+ 2398      4E5F5772 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 49
+
+
+ 2398      69746500 
+ 2399              	.LASF29:
+ 2400 0255 4D657373 		.ascii	"Message_Buff\000"
+ 2400      6167655F 
+ 2400      42756666 
+ 2400      00
+ 2401              	.LASF8:
+ 2402 0262 756E7369 		.ascii	"unsigned int\000"
+ 2402      676E6564 
+ 2402      20696E74 
+ 2402      00
+ 2403              	.LASF25:
+ 2404 026f 6D736773 		.ascii	"msgs\000"
+ 2404      00
+ 2405              	.LASF83:
+ 2406 0274 6D657373 		.ascii	"message_buff_init\000"
+ 2406      6167655F 
+ 2406      62756666 
+ 2406      5F696E69 
+ 2406      7400
+ 2407              	.LASF5:
+ 2408 0286 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2408      20756E73 
+ 2408      69676E65 
+ 2408      6420696E 
+ 2408      7400
+ 2409              	.LASF77:
+ 2410 0298 72785F69 		.ascii	"rx_isr_Start\000"
+ 2410      73725F53 
+ 2410      74617274 
+ 2410      00
+ 2411              	.LASF36:
+ 2412 02a5 75706461 		.ascii	"update_positions\000"
+ 2412      74655F70 
+ 2412      6F736974 
+ 2412      696F6E73 
+ 2412      00
+ 2413              	.LASF51:
+ 2414 02b6 6A315F68 		.ascii	"j1_home\000"
+ 2414      6F6D6500 
+ 2415              	.LASF74:
+ 2416 02be 4144435F 		.ascii	"ADC_DelSig_1_Start\000"
+ 2416      44656C53 
+ 2416      69675F31 
+ 2416      5F537461 
+ 2416      727400
+ 2417              	.LASF28:
+ 2418 02d1 73697A65 		.ascii	"size\000"
+ 2418      00
+ 2419              	.LASF18:
+ 2420 02d6 63686172 		.ascii	"char\000"
+ 2420      00
+ 2421              	.LASF4:
+ 2422 02db 6C6F6E67 		.ascii	"long int\000"
+ 2422      20696E74 
+ 2422      00
+ 2423              	.LASF88:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 50
+
+
+ 2424 02e4 4A325F45 		.ascii	"J2_EN_Write\000"
+ 2424      4E5F5772 
+ 2424      69746500 
+ 2425              	.LASF22:
+ 2426 02f0 6A6F696E 		.ascii	"joint\000"
+ 2426      7400
+ 2427              	.LASF10:
+ 2428 02f6 696E7433 		.ascii	"int32_t\000"
+ 2428      325F7400 
+ 2429              	.LASF69:
+ 2430 02fe 4A315F64 		.ascii	"J1_dir\000"
+ 2430      697200
+ 2431              	.LASF33:
+ 2432 0305 4D6F7665 		.ascii	"Move\000"
+ 2432      00
+ 2433              	.LASF91:
+ 2434 030a 4A335F44 		.ascii	"J3_DIR_Write\000"
+ 2434      49525F57 
+ 2434      72697465 
+ 2434      00
+ 2435              	.LASF23:
+ 2436 0317 64617461 		.ascii	"data\000"
+ 2436      00
+ 2437              	.LASF12:
+ 2438 031c 75696E74 		.ascii	"uint16\000"
+ 2438      313600
+ 2439              	.LASF32:
+ 2440 0323 64757261 		.ascii	"duration\000"
+ 2440      74696F6E 
+ 2440      00
+ 2441              	.LASF58:
+ 2442 032c 4A335F63 		.ascii	"J3_ctrl_val\000"
+ 2442      74726C5F 
+ 2442      76616C00 
+ 2443              	.LASF13:
+ 2444 0338 75696E74 		.ascii	"uint32\000"
+ 2444      333200
+ 2445              	.LASF93:
+ 2446 033f 6D61696E 		.ascii	"main.c\000"
+ 2446      2E6300
+ 2447              	.LASF95:
+ 2448 0346 6D657373 		.ascii	"message\000"
+ 2448      61676500 
+ 2449              	.LASF82:
+ 2450 034e 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_uVolts\000"
+ 2450      44656C53 
+ 2450      69675F31 
+ 2450      5F436F75 
+ 2450      6E747354 
+ 2451              	.LASF14:
+ 2452 036b 696E7433 		.ascii	"int32\000"
+ 2452      3200
+ 2453              	.LASF79:
+ 2454 0371 4A335F4C 		.ascii	"J3_LIM_Read\000"
+ 2454      494D5F52 
+ 2454      65616400 
+ 2455              	.LASF85:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 51
+
+
+ 2456 037d 55415254 		.ascii	"UART_1_PutString\000"
+ 2456      5F315F50 
+ 2456      75745374 
+ 2456      72696E67 
+ 2456      00
+ 2457              	.LASF90:
+ 2458 038e 4A325F44 		.ascii	"J2_DIR_Write\000"
+ 2458      49525F57 
+ 2458      72697465 
+ 2458      00
+ 2459              	.LASF34:
+ 2460 039b 6D6F7665 		.ascii	"moves\000"
+ 2460      7300
+ 2461              	.LASF81:
+ 2462 03a1 4144435F 		.ascii	"ADC_DelSig_1_GetResult32\000"
+ 2462      44656C53 
+ 2462      69675F31 
+ 2462      5F476574 
+ 2462      52657375 
+ 2463              	.LASF52:
+ 2464 03ba 6D6F7665 		.ascii	"moveJ1\000"
+ 2464      4A3100
+ 2465              	.LASF9:
+ 2466 03c1 5F5F696E 		.ascii	"__int32_t\000"
+ 2466      7433325F 
+ 2466      7400
+ 2467              	.LASF63:
+ 2468 03cb 4A315F61 		.ascii	"J1_accumulator\000"
+ 2468      6363756D 
+ 2468      756C6174 
+ 2468      6F7200
+ 2469              	.LASF42:
+ 2470 03da 6D6F7665 		.ascii	"move_queue\000"
+ 2470      5F717565 
+ 2470      756500
+ 2471              	.LASF57:
+ 2472 03e5 4A325F63 		.ascii	"J2_ctrl_val\000"
+ 2472      74726C5F 
+ 2472      76616C00 
+ 2473              	.LASF76:
+ 2474 03f1 4E434F5F 		.ascii	"NCO_ISR_Start\000"
+ 2474      4953525F 
+ 2474      53746172 
+ 2474      7400
+ 2475              	.LASF65:
+ 2476 03ff 4A335F61 		.ascii	"J3_accumulator\000"
+ 2476      6363756D 
+ 2476      756C6174 
+ 2476      6F7200
+ 2477              	.LASF70:
+ 2478 040e 4A325F64 		.ascii	"J2_dir\000"
+ 2478      697200
+ 2479              	.LASF24:
+ 2480 0415 4D657373 		.ascii	"Message\000"
+ 2480      61676500 
+ 2481              	.LASF3:
+ 2482 041d 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccoX2JEX.s 			page 52
+
+
+ 2482      7420756E 
+ 2482      7369676E 
+ 2482      65642069 
+ 2482      6E7400
+ 2483              	.LASF73:
+ 2484 0430 5350494D 		.ascii	"SPIM_1_Start\000"
+ 2484      5F315F53 
+ 2484      74617274 
+ 2484      00
+ 2485              	.LASF67:
+ 2486 043d 4A325F73 		.ascii	"J2_step\000"
+ 2486      74657000 
+ 2487              	.LASF40:
+ 2488 0445 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2488      52784275 
+ 2488      66666572 
+ 2488      00
+ 2489              	.LASF92:
+ 2490 0452 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2490      43313120 
+ 2490      352E342E 
+ 2490      31203230 
+ 2490      31363036 
+ 2491 0485 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2491      20726576 
+ 2491      6973696F 
+ 2491      6E203233 
+ 2491      37373135 
+ 2492 04b8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2492      66756E63 
+ 2492      74696F6E 
+ 2492      2D736563 
+ 2492      74696F6E 
+ 2493              	.LASF46:
+ 2494 04e0 6A325F6C 		.ascii	"j2_limit\000"
+ 2494      696D6974 
+ 2494      00
+ 2495              	.LASF39:
+ 2496 04e9 686F6D65 		.ascii	"home_joints\000"
+ 2496      5F6A6F69 
+ 2496      6E747300 
+ 2497              	.LASF21:
+ 2498 04f5 636F6D6D 		.ascii	"command\000"
+ 2498      616E6400 
+ 2499              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

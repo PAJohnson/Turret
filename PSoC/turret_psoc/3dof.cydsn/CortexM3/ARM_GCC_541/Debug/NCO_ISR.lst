@@ -1,0 +1,2958 @@
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"NCO_ISR.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.NCO_ISR_Interrupt,"ax",%progbits
+  20              		.align	2
+  21              		.global	NCO_ISR_Interrupt
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	NCO_ISR_Interrupt, %function
+  25              	NCO_ISR_Interrupt:
+  26              	.LFB67:
+  27              		.file 1 "Generated_Source\\PSoC5\\NCO_ISR.c"
+   1:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/NCO_ISR.c **** * File Name: NCO_ISR.c  
+   3:Generated_Source\PSoC5/NCO_ISR.c **** * Version 1.70
+   4:Generated_Source\PSoC5/NCO_ISR.c **** *
+   5:Generated_Source\PSoC5/NCO_ISR.c **** *  Description:
+   6:Generated_Source\PSoC5/NCO_ISR.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC5/NCO_ISR.c **** *
+   8:Generated_Source\PSoC5/NCO_ISR.c **** *
+   9:Generated_Source\PSoC5/NCO_ISR.c **** *  Note:
+  10:Generated_Source\PSoC5/NCO_ISR.c **** *
+  11:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/NCO_ISR.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/NCO_ISR.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC5/NCO_ISR.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC5/NCO_ISR.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/NCO_ISR.c **** 
+  18:Generated_Source\PSoC5/NCO_ISR.c **** 
+  19:Generated_Source\PSoC5/NCO_ISR.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC5/NCO_ISR.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC5/NCO_ISR.c **** #include <NCO_ISR.h>
+  22:Generated_Source\PSoC5/NCO_ISR.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC5/NCO_ISR.c **** 
+  24:Generated_Source\PSoC5/NCO_ISR.c **** #if !defined(NCO_ISR__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC5/NCO_ISR.c **** 
+  26:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+  27:Generated_Source\PSoC5/NCO_ISR.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************/
+  29:Generated_Source\PSoC5/NCO_ISR.c **** /* `#START NCO_ISR_intc` */
+  30:Generated_Source\PSoC5/NCO_ISR.c **** #include "project.h"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 2
+
+
+  31:Generated_Source\PSoC5/NCO_ISR.c **** #include "comms.h"
+  32:Generated_Source\PSoC5/NCO_ISR.c **** #include "stdio.h"
+  33:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile uint32 J1_tuningWord;
+  34:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile uint32 J2_tuningWord;
+  35:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile uint32 J3_tuningWord;
+  36:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile uint32 J1_accumulator;
+  37:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile uint32 J2_accumulator;
+  38:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile uint32 J3_accumulator;
+  39:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile char J1_step;
+  40:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile char J2_step;
+  41:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile char J3_step;
+  42:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile char J1_dir;
+  43:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile char J2_dir;
+  44:Generated_Source\PSoC5/NCO_ISR.c **** extern volatile char J3_dir;
+  45:Generated_Source\PSoC5/NCO_ISR.c **** volatile uint32 J1_duration = 0;
+  46:Generated_Source\PSoC5/NCO_ISR.c **** volatile uint32 J2_duration = 0;
+  47:Generated_Source\PSoC5/NCO_ISR.c **** volatile uint32 J3_duration = 0;
+  48:Generated_Source\PSoC5/NCO_ISR.c **** /* `#END` */
+  49:Generated_Source\PSoC5/NCO_ISR.c **** 
+  50:Generated_Source\PSoC5/NCO_ISR.c **** #ifndef CYINT_IRQ_BASE
+  51:Generated_Source\PSoC5/NCO_ISR.c **** #define CYINT_IRQ_BASE      16
+  52:Generated_Source\PSoC5/NCO_ISR.c **** #endif /* CYINT_IRQ_BASE */
+  53:Generated_Source\PSoC5/NCO_ISR.c **** #ifndef CYINT_VECT_TABLE
+  54:Generated_Source\PSoC5/NCO_ISR.c **** #define CYINT_VECT_TABLE    ((cyisraddress **) CYREG_NVIC_VECT_OFFSET)
+  55:Generated_Source\PSoC5/NCO_ISR.c **** #endif /* CYINT_VECT_TABLE */
+  56:Generated_Source\PSoC5/NCO_ISR.c **** 
+  57:Generated_Source\PSoC5/NCO_ISR.c **** /* Declared in startup, used to set unused interrupts to. */
+  58:Generated_Source\PSoC5/NCO_ISR.c **** CY_ISR_PROTO(IntDefaultHandler);
+  59:Generated_Source\PSoC5/NCO_ISR.c **** 
+  60:Generated_Source\PSoC5/NCO_ISR.c **** 
+  61:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+  62:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_Start
+  63:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+  64:Generated_Source\PSoC5/NCO_ISR.c **** *
+  65:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+  66:Generated_Source\PSoC5/NCO_ISR.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  67:Generated_Source\PSoC5/NCO_ISR.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  68:Generated_Source\PSoC5/NCO_ISR.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  69:Generated_Source\PSoC5/NCO_ISR.c **** *  interrupt controller.
+  70:Generated_Source\PSoC5/NCO_ISR.c **** *
+  71:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:  
+  72:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+  73:Generated_Source\PSoC5/NCO_ISR.c **** *
+  74:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+  75:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+  76:Generated_Source\PSoC5/NCO_ISR.c **** *
+  77:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+  78:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_Start(void)
+  79:Generated_Source\PSoC5/NCO_ISR.c **** {
+  80:Generated_Source\PSoC5/NCO_ISR.c ****     /* For all we know the interrupt is active. */
+  81:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_Disable();
+  82:Generated_Source\PSoC5/NCO_ISR.c **** 
+  83:Generated_Source\PSoC5/NCO_ISR.c ****     /* Set the ISR to point to the NCO_ISR Interrupt. */
+  84:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_SetVector(&NCO_ISR_Interrupt);
+  85:Generated_Source\PSoC5/NCO_ISR.c **** 
+  86:Generated_Source\PSoC5/NCO_ISR.c ****     /* Set the priority. */
+  87:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_SetPriority((uint8)NCO_ISR_INTC_PRIOR_NUMBER);
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 3
+
+
+  88:Generated_Source\PSoC5/NCO_ISR.c **** 
+  89:Generated_Source\PSoC5/NCO_ISR.c ****     /* Enable it. */
+  90:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_Enable();
+  91:Generated_Source\PSoC5/NCO_ISR.c **** }
+  92:Generated_Source\PSoC5/NCO_ISR.c **** 
+  93:Generated_Source\PSoC5/NCO_ISR.c **** 
+  94:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+  95:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_StartEx
+  96:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+  97:Generated_Source\PSoC5/NCO_ISR.c **** *
+  98:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+  99:Generated_Source\PSoC5/NCO_ISR.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+ 100:Generated_Source\PSoC5/NCO_ISR.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+ 101:Generated_Source\PSoC5/NCO_ISR.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+ 102:Generated_Source\PSoC5/NCO_ISR.c **** *  the interrupt to the interrupt controller.
+ 103:Generated_Source\PSoC5/NCO_ISR.c **** *  
+ 104:Generated_Source\PSoC5/NCO_ISR.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 105:Generated_Source\PSoC5/NCO_ISR.c **** *  used to provide consistent definition across compilers:
+ 106:Generated_Source\PSoC5/NCO_ISR.c **** *  
+ 107:Generated_Source\PSoC5/NCO_ISR.c **** *  Function definition example:
+ 108:Generated_Source\PSoC5/NCO_ISR.c **** *   CY_ISR(MyISR)
+ 109:Generated_Source\PSoC5/NCO_ISR.c **** *   {
+ 110:Generated_Source\PSoC5/NCO_ISR.c **** *   }
+ 111:Generated_Source\PSoC5/NCO_ISR.c **** *   Function prototype example:
+ 112:Generated_Source\PSoC5/NCO_ISR.c **** *   CY_ISR_PROTO(MyISR);
+ 113:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 114:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:  
+ 115:Generated_Source\PSoC5/NCO_ISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 116:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 117:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 118:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 119:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 120:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 121:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_StartEx(cyisraddress address)
+ 122:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 123:Generated_Source\PSoC5/NCO_ISR.c ****     /* For all we know the interrupt is active. */
+ 124:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_Disable();
+ 125:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 126:Generated_Source\PSoC5/NCO_ISR.c ****     /* Set the ISR to point to the NCO_ISR Interrupt. */
+ 127:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_SetVector(address);
+ 128:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 129:Generated_Source\PSoC5/NCO_ISR.c ****     /* Set the priority. */
+ 130:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_SetPriority((uint8)NCO_ISR_INTC_PRIOR_NUMBER);
+ 131:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 132:Generated_Source\PSoC5/NCO_ISR.c ****     /* Enable it. */
+ 133:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_Enable();
+ 134:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 135:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 136:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 137:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 138:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_Stop
+ 139:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 140:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 141:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 142:Generated_Source\PSoC5/NCO_ISR.c **** *   Disables and removes the interrupt.
+ 143:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 144:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:  
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 4
+
+
+ 145:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 146:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 147:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 148:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 149:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 150:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 151:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_Stop(void)
+ 152:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 153:Generated_Source\PSoC5/NCO_ISR.c ****     /* Disable this interrupt. */
+ 154:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_Disable();
+ 155:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 156:Generated_Source\PSoC5/NCO_ISR.c ****     /* Set the ISR to point to the passive one. */
+ 157:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_SetVector(&IntDefaultHandler);
+ 158:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 159:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 160:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 161:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 162:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_Interrupt
+ 163:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 164:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 165:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 166:Generated_Source\PSoC5/NCO_ISR.c **** *   The default Interrupt Service Routine for NCO_ISR.
+ 167:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 168:Generated_Source\PSoC5/NCO_ISR.c **** *   Add custom code between the coments to keep the next version of this file
+ 169:Generated_Source\PSoC5/NCO_ISR.c **** *   from over writting your code.
+ 170:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 171:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:  
+ 172:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 173:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 174:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 175:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 176:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 177:Generated_Source\PSoC5/NCO_ISR.c **** CY_ISR(NCO_ISR_Interrupt)
+ 178:Generated_Source\PSoC5/NCO_ISR.c **** {
+  28              		.loc 1 178 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+ 179:Generated_Source\PSoC5/NCO_ISR.c ****     #ifdef NCO_ISR_INTERRUPT_INTERRUPT_CALLBACK
+ 180:Generated_Source\PSoC5/NCO_ISR.c ****         NCO_ISR_Interrupt_InterruptCallback();
+ 181:Generated_Source\PSoC5/NCO_ISR.c ****     #endif /* NCO_ISR_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 182:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 183:Generated_Source\PSoC5/NCO_ISR.c ****     /*  Place your Interrupt code here. */
+ 184:Generated_Source\PSoC5/NCO_ISR.c ****     /* `#START NCO_ISR_Interrupt` */
+ 185:Generated_Source\PSoC5/NCO_ISR.c ****     //accumulator tuningwords
+ 186:Generated_Source\PSoC5/NCO_ISR.c ****     Move * move;
+ 187:Generated_Source\PSoC5/NCO_ISR.c ****     //get the most recent move from the queue
+ 188:Generated_Source\PSoC5/NCO_ISR.c ****     move = move_queue_get(&move_queue);
+  36              		.loc 1 188 0
+  37 0002 6348     		ldr	r0, .L19
+  38 0004 FFF7FEFF 		bl	move_queue_get
+  39              	.LVL0:
+ 189:Generated_Source\PSoC5/NCO_ISR.c ****     //check for null pointer
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 5
+
+
+ 190:Generated_Source\PSoC5/NCO_ISR.c ****     if(move != 0){
+  40              		.loc 1 190 0
+  41 0008 0028     		cmp	r0, #0
+  42 000a 2CD0     		beq	.L2
+ 191:Generated_Source\PSoC5/NCO_ISR.c ****         switch(move->joint){
+  43              		.loc 1 191 0
+  44 000c 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+  45 000e 022A     		cmp	r2, #2
+  46 0010 10D0     		beq	.L3
+  47 0012 032A     		cmp	r2, #3
+  48 0014 1BD0     		beq	.L4
+  49 0016 012A     		cmp	r2, #1
+  50 0018 25D1     		bne	.L2
+ 192:Generated_Source\PSoC5/NCO_ISR.c ****             case 1:
+ 193:Generated_Source\PSoC5/NCO_ISR.c ****                 J1_dir = move->direction;
+  51              		.loc 1 193 0
+  52 001a 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
+  53 001c 5D4A     		ldr	r2, .L19+4
+  54 001e 1170     		strb	r1, [r2]
+ 194:Generated_Source\PSoC5/NCO_ISR.c ****                 J1_tuningWord = move->tuningWord;
+  55              		.loc 1 194 0
+  56 0020 4168     		ldr	r1, [r0, #4]
+  57 0022 5D4A     		ldr	r2, .L19+8
+  58 0024 1160     		str	r1, [r2]
+ 195:Generated_Source\PSoC5/NCO_ISR.c ****                 J1_duration = move->duration;
+  59              		.loc 1 195 0
+  60 0026 8268     		ldr	r2, [r0, #8]
+  61 0028 5C4B     		ldr	r3, .L19+12
+  62 002a 1A60     		str	r2, [r3]
+ 196:Generated_Source\PSoC5/NCO_ISR.c ****                 J1_EN_Write(0);
+  63              		.loc 1 196 0
+  64 002c 0020     		movs	r0, #0
+  65              	.LVL1:
+  66 002e FFF7FEFF 		bl	J1_EN_Write
+  67              	.LVL2:
+ 197:Generated_Source\PSoC5/NCO_ISR.c ****             break;
+  68              		.loc 1 197 0
+  69 0032 18E0     		b	.L2
+  70              	.LVL3:
+  71              	.L3:
+ 198:Generated_Source\PSoC5/NCO_ISR.c ****             case 2:
+ 199:Generated_Source\PSoC5/NCO_ISR.c ****                 J2_dir = move->direction;
+  72              		.loc 1 199 0
+  73 0034 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
+  74 0036 5A4A     		ldr	r2, .L19+16
+  75 0038 1170     		strb	r1, [r2]
+ 200:Generated_Source\PSoC5/NCO_ISR.c ****                 J2_tuningWord = move->tuningWord;
+  76              		.loc 1 200 0
+  77 003a 4168     		ldr	r1, [r0, #4]
+  78 003c 594A     		ldr	r2, .L19+20
+  79 003e 1160     		str	r1, [r2]
+ 201:Generated_Source\PSoC5/NCO_ISR.c ****                 J2_duration = move->duration;
+  80              		.loc 1 201 0
+  81 0040 8268     		ldr	r2, [r0, #8]
+  82 0042 564B     		ldr	r3, .L19+12
+  83 0044 5A60     		str	r2, [r3, #4]
+ 202:Generated_Source\PSoC5/NCO_ISR.c ****                 J2_EN_Write(0);
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 6
+
+
+  84              		.loc 1 202 0
+  85 0046 0020     		movs	r0, #0
+  86              	.LVL4:
+  87 0048 FFF7FEFF 		bl	J2_EN_Write
+  88              	.LVL5:
+ 203:Generated_Source\PSoC5/NCO_ISR.c ****             break;
+  89              		.loc 1 203 0
+  90 004c 0BE0     		b	.L2
+  91              	.LVL6:
+  92              	.L4:
+ 204:Generated_Source\PSoC5/NCO_ISR.c ****             case 3:
+ 205:Generated_Source\PSoC5/NCO_ISR.c ****                 J3_dir = move->direction;
+  93              		.loc 1 205 0
+  94 004e 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
+  95 0050 554A     		ldr	r2, .L19+24
+  96 0052 1170     		strb	r1, [r2]
+ 206:Generated_Source\PSoC5/NCO_ISR.c ****                 J3_tuningWord = move->tuningWord;
+  97              		.loc 1 206 0
+  98 0054 4168     		ldr	r1, [r0, #4]
+  99 0056 554A     		ldr	r2, .L19+28
+ 100 0058 1160     		str	r1, [r2]
+ 207:Generated_Source\PSoC5/NCO_ISR.c ****                 J3_duration = move->duration;
+ 101              		.loc 1 207 0
+ 102 005a 8268     		ldr	r2, [r0, #8]
+ 103 005c 4F4B     		ldr	r3, .L19+12
+ 104 005e 9A60     		str	r2, [r3, #8]
+ 208:Generated_Source\PSoC5/NCO_ISR.c ****                 J3_EN_Write(0);
+ 105              		.loc 1 208 0
+ 106 0060 0020     		movs	r0, #0
+ 107              	.LVL7:
+ 108 0062 FFF7FEFF 		bl	J3_EN_Write
+ 109              	.LVL8:
+ 110              	.L2:
+ 209:Generated_Source\PSoC5/NCO_ISR.c ****             break;
+ 210:Generated_Source\PSoC5/NCO_ISR.c ****             default:
+ 211:Generated_Source\PSoC5/NCO_ISR.c ****             break;
+ 212:Generated_Source\PSoC5/NCO_ISR.c ****         }
+ 213:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 214:Generated_Source\PSoC5/NCO_ISR.c ****     J1_accumulator += J1_tuningWord;
+ 111              		.loc 1 214 0
+ 112 0066 4C4B     		ldr	r3, .L19+8
+ 113 0068 1968     		ldr	r1, [r3]
+ 114 006a 514A     		ldr	r2, .L19+32
+ 115 006c 1368     		ldr	r3, [r2]
+ 116 006e 0B44     		add	r3, r3, r1
+ 117 0070 1360     		str	r3, [r2]
+ 215:Generated_Source\PSoC5/NCO_ISR.c ****     J2_accumulator += J2_tuningWord;
+ 118              		.loc 1 215 0
+ 119 0072 4C4B     		ldr	r3, .L19+20
+ 120 0074 1968     		ldr	r1, [r3]
+ 121 0076 4F4A     		ldr	r2, .L19+36
+ 122 0078 1368     		ldr	r3, [r2]
+ 123 007a 0B44     		add	r3, r3, r1
+ 124 007c 1360     		str	r3, [r2]
+ 216:Generated_Source\PSoC5/NCO_ISR.c ****     J3_accumulator += J3_tuningWord;
+ 125              		.loc 1 216 0
+ 126 007e 4B4B     		ldr	r3, .L19+28
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 7
+
+
+ 127 0080 1968     		ldr	r1, [r3]
+ 128 0082 4D4A     		ldr	r2, .L19+40
+ 129 0084 1368     		ldr	r3, [r2]
+ 130 0086 0B44     		add	r3, r3, r1
+ 131 0088 1360     		str	r3, [r2]
+ 217:Generated_Source\PSoC5/NCO_ISR.c ****     //toggle step pins if they were on already
+ 218:Generated_Source\PSoC5/NCO_ISR.c ****     if(J1_step != 0){
+ 132              		.loc 1 218 0
+ 133 008a 4C4B     		ldr	r3, .L19+44
+ 134 008c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 135 008e 13F0FF0F 		tst	r3, #255
+ 136 0092 02D0     		beq	.L6
+ 219:Generated_Source\PSoC5/NCO_ISR.c ****         J1_step = 0;   
+ 137              		.loc 1 219 0
+ 138 0094 0022     		movs	r2, #0
+ 139 0096 494B     		ldr	r3, .L19+44
+ 140 0098 1A70     		strb	r2, [r3]
+ 141              	.L6:
+ 220:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 221:Generated_Source\PSoC5/NCO_ISR.c ****     if(J2_step != 0){
+ 142              		.loc 1 221 0
+ 143 009a 494B     		ldr	r3, .L19+48
+ 144 009c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 145 009e 13F0FF0F 		tst	r3, #255
+ 146 00a2 02D0     		beq	.L7
+ 222:Generated_Source\PSoC5/NCO_ISR.c ****         J2_step = 0;   
+ 147              		.loc 1 222 0
+ 148 00a4 0022     		movs	r2, #0
+ 149 00a6 464B     		ldr	r3, .L19+48
+ 150 00a8 1A70     		strb	r2, [r3]
+ 151              	.L7:
+ 223:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 224:Generated_Source\PSoC5/NCO_ISR.c ****     if(J3_step != 0){
+ 152              		.loc 1 224 0
+ 153 00aa 464B     		ldr	r3, .L19+52
+ 154 00ac 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 155 00ae 13F0FF0F 		tst	r3, #255
+ 156 00b2 02D0     		beq	.L8
+ 225:Generated_Source\PSoC5/NCO_ISR.c ****         J3_step = 0;   
+ 157              		.loc 1 225 0
+ 158 00b4 0022     		movs	r2, #0
+ 159 00b6 434B     		ldr	r3, .L19+52
+ 160 00b8 1A70     		strb	r2, [r3]
+ 161              	.L8:
+ 226:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 227:Generated_Source\PSoC5/NCO_ISR.c ****     //wrap accumulators
+ 228:Generated_Source\PSoC5/NCO_ISR.c ****     if(J1_accumulator > 16777215){
+ 162              		.loc 1 228 0
+ 163 00ba 3D4B     		ldr	r3, .L19+32
+ 164 00bc 1B68     		ldr	r3, [r3]
+ 165 00be B3F1807F 		cmp	r3, #16777216
+ 166 00c2 08D3     		bcc	.L9
+ 229:Generated_Source\PSoC5/NCO_ISR.c ****         J1_accumulator -= 16777215;
+ 167              		.loc 1 229 0
+ 168 00c4 3A4A     		ldr	r2, .L19+32
+ 169 00c6 1368     		ldr	r3, [r2]
+ 170 00c8 03F17F43 		add	r3, r3, #-16777216
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 8
+
+
+ 171 00cc 0133     		adds	r3, r3, #1
+ 172 00ce 1360     		str	r3, [r2]
+ 230:Generated_Source\PSoC5/NCO_ISR.c ****         J1_step = 1;
+ 173              		.loc 1 230 0
+ 174 00d0 0122     		movs	r2, #1
+ 175 00d2 3A4B     		ldr	r3, .L19+44
+ 176 00d4 1A70     		strb	r2, [r3]
+ 177              	.L9:
+ 231:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 232:Generated_Source\PSoC5/NCO_ISR.c ****     if(J2_accumulator > 16777215){
+ 178              		.loc 1 232 0
+ 179 00d6 374B     		ldr	r3, .L19+36
+ 180 00d8 1B68     		ldr	r3, [r3]
+ 181 00da B3F1807F 		cmp	r3, #16777216
+ 182 00de 08D3     		bcc	.L10
+ 233:Generated_Source\PSoC5/NCO_ISR.c ****         J2_accumulator -= 16777215;
+ 183              		.loc 1 233 0
+ 184 00e0 344A     		ldr	r2, .L19+36
+ 185 00e2 1368     		ldr	r3, [r2]
+ 186 00e4 03F17F43 		add	r3, r3, #-16777216
+ 187 00e8 0133     		adds	r3, r3, #1
+ 188 00ea 1360     		str	r3, [r2]
+ 234:Generated_Source\PSoC5/NCO_ISR.c ****         J2_step = 1;
+ 189              		.loc 1 234 0
+ 190 00ec 0122     		movs	r2, #1
+ 191 00ee 344B     		ldr	r3, .L19+48
+ 192 00f0 1A70     		strb	r2, [r3]
+ 193              	.L10:
+ 235:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 236:Generated_Source\PSoC5/NCO_ISR.c ****     if(J3_accumulator > 16777215){
+ 194              		.loc 1 236 0
+ 195 00f2 314B     		ldr	r3, .L19+40
+ 196 00f4 1B68     		ldr	r3, [r3]
+ 197 00f6 B3F1807F 		cmp	r3, #16777216
+ 198 00fa 08D3     		bcc	.L11
+ 237:Generated_Source\PSoC5/NCO_ISR.c ****         J3_accumulator -= 16777215;
+ 199              		.loc 1 237 0
+ 200 00fc 2E4A     		ldr	r2, .L19+40
+ 201 00fe 1368     		ldr	r3, [r2]
+ 202 0100 03F17F43 		add	r3, r3, #-16777216
+ 203 0104 0133     		adds	r3, r3, #1
+ 204 0106 1360     		str	r3, [r2]
+ 238:Generated_Source\PSoC5/NCO_ISR.c ****         J3_step = 1;
+ 205              		.loc 1 238 0
+ 206 0108 0122     		movs	r2, #1
+ 207 010a 2E4B     		ldr	r3, .L19+52
+ 208 010c 1A70     		strb	r2, [r3]
+ 209              	.L11:
+ 239:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 240:Generated_Source\PSoC5/NCO_ISR.c ****     //write directions and step pins
+ 241:Generated_Source\PSoC5/NCO_ISR.c ****     J1_DIR_Write(J1_dir);
+ 210              		.loc 1 241 0
+ 211 010e 214B     		ldr	r3, .L19+4
+ 212 0110 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 213 0112 FFF7FEFF 		bl	J1_DIR_Write
+ 214              	.LVL9:
+ 242:Generated_Source\PSoC5/NCO_ISR.c ****     J2_DIR_Write(J2_dir);
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 9
+
+
+ 215              		.loc 1 242 0
+ 216 0116 224B     		ldr	r3, .L19+16
+ 217 0118 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 218 011a FFF7FEFF 		bl	J2_DIR_Write
+ 219              	.LVL10:
+ 243:Generated_Source\PSoC5/NCO_ISR.c ****     J3_DIR_Write(J3_dir);
+ 220              		.loc 1 243 0
+ 221 011e 224B     		ldr	r3, .L19+24
+ 222 0120 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 223 0122 FFF7FEFF 		bl	J3_DIR_Write
+ 224              	.LVL11:
+ 244:Generated_Source\PSoC5/NCO_ISR.c ****     J1_STEP_Write(J1_step);
+ 225              		.loc 1 244 0
+ 226 0126 254B     		ldr	r3, .L19+44
+ 227 0128 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 228 012a FFF7FEFF 		bl	J1_STEP_Write
+ 229              	.LVL12:
+ 245:Generated_Source\PSoC5/NCO_ISR.c ****     J2_STEP_Write(J2_step);
+ 230              		.loc 1 245 0
+ 231 012e 244B     		ldr	r3, .L19+48
+ 232 0130 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 233 0132 FFF7FEFF 		bl	J2_STEP_Write
+ 234              	.LVL13:
+ 246:Generated_Source\PSoC5/NCO_ISR.c ****     J3_STEP_Write(J3_step);
+ 235              		.loc 1 246 0
+ 236 0136 234B     		ldr	r3, .L19+52
+ 237 0138 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 238 013a FFF7FEFF 		bl	J3_STEP_Write
+ 239              	.LVL14:
+ 247:Generated_Source\PSoC5/NCO_ISR.c ****     
+ 248:Generated_Source\PSoC5/NCO_ISR.c ****     //count down duration timers
+ 249:Generated_Source\PSoC5/NCO_ISR.c ****     if(J1_duration != 0){
+ 240              		.loc 1 249 0
+ 241 013e 174B     		ldr	r3, .L19+12
+ 242 0140 1B68     		ldr	r3, [r3]
+ 243 0142 1BB1     		cbz	r3, .L12
+ 250:Generated_Source\PSoC5/NCO_ISR.c ****         J1_duration -= 1;   
+ 244              		.loc 1 250 0
+ 245 0144 154A     		ldr	r2, .L19+12
+ 246 0146 1368     		ldr	r3, [r2]
+ 247 0148 013B     		subs	r3, r3, #1
+ 248 014a 1360     		str	r3, [r2]
+ 249              	.L12:
+ 251:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 252:Generated_Source\PSoC5/NCO_ISR.c ****     if(J2_duration != 0){
+ 250              		.loc 1 252 0
+ 251 014c 134B     		ldr	r3, .L19+12
+ 252 014e 5B68     		ldr	r3, [r3, #4]
+ 253 0150 1BB1     		cbz	r3, .L13
+ 253:Generated_Source\PSoC5/NCO_ISR.c ****         J2_duration -= 1;   
+ 254              		.loc 1 253 0
+ 255 0152 124A     		ldr	r2, .L19+12
+ 256 0154 5368     		ldr	r3, [r2, #4]
+ 257 0156 013B     		subs	r3, r3, #1
+ 258 0158 5360     		str	r3, [r2, #4]
+ 259              	.L13:
+ 254:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 10
+
+
+ 255:Generated_Source\PSoC5/NCO_ISR.c ****     if(J3_duration != 0){
+ 260              		.loc 1 255 0
+ 261 015a 104B     		ldr	r3, .L19+12
+ 262 015c 9B68     		ldr	r3, [r3, #8]
+ 263 015e 1BB1     		cbz	r3, .L14
+ 256:Generated_Source\PSoC5/NCO_ISR.c ****         J3_duration -= 1;   
+ 264              		.loc 1 256 0
+ 265 0160 0E4A     		ldr	r2, .L19+12
+ 266 0162 9368     		ldr	r3, [r2, #8]
+ 267 0164 013B     		subs	r3, r3, #1
+ 268 0166 9360     		str	r3, [r2, #8]
+ 269              	.L14:
+ 257:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 258:Generated_Source\PSoC5/NCO_ISR.c ****     //disable NCOs when duration is up, per joint.
+ 259:Generated_Source\PSoC5/NCO_ISR.c ****     if(J1_duration == 0){
+ 270              		.loc 1 259 0
+ 271 0168 0C4B     		ldr	r3, .L19+12
+ 272 016a 1B68     		ldr	r3, [r3]
+ 273 016c 13B9     		cbnz	r3, .L15
+ 260:Generated_Source\PSoC5/NCO_ISR.c ****         J1_tuningWord = 0;
+ 274              		.loc 1 260 0
+ 275 016e 0022     		movs	r2, #0
+ 276 0170 094B     		ldr	r3, .L19+8
+ 277 0172 1A60     		str	r2, [r3]
+ 278              	.L15:
+ 261:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 262:Generated_Source\PSoC5/NCO_ISR.c ****     if(J2_duration == 0){
+ 279              		.loc 1 262 0
+ 280 0174 094B     		ldr	r3, .L19+12
+ 281 0176 5B68     		ldr	r3, [r3, #4]
+ 282 0178 13B9     		cbnz	r3, .L16
+ 263:Generated_Source\PSoC5/NCO_ISR.c ****         J2_tuningWord = 0;   
+ 283              		.loc 1 263 0
+ 284 017a 0022     		movs	r2, #0
+ 285 017c 094B     		ldr	r3, .L19+20
+ 286 017e 1A60     		str	r2, [r3]
+ 287              	.L16:
+ 264:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 265:Generated_Source\PSoC5/NCO_ISR.c ****     if(J3_duration == 0){
+ 288              		.loc 1 265 0
+ 289 0180 064B     		ldr	r3, .L19+12
+ 290 0182 9B68     		ldr	r3, [r3, #8]
+ 291 0184 13B9     		cbnz	r3, .L1
+ 266:Generated_Source\PSoC5/NCO_ISR.c ****         J3_tuningWord = 0;   
+ 292              		.loc 1 266 0
+ 293 0186 0022     		movs	r2, #0
+ 294 0188 084B     		ldr	r3, .L19+28
+ 295 018a 1A60     		str	r2, [r3]
+ 296              	.L1:
+ 297 018c 08BD     		pop	{r3, pc}
+ 298              	.L20:
+ 299 018e 00BF     		.align	2
+ 300              	.L19:
+ 301 0190 00000000 		.word	move_queue
+ 302 0194 00000000 		.word	J1_dir
+ 303 0198 00000000 		.word	J1_tuningWord
+ 304 019c 00000000 		.word	.LANCHOR0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 11
+
+
+ 305 01a0 00000000 		.word	J2_dir
+ 306 01a4 00000000 		.word	J2_tuningWord
+ 307 01a8 00000000 		.word	J3_dir
+ 308 01ac 00000000 		.word	J3_tuningWord
+ 309 01b0 00000000 		.word	J1_accumulator
+ 310 01b4 00000000 		.word	J2_accumulator
+ 311 01b8 00000000 		.word	J3_accumulator
+ 312 01bc 00000000 		.word	J1_step
+ 313 01c0 00000000 		.word	J2_step
+ 314 01c4 00000000 		.word	J3_step
+ 315              		.cfi_endproc
+ 316              	.LFE67:
+ 317              		.size	NCO_ISR_Interrupt, .-NCO_ISR_Interrupt
+ 318              		.section	.text.NCO_ISR_SetVector,"ax",%progbits
+ 319              		.align	2
+ 320              		.global	NCO_ISR_SetVector
+ 321              		.thumb
+ 322              		.thumb_func
+ 323              		.type	NCO_ISR_SetVector, %function
+ 324              	NCO_ISR_SetVector:
+ 325              	.LFB68:
+ 267:Generated_Source\PSoC5/NCO_ISR.c ****     }
+ 268:Generated_Source\PSoC5/NCO_ISR.c ****     /* `#END` */
+ 269:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 270:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 271:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 272:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 273:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_SetVector
+ 274:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 275:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 276:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 277:Generated_Source\PSoC5/NCO_ISR.c **** *   Change the ISR vector for the Interrupt. Note calling NCO_ISR_Start
+ 278:Generated_Source\PSoC5/NCO_ISR.c **** *   will override any effect this method would have had. To set the vector 
+ 279:Generated_Source\PSoC5/NCO_ISR.c **** *   before the component has been started use NCO_ISR_StartEx instead.
+ 280:Generated_Source\PSoC5/NCO_ISR.c **** * 
+ 281:Generated_Source\PSoC5/NCO_ISR.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 282:Generated_Source\PSoC5/NCO_ISR.c **** *   used to provide consistent definition across compilers:
+ 283:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 284:Generated_Source\PSoC5/NCO_ISR.c **** *   Function definition example:
+ 285:Generated_Source\PSoC5/NCO_ISR.c **** *   CY_ISR(MyISR)
+ 286:Generated_Source\PSoC5/NCO_ISR.c **** *   {
+ 287:Generated_Source\PSoC5/NCO_ISR.c **** *   }
+ 288:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 289:Generated_Source\PSoC5/NCO_ISR.c **** *   Function prototype example:
+ 290:Generated_Source\PSoC5/NCO_ISR.c **** *     CY_ISR_PROTO(MyISR);
+ 291:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 292:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 293:Generated_Source\PSoC5/NCO_ISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 294:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 295:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 296:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 297:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 298:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 299:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_SetVector(cyisraddress address)
+ 300:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 326              		.loc 1 300 0
+ 327              		.cfi_startproc
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 12
+
+
+ 328              		@ args = 0, pretend = 0, frame = 0
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 330              		@ link register save eliminated.
+ 331              	.LVL15:
+ 301:Generated_Source\PSoC5/NCO_ISR.c ****     cyisraddress * ramVectorTable;
+ 302:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 303:Generated_Source\PSoC5/NCO_ISR.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
+ 332              		.loc 1 303 0
+ 333 0000 014B     		ldr	r3, .L22
+ 334 0002 1B68     		ldr	r3, [r3]
+ 335              	.LVL16:
+ 304:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 305:Generated_Source\PSoC5/NCO_ISR.c ****     ramVectorTable[CYINT_IRQ_BASE + (uint32)NCO_ISR__INTC_NUMBER] = address;
+ 336              		.loc 1 305 0
+ 337 0004 1864     		str	r0, [r3, #64]
+ 338 0006 7047     		bx	lr
+ 339              	.L23:
+ 340              		.align	2
+ 341              	.L22:
+ 342 0008 08ED00E0 		.word	-536810232
+ 343              		.cfi_endproc
+ 344              	.LFE68:
+ 345              		.size	NCO_ISR_SetVector, .-NCO_ISR_SetVector
+ 346              		.section	.text.NCO_ISR_GetVector,"ax",%progbits
+ 347              		.align	2
+ 348              		.global	NCO_ISR_GetVector
+ 349              		.thumb
+ 350              		.thumb_func
+ 351              		.type	NCO_ISR_GetVector, %function
+ 352              	NCO_ISR_GetVector:
+ 353              	.LFB69:
+ 306:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 307:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 308:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 309:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 310:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_GetVector
+ 311:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 312:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 313:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 314:Generated_Source\PSoC5/NCO_ISR.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 315:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 316:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 317:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 318:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 319:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 320:Generated_Source\PSoC5/NCO_ISR.c **** *   Address of the ISR in the interrupt vector table.
+ 321:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 322:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 323:Generated_Source\PSoC5/NCO_ISR.c **** cyisraddress NCO_ISR_GetVector(void)
+ 324:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 354              		.loc 1 324 0
+ 355              		.cfi_startproc
+ 356              		@ args = 0, pretend = 0, frame = 0
+ 357              		@ frame_needed = 0, uses_anonymous_args = 0
+ 358              		@ link register save eliminated.
+ 325:Generated_Source\PSoC5/NCO_ISR.c ****     cyisraddress * ramVectorTable;
+ 326:Generated_Source\PSoC5/NCO_ISR.c **** 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 13
+
+
+ 327:Generated_Source\PSoC5/NCO_ISR.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
+ 359              		.loc 1 327 0
+ 360 0000 014B     		ldr	r3, .L25
+ 361 0002 1B68     		ldr	r3, [r3]
+ 362              	.LVL17:
+ 328:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 329:Generated_Source\PSoC5/NCO_ISR.c ****     return ramVectorTable[CYINT_IRQ_BASE + (uint32)NCO_ISR__INTC_NUMBER];
+ 330:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 363              		.loc 1 330 0
+ 364 0004 186C     		ldr	r0, [r3, #64]
+ 365 0006 7047     		bx	lr
+ 366              	.L26:
+ 367              		.align	2
+ 368              	.L25:
+ 369 0008 08ED00E0 		.word	-536810232
+ 370              		.cfi_endproc
+ 371              	.LFE69:
+ 372              		.size	NCO_ISR_GetVector, .-NCO_ISR_GetVector
+ 373              		.section	.text.NCO_ISR_SetPriority,"ax",%progbits
+ 374              		.align	2
+ 375              		.global	NCO_ISR_SetPriority
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.type	NCO_ISR_SetPriority, %function
+ 379              	NCO_ISR_SetPriority:
+ 380              	.LFB70:
+ 331:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 332:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 333:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 334:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_SetPriority
+ 335:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 336:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 337:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 338:Generated_Source\PSoC5/NCO_ISR.c **** *   Sets the Priority of the Interrupt. 
+ 339:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 340:Generated_Source\PSoC5/NCO_ISR.c **** *   Note calling NCO_ISR_Start or NCO_ISR_StartEx will 
+ 341:Generated_Source\PSoC5/NCO_ISR.c **** *   override any effect this API would have had. This API should only be called
+ 342:Generated_Source\PSoC5/NCO_ISR.c **** *   after NCO_ISR_Start or NCO_ISR_StartEx has been called. 
+ 343:Generated_Source\PSoC5/NCO_ISR.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 344:Generated_Source\PSoC5/NCO_ISR.c **** *   Interrupt Editor.
+ 345:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 346:Generated_Source\PSoC5/NCO_ISR.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 347:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 348:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 349:Generated_Source\PSoC5/NCO_ISR.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 350:Generated_Source\PSoC5/NCO_ISR.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 351:Generated_Source\PSoC5/NCO_ISR.c **** *             PSoC 4: Priority is from 0 to 3.
+ 352:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 353:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 354:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 355:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 356:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 357:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_SetPriority(uint8 priority)
+ 358:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 381              		.loc 1 358 0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 14
+
+
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385              		@ link register save eliminated.
+ 386              	.LVL18:
+ 359:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_PRIOR = priority << 5;
+ 387              		.loc 1 359 0
+ 388 0000 4001     		lsls	r0, r0, #5
+ 389              	.LVL19:
+ 390 0002 C0B2     		uxtb	r0, r0
+ 391 0004 014B     		ldr	r3, .L28
+ 392 0006 1870     		strb	r0, [r3]
+ 393 0008 7047     		bx	lr
+ 394              	.L29:
+ 395 000a 00BF     		.align	2
+ 396              	.L28:
+ 397 000c 00E400E0 		.word	-536812544
+ 398              		.cfi_endproc
+ 399              	.LFE70:
+ 400              		.size	NCO_ISR_SetPriority, .-NCO_ISR_SetPriority
+ 401              		.section	.text.NCO_ISR_GetPriority,"ax",%progbits
+ 402              		.align	2
+ 403              		.global	NCO_ISR_GetPriority
+ 404              		.thumb
+ 405              		.thumb_func
+ 406              		.type	NCO_ISR_GetPriority, %function
+ 407              	NCO_ISR_GetPriority:
+ 408              	.LFB71:
+ 360:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 361:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 362:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 363:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 364:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_GetPriority
+ 365:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 366:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 367:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 368:Generated_Source\PSoC5/NCO_ISR.c **** *   Gets the Priority of the Interrupt.
+ 369:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 370:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 371:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 372:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 373:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 374:Generated_Source\PSoC5/NCO_ISR.c **** *   Priority of the interrupt, 0 being the highest priority
+ 375:Generated_Source\PSoC5/NCO_ISR.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 376:Generated_Source\PSoC5/NCO_ISR.c **** *    PSoC 4: Priority is from 0 to 3.
+ 377:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 378:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 379:Generated_Source\PSoC5/NCO_ISR.c **** uint8 NCO_ISR_GetPriority(void)
+ 380:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 409              		.loc 1 380 0
+ 410              		.cfi_startproc
+ 411              		@ args = 0, pretend = 0, frame = 0
+ 412              		@ frame_needed = 0, uses_anonymous_args = 0
+ 413              		@ link register save eliminated.
+ 381:Generated_Source\PSoC5/NCO_ISR.c ****     uint8 priority;
+ 382:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 383:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 384:Generated_Source\PSoC5/NCO_ISR.c ****     priority = *NCO_ISR_INTC_PRIOR >> 5;
+ 414              		.loc 1 384 0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 15
+
+
+ 415 0000 014B     		ldr	r3, .L31
+ 416 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 417              	.LVL20:
+ 385:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 386:Generated_Source\PSoC5/NCO_ISR.c ****     return priority;
+ 387:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 418              		.loc 1 387 0
+ 419 0004 4009     		lsrs	r0, r0, #5
+ 420              	.LVL21:
+ 421 0006 7047     		bx	lr
+ 422              	.L32:
+ 423              		.align	2
+ 424              	.L31:
+ 425 0008 00E400E0 		.word	-536812544
+ 426              		.cfi_endproc
+ 427              	.LFE71:
+ 428              		.size	NCO_ISR_GetPriority, .-NCO_ISR_GetPriority
+ 429              		.section	.text.NCO_ISR_Enable,"ax",%progbits
+ 430              		.align	2
+ 431              		.global	NCO_ISR_Enable
+ 432              		.thumb
+ 433              		.thumb_func
+ 434              		.type	NCO_ISR_Enable, %function
+ 435              	NCO_ISR_Enable:
+ 436              	.LFB72:
+ 388:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 389:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 390:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 391:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_Enable
+ 392:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 393:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 394:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 395:Generated_Source\PSoC5/NCO_ISR.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 396:Generated_Source\PSoC5/NCO_ISR.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 397:Generated_Source\PSoC5/NCO_ISR.c **** *   function, which sets the vector and the priority, has been called.
+ 398:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 399:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 400:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 401:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 402:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 403:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 404:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 405:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 406:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_Enable(void)
+ 407:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 437              		.loc 1 407 0
+ 438              		.cfi_startproc
+ 439              		@ args = 0, pretend = 0, frame = 0
+ 440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 441              		@ link register save eliminated.
+ 408:Generated_Source\PSoC5/NCO_ISR.c ****     /* Enable the general interrupt. */
+ 409:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_SET_EN = NCO_ISR__INTC_MASK;
+ 442              		.loc 1 409 0
+ 443 0000 0122     		movs	r2, #1
+ 444 0002 014B     		ldr	r3, .L34
+ 445 0004 1A60     		str	r2, [r3]
+ 446 0006 7047     		bx	lr
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 16
+
+
+ 447              	.L35:
+ 448              		.align	2
+ 449              	.L34:
+ 450 0008 00E100E0 		.word	-536813312
+ 451              		.cfi_endproc
+ 452              	.LFE72:
+ 453              		.size	NCO_ISR_Enable, .-NCO_ISR_Enable
+ 454              		.section	.text.NCO_ISR_GetState,"ax",%progbits
+ 455              		.align	2
+ 456              		.global	NCO_ISR_GetState
+ 457              		.thumb
+ 458              		.thumb_func
+ 459              		.type	NCO_ISR_GetState, %function
+ 460              	NCO_ISR_GetState:
+ 461              	.LFB73:
+ 410:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 411:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 412:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 413:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 414:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_GetState
+ 415:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 416:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 417:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 418:Generated_Source\PSoC5/NCO_ISR.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 419:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 420:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 421:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 422:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 423:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 424:Generated_Source\PSoC5/NCO_ISR.c **** *   1 if enabled, 0 if disabled.
+ 425:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 426:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 427:Generated_Source\PSoC5/NCO_ISR.c **** uint8 NCO_ISR_GetState(void)
+ 428:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 462              		.loc 1 428 0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466              		@ link register save eliminated.
+ 429:Generated_Source\PSoC5/NCO_ISR.c ****     /* Get the state of the general interrupt. */
+ 430:Generated_Source\PSoC5/NCO_ISR.c ****     return ((*NCO_ISR_INTC_SET_EN & (uint32)NCO_ISR__INTC_MASK) != 0u) ? 1u:0u;
+ 467              		.loc 1 430 0
+ 468 0000 024B     		ldr	r3, .L37
+ 469 0002 1868     		ldr	r0, [r3]
+ 431:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 470              		.loc 1 431 0
+ 471 0004 00F00100 		and	r0, r0, #1
+ 472 0008 7047     		bx	lr
+ 473              	.L38:
+ 474 000a 00BF     		.align	2
+ 475              	.L37:
+ 476 000c 00E100E0 		.word	-536813312
+ 477              		.cfi_endproc
+ 478              	.LFE73:
+ 479              		.size	NCO_ISR_GetState, .-NCO_ISR_GetState
+ 480              		.section	.text.NCO_ISR_Disable,"ax",%progbits
+ 481              		.align	2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 17
+
+
+ 482              		.global	NCO_ISR_Disable
+ 483              		.thumb
+ 484              		.thumb_func
+ 485              		.type	NCO_ISR_Disable, %function
+ 486              	NCO_ISR_Disable:
+ 487              	.LFB74:
+ 432:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 433:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 434:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 435:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_Disable
+ 436:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 437:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 438:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 439:Generated_Source\PSoC5/NCO_ISR.c **** *   Disables the Interrupt in the interrupt controller.
+ 440:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 441:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 442:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 443:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 444:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 445:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 446:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 447:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 448:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_Disable(void)
+ 449:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 488              		.loc 1 449 0
+ 489              		.cfi_startproc
+ 490              		@ args = 0, pretend = 0, frame = 0
+ 491              		@ frame_needed = 0, uses_anonymous_args = 0
+ 492              		@ link register save eliminated.
+ 450:Generated_Source\PSoC5/NCO_ISR.c ****     /* Disable the general interrupt. */
+ 451:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_CLR_EN = NCO_ISR__INTC_MASK;
+ 493              		.loc 1 451 0
+ 494 0000 0122     		movs	r2, #1
+ 495 0002 014B     		ldr	r3, .L40
+ 496 0004 1A60     		str	r2, [r3]
+ 497 0006 7047     		bx	lr
+ 498              	.L41:
+ 499              		.align	2
+ 500              	.L40:
+ 501 0008 80E100E0 		.word	-536813184
+ 502              		.cfi_endproc
+ 503              	.LFE74:
+ 504              		.size	NCO_ISR_Disable, .-NCO_ISR_Disable
+ 505              		.section	.text.NCO_ISR_Start,"ax",%progbits
+ 506              		.align	2
+ 507              		.global	NCO_ISR_Start
+ 508              		.thumb
+ 509              		.thumb_func
+ 510              		.type	NCO_ISR_Start, %function
+ 511              	NCO_ISR_Start:
+ 512              	.LFB64:
+  79:Generated_Source\PSoC5/NCO_ISR.c ****     /* For all we know the interrupt is active. */
+ 513              		.loc 1 79 0
+ 514              		.cfi_startproc
+ 515              		@ args = 0, pretend = 0, frame = 0
+ 516              		@ frame_needed = 0, uses_anonymous_args = 0
+ 517 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 18
+
+
+ 518              		.cfi_def_cfa_offset 8
+ 519              		.cfi_offset 3, -8
+ 520              		.cfi_offset 14, -4
+  81:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 521              		.loc 1 81 0
+ 522 0002 FFF7FEFF 		bl	NCO_ISR_Disable
+ 523              	.LVL22:
+  84:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 524              		.loc 1 84 0
+ 525 0006 0448     		ldr	r0, .L44
+ 526 0008 FFF7FEFF 		bl	NCO_ISR_SetVector
+ 527              	.LVL23:
+  87:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 528              		.loc 1 87 0
+ 529 000c 0420     		movs	r0, #4
+ 530 000e FFF7FEFF 		bl	NCO_ISR_SetPriority
+ 531              	.LVL24:
+  90:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 532              		.loc 1 90 0
+ 533 0012 FFF7FEFF 		bl	NCO_ISR_Enable
+ 534              	.LVL25:
+ 535 0016 08BD     		pop	{r3, pc}
+ 536              	.L45:
+ 537              		.align	2
+ 538              	.L44:
+ 539 0018 00000000 		.word	NCO_ISR_Interrupt
+ 540              		.cfi_endproc
+ 541              	.LFE64:
+ 542              		.size	NCO_ISR_Start, .-NCO_ISR_Start
+ 543              		.section	.text.NCO_ISR_StartEx,"ax",%progbits
+ 544              		.align	2
+ 545              		.global	NCO_ISR_StartEx
+ 546              		.thumb
+ 547              		.thumb_func
+ 548              		.type	NCO_ISR_StartEx, %function
+ 549              	NCO_ISR_StartEx:
+ 550              	.LFB65:
+ 122:Generated_Source\PSoC5/NCO_ISR.c ****     /* For all we know the interrupt is active. */
+ 551              		.loc 1 122 0
+ 552              		.cfi_startproc
+ 553              		@ args = 0, pretend = 0, frame = 0
+ 554              		@ frame_needed = 0, uses_anonymous_args = 0
+ 555              	.LVL26:
+ 556 0000 10B5     		push	{r4, lr}
+ 557              		.cfi_def_cfa_offset 8
+ 558              		.cfi_offset 4, -8
+ 559              		.cfi_offset 14, -4
+ 560 0002 0446     		mov	r4, r0
+ 124:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 561              		.loc 1 124 0
+ 562 0004 FFF7FEFF 		bl	NCO_ISR_Disable
+ 563              	.LVL27:
+ 127:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 564              		.loc 1 127 0
+ 565 0008 2046     		mov	r0, r4
+ 566 000a FFF7FEFF 		bl	NCO_ISR_SetVector
+ 567              	.LVL28:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 19
+
+
+ 130:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 568              		.loc 1 130 0
+ 569 000e 0420     		movs	r0, #4
+ 570 0010 FFF7FEFF 		bl	NCO_ISR_SetPriority
+ 571              	.LVL29:
+ 133:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 572              		.loc 1 133 0
+ 573 0014 FFF7FEFF 		bl	NCO_ISR_Enable
+ 574              	.LVL30:
+ 575 0018 10BD     		pop	{r4, pc}
+ 576              		.cfi_endproc
+ 577              	.LFE65:
+ 578              		.size	NCO_ISR_StartEx, .-NCO_ISR_StartEx
+ 579 001a 00BF     		.section	.text.NCO_ISR_Stop,"ax",%progbits
+ 580              		.align	2
+ 581              		.global	NCO_ISR_Stop
+ 582              		.thumb
+ 583              		.thumb_func
+ 584              		.type	NCO_ISR_Stop, %function
+ 585              	NCO_ISR_Stop:
+ 586              	.LFB66:
+ 152:Generated_Source\PSoC5/NCO_ISR.c ****     /* Disable this interrupt. */
+ 587              		.loc 1 152 0
+ 588              		.cfi_startproc
+ 589              		@ args = 0, pretend = 0, frame = 0
+ 590              		@ frame_needed = 0, uses_anonymous_args = 0
+ 591 0000 08B5     		push	{r3, lr}
+ 592              		.cfi_def_cfa_offset 8
+ 593              		.cfi_offset 3, -8
+ 594              		.cfi_offset 14, -4
+ 154:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 595              		.loc 1 154 0
+ 596 0002 FFF7FEFF 		bl	NCO_ISR_Disable
+ 597              	.LVL31:
+ 157:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 598              		.loc 1 157 0
+ 599 0006 0248     		ldr	r0, .L50
+ 600 0008 FFF7FEFF 		bl	NCO_ISR_SetVector
+ 601              	.LVL32:
+ 602 000c 08BD     		pop	{r3, pc}
+ 603              	.L51:
+ 604 000e 00BF     		.align	2
+ 605              	.L50:
+ 606 0010 00000000 		.word	IntDefaultHandler
+ 607              		.cfi_endproc
+ 608              	.LFE66:
+ 609              		.size	NCO_ISR_Stop, .-NCO_ISR_Stop
+ 610              		.section	.text.NCO_ISR_SetPending,"ax",%progbits
+ 611              		.align	2
+ 612              		.global	NCO_ISR_SetPending
+ 613              		.thumb
+ 614              		.thumb_func
+ 615              		.type	NCO_ISR_SetPending, %function
+ 616              	NCO_ISR_SetPending:
+ 617              	.LFB75:
+ 452:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 453:Generated_Source\PSoC5/NCO_ISR.c **** 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 20
+
+
+ 454:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 455:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 456:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_SetPending
+ 457:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 458:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 459:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ 460:Generated_Source\PSoC5/NCO_ISR.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 461:Generated_Source\PSoC5/NCO_ISR.c **** *   generating the interrupt.
+ 462:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 463:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 464:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 465:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 466:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 467:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 468:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 469:Generated_Source\PSoC5/NCO_ISR.c **** * Side Effects:
+ 470:Generated_Source\PSoC5/NCO_ISR.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 471:Generated_Source\PSoC5/NCO_ISR.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 472:Generated_Source\PSoC5/NCO_ISR.c **** *   interrupts).
+ 473:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 474:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 475:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_SetPending(void)
+ 476:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 618              		.loc 1 476 0
+ 619              		.cfi_startproc
+ 620              		@ args = 0, pretend = 0, frame = 0
+ 621              		@ frame_needed = 0, uses_anonymous_args = 0
+ 622              		@ link register save eliminated.
+ 477:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_SET_PD = NCO_ISR__INTC_MASK;
+ 623              		.loc 1 477 0
+ 624 0000 0122     		movs	r2, #1
+ 625 0002 014B     		ldr	r3, .L53
+ 626 0004 1A60     		str	r2, [r3]
+ 627 0006 7047     		bx	lr
+ 628              	.L54:
+ 629              		.align	2
+ 630              	.L53:
+ 631 0008 00E200E0 		.word	-536813056
+ 632              		.cfi_endproc
+ 633              	.LFE75:
+ 634              		.size	NCO_ISR_SetPending, .-NCO_ISR_SetPending
+ 635              		.section	.text.NCO_ISR_ClearPending,"ax",%progbits
+ 636              		.align	2
+ 637              		.global	NCO_ISR_ClearPending
+ 638              		.thumb
+ 639              		.thumb_func
+ 640              		.type	NCO_ISR_ClearPending, %function
+ 641              	NCO_ISR_ClearPending:
+ 642              	.LFB76:
+ 478:Generated_Source\PSoC5/NCO_ISR.c **** }
+ 479:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 480:Generated_Source\PSoC5/NCO_ISR.c **** 
+ 481:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
+ 482:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_ClearPending
+ 483:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
+ 484:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 485:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 21
+
+
+ 486:Generated_Source\PSoC5/NCO_ISR.c **** *   Clears a pending interrupt in the interrupt controller.
+ 487:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 488:Generated_Source\PSoC5/NCO_ISR.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 489:Generated_Source\PSoC5/NCO_ISR.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 490:Generated_Source\PSoC5/NCO_ISR.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 491:Generated_Source\PSoC5/NCO_ISR.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 492:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 493:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ 494:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 495:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 496:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
+ 497:Generated_Source\PSoC5/NCO_ISR.c **** *   None
+ 498:Generated_Source\PSoC5/NCO_ISR.c **** *
+ 499:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
+ 500:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_ClearPending(void)
+ 501:Generated_Source\PSoC5/NCO_ISR.c **** {
+ 643              		.loc 1 501 0
+ 644              		.cfi_startproc
+ 645              		@ args = 0, pretend = 0, frame = 0
+ 646              		@ frame_needed = 0, uses_anonymous_args = 0
+ 647              		@ link register save eliminated.
+ 502:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_CLR_PD = NCO_ISR__INTC_MASK;
+ 648              		.loc 1 502 0
+ 649 0000 0122     		movs	r2, #1
+ 650 0002 014B     		ldr	r3, .L56
+ 651 0004 1A60     		str	r2, [r3]
+ 652 0006 7047     		bx	lr
+ 653              	.L57:
+ 654              		.align	2
+ 655              	.L56:
+ 656 0008 80E200E0 		.word	-536812928
+ 657              		.cfi_endproc
+ 658              	.LFE76:
+ 659              		.size	NCO_ISR_ClearPending, .-NCO_ISR_ClearPending
+ 660              		.global	J3_duration
+ 661              		.global	J2_duration
+ 662              		.global	J1_duration
+ 663              		.bss
+ 664              		.align	2
+ 665              		.set	.LANCHOR0,. + 0
+ 666              		.type	J1_duration, %object
+ 667              		.size	J1_duration, 4
+ 668              	J1_duration:
+ 669 0000 00000000 		.space	4
+ 670              		.type	J2_duration, %object
+ 671              		.size	J2_duration, 4
+ 672              	J2_duration:
+ 673 0004 00000000 		.space	4
+ 674              		.type	J3_duration, %object
+ 675              		.size	J3_duration, 4
+ 676              	J3_duration:
+ 677 0008 00000000 		.space	4
+ 678              		.text
+ 679              	.Letext0:
+ 680              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 681              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 682              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 22
+
+
+ 683              		.file 5 "./comms.h"
+ 684              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 685              		.file 7 "Generated_Source\\PSoC5\\J1_EN.h"
+ 686              		.file 8 "Generated_Source\\PSoC5\\J2_EN.h"
+ 687              		.file 9 "Generated_Source\\PSoC5\\J3_EN.h"
+ 688              		.file 10 "Generated_Source\\PSoC5\\J1_DIR.h"
+ 689              		.file 11 "Generated_Source\\PSoC5\\J2_DIR.h"
+ 690              		.file 12 "Generated_Source\\PSoC5\\J3_DIR.h"
+ 691              		.file 13 "Generated_Source\\PSoC5\\J1_STEP.h"
+ 692              		.file 14 "Generated_Source\\PSoC5\\J2_STEP.h"
+ 693              		.file 15 "Generated_Source\\PSoC5\\J3_STEP.h"
+ 694              		.section	.debug_info,"",%progbits
+ 695              	.Ldebug_info0:
+ 696 0000 6E050000 		.4byte	0x56e
+ 697 0004 0400     		.2byte	0x4
+ 698 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 699 000a 04       		.byte	0x4
+ 700 000b 01       		.uleb128 0x1
+ 701 000c C7030000 		.4byte	.LASF75
+ 702 0010 0C       		.byte	0xc
+ 703 0011 96010000 		.4byte	.LASF76
+ 704 0015 00000000 		.4byte	.LASF77
+ 705 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 706 001d 00000000 		.4byte	0
+ 707 0021 00000000 		.4byte	.Ldebug_line0
+ 708 0025 02       		.uleb128 0x2
+ 709 0026 04       		.byte	0x4
+ 710 0027 05       		.byte	0x5
+ 711 0028 696E7400 		.ascii	"int\000"
+ 712 002c 03       		.uleb128 0x3
+ 713 002d 04       		.byte	0x4
+ 714 002e 07       		.byte	0x7
+ 715 002f 62020000 		.4byte	.LASF0
+ 716 0033 03       		.uleb128 0x3
+ 717 0034 08       		.byte	0x8
+ 718 0035 05       		.byte	0x5
+ 719 0036 4E010000 		.4byte	.LASF1
+ 720 003a 03       		.uleb128 0x3
+ 721 003b 08       		.byte	0x8
+ 722 003c 04       		.byte	0x4
+ 723 003d E9010000 		.4byte	.LASF2
+ 724 0041 03       		.uleb128 0x3
+ 725 0042 01       		.byte	0x1
+ 726 0043 06       		.byte	0x6
+ 727 0044 28020000 		.4byte	.LASF3
+ 728 0048 03       		.uleb128 0x3
+ 729 0049 01       		.byte	0x1
+ 730 004a 08       		.byte	0x8
+ 731 004b CD010000 		.4byte	.LASF4
+ 732 004f 03       		.uleb128 0x3
+ 733 0050 02       		.byte	0x2
+ 734 0051 05       		.byte	0x5
+ 735 0052 83000000 		.4byte	.LASF5
+ 736 0056 03       		.uleb128 0x3
+ 737 0057 02       		.byte	0x2
+ 738 0058 07       		.byte	0x7
+ 739 0059 B1020000 		.4byte	.LASF6
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 23
+
+
+ 740 005d 04       		.uleb128 0x4
+ 741 005e 5B030000 		.4byte	.LASF12
+ 742 0062 02       		.byte	0x2
+ 743 0063 3F       		.byte	0x3f
+ 744 0064 68000000 		.4byte	0x68
+ 745 0068 03       		.uleb128 0x3
+ 746 0069 04       		.byte	0x4
+ 747 006a 05       		.byte	0x5
+ 748 006b 70010000 		.4byte	.LASF7
+ 749 006f 03       		.uleb128 0x3
+ 750 0070 04       		.byte	0x4
+ 751 0071 07       		.byte	0x7
+ 752 0072 2F030000 		.4byte	.LASF8
+ 753 0076 03       		.uleb128 0x3
+ 754 0077 08       		.byte	0x8
+ 755 0078 07       		.byte	0x7
+ 756 0079 3F020000 		.4byte	.LASF9
+ 757 007d 03       		.uleb128 0x3
+ 758 007e 04       		.byte	0x4
+ 759 007f 07       		.byte	0x7
+ 760 0080 9B000000 		.4byte	.LASF10
+ 761 0084 03       		.uleb128 0x3
+ 762 0085 01       		.byte	0x1
+ 763 0086 08       		.byte	0x8
+ 764 0087 C4020000 		.4byte	.LASF11
+ 765 008b 05       		.uleb128 0x5
+ 766 008c 04       		.byte	0x4
+ 767 008d 91000000 		.4byte	0x91
+ 768 0091 06       		.uleb128 0x6
+ 769 0092 04       		.uleb128 0x4
+ 770 0093 DB020000 		.4byte	.LASF13
+ 771 0097 03       		.byte	0x3
+ 772 0098 2C       		.byte	0x2c
+ 773 0099 5D000000 		.4byte	0x5d
+ 774 009d 07       		.uleb128 0x7
+ 775 009e 21010000 		.4byte	.LASF14
+ 776 00a2 04       		.byte	0x4
+ 777 00a3 E401     		.2byte	0x1e4
+ 778 00a5 48000000 		.4byte	0x48
+ 779 00a9 07       		.uleb128 0x7
+ 780 00aa 01030000 		.4byte	.LASF15
+ 781 00ae 04       		.byte	0x4
+ 782 00af E501     		.2byte	0x1e5
+ 783 00b1 56000000 		.4byte	0x56
+ 784 00b5 07       		.uleb128 0x7
+ 785 00b6 11030000 		.4byte	.LASF16
+ 786 00ba 04       		.byte	0x4
+ 787 00bb E601     		.2byte	0x1e6
+ 788 00bd 6F000000 		.4byte	0x6f
+ 789 00c1 03       		.uleb128 0x3
+ 790 00c2 04       		.byte	0x4
+ 791 00c3 04       		.byte	0x4
+ 792 00c4 36010000 		.4byte	.LASF17
+ 793 00c8 03       		.uleb128 0x3
+ 794 00c9 08       		.byte	0x8
+ 795 00ca 04       		.byte	0x4
+ 796 00cb 41030000 		.4byte	.LASF18
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 24
+
+
+ 797 00cf 07       		.uleb128 0x7
+ 798 00d0 2A030000 		.4byte	.LASF19
+ 799 00d4 04       		.byte	0x4
+ 800 00d5 8E02     		.2byte	0x28e
+ 801 00d7 DB000000 		.4byte	0xdb
+ 802 00db 08       		.uleb128 0x8
+ 803 00dc 9D000000 		.4byte	0x9d
+ 804 00e0 07       		.uleb128 0x7
+ 805 00e1 AB020000 		.4byte	.LASF20
+ 806 00e5 04       		.byte	0x4
+ 807 00e6 9002     		.2byte	0x290
+ 808 00e8 EC000000 		.4byte	0xec
+ 809 00ec 08       		.uleb128 0x8
+ 810 00ed B5000000 		.4byte	0xb5
+ 811 00f1 07       		.uleb128 0x7
+ 812 00f2 FA010000 		.4byte	.LASF21
+ 813 00f6 04       		.byte	0x4
+ 814 00f7 A002     		.2byte	0x2a0
+ 815 00f9 8B000000 		.4byte	0x8b
+ 816 00fd 09       		.uleb128 0x9
+ 817 00fe 0C       		.byte	0xc
+ 818 00ff 05       		.byte	0x5
+ 819 0100 27       		.byte	0x27
+ 820 0101 36010000 		.4byte	0x136
+ 821 0105 0A       		.uleb128 0xa
+ 822 0106 D5020000 		.4byte	.LASF22
+ 823 010a 05       		.byte	0x5
+ 824 010b 28       		.byte	0x28
+ 825 010c 9D000000 		.4byte	0x9d
+ 826 0110 00       		.byte	0
+ 827 0111 0A       		.uleb128 0xa
+ 828 0112 C1000000 		.4byte	.LASF23
+ 829 0116 05       		.byte	0x5
+ 830 0117 29       		.byte	0x29
+ 831 0118 9D000000 		.4byte	0x9d
+ 832 011c 01       		.byte	0x1
+ 833 011d 0A       		.uleb128 0xa
+ 834 011e F6000000 		.4byte	.LASF24
+ 835 0122 05       		.byte	0x5
+ 836 0123 2A       		.byte	0x2a
+ 837 0124 B5000000 		.4byte	0xb5
+ 838 0128 04       		.byte	0x4
+ 839 0129 0A       		.uleb128 0xa
+ 840 012a 08030000 		.4byte	.LASF25
+ 841 012e 05       		.byte	0x5
+ 842 012f 2B       		.byte	0x2b
+ 843 0130 B5000000 		.4byte	0xb5
+ 844 0134 08       		.byte	0x8
+ 845 0135 00       		.byte	0
+ 846 0136 04       		.uleb128 0x4
+ 847 0137 EA020000 		.4byte	.LASF26
+ 848 013b 05       		.byte	0x5
+ 849 013c 2C       		.byte	0x2c
+ 850 013d FD000000 		.4byte	0xfd
+ 851 0141 0B       		.uleb128 0xb
+ 852 0142 B804     		.2byte	0x4b8
+ 853 0144 05       		.byte	0x5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 25
+
+
+ 854 0145 30       		.byte	0x30
+ 855 0146 7E010000 		.4byte	0x17e
+ 856 014a 0A       		.uleb128 0xa
+ 857 014b 55030000 		.4byte	.LASF27
+ 858 014f 05       		.byte	0x5
+ 859 0150 31       		.byte	0x31
+ 860 0151 7E010000 		.4byte	0x17e
+ 861 0155 00       		.byte	0
+ 862 0156 0C       		.uleb128 0xc
+ 863 0157 01010000 		.4byte	.LASF28
+ 864 015b 05       		.byte	0x5
+ 865 015c 32       		.byte	0x32
+ 866 015d A9000000 		.4byte	0xa9
+ 867 0161 B004     		.2byte	0x4b0
+ 868 0163 0C       		.uleb128 0xc
+ 869 0164 F5010000 		.4byte	.LASF29
+ 870 0168 05       		.byte	0x5
+ 871 0169 33       		.byte	0x33
+ 872 016a A9000000 		.4byte	0xa9
+ 873 016e B204     		.2byte	0x4b2
+ 874 0170 0C       		.uleb128 0xc
+ 875 0171 FC020000 		.4byte	.LASF30
+ 876 0175 05       		.byte	0x5
+ 877 0176 34       		.byte	0x34
+ 878 0177 A9000000 		.4byte	0xa9
+ 879 017b B404     		.2byte	0x4b4
+ 880 017d 00       		.byte	0
+ 881 017e 0D       		.uleb128 0xd
+ 882 017f 36010000 		.4byte	0x136
+ 883 0183 8E010000 		.4byte	0x18e
+ 884 0187 0E       		.uleb128 0xe
+ 885 0188 7D000000 		.4byte	0x7d
+ 886 018c 63       		.byte	0x63
+ 887 018d 00       		.byte	0
+ 888 018e 04       		.uleb128 0x4
+ 889 018f 34020000 		.4byte	.LASF31
+ 890 0193 05       		.byte	0x5
+ 891 0194 35       		.byte	0x35
+ 892 0195 41010000 		.4byte	0x141
+ 893 0199 0F       		.uleb128 0xf
+ 894 019a E4000000 		.4byte	.LASF32
+ 895 019e 01       		.byte	0x1
+ 896 019f B1       		.byte	0xb1
+ 897 01a0 00000000 		.4byte	.LFB67
+ 898 01a4 C8010000 		.4byte	.LFE67-.LFB67
+ 899 01a8 01       		.uleb128 0x1
+ 900 01a9 9C       		.byte	0x9c
+ 901 01aa 36020000 		.4byte	0x236
+ 902 01ae 10       		.uleb128 0x10
+ 903 01af 61040000 		.4byte	.LASF34
+ 904 01b3 01       		.byte	0x1
+ 905 01b4 BA       		.byte	0xba
+ 906 01b5 36020000 		.4byte	0x236
+ 907 01b9 00000000 		.4byte	.LLST0
+ 908 01bd 11       		.uleb128 0x11
+ 909 01be 08000000 		.4byte	.LVL0
+ 910 01c2 03050000 		.4byte	0x503
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 26
+
+
+ 911 01c6 12       		.uleb128 0x12
+ 912 01c7 32000000 		.4byte	.LVL2
+ 913 01cb 0E050000 		.4byte	0x50e
+ 914 01cf D9010000 		.4byte	0x1d9
+ 915 01d3 13       		.uleb128 0x13
+ 916 01d4 01       		.uleb128 0x1
+ 917 01d5 50       		.byte	0x50
+ 918 01d6 01       		.uleb128 0x1
+ 919 01d7 30       		.byte	0x30
+ 920 01d8 00       		.byte	0
+ 921 01d9 12       		.uleb128 0x12
+ 922 01da 4C000000 		.4byte	.LVL5
+ 923 01de 19050000 		.4byte	0x519
+ 924 01e2 EC010000 		.4byte	0x1ec
+ 925 01e6 13       		.uleb128 0x13
+ 926 01e7 01       		.uleb128 0x1
+ 927 01e8 50       		.byte	0x50
+ 928 01e9 01       		.uleb128 0x1
+ 929 01ea 30       		.byte	0x30
+ 930 01eb 00       		.byte	0
+ 931 01ec 12       		.uleb128 0x12
+ 932 01ed 66000000 		.4byte	.LVL8
+ 933 01f1 24050000 		.4byte	0x524
+ 934 01f5 FF010000 		.4byte	0x1ff
+ 935 01f9 13       		.uleb128 0x13
+ 936 01fa 01       		.uleb128 0x1
+ 937 01fb 50       		.byte	0x50
+ 938 01fc 01       		.uleb128 0x1
+ 939 01fd 30       		.byte	0x30
+ 940 01fe 00       		.byte	0
+ 941 01ff 11       		.uleb128 0x11
+ 942 0200 16010000 		.4byte	.LVL9
+ 943 0204 2F050000 		.4byte	0x52f
+ 944 0208 11       		.uleb128 0x11
+ 945 0209 1E010000 		.4byte	.LVL10
+ 946 020d 3A050000 		.4byte	0x53a
+ 947 0211 11       		.uleb128 0x11
+ 948 0212 26010000 		.4byte	.LVL11
+ 949 0216 45050000 		.4byte	0x545
+ 950 021a 11       		.uleb128 0x11
+ 951 021b 2E010000 		.4byte	.LVL12
+ 952 021f 50050000 		.4byte	0x550
+ 953 0223 11       		.uleb128 0x11
+ 954 0224 36010000 		.4byte	.LVL13
+ 955 0228 5B050000 		.4byte	0x55b
+ 956 022c 11       		.uleb128 0x11
+ 957 022d 3E010000 		.4byte	.LVL14
+ 958 0231 66050000 		.4byte	0x566
+ 959 0235 00       		.byte	0
+ 960 0236 05       		.uleb128 0x5
+ 961 0237 04       		.byte	0x4
+ 962 0238 36010000 		.4byte	0x136
+ 963 023c 14       		.uleb128 0x14
+ 964 023d 18030000 		.4byte	.LASF33
+ 965 0241 01       		.byte	0x1
+ 966 0242 2B01     		.2byte	0x12b
+ 967 0244 00000000 		.4byte	.LFB68
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 27
+
+
+ 968 0248 0C000000 		.4byte	.LFE68-.LFB68
+ 969 024c 01       		.uleb128 0x1
+ 970 024d 9C       		.byte	0x9c
+ 971 024e 6F020000 		.4byte	0x26f
+ 972 0252 15       		.uleb128 0x15
+ 973 0253 06010000 		.4byte	.LASF37
+ 974 0257 01       		.byte	0x1
+ 975 0258 2B01     		.2byte	0x12b
+ 976 025a F1000000 		.4byte	0xf1
+ 977 025e 01       		.uleb128 0x1
+ 978 025f 50       		.byte	0x50
+ 979 0260 16       		.uleb128 0x16
+ 980 0261 87010000 		.4byte	.LASF35
+ 981 0265 01       		.byte	0x1
+ 982 0266 2D01     		.2byte	0x12d
+ 983 0268 6F020000 		.4byte	0x26f
+ 984 026c 01       		.uleb128 0x1
+ 985 026d 53       		.byte	0x53
+ 986 026e 00       		.byte	0
+ 987 026f 05       		.uleb128 0x5
+ 988 0270 04       		.byte	0x4
+ 989 0271 F1000000 		.4byte	0xf1
+ 990 0275 17       		.uleb128 0x17
+ 991 0276 3C010000 		.4byte	.LASF39
+ 992 027a 01       		.byte	0x1
+ 993 027b 4301     		.2byte	0x143
+ 994 027d F1000000 		.4byte	0xf1
+ 995 0281 00000000 		.4byte	.LFB69
+ 996 0285 0C000000 		.4byte	.LFE69-.LFB69
+ 997 0289 01       		.uleb128 0x1
+ 998 028a 9C       		.byte	0x9c
+ 999 028b 9E020000 		.4byte	0x29e
+ 1000 028f 16       		.uleb128 0x16
+ 1001 0290 87010000 		.4byte	.LASF35
+ 1002 0294 01       		.byte	0x1
+ 1003 0295 4501     		.2byte	0x145
+ 1004 0297 6F020000 		.4byte	0x26f
+ 1005 029b 01       		.uleb128 0x1
+ 1006 029c 53       		.byte	0x53
+ 1007 029d 00       		.byte	0
+ 1008 029e 14       		.uleb128 0x14
+ 1009 029f 5C010000 		.4byte	.LASF36
+ 1010 02a3 01       		.byte	0x1
+ 1011 02a4 6501     		.2byte	0x165
+ 1012 02a6 00000000 		.4byte	.LFB70
+ 1013 02aa 10000000 		.4byte	.LFE70-.LFB70
+ 1014 02ae 01       		.uleb128 0x1
+ 1015 02af 9C       		.byte	0x9c
+ 1016 02b0 C5020000 		.4byte	0x2c5
+ 1017 02b4 18       		.uleb128 0x18
+ 1018 02b5 5D000000 		.4byte	.LASF38
+ 1019 02b9 01       		.byte	0x1
+ 1020 02ba 6501     		.2byte	0x165
+ 1021 02bc 9D000000 		.4byte	0x9d
+ 1022 02c0 29000000 		.4byte	.LLST1
+ 1023 02c4 00       		.byte	0
+ 1024 02c5 17       		.uleb128 0x17
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 28
+
+
+ 1025 02c6 3B000000 		.4byte	.LASF40
+ 1026 02ca 01       		.byte	0x1
+ 1027 02cb 7B01     		.2byte	0x17b
+ 1028 02cd 9D000000 		.4byte	0x9d
+ 1029 02d1 00000000 		.4byte	.LFB71
+ 1030 02d5 0C000000 		.4byte	.LFE71-.LFB71
+ 1031 02d9 01       		.uleb128 0x1
+ 1032 02da 9C       		.byte	0x9c
+ 1033 02db F0020000 		.4byte	0x2f0
+ 1034 02df 19       		.uleb128 0x19
+ 1035 02e0 5D000000 		.4byte	.LASF38
+ 1036 02e4 01       		.byte	0x1
+ 1037 02e5 7D01     		.2byte	0x17d
+ 1038 02e7 9D000000 		.4byte	0x9d
+ 1039 02eb 4A000000 		.4byte	.LLST2
+ 1040 02ef 00       		.byte	0
+ 1041 02f0 1A       		.uleb128 0x1a
+ 1042 02f1 27010000 		.4byte	.LASF41
+ 1043 02f5 01       		.byte	0x1
+ 1044 02f6 9601     		.2byte	0x196
+ 1045 02f8 00000000 		.4byte	.LFB72
+ 1046 02fc 0C000000 		.4byte	.LFE72-.LFB72
+ 1047 0300 01       		.uleb128 0x1
+ 1048 0301 9C       		.byte	0x9c
+ 1049 0302 1B       		.uleb128 0x1b
+ 1050 0303 9A020000 		.4byte	.LASF78
+ 1051 0307 01       		.byte	0x1
+ 1052 0308 AB01     		.2byte	0x1ab
+ 1053 030a 9D000000 		.4byte	0x9d
+ 1054 030e 00000000 		.4byte	.LFB73
+ 1055 0312 10000000 		.4byte	.LFE73-.LFB73
+ 1056 0316 01       		.uleb128 0x1
+ 1057 0317 9C       		.byte	0x9c
+ 1058 0318 1A       		.uleb128 0x1a
+ 1059 0319 7B020000 		.4byte	.LASF42
+ 1060 031d 01       		.byte	0x1
+ 1061 031e C001     		.2byte	0x1c0
+ 1062 0320 00000000 		.4byte	.LFB74
+ 1063 0324 0C000000 		.4byte	.LFE74-.LFB74
+ 1064 0328 01       		.uleb128 0x1
+ 1065 0329 9C       		.byte	0x9c
+ 1066 032a 0F       		.uleb128 0xf
+ 1067 032b 8D000000 		.4byte	.LASF43
+ 1068 032f 01       		.byte	0x1
+ 1069 0330 4E       		.byte	0x4e
+ 1070 0331 00000000 		.4byte	.LFB64
+ 1071 0335 1C000000 		.4byte	.LFE64-.LFB64
+ 1072 0339 01       		.uleb128 0x1
+ 1073 033a 9C       		.byte	0x9c
+ 1074 033b 7C030000 		.4byte	0x37c
+ 1075 033f 11       		.uleb128 0x11
+ 1076 0340 06000000 		.4byte	.LVL22
+ 1077 0344 18030000 		.4byte	0x318
+ 1078 0348 12       		.uleb128 0x12
+ 1079 0349 0C000000 		.4byte	.LVL23
+ 1080 034d 3C020000 		.4byte	0x23c
+ 1081 0351 5F030000 		.4byte	0x35f
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 29
+
+
+ 1082 0355 13       		.uleb128 0x13
+ 1083 0356 01       		.uleb128 0x1
+ 1084 0357 50       		.byte	0x50
+ 1085 0358 05       		.uleb128 0x5
+ 1086 0359 03       		.byte	0x3
+ 1087 035a 00000000 		.4byte	NCO_ISR_Interrupt
+ 1088 035e 00       		.byte	0
+ 1089 035f 12       		.uleb128 0x12
+ 1090 0360 12000000 		.4byte	.LVL24
+ 1091 0364 9E020000 		.4byte	0x29e
+ 1092 0368 72030000 		.4byte	0x372
+ 1093 036c 13       		.uleb128 0x13
+ 1094 036d 01       		.uleb128 0x1
+ 1095 036e 50       		.byte	0x50
+ 1096 036f 01       		.uleb128 0x1
+ 1097 0370 34       		.byte	0x34
+ 1098 0371 00       		.byte	0
+ 1099 0372 11       		.uleb128 0x11
+ 1100 0373 16000000 		.4byte	.LVL25
+ 1101 0377 F0020000 		.4byte	0x2f0
+ 1102 037b 00       		.byte	0
+ 1103 037c 0F       		.uleb128 0xf
+ 1104 037d A2030000 		.4byte	.LASF44
+ 1105 0381 01       		.byte	0x1
+ 1106 0382 79       		.byte	0x79
+ 1107 0383 00000000 		.4byte	.LFB65
+ 1108 0387 1A000000 		.4byte	.LFE65-.LFB65
+ 1109 038b 01       		.uleb128 0x1
+ 1110 038c 9C       		.byte	0x9c
+ 1111 038d DA030000 		.4byte	0x3da
+ 1112 0391 1C       		.uleb128 0x1c
+ 1113 0392 06010000 		.4byte	.LASF37
+ 1114 0396 01       		.byte	0x1
+ 1115 0397 79       		.byte	0x79
+ 1116 0398 F1000000 		.4byte	0xf1
+ 1117 039c 61000000 		.4byte	.LLST3
+ 1118 03a0 11       		.uleb128 0x11
+ 1119 03a1 08000000 		.4byte	.LVL27
+ 1120 03a5 18030000 		.4byte	0x318
+ 1121 03a9 12       		.uleb128 0x12
+ 1122 03aa 0E000000 		.4byte	.LVL28
+ 1123 03ae 3C020000 		.4byte	0x23c
+ 1124 03b2 BD030000 		.4byte	0x3bd
+ 1125 03b6 13       		.uleb128 0x13
+ 1126 03b7 01       		.uleb128 0x1
+ 1127 03b8 50       		.byte	0x50
+ 1128 03b9 02       		.uleb128 0x2
+ 1129 03ba 74       		.byte	0x74
+ 1130 03bb 00       		.sleb128 0
+ 1131 03bc 00       		.byte	0
+ 1132 03bd 12       		.uleb128 0x12
+ 1133 03be 14000000 		.4byte	.LVL29
+ 1134 03c2 9E020000 		.4byte	0x29e
+ 1135 03c6 D0030000 		.4byte	0x3d0
+ 1136 03ca 13       		.uleb128 0x13
+ 1137 03cb 01       		.uleb128 0x1
+ 1138 03cc 50       		.byte	0x50
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 30
+
+
+ 1139 03cd 01       		.uleb128 0x1
+ 1140 03ce 34       		.byte	0x34
+ 1141 03cf 00       		.byte	0
+ 1142 03d0 11       		.uleb128 0x11
+ 1143 03d1 18000000 		.4byte	.LVL30
+ 1144 03d5 F0020000 		.4byte	0x2f0
+ 1145 03d9 00       		.byte	0
+ 1146 03da 0F       		.uleb128 0xf
+ 1147 03db D7000000 		.4byte	.LASF45
+ 1148 03df 01       		.byte	0x1
+ 1149 03e0 97       		.byte	0x97
+ 1150 03e1 00000000 		.4byte	.LFB66
+ 1151 03e5 14000000 		.4byte	.LFE66-.LFB66
+ 1152 03e9 01       		.uleb128 0x1
+ 1153 03ea 9C       		.byte	0x9c
+ 1154 03eb 02040000 		.4byte	0x402
+ 1155 03ef 11       		.uleb128 0x11
+ 1156 03f0 06000000 		.4byte	.LVL31
+ 1157 03f4 18030000 		.4byte	0x318
+ 1158 03f8 11       		.uleb128 0x11
+ 1159 03f9 0C000000 		.4byte	.LVL32
+ 1160 03fd 3C020000 		.4byte	0x23c
+ 1161 0401 00       		.byte	0
+ 1162 0402 1A       		.uleb128 0x1a
+ 1163 0403 07020000 		.4byte	.LASF46
+ 1164 0407 01       		.byte	0x1
+ 1165 0408 DB01     		.2byte	0x1db
+ 1166 040a 00000000 		.4byte	.LFB75
+ 1167 040e 0C000000 		.4byte	.LFE75-.LFB75
+ 1168 0412 01       		.uleb128 0x1
+ 1169 0413 9C       		.byte	0x9c
+ 1170 0414 1A       		.uleb128 0x1a
+ 1171 0415 AC000000 		.4byte	.LASF47
+ 1172 0419 01       		.byte	0x1
+ 1173 041a F401     		.2byte	0x1f4
+ 1174 041c 00000000 		.4byte	.LFB76
+ 1175 0420 0C000000 		.4byte	.LFE76-.LFB76
+ 1176 0424 01       		.uleb128 0x1
+ 1177 0425 9C       		.byte	0x9c
+ 1178 0426 1D       		.uleb128 0x1d
+ 1179 0427 BA030000 		.4byte	.LASF48
+ 1180 042b 06       		.byte	0x6
+ 1181 042c 1207     		.2byte	0x712
+ 1182 042e 32040000 		.4byte	0x432
+ 1183 0432 08       		.uleb128 0x8
+ 1184 0433 92000000 		.4byte	0x92
+ 1185 0437 1E       		.uleb128 0x1e
+ 1186 0438 74030000 		.4byte	.LASF49
+ 1187 043c 05       		.byte	0x5
+ 1188 043d 38       		.byte	0x38
+ 1189 043e 42040000 		.4byte	0x442
+ 1190 0442 08       		.uleb128 0x8
+ 1191 0443 8E010000 		.4byte	0x18e
+ 1192 0447 1E       		.uleb128 0x1e
+ 1193 0448 79010000 		.4byte	.LASF50
+ 1194 044c 01       		.byte	0x1
+ 1195 044d 21       		.byte	0x21
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 31
+
+
+ 1196 044e EC000000 		.4byte	0xec
+ 1197 0452 1E       		.uleb128 0x1e
+ 1198 0453 B7010000 		.4byte	.LASF51
+ 1199 0457 01       		.byte	0x1
+ 1200 0458 22       		.byte	0x22
+ 1201 0459 EC000000 		.4byte	0xec
+ 1202 045d 1E       		.uleb128 0x1e
+ 1203 045e DB010000 		.4byte	.LASF52
+ 1204 0462 01       		.byte	0x1
+ 1205 0463 23       		.byte	0x23
+ 1206 0464 EC000000 		.4byte	0xec
+ 1207 0468 1E       		.uleb128 0x1e
+ 1208 0469 65030000 		.4byte	.LASF53
+ 1209 046d 01       		.byte	0x1
+ 1210 046e 24       		.byte	0x24
+ 1211 046f EC000000 		.4byte	0xec
+ 1212 0473 1E       		.uleb128 0x1e
+ 1213 0474 74000000 		.4byte	.LASF54
+ 1214 0478 01       		.byte	0x1
+ 1215 0479 25       		.byte	0x25
+ 1216 047a EC000000 		.4byte	0xec
+ 1217 047e 1E       		.uleb128 0x1e
+ 1218 047f 7F030000 		.4byte	.LASF55
+ 1219 0483 01       		.byte	0x1
+ 1220 0484 26       		.byte	0x26
+ 1221 0485 EC000000 		.4byte	0xec
+ 1222 0489 1E       		.uleb128 0x1e
+ 1223 048a C5010000 		.4byte	.LASF56
+ 1224 048e 01       		.byte	0x1
+ 1225 048f 27       		.byte	0x27
+ 1226 0490 94040000 		.4byte	0x494
+ 1227 0494 08       		.uleb128 0x8
+ 1228 0495 84000000 		.4byte	0x84
+ 1229 0499 1E       		.uleb128 0x1e
+ 1230 049a B2030000 		.4byte	.LASF57
+ 1231 049e 01       		.byte	0x1
+ 1232 049f 28       		.byte	0x28
+ 1233 04a0 94040000 		.4byte	0x494
+ 1234 04a4 1E       		.uleb128 0x1e
+ 1235 04a5 A4000000 		.4byte	.LASF58
+ 1236 04a9 01       		.byte	0x1
+ 1237 04aa 29       		.byte	0x29
+ 1238 04ab 94040000 		.4byte	0x494
+ 1239 04af 1E       		.uleb128 0x1e
+ 1240 04b0 E3020000 		.4byte	.LASF59
+ 1241 04b4 01       		.byte	0x1
+ 1242 04b5 2A       		.byte	0x2a
+ 1243 04b6 94040000 		.4byte	0x494
+ 1244 04ba 1E       		.uleb128 0x1e
+ 1245 04bb 8E030000 		.4byte	.LASF60
+ 1246 04bf 01       		.byte	0x1
+ 1247 04c0 2B       		.byte	0x2b
+ 1248 04c1 94040000 		.4byte	0x494
+ 1249 04c5 1E       		.uleb128 0x1e
+ 1250 04c6 0E010000 		.4byte	.LASF61
+ 1251 04ca 01       		.byte	0x1
+ 1252 04cb 2C       		.byte	0x2c
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 32
+
+
+ 1253 04cc 94040000 		.4byte	0x494
+ 1254 04d0 1F       		.uleb128 0x1f
+ 1255 04d1 CB000000 		.4byte	.LASF62
+ 1256 04d5 01       		.byte	0x1
+ 1257 04d6 2D       		.byte	0x2d
+ 1258 04d7 EC000000 		.4byte	0xec
+ 1259 04db 05       		.uleb128 0x5
+ 1260 04dc 03       		.byte	0x3
+ 1261 04dd 00000000 		.4byte	J1_duration
+ 1262 04e1 1F       		.uleb128 0x1f
+ 1263 04e2 6F020000 		.4byte	.LASF63
+ 1264 04e6 01       		.byte	0x1
+ 1265 04e7 2E       		.byte	0x2e
+ 1266 04e8 EC000000 		.4byte	0xec
+ 1267 04ec 05       		.uleb128 0x5
+ 1268 04ed 03       		.byte	0x3
+ 1269 04ee 00000000 		.4byte	J2_duration
+ 1270 04f2 1F       		.uleb128 0x1f
+ 1271 04f3 55040000 		.4byte	.LASF64
+ 1272 04f7 01       		.byte	0x1
+ 1273 04f8 2F       		.byte	0x2f
+ 1274 04f9 EC000000 		.4byte	0xec
+ 1275 04fd 05       		.uleb128 0x5
+ 1276 04fe 03       		.byte	0x3
+ 1277 04ff 00000000 		.4byte	J3_duration
+ 1278 0503 20       		.uleb128 0x20
+ 1279 0504 8B020000 		.4byte	.LASF65
+ 1280 0508 8B020000 		.4byte	.LASF65
+ 1281 050c 05       		.byte	0x5
+ 1282 050d 42       		.byte	0x42
+ 1283 050e 20       		.uleb128 0x20
+ 1284 050f 15010000 		.4byte	.LASF66
+ 1285 0513 15010000 		.4byte	.LASF66
+ 1286 0517 07       		.byte	0x7
+ 1287 0518 26       		.byte	0x26
+ 1288 0519 20       		.uleb128 0x20
+ 1289 051a C9020000 		.4byte	.LASF67
+ 1290 051e C9020000 		.4byte	.LASF67
+ 1291 0522 08       		.byte	0x8
+ 1292 0523 26       		.byte	0x26
+ 1293 0524 20       		.uleb128 0x20
+ 1294 0525 56020000 		.4byte	.LASF68
+ 1295 0529 56020000 		.4byte	.LASF68
+ 1296 052d 09       		.byte	0x9
+ 1297 052e 26       		.byte	0x26
+ 1298 052f 20       		.uleb128 0x20
+ 1299 0530 95030000 		.4byte	.LASF69
+ 1300 0534 95030000 		.4byte	.LASF69
+ 1301 0538 0A       		.byte	0xa
+ 1302 0539 26       		.byte	0x26
+ 1303 053a 20       		.uleb128 0x20
+ 1304 053b 48030000 		.4byte	.LASF70
+ 1305 053f 48030000 		.4byte	.LASF70
+ 1306 0543 0B       		.byte	0xb
+ 1307 0544 26       		.byte	0x26
+ 1308 0545 20       		.uleb128 0x20
+ 1309 0546 EF020000 		.4byte	.LASF71
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 33
+
+
+ 1310 054a EF020000 		.4byte	.LASF71
+ 1311 054e 0C       		.byte	0xc
+ 1312 054f 26       		.byte	0x26
+ 1313 0550 20       		.uleb128 0x20
+ 1314 0551 1A020000 		.4byte	.LASF72
+ 1315 0555 1A020000 		.4byte	.LASF72
+ 1316 0559 0D       		.byte	0xd
+ 1317 055a 26       		.byte	0x26
+ 1318 055b 20       		.uleb128 0x20
+ 1319 055c 4F000000 		.4byte	.LASF73
+ 1320 0560 4F000000 		.4byte	.LASF73
+ 1321 0564 0E       		.byte	0xe
+ 1322 0565 26       		.byte	0x26
+ 1323 0566 20       		.uleb128 0x20
+ 1324 0567 66000000 		.4byte	.LASF74
+ 1325 056b 66000000 		.4byte	.LASF74
+ 1326 056f 0F       		.byte	0xf
+ 1327 0570 26       		.byte	0x26
+ 1328 0571 00       		.byte	0
+ 1329              		.section	.debug_abbrev,"",%progbits
+ 1330              	.Ldebug_abbrev0:
+ 1331 0000 01       		.uleb128 0x1
+ 1332 0001 11       		.uleb128 0x11
+ 1333 0002 01       		.byte	0x1
+ 1334 0003 25       		.uleb128 0x25
+ 1335 0004 0E       		.uleb128 0xe
+ 1336 0005 13       		.uleb128 0x13
+ 1337 0006 0B       		.uleb128 0xb
+ 1338 0007 03       		.uleb128 0x3
+ 1339 0008 0E       		.uleb128 0xe
+ 1340 0009 1B       		.uleb128 0x1b
+ 1341 000a 0E       		.uleb128 0xe
+ 1342 000b 55       		.uleb128 0x55
+ 1343 000c 17       		.uleb128 0x17
+ 1344 000d 11       		.uleb128 0x11
+ 1345 000e 01       		.uleb128 0x1
+ 1346 000f 10       		.uleb128 0x10
+ 1347 0010 17       		.uleb128 0x17
+ 1348 0011 00       		.byte	0
+ 1349 0012 00       		.byte	0
+ 1350 0013 02       		.uleb128 0x2
+ 1351 0014 24       		.uleb128 0x24
+ 1352 0015 00       		.byte	0
+ 1353 0016 0B       		.uleb128 0xb
+ 1354 0017 0B       		.uleb128 0xb
+ 1355 0018 3E       		.uleb128 0x3e
+ 1356 0019 0B       		.uleb128 0xb
+ 1357 001a 03       		.uleb128 0x3
+ 1358 001b 08       		.uleb128 0x8
+ 1359 001c 00       		.byte	0
+ 1360 001d 00       		.byte	0
+ 1361 001e 03       		.uleb128 0x3
+ 1362 001f 24       		.uleb128 0x24
+ 1363 0020 00       		.byte	0
+ 1364 0021 0B       		.uleb128 0xb
+ 1365 0022 0B       		.uleb128 0xb
+ 1366 0023 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 34
+
+
+ 1367 0024 0B       		.uleb128 0xb
+ 1368 0025 03       		.uleb128 0x3
+ 1369 0026 0E       		.uleb128 0xe
+ 1370 0027 00       		.byte	0
+ 1371 0028 00       		.byte	0
+ 1372 0029 04       		.uleb128 0x4
+ 1373 002a 16       		.uleb128 0x16
+ 1374 002b 00       		.byte	0
+ 1375 002c 03       		.uleb128 0x3
+ 1376 002d 0E       		.uleb128 0xe
+ 1377 002e 3A       		.uleb128 0x3a
+ 1378 002f 0B       		.uleb128 0xb
+ 1379 0030 3B       		.uleb128 0x3b
+ 1380 0031 0B       		.uleb128 0xb
+ 1381 0032 49       		.uleb128 0x49
+ 1382 0033 13       		.uleb128 0x13
+ 1383 0034 00       		.byte	0
+ 1384 0035 00       		.byte	0
+ 1385 0036 05       		.uleb128 0x5
+ 1386 0037 0F       		.uleb128 0xf
+ 1387 0038 00       		.byte	0
+ 1388 0039 0B       		.uleb128 0xb
+ 1389 003a 0B       		.uleb128 0xb
+ 1390 003b 49       		.uleb128 0x49
+ 1391 003c 13       		.uleb128 0x13
+ 1392 003d 00       		.byte	0
+ 1393 003e 00       		.byte	0
+ 1394 003f 06       		.uleb128 0x6
+ 1395 0040 15       		.uleb128 0x15
+ 1396 0041 00       		.byte	0
+ 1397 0042 27       		.uleb128 0x27
+ 1398 0043 19       		.uleb128 0x19
+ 1399 0044 00       		.byte	0
+ 1400 0045 00       		.byte	0
+ 1401 0046 07       		.uleb128 0x7
+ 1402 0047 16       		.uleb128 0x16
+ 1403 0048 00       		.byte	0
+ 1404 0049 03       		.uleb128 0x3
+ 1405 004a 0E       		.uleb128 0xe
+ 1406 004b 3A       		.uleb128 0x3a
+ 1407 004c 0B       		.uleb128 0xb
+ 1408 004d 3B       		.uleb128 0x3b
+ 1409 004e 05       		.uleb128 0x5
+ 1410 004f 49       		.uleb128 0x49
+ 1411 0050 13       		.uleb128 0x13
+ 1412 0051 00       		.byte	0
+ 1413 0052 00       		.byte	0
+ 1414 0053 08       		.uleb128 0x8
+ 1415 0054 35       		.uleb128 0x35
+ 1416 0055 00       		.byte	0
+ 1417 0056 49       		.uleb128 0x49
+ 1418 0057 13       		.uleb128 0x13
+ 1419 0058 00       		.byte	0
+ 1420 0059 00       		.byte	0
+ 1421 005a 09       		.uleb128 0x9
+ 1422 005b 13       		.uleb128 0x13
+ 1423 005c 01       		.byte	0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 35
+
+
+ 1424 005d 0B       		.uleb128 0xb
+ 1425 005e 0B       		.uleb128 0xb
+ 1426 005f 3A       		.uleb128 0x3a
+ 1427 0060 0B       		.uleb128 0xb
+ 1428 0061 3B       		.uleb128 0x3b
+ 1429 0062 0B       		.uleb128 0xb
+ 1430 0063 01       		.uleb128 0x1
+ 1431 0064 13       		.uleb128 0x13
+ 1432 0065 00       		.byte	0
+ 1433 0066 00       		.byte	0
+ 1434 0067 0A       		.uleb128 0xa
+ 1435 0068 0D       		.uleb128 0xd
+ 1436 0069 00       		.byte	0
+ 1437 006a 03       		.uleb128 0x3
+ 1438 006b 0E       		.uleb128 0xe
+ 1439 006c 3A       		.uleb128 0x3a
+ 1440 006d 0B       		.uleb128 0xb
+ 1441 006e 3B       		.uleb128 0x3b
+ 1442 006f 0B       		.uleb128 0xb
+ 1443 0070 49       		.uleb128 0x49
+ 1444 0071 13       		.uleb128 0x13
+ 1445 0072 38       		.uleb128 0x38
+ 1446 0073 0B       		.uleb128 0xb
+ 1447 0074 00       		.byte	0
+ 1448 0075 00       		.byte	0
+ 1449 0076 0B       		.uleb128 0xb
+ 1450 0077 13       		.uleb128 0x13
+ 1451 0078 01       		.byte	0x1
+ 1452 0079 0B       		.uleb128 0xb
+ 1453 007a 05       		.uleb128 0x5
+ 1454 007b 3A       		.uleb128 0x3a
+ 1455 007c 0B       		.uleb128 0xb
+ 1456 007d 3B       		.uleb128 0x3b
+ 1457 007e 0B       		.uleb128 0xb
+ 1458 007f 01       		.uleb128 0x1
+ 1459 0080 13       		.uleb128 0x13
+ 1460 0081 00       		.byte	0
+ 1461 0082 00       		.byte	0
+ 1462 0083 0C       		.uleb128 0xc
+ 1463 0084 0D       		.uleb128 0xd
+ 1464 0085 00       		.byte	0
+ 1465 0086 03       		.uleb128 0x3
+ 1466 0087 0E       		.uleb128 0xe
+ 1467 0088 3A       		.uleb128 0x3a
+ 1468 0089 0B       		.uleb128 0xb
+ 1469 008a 3B       		.uleb128 0x3b
+ 1470 008b 0B       		.uleb128 0xb
+ 1471 008c 49       		.uleb128 0x49
+ 1472 008d 13       		.uleb128 0x13
+ 1473 008e 38       		.uleb128 0x38
+ 1474 008f 05       		.uleb128 0x5
+ 1475 0090 00       		.byte	0
+ 1476 0091 00       		.byte	0
+ 1477 0092 0D       		.uleb128 0xd
+ 1478 0093 01       		.uleb128 0x1
+ 1479 0094 01       		.byte	0x1
+ 1480 0095 49       		.uleb128 0x49
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 36
+
+
+ 1481 0096 13       		.uleb128 0x13
+ 1482 0097 01       		.uleb128 0x1
+ 1483 0098 13       		.uleb128 0x13
+ 1484 0099 00       		.byte	0
+ 1485 009a 00       		.byte	0
+ 1486 009b 0E       		.uleb128 0xe
+ 1487 009c 21       		.uleb128 0x21
+ 1488 009d 00       		.byte	0
+ 1489 009e 49       		.uleb128 0x49
+ 1490 009f 13       		.uleb128 0x13
+ 1491 00a0 2F       		.uleb128 0x2f
+ 1492 00a1 0B       		.uleb128 0xb
+ 1493 00a2 00       		.byte	0
+ 1494 00a3 00       		.byte	0
+ 1495 00a4 0F       		.uleb128 0xf
+ 1496 00a5 2E       		.uleb128 0x2e
+ 1497 00a6 01       		.byte	0x1
+ 1498 00a7 3F       		.uleb128 0x3f
+ 1499 00a8 19       		.uleb128 0x19
+ 1500 00a9 03       		.uleb128 0x3
+ 1501 00aa 0E       		.uleb128 0xe
+ 1502 00ab 3A       		.uleb128 0x3a
+ 1503 00ac 0B       		.uleb128 0xb
+ 1504 00ad 3B       		.uleb128 0x3b
+ 1505 00ae 0B       		.uleb128 0xb
+ 1506 00af 27       		.uleb128 0x27
+ 1507 00b0 19       		.uleb128 0x19
+ 1508 00b1 11       		.uleb128 0x11
+ 1509 00b2 01       		.uleb128 0x1
+ 1510 00b3 12       		.uleb128 0x12
+ 1511 00b4 06       		.uleb128 0x6
+ 1512 00b5 40       		.uleb128 0x40
+ 1513 00b6 18       		.uleb128 0x18
+ 1514 00b7 9742     		.uleb128 0x2117
+ 1515 00b9 19       		.uleb128 0x19
+ 1516 00ba 01       		.uleb128 0x1
+ 1517 00bb 13       		.uleb128 0x13
+ 1518 00bc 00       		.byte	0
+ 1519 00bd 00       		.byte	0
+ 1520 00be 10       		.uleb128 0x10
+ 1521 00bf 34       		.uleb128 0x34
+ 1522 00c0 00       		.byte	0
+ 1523 00c1 03       		.uleb128 0x3
+ 1524 00c2 0E       		.uleb128 0xe
+ 1525 00c3 3A       		.uleb128 0x3a
+ 1526 00c4 0B       		.uleb128 0xb
+ 1527 00c5 3B       		.uleb128 0x3b
+ 1528 00c6 0B       		.uleb128 0xb
+ 1529 00c7 49       		.uleb128 0x49
+ 1530 00c8 13       		.uleb128 0x13
+ 1531 00c9 02       		.uleb128 0x2
+ 1532 00ca 17       		.uleb128 0x17
+ 1533 00cb 00       		.byte	0
+ 1534 00cc 00       		.byte	0
+ 1535 00cd 11       		.uleb128 0x11
+ 1536 00ce 898201   		.uleb128 0x4109
+ 1537 00d1 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 37
+
+
+ 1538 00d2 11       		.uleb128 0x11
+ 1539 00d3 01       		.uleb128 0x1
+ 1540 00d4 31       		.uleb128 0x31
+ 1541 00d5 13       		.uleb128 0x13
+ 1542 00d6 00       		.byte	0
+ 1543 00d7 00       		.byte	0
+ 1544 00d8 12       		.uleb128 0x12
+ 1545 00d9 898201   		.uleb128 0x4109
+ 1546 00dc 01       		.byte	0x1
+ 1547 00dd 11       		.uleb128 0x11
+ 1548 00de 01       		.uleb128 0x1
+ 1549 00df 31       		.uleb128 0x31
+ 1550 00e0 13       		.uleb128 0x13
+ 1551 00e1 01       		.uleb128 0x1
+ 1552 00e2 13       		.uleb128 0x13
+ 1553 00e3 00       		.byte	0
+ 1554 00e4 00       		.byte	0
+ 1555 00e5 13       		.uleb128 0x13
+ 1556 00e6 8A8201   		.uleb128 0x410a
+ 1557 00e9 00       		.byte	0
+ 1558 00ea 02       		.uleb128 0x2
+ 1559 00eb 18       		.uleb128 0x18
+ 1560 00ec 9142     		.uleb128 0x2111
+ 1561 00ee 18       		.uleb128 0x18
+ 1562 00ef 00       		.byte	0
+ 1563 00f0 00       		.byte	0
+ 1564 00f1 14       		.uleb128 0x14
+ 1565 00f2 2E       		.uleb128 0x2e
+ 1566 00f3 01       		.byte	0x1
+ 1567 00f4 3F       		.uleb128 0x3f
+ 1568 00f5 19       		.uleb128 0x19
+ 1569 00f6 03       		.uleb128 0x3
+ 1570 00f7 0E       		.uleb128 0xe
+ 1571 00f8 3A       		.uleb128 0x3a
+ 1572 00f9 0B       		.uleb128 0xb
+ 1573 00fa 3B       		.uleb128 0x3b
+ 1574 00fb 05       		.uleb128 0x5
+ 1575 00fc 27       		.uleb128 0x27
+ 1576 00fd 19       		.uleb128 0x19
+ 1577 00fe 11       		.uleb128 0x11
+ 1578 00ff 01       		.uleb128 0x1
+ 1579 0100 12       		.uleb128 0x12
+ 1580 0101 06       		.uleb128 0x6
+ 1581 0102 40       		.uleb128 0x40
+ 1582 0103 18       		.uleb128 0x18
+ 1583 0104 9742     		.uleb128 0x2117
+ 1584 0106 19       		.uleb128 0x19
+ 1585 0107 01       		.uleb128 0x1
+ 1586 0108 13       		.uleb128 0x13
+ 1587 0109 00       		.byte	0
+ 1588 010a 00       		.byte	0
+ 1589 010b 15       		.uleb128 0x15
+ 1590 010c 05       		.uleb128 0x5
+ 1591 010d 00       		.byte	0
+ 1592 010e 03       		.uleb128 0x3
+ 1593 010f 0E       		.uleb128 0xe
+ 1594 0110 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 38
+
+
+ 1595 0111 0B       		.uleb128 0xb
+ 1596 0112 3B       		.uleb128 0x3b
+ 1597 0113 05       		.uleb128 0x5
+ 1598 0114 49       		.uleb128 0x49
+ 1599 0115 13       		.uleb128 0x13
+ 1600 0116 02       		.uleb128 0x2
+ 1601 0117 18       		.uleb128 0x18
+ 1602 0118 00       		.byte	0
+ 1603 0119 00       		.byte	0
+ 1604 011a 16       		.uleb128 0x16
+ 1605 011b 34       		.uleb128 0x34
+ 1606 011c 00       		.byte	0
+ 1607 011d 03       		.uleb128 0x3
+ 1608 011e 0E       		.uleb128 0xe
+ 1609 011f 3A       		.uleb128 0x3a
+ 1610 0120 0B       		.uleb128 0xb
+ 1611 0121 3B       		.uleb128 0x3b
+ 1612 0122 05       		.uleb128 0x5
+ 1613 0123 49       		.uleb128 0x49
+ 1614 0124 13       		.uleb128 0x13
+ 1615 0125 02       		.uleb128 0x2
+ 1616 0126 18       		.uleb128 0x18
+ 1617 0127 00       		.byte	0
+ 1618 0128 00       		.byte	0
+ 1619 0129 17       		.uleb128 0x17
+ 1620 012a 2E       		.uleb128 0x2e
+ 1621 012b 01       		.byte	0x1
+ 1622 012c 3F       		.uleb128 0x3f
+ 1623 012d 19       		.uleb128 0x19
+ 1624 012e 03       		.uleb128 0x3
+ 1625 012f 0E       		.uleb128 0xe
+ 1626 0130 3A       		.uleb128 0x3a
+ 1627 0131 0B       		.uleb128 0xb
+ 1628 0132 3B       		.uleb128 0x3b
+ 1629 0133 05       		.uleb128 0x5
+ 1630 0134 27       		.uleb128 0x27
+ 1631 0135 19       		.uleb128 0x19
+ 1632 0136 49       		.uleb128 0x49
+ 1633 0137 13       		.uleb128 0x13
+ 1634 0138 11       		.uleb128 0x11
+ 1635 0139 01       		.uleb128 0x1
+ 1636 013a 12       		.uleb128 0x12
+ 1637 013b 06       		.uleb128 0x6
+ 1638 013c 40       		.uleb128 0x40
+ 1639 013d 18       		.uleb128 0x18
+ 1640 013e 9742     		.uleb128 0x2117
+ 1641 0140 19       		.uleb128 0x19
+ 1642 0141 01       		.uleb128 0x1
+ 1643 0142 13       		.uleb128 0x13
+ 1644 0143 00       		.byte	0
+ 1645 0144 00       		.byte	0
+ 1646 0145 18       		.uleb128 0x18
+ 1647 0146 05       		.uleb128 0x5
+ 1648 0147 00       		.byte	0
+ 1649 0148 03       		.uleb128 0x3
+ 1650 0149 0E       		.uleb128 0xe
+ 1651 014a 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 39
+
+
+ 1652 014b 0B       		.uleb128 0xb
+ 1653 014c 3B       		.uleb128 0x3b
+ 1654 014d 05       		.uleb128 0x5
+ 1655 014e 49       		.uleb128 0x49
+ 1656 014f 13       		.uleb128 0x13
+ 1657 0150 02       		.uleb128 0x2
+ 1658 0151 17       		.uleb128 0x17
+ 1659 0152 00       		.byte	0
+ 1660 0153 00       		.byte	0
+ 1661 0154 19       		.uleb128 0x19
+ 1662 0155 34       		.uleb128 0x34
+ 1663 0156 00       		.byte	0
+ 1664 0157 03       		.uleb128 0x3
+ 1665 0158 0E       		.uleb128 0xe
+ 1666 0159 3A       		.uleb128 0x3a
+ 1667 015a 0B       		.uleb128 0xb
+ 1668 015b 3B       		.uleb128 0x3b
+ 1669 015c 05       		.uleb128 0x5
+ 1670 015d 49       		.uleb128 0x49
+ 1671 015e 13       		.uleb128 0x13
+ 1672 015f 02       		.uleb128 0x2
+ 1673 0160 17       		.uleb128 0x17
+ 1674 0161 00       		.byte	0
+ 1675 0162 00       		.byte	0
+ 1676 0163 1A       		.uleb128 0x1a
+ 1677 0164 2E       		.uleb128 0x2e
+ 1678 0165 00       		.byte	0
+ 1679 0166 3F       		.uleb128 0x3f
+ 1680 0167 19       		.uleb128 0x19
+ 1681 0168 03       		.uleb128 0x3
+ 1682 0169 0E       		.uleb128 0xe
+ 1683 016a 3A       		.uleb128 0x3a
+ 1684 016b 0B       		.uleb128 0xb
+ 1685 016c 3B       		.uleb128 0x3b
+ 1686 016d 05       		.uleb128 0x5
+ 1687 016e 27       		.uleb128 0x27
+ 1688 016f 19       		.uleb128 0x19
+ 1689 0170 11       		.uleb128 0x11
+ 1690 0171 01       		.uleb128 0x1
+ 1691 0172 12       		.uleb128 0x12
+ 1692 0173 06       		.uleb128 0x6
+ 1693 0174 40       		.uleb128 0x40
+ 1694 0175 18       		.uleb128 0x18
+ 1695 0176 9742     		.uleb128 0x2117
+ 1696 0178 19       		.uleb128 0x19
+ 1697 0179 00       		.byte	0
+ 1698 017a 00       		.byte	0
+ 1699 017b 1B       		.uleb128 0x1b
+ 1700 017c 2E       		.uleb128 0x2e
+ 1701 017d 00       		.byte	0
+ 1702 017e 3F       		.uleb128 0x3f
+ 1703 017f 19       		.uleb128 0x19
+ 1704 0180 03       		.uleb128 0x3
+ 1705 0181 0E       		.uleb128 0xe
+ 1706 0182 3A       		.uleb128 0x3a
+ 1707 0183 0B       		.uleb128 0xb
+ 1708 0184 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 40
+
+
+ 1709 0185 05       		.uleb128 0x5
+ 1710 0186 27       		.uleb128 0x27
+ 1711 0187 19       		.uleb128 0x19
+ 1712 0188 49       		.uleb128 0x49
+ 1713 0189 13       		.uleb128 0x13
+ 1714 018a 11       		.uleb128 0x11
+ 1715 018b 01       		.uleb128 0x1
+ 1716 018c 12       		.uleb128 0x12
+ 1717 018d 06       		.uleb128 0x6
+ 1718 018e 40       		.uleb128 0x40
+ 1719 018f 18       		.uleb128 0x18
+ 1720 0190 9742     		.uleb128 0x2117
+ 1721 0192 19       		.uleb128 0x19
+ 1722 0193 00       		.byte	0
+ 1723 0194 00       		.byte	0
+ 1724 0195 1C       		.uleb128 0x1c
+ 1725 0196 05       		.uleb128 0x5
+ 1726 0197 00       		.byte	0
+ 1727 0198 03       		.uleb128 0x3
+ 1728 0199 0E       		.uleb128 0xe
+ 1729 019a 3A       		.uleb128 0x3a
+ 1730 019b 0B       		.uleb128 0xb
+ 1731 019c 3B       		.uleb128 0x3b
+ 1732 019d 0B       		.uleb128 0xb
+ 1733 019e 49       		.uleb128 0x49
+ 1734 019f 13       		.uleb128 0x13
+ 1735 01a0 02       		.uleb128 0x2
+ 1736 01a1 17       		.uleb128 0x17
+ 1737 01a2 00       		.byte	0
+ 1738 01a3 00       		.byte	0
+ 1739 01a4 1D       		.uleb128 0x1d
+ 1740 01a5 34       		.uleb128 0x34
+ 1741 01a6 00       		.byte	0
+ 1742 01a7 03       		.uleb128 0x3
+ 1743 01a8 0E       		.uleb128 0xe
+ 1744 01a9 3A       		.uleb128 0x3a
+ 1745 01aa 0B       		.uleb128 0xb
+ 1746 01ab 3B       		.uleb128 0x3b
+ 1747 01ac 05       		.uleb128 0x5
+ 1748 01ad 49       		.uleb128 0x49
+ 1749 01ae 13       		.uleb128 0x13
+ 1750 01af 3F       		.uleb128 0x3f
+ 1751 01b0 19       		.uleb128 0x19
+ 1752 01b1 3C       		.uleb128 0x3c
+ 1753 01b2 19       		.uleb128 0x19
+ 1754 01b3 00       		.byte	0
+ 1755 01b4 00       		.byte	0
+ 1756 01b5 1E       		.uleb128 0x1e
+ 1757 01b6 34       		.uleb128 0x34
+ 1758 01b7 00       		.byte	0
+ 1759 01b8 03       		.uleb128 0x3
+ 1760 01b9 0E       		.uleb128 0xe
+ 1761 01ba 3A       		.uleb128 0x3a
+ 1762 01bb 0B       		.uleb128 0xb
+ 1763 01bc 3B       		.uleb128 0x3b
+ 1764 01bd 0B       		.uleb128 0xb
+ 1765 01be 49       		.uleb128 0x49
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 41
+
+
+ 1766 01bf 13       		.uleb128 0x13
+ 1767 01c0 3F       		.uleb128 0x3f
+ 1768 01c1 19       		.uleb128 0x19
+ 1769 01c2 3C       		.uleb128 0x3c
+ 1770 01c3 19       		.uleb128 0x19
+ 1771 01c4 00       		.byte	0
+ 1772 01c5 00       		.byte	0
+ 1773 01c6 1F       		.uleb128 0x1f
+ 1774 01c7 34       		.uleb128 0x34
+ 1775 01c8 00       		.byte	0
+ 1776 01c9 03       		.uleb128 0x3
+ 1777 01ca 0E       		.uleb128 0xe
+ 1778 01cb 3A       		.uleb128 0x3a
+ 1779 01cc 0B       		.uleb128 0xb
+ 1780 01cd 3B       		.uleb128 0x3b
+ 1781 01ce 0B       		.uleb128 0xb
+ 1782 01cf 49       		.uleb128 0x49
+ 1783 01d0 13       		.uleb128 0x13
+ 1784 01d1 3F       		.uleb128 0x3f
+ 1785 01d2 19       		.uleb128 0x19
+ 1786 01d3 02       		.uleb128 0x2
+ 1787 01d4 18       		.uleb128 0x18
+ 1788 01d5 00       		.byte	0
+ 1789 01d6 00       		.byte	0
+ 1790 01d7 20       		.uleb128 0x20
+ 1791 01d8 2E       		.uleb128 0x2e
+ 1792 01d9 00       		.byte	0
+ 1793 01da 3F       		.uleb128 0x3f
+ 1794 01db 19       		.uleb128 0x19
+ 1795 01dc 3C       		.uleb128 0x3c
+ 1796 01dd 19       		.uleb128 0x19
+ 1797 01de 6E       		.uleb128 0x6e
+ 1798 01df 0E       		.uleb128 0xe
+ 1799 01e0 03       		.uleb128 0x3
+ 1800 01e1 0E       		.uleb128 0xe
+ 1801 01e2 3A       		.uleb128 0x3a
+ 1802 01e3 0B       		.uleb128 0xb
+ 1803 01e4 3B       		.uleb128 0x3b
+ 1804 01e5 0B       		.uleb128 0xb
+ 1805 01e6 00       		.byte	0
+ 1806 01e7 00       		.byte	0
+ 1807 01e8 00       		.byte	0
+ 1808              		.section	.debug_loc,"",%progbits
+ 1809              	.Ldebug_loc0:
+ 1810              	.LLST0:
+ 1811 0000 08000000 		.4byte	.LVL0
+ 1812 0004 2E000000 		.4byte	.LVL1
+ 1813 0008 0100     		.2byte	0x1
+ 1814 000a 50       		.byte	0x50
+ 1815 000b 34000000 		.4byte	.LVL3
+ 1816 000f 48000000 		.4byte	.LVL4
+ 1817 0013 0100     		.2byte	0x1
+ 1818 0015 50       		.byte	0x50
+ 1819 0016 4E000000 		.4byte	.LVL6
+ 1820 001a 62000000 		.4byte	.LVL7
+ 1821 001e 0100     		.2byte	0x1
+ 1822 0020 50       		.byte	0x50
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 42
+
+
+ 1823 0021 00000000 		.4byte	0
+ 1824 0025 00000000 		.4byte	0
+ 1825              	.LLST1:
+ 1826 0029 00000000 		.4byte	.LVL18
+ 1827 002d 02000000 		.4byte	.LVL19
+ 1828 0031 0100     		.2byte	0x1
+ 1829 0033 50       		.byte	0x50
+ 1830 0034 02000000 		.4byte	.LVL19
+ 1831 0038 10000000 		.4byte	.LFE70
+ 1832 003c 0400     		.2byte	0x4
+ 1833 003e F3       		.byte	0xf3
+ 1834 003f 01       		.uleb128 0x1
+ 1835 0040 50       		.byte	0x50
+ 1836 0041 9F       		.byte	0x9f
+ 1837 0042 00000000 		.4byte	0
+ 1838 0046 00000000 		.4byte	0
+ 1839              	.LLST2:
+ 1840 004a 04000000 		.4byte	.LVL20
+ 1841 004e 06000000 		.4byte	.LVL21
+ 1842 0052 0500     		.2byte	0x5
+ 1843 0054 70       		.byte	0x70
+ 1844 0055 00       		.sleb128 0
+ 1845 0056 35       		.byte	0x35
+ 1846 0057 25       		.byte	0x25
+ 1847 0058 9F       		.byte	0x9f
+ 1848 0059 00000000 		.4byte	0
+ 1849 005d 00000000 		.4byte	0
+ 1850              	.LLST3:
+ 1851 0061 00000000 		.4byte	.LVL26
+ 1852 0065 07000000 		.4byte	.LVL27-1
+ 1853 0069 0100     		.2byte	0x1
+ 1854 006b 50       		.byte	0x50
+ 1855 006c 07000000 		.4byte	.LVL27-1
+ 1856 0070 1A000000 		.4byte	.LFE65
+ 1857 0074 0100     		.2byte	0x1
+ 1858 0076 54       		.byte	0x54
+ 1859 0077 00000000 		.4byte	0
+ 1860 007b 00000000 		.4byte	0
+ 1861              		.section	.debug_aranges,"",%progbits
+ 1862 0000 7C000000 		.4byte	0x7c
+ 1863 0004 0200     		.2byte	0x2
+ 1864 0006 00000000 		.4byte	.Ldebug_info0
+ 1865 000a 04       		.byte	0x4
+ 1866 000b 00       		.byte	0
+ 1867 000c 0000     		.2byte	0
+ 1868 000e 0000     		.2byte	0
+ 1869 0010 00000000 		.4byte	.LFB67
+ 1870 0014 C8010000 		.4byte	.LFE67-.LFB67
+ 1871 0018 00000000 		.4byte	.LFB68
+ 1872 001c 0C000000 		.4byte	.LFE68-.LFB68
+ 1873 0020 00000000 		.4byte	.LFB69
+ 1874 0024 0C000000 		.4byte	.LFE69-.LFB69
+ 1875 0028 00000000 		.4byte	.LFB70
+ 1876 002c 10000000 		.4byte	.LFE70-.LFB70
+ 1877 0030 00000000 		.4byte	.LFB71
+ 1878 0034 0C000000 		.4byte	.LFE71-.LFB71
+ 1879 0038 00000000 		.4byte	.LFB72
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 43
+
+
+ 1880 003c 0C000000 		.4byte	.LFE72-.LFB72
+ 1881 0040 00000000 		.4byte	.LFB73
+ 1882 0044 10000000 		.4byte	.LFE73-.LFB73
+ 1883 0048 00000000 		.4byte	.LFB74
+ 1884 004c 0C000000 		.4byte	.LFE74-.LFB74
+ 1885 0050 00000000 		.4byte	.LFB64
+ 1886 0054 1C000000 		.4byte	.LFE64-.LFB64
+ 1887 0058 00000000 		.4byte	.LFB65
+ 1888 005c 1A000000 		.4byte	.LFE65-.LFB65
+ 1889 0060 00000000 		.4byte	.LFB66
+ 1890 0064 14000000 		.4byte	.LFE66-.LFB66
+ 1891 0068 00000000 		.4byte	.LFB75
+ 1892 006c 0C000000 		.4byte	.LFE75-.LFB75
+ 1893 0070 00000000 		.4byte	.LFB76
+ 1894 0074 0C000000 		.4byte	.LFE76-.LFB76
+ 1895 0078 00000000 		.4byte	0
+ 1896 007c 00000000 		.4byte	0
+ 1897              		.section	.debug_ranges,"",%progbits
+ 1898              	.Ldebug_ranges0:
+ 1899 0000 00000000 		.4byte	.LFB67
+ 1900 0004 C8010000 		.4byte	.LFE67
+ 1901 0008 00000000 		.4byte	.LFB68
+ 1902 000c 0C000000 		.4byte	.LFE68
+ 1903 0010 00000000 		.4byte	.LFB69
+ 1904 0014 0C000000 		.4byte	.LFE69
+ 1905 0018 00000000 		.4byte	.LFB70
+ 1906 001c 10000000 		.4byte	.LFE70
+ 1907 0020 00000000 		.4byte	.LFB71
+ 1908 0024 0C000000 		.4byte	.LFE71
+ 1909 0028 00000000 		.4byte	.LFB72
+ 1910 002c 0C000000 		.4byte	.LFE72
+ 1911 0030 00000000 		.4byte	.LFB73
+ 1912 0034 10000000 		.4byte	.LFE73
+ 1913 0038 00000000 		.4byte	.LFB74
+ 1914 003c 0C000000 		.4byte	.LFE74
+ 1915 0040 00000000 		.4byte	.LFB64
+ 1916 0044 1C000000 		.4byte	.LFE64
+ 1917 0048 00000000 		.4byte	.LFB65
+ 1918 004c 1A000000 		.4byte	.LFE65
+ 1919 0050 00000000 		.4byte	.LFB66
+ 1920 0054 14000000 		.4byte	.LFE66
+ 1921 0058 00000000 		.4byte	.LFB75
+ 1922 005c 0C000000 		.4byte	.LFE75
+ 1923 0060 00000000 		.4byte	.LFB76
+ 1924 0064 0C000000 		.4byte	.LFE76
+ 1925 0068 00000000 		.4byte	0
+ 1926 006c 00000000 		.4byte	0
+ 1927              		.section	.debug_line,"",%progbits
+ 1928              	.Ldebug_line0:
+ 1929 0000 EC020000 		.section	.debug_str,"MS",%progbits,1
+ 1929      0200C801 
+ 1929      00000201 
+ 1929      FB0E0D00 
+ 1929      01010101 
+ 1930              	.LASF77:
+ 1931 0000 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
+ 1931      73657273 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 44
+
+
+ 1931      5C70616A 
+ 1931      6F685C70 
+ 1931      726F6A65 
+ 1932 002d 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
+ 1932      646F662E 
+ 1932      63796473 
+ 1932      6E00
+ 1933              	.LASF40:
+ 1934 003b 4E434F5F 		.ascii	"NCO_ISR_GetPriority\000"
+ 1934      4953525F 
+ 1934      47657450 
+ 1934      72696F72 
+ 1934      69747900 
+ 1935              	.LASF73:
+ 1936 004f 4A325F53 		.ascii	"J2_STEP_Write\000"
+ 1936      5445505F 
+ 1936      57726974 
+ 1936      6500
+ 1937              	.LASF38:
+ 1938 005d 7072696F 		.ascii	"priority\000"
+ 1938      72697479 
+ 1938      00
+ 1939              	.LASF74:
+ 1940 0066 4A335F53 		.ascii	"J3_STEP_Write\000"
+ 1940      5445505F 
+ 1940      57726974 
+ 1940      6500
+ 1941              	.LASF54:
+ 1942 0074 4A325F61 		.ascii	"J2_accumulator\000"
+ 1942      6363756D 
+ 1942      756C6174 
+ 1942      6F7200
+ 1943              	.LASF5:
+ 1944 0083 73686F72 		.ascii	"short int\000"
+ 1944      7420696E 
+ 1944      7400
+ 1945              	.LASF43:
+ 1946 008d 4E434F5F 		.ascii	"NCO_ISR_Start\000"
+ 1946      4953525F 
+ 1946      53746172 
+ 1946      7400
+ 1947              	.LASF10:
+ 1948 009b 73697A65 		.ascii	"sizetype\000"
+ 1948      74797065 
+ 1948      00
+ 1949              	.LASF58:
+ 1950 00a4 4A335F73 		.ascii	"J3_step\000"
+ 1950      74657000 
+ 1951              	.LASF47:
+ 1952 00ac 4E434F5F 		.ascii	"NCO_ISR_ClearPending\000"
+ 1952      4953525F 
+ 1952      436C6561 
+ 1952      7250656E 
+ 1952      64696E67 
+ 1953              	.LASF23:
+ 1954 00c1 64697265 		.ascii	"direction\000"
+ 1954      6374696F 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 45
+
+
+ 1954      6E00
+ 1955              	.LASF62:
+ 1956 00cb 4A315F64 		.ascii	"J1_duration\000"
+ 1956      75726174 
+ 1956      696F6E00 
+ 1957              	.LASF45:
+ 1958 00d7 4E434F5F 		.ascii	"NCO_ISR_Stop\000"
+ 1958      4953525F 
+ 1958      53746F70 
+ 1958      00
+ 1959              	.LASF32:
+ 1960 00e4 4E434F5F 		.ascii	"NCO_ISR_Interrupt\000"
+ 1960      4953525F 
+ 1960      496E7465 
+ 1960      72727570 
+ 1960      7400
+ 1961              	.LASF24:
+ 1962 00f6 74756E69 		.ascii	"tuningWord\000"
+ 1962      6E67576F 
+ 1962      726400
+ 1963              	.LASF28:
+ 1964 0101 68656164 		.ascii	"head\000"
+ 1964      00
+ 1965              	.LASF37:
+ 1966 0106 61646472 		.ascii	"address\000"
+ 1966      65737300 
+ 1967              	.LASF61:
+ 1968 010e 4A335F64 		.ascii	"J3_dir\000"
+ 1968      697200
+ 1969              	.LASF66:
+ 1970 0115 4A315F45 		.ascii	"J1_EN_Write\000"
+ 1970      4E5F5772 
+ 1970      69746500 
+ 1971              	.LASF14:
+ 1972 0121 75696E74 		.ascii	"uint8\000"
+ 1972      3800
+ 1973              	.LASF41:
+ 1974 0127 4E434F5F 		.ascii	"NCO_ISR_Enable\000"
+ 1974      4953525F 
+ 1974      456E6162 
+ 1974      6C6500
+ 1975              	.LASF17:
+ 1976 0136 666C6F61 		.ascii	"float\000"
+ 1976      7400
+ 1977              	.LASF39:
+ 1978 013c 4E434F5F 		.ascii	"NCO_ISR_GetVector\000"
+ 1978      4953525F 
+ 1978      47657456 
+ 1978      6563746F 
+ 1978      7200
+ 1979              	.LASF1:
+ 1980 014e 6C6F6E67 		.ascii	"long long int\000"
+ 1980      206C6F6E 
+ 1980      6720696E 
+ 1980      7400
+ 1981              	.LASF36:
+ 1982 015c 4E434F5F 		.ascii	"NCO_ISR_SetPriority\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 46
+
+
+ 1982      4953525F 
+ 1982      53657450 
+ 1982      72696F72 
+ 1982      69747900 
+ 1983              	.LASF7:
+ 1984 0170 6C6F6E67 		.ascii	"long int\000"
+ 1984      20696E74 
+ 1984      00
+ 1985              	.LASF50:
+ 1986 0179 4A315F74 		.ascii	"J1_tuningWord\000"
+ 1986      756E696E 
+ 1986      67576F72 
+ 1986      6400
+ 1987              	.LASF35:
+ 1988 0187 72616D56 		.ascii	"ramVectorTable\000"
+ 1988      6563746F 
+ 1988      72546162 
+ 1988      6C6500
+ 1989              	.LASF76:
+ 1990 0196 47656E65 		.ascii	"Generated_Source\\PSoC5\\NCO_ISR.c\000"
+ 1990      72617465 
+ 1990      645F536F 
+ 1990      75726365 
+ 1990      5C50536F 
+ 1991              	.LASF51:
+ 1992 01b7 4A325F74 		.ascii	"J2_tuningWord\000"
+ 1992      756E696E 
+ 1992      67576F72 
+ 1992      6400
+ 1993              	.LASF56:
+ 1994 01c5 4A315F73 		.ascii	"J1_step\000"
+ 1994      74657000 
+ 1995              	.LASF4:
+ 1996 01cd 756E7369 		.ascii	"unsigned char\000"
+ 1996      676E6564 
+ 1996      20636861 
+ 1996      7200
+ 1997              	.LASF52:
+ 1998 01db 4A335F74 		.ascii	"J3_tuningWord\000"
+ 1998      756E696E 
+ 1998      67576F72 
+ 1998      6400
+ 1999              	.LASF2:
+ 2000 01e9 6C6F6E67 		.ascii	"long double\000"
+ 2000      20646F75 
+ 2000      626C6500 
+ 2001              	.LASF29:
+ 2002 01f5 7461696C 		.ascii	"tail\000"
+ 2002      00
+ 2003              	.LASF21:
+ 2004 01fa 63796973 		.ascii	"cyisraddress\000"
+ 2004      72616464 
+ 2004      72657373 
+ 2004      00
+ 2005              	.LASF46:
+ 2006 0207 4E434F5F 		.ascii	"NCO_ISR_SetPending\000"
+ 2006      4953525F 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 47
+
+
+ 2006      53657450 
+ 2006      656E6469 
+ 2006      6E6700
+ 2007              	.LASF72:
+ 2008 021a 4A315F53 		.ascii	"J1_STEP_Write\000"
+ 2008      5445505F 
+ 2008      57726974 
+ 2008      6500
+ 2009              	.LASF3:
+ 2010 0228 7369676E 		.ascii	"signed char\000"
+ 2010      65642063 
+ 2010      68617200 
+ 2011              	.LASF31:
+ 2012 0234 4D6F7665 		.ascii	"Move_Queue\000"
+ 2012      5F517565 
+ 2012      756500
+ 2013              	.LASF9:
+ 2014 023f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2014      206C6F6E 
+ 2014      6720756E 
+ 2014      7369676E 
+ 2014      65642069 
+ 2015              	.LASF68:
+ 2016 0256 4A335F45 		.ascii	"J3_EN_Write\000"
+ 2016      4E5F5772 
+ 2016      69746500 
+ 2017              	.LASF0:
+ 2018 0262 756E7369 		.ascii	"unsigned int\000"
+ 2018      676E6564 
+ 2018      20696E74 
+ 2018      00
+ 2019              	.LASF63:
+ 2020 026f 4A325F64 		.ascii	"J2_duration\000"
+ 2020      75726174 
+ 2020      696F6E00 
+ 2021              	.LASF42:
+ 2022 027b 4E434F5F 		.ascii	"NCO_ISR_Disable\000"
+ 2022      4953525F 
+ 2022      44697361 
+ 2022      626C6500 
+ 2023              	.LASF65:
+ 2024 028b 6D6F7665 		.ascii	"move_queue_get\000"
+ 2024      5F717565 
+ 2024      75655F67 
+ 2024      657400
+ 2025              	.LASF78:
+ 2026 029a 4E434F5F 		.ascii	"NCO_ISR_GetState\000"
+ 2026      4953525F 
+ 2026      47657453 
+ 2026      74617465 
+ 2026      00
+ 2027              	.LASF20:
+ 2028 02ab 72656733 		.ascii	"reg32\000"
+ 2028      3200
+ 2029              	.LASF6:
+ 2030 02b1 73686F72 		.ascii	"short unsigned int\000"
+ 2030      7420756E 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 48
+
+
+ 2030      7369676E 
+ 2030      65642069 
+ 2030      6E7400
+ 2031              	.LASF11:
+ 2032 02c4 63686172 		.ascii	"char\000"
+ 2032      00
+ 2033              	.LASF67:
+ 2034 02c9 4A325F45 		.ascii	"J2_EN_Write\000"
+ 2034      4E5F5772 
+ 2034      69746500 
+ 2035              	.LASF22:
+ 2036 02d5 6A6F696E 		.ascii	"joint\000"
+ 2036      7400
+ 2037              	.LASF13:
+ 2038 02db 696E7433 		.ascii	"int32_t\000"
+ 2038      325F7400 
+ 2039              	.LASF59:
+ 2040 02e3 4A315F64 		.ascii	"J1_dir\000"
+ 2040      697200
+ 2041              	.LASF26:
+ 2042 02ea 4D6F7665 		.ascii	"Move\000"
+ 2042      00
+ 2043              	.LASF71:
+ 2044 02ef 4A335F44 		.ascii	"J3_DIR_Write\000"
+ 2044      49525F57 
+ 2044      72697465 
+ 2044      00
+ 2045              	.LASF30:
+ 2046 02fc 73697A65 		.ascii	"size\000"
+ 2046      00
+ 2047              	.LASF15:
+ 2048 0301 75696E74 		.ascii	"uint16\000"
+ 2048      313600
+ 2049              	.LASF25:
+ 2050 0308 64757261 		.ascii	"duration\000"
+ 2050      74696F6E 
+ 2050      00
+ 2051              	.LASF16:
+ 2052 0311 75696E74 		.ascii	"uint32\000"
+ 2052      333200
+ 2053              	.LASF33:
+ 2054 0318 4E434F5F 		.ascii	"NCO_ISR_SetVector\000"
+ 2054      4953525F 
+ 2054      53657456 
+ 2054      6563746F 
+ 2054      7200
+ 2055              	.LASF19:
+ 2056 032a 72656738 		.ascii	"reg8\000"
+ 2056      00
+ 2057              	.LASF8:
+ 2058 032f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2058      20756E73 
+ 2058      69676E65 
+ 2058      6420696E 
+ 2058      7400
+ 2059              	.LASF18:
+ 2060 0341 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 49
+
+
+ 2060      6C6500
+ 2061              	.LASF70:
+ 2062 0348 4A325F44 		.ascii	"J2_DIR_Write\000"
+ 2062      49525F57 
+ 2062      72697465 
+ 2062      00
+ 2063              	.LASF27:
+ 2064 0355 6D6F7665 		.ascii	"moves\000"
+ 2064      7300
+ 2065              	.LASF12:
+ 2066 035b 5F5F696E 		.ascii	"__int32_t\000"
+ 2066      7433325F 
+ 2066      7400
+ 2067              	.LASF53:
+ 2068 0365 4A315F61 		.ascii	"J1_accumulator\000"
+ 2068      6363756D 
+ 2068      756C6174 
+ 2068      6F7200
+ 2069              	.LASF49:
+ 2070 0374 6D6F7665 		.ascii	"move_queue\000"
+ 2070      5F717565 
+ 2070      756500
+ 2071              	.LASF55:
+ 2072 037f 4A335F61 		.ascii	"J3_accumulator\000"
+ 2072      6363756D 
+ 2072      756C6174 
+ 2072      6F7200
+ 2073              	.LASF60:
+ 2074 038e 4A325F64 		.ascii	"J2_dir\000"
+ 2074      697200
+ 2075              	.LASF69:
+ 2076 0395 4A315F44 		.ascii	"J1_DIR_Write\000"
+ 2076      49525F57 
+ 2076      72697465 
+ 2076      00
+ 2077              	.LASF44:
+ 2078 03a2 4E434F5F 		.ascii	"NCO_ISR_StartEx\000"
+ 2078      4953525F 
+ 2078      53746172 
+ 2078      74457800 
+ 2079              	.LASF57:
+ 2080 03b2 4A325F73 		.ascii	"J2_step\000"
+ 2080      74657000 
+ 2081              	.LASF48:
+ 2082 03ba 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2082      52784275 
+ 2082      66666572 
+ 2082      00
+ 2083              	.LASF75:
+ 2084 03c7 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2084      43313120 
+ 2084      352E342E 
+ 2084      31203230 
+ 2084      31363036 
+ 2085 03fa 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2085      20726576 
+ 2085      6973696F 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc6vgAEh.s 			page 50
+
+
+ 2085      6E203233 
+ 2085      37373135 
+ 2086 042d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2086      66756E63 
+ 2086      74696F6E 
+ 2086      2D736563 
+ 2086      74696F6E 
+ 2087              	.LASF64:
+ 2088 0455 4A335F64 		.ascii	"J3_duration\000"
+ 2088      75726174 
+ 2088      696F6E00 
+ 2089              	.LASF34:
+ 2090 0461 6D6F7665 		.ascii	"move\000"
+ 2090      00
+ 2091              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

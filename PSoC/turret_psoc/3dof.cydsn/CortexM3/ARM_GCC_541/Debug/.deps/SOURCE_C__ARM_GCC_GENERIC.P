@@ -1,0 +1,14 @@
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/CortexM3/ARM_GCC_541/Debug/comms.o : C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/comms.c C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/comms.h 
+
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cyfitter.h : 
+
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/comms.c : 
+
+C:/Users/pajoh/projects/Turret/PSoC/turret_psoc/3dof.cydsn/comms.h : 
+

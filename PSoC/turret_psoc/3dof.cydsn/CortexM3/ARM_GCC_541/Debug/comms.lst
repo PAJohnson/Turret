@@ -1,0 +1,2049 @@
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"comms.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.message_buff_init,"ax",%progbits
+  20              		.align	2
+  21              		.global	message_buff_init
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	message_buff_init, %function
+  25              	message_buff_init:
+  26              	.LFB1:
+  27              		.file 1 "comms.c"
+   1:comms.c       **** /* ========================================
+   2:comms.c       ****  *
+   3:comms.c       ****  * Copyright YOUR COMPANY, THE YEAR
+   4:comms.c       ****  * All Rights Reserved
+   5:comms.c       ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:comms.c       ****  *
+   7:comms.c       ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:comms.c       ****  * WHICH IS THE PROPERTY OF your company.
+   9:comms.c       ****  *
+  10:comms.c       ****  * ========================================
+  11:comms.c       **** */
+  12:comms.c       **** #include "comms.h"
+  13:comms.c       **** 
+  14:comms.c       **** void message_buff_init(Message_Buff * msg_buff){
+  28              		.loc 1 14 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  34 0000 10B4     		push	{r4}
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 4, -4
+  37              	.LVL1:
+  15:comms.c       ****     //set command to nop, joint to 0, data all to 0
+  16:comms.c       ****     int i = 0;
+  17:comms.c       ****     int j = 0;
+  18:comms.c       ****     msg_buff->head = 0;
+  38              		.loc 1 18 0
+  39 0002 0024     		movs	r4, #0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 2
+
+
+  40 0004 A0F8D047 		strh	r4, [r0, #2000]	@ movhi
+  19:comms.c       ****     msg_buff->tail = 0;
+  41              		.loc 1 19 0
+  42 0008 A0F8D247 		strh	r4, [r0, #2002]	@ movhi
+  20:comms.c       ****     msg_buff->size = 0;
+  43              		.loc 1 20 0
+  44 000c A0F8D447 		strh	r4, [r0, #2004]	@ movhi
+  21:comms.c       ****     for(i = 0; i < MSG_BUFF_SIZE; i++){
+  45              		.loc 1 21 0
+  46 0010 12E0     		b	.L2
+  47              	.LVL2:
+  48              	.L5:
+  22:comms.c       ****         msg_buff->msgs[i].command = NOP;
+  49              		.loc 1 22 0
+  50 0012 A300     		lsls	r3, r4, #2
+  51 0014 2344     		add	r3, r3, r4
+  52 0016 9900     		lsls	r1, r3, #2
+  53 0018 4318     		adds	r3, r0, r1
+  54 001a 0022     		movs	r2, #0
+  55 001c 4252     		strh	r2, [r0, r1]	@ movhi
+  23:comms.c       ****         msg_buff->msgs[i].joint = 0;
+  56              		.loc 1 23 0
+  57 001e 9A70     		strb	r2, [r3, #2]
+  58              	.LVL3:
+  24:comms.c       ****         for(j = 0; j < DATA_SIZE; j++){
+  59              		.loc 1 24 0
+  60 0020 07E0     		b	.L3
+  61              	.LVL4:
+  62              	.L4:
+  25:comms.c       ****             msg_buff->msgs[i].data[j] = 0;
+  63              		.loc 1 25 0 discriminator 3
+  64 0022 04EB8401 		add	r1, r4, r4, lsl #2
+  65 0026 8B00     		lsls	r3, r1, #2
+  66 0028 0344     		add	r3, r3, r0
+  67 002a 1344     		add	r3, r3, r2
+  68 002c 0021     		movs	r1, #0
+  69 002e D970     		strb	r1, [r3, #3]
+  24:comms.c       ****         for(j = 0; j < DATA_SIZE; j++){
+  70              		.loc 1 24 0 discriminator 3
+  71 0030 0132     		adds	r2, r2, #1
+  72              	.LVL5:
+  73              	.L3:
+  24:comms.c       ****         for(j = 0; j < DATA_SIZE; j++){
+  74              		.loc 1 24 0 is_stmt 0 discriminator 1
+  75 0032 0F2A     		cmp	r2, #15
+  76 0034 F5DD     		ble	.L4
+  21:comms.c       ****         msg_buff->msgs[i].command = NOP;
+  77              		.loc 1 21 0 is_stmt 1 discriminator 2
+  78 0036 0134     		adds	r4, r4, #1
+  79              	.LVL6:
+  80              	.L2:
+  21:comms.c       ****         msg_buff->msgs[i].command = NOP;
+  81              		.loc 1 21 0 is_stmt 0 discriminator 1
+  82 0038 632C     		cmp	r4, #99
+  83 003a EADD     		ble	.L5
+  26:comms.c       ****         }
+  27:comms.c       ****     }
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 3
+
+
+  28:comms.c       **** }
+  84              		.loc 1 28 0 is_stmt 1
+  85 003c 10BC     		pop	{r4}
+  86              		.cfi_restore 4
+  87              		.cfi_def_cfa_offset 0
+  88              	.LVL7:
+  89 003e 7047     		bx	lr
+  90              		.cfi_endproc
+  91              	.LFE1:
+  92              		.size	message_buff_init, .-message_buff_init
+  93              		.section	.text.message_buff_add,"ax",%progbits
+  94              		.align	2
+  95              		.global	message_buff_add
+  96              		.thumb
+  97              		.thumb_func
+  98              		.type	message_buff_add, %function
+  99              	message_buff_add:
+ 100              	.LFB2:
+  29:comms.c       **** 
+  30:comms.c       **** void message_buff_add(Message_Buff * msg_buff, Message * msg){
+ 101              		.loc 1 30 0
+ 102              		.cfi_startproc
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              		@ link register save eliminated.
+ 106              	.LVL8:
+ 107 0000 70B4     		push	{r4, r5, r6}
+ 108              		.cfi_def_cfa_offset 12
+ 109              		.cfi_offset 4, -12
+ 110              		.cfi_offset 5, -8
+ 111              		.cfi_offset 6, -4
+  31:comms.c       ****     //figure this out later
+  32:comms.c       ****     int i;
+  33:comms.c       ****     msg_buff->msgs[msg_buff->head].command = msg->command;
+ 112              		.loc 1 33 0
+ 113 0002 B0F8D057 		ldrh	r5, [r0, #2000]
+ 114 0006 0C88     		ldrh	r4, [r1]
+ 115 0008 AB00     		lsls	r3, r5, #2
+ 116 000a 2B44     		add	r3, r3, r5
+ 117 000c 9A00     		lsls	r2, r3, #2
+ 118 000e 8318     		adds	r3, r0, r2
+ 119 0010 8452     		strh	r4, [r0, r2]	@ movhi
+  34:comms.c       ****     msg_buff->msgs[msg_buff->head].joint = msg->joint;
+ 120              		.loc 1 34 0
+ 121 0012 8A78     		ldrb	r2, [r1, #2]	@ zero_extendqisi2
+ 122 0014 9A70     		strb	r2, [r3, #2]
+ 123              	.LVL9:
+  35:comms.c       ****     for(i = 0; i < DATA_SIZE; i++){
+ 124              		.loc 1 35 0
+ 125 0016 0022     		movs	r2, #0
+ 126 0018 08E0     		b	.L8
+ 127              	.LVL10:
+ 128              	.L9:
+  36:comms.c       ****         msg_buff->msgs[msg_buff->head].data[i] = msg->data[i];
+ 129              		.loc 1 36 0 discriminator 3
+ 130 001a 8B18     		adds	r3, r1, r2
+ 131 001c DE78     		ldrb	r6, [r3, #3]	@ zero_extendqisi2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 4
+
+
+ 132 001e 05EB8504 		add	r4, r5, r5, lsl #2
+ 133 0022 A300     		lsls	r3, r4, #2
+ 134 0024 0344     		add	r3, r3, r0
+ 135 0026 1344     		add	r3, r3, r2
+ 136 0028 DE70     		strb	r6, [r3, #3]
+  35:comms.c       ****     for(i = 0; i < DATA_SIZE; i++){
+ 137              		.loc 1 35 0 discriminator 3
+ 138 002a 0132     		adds	r2, r2, #1
+ 139              	.LVL11:
+ 140              	.L8:
+  35:comms.c       ****     for(i = 0; i < DATA_SIZE; i++){
+ 141              		.loc 1 35 0 is_stmt 0 discriminator 1
+ 142 002c 0F2A     		cmp	r2, #15
+ 143 002e F4DD     		ble	.L9
+  37:comms.c       ****     }
+  38:comms.c       ****     msg_buff->head = (msg_buff->head + 1) % MSG_BUFF_SIZE;
+ 144              		.loc 1 38 0 is_stmt 1
+ 145 0030 0135     		adds	r5, r5, #1
+ 146 0032 094B     		ldr	r3, .L11
+ 147 0034 83FB0532 		smull	r3, r2, r3, r5
+ 148              	.LVL12:
+ 149 0038 EB17     		asrs	r3, r5, #31
+ 150 003a C3EB6213 		rsb	r3, r3, r2, asr #5
+ 151 003e 6422     		movs	r2, #100
+ 152 0040 02FB1353 		mls	r3, r2, r3, r5
+ 153 0044 A0F8D037 		strh	r3, [r0, #2000]	@ movhi
+  39:comms.c       ****     msg_buff->size += 1;
+ 154              		.loc 1 39 0
+ 155 0048 B0F8D437 		ldrh	r3, [r0, #2004]
+ 156 004c 0133     		adds	r3, r3, #1
+ 157 004e A0F8D437 		strh	r3, [r0, #2004]	@ movhi
+  40:comms.c       ****     return;
+  41:comms.c       **** }
+ 158              		.loc 1 41 0
+ 159 0052 70BC     		pop	{r4, r5, r6}
+ 160              		.cfi_restore 6
+ 161              		.cfi_restore 5
+ 162              		.cfi_restore 4
+ 163              		.cfi_def_cfa_offset 0
+ 164 0054 7047     		bx	lr
+ 165              	.L12:
+ 166 0056 00BF     		.align	2
+ 167              	.L11:
+ 168 0058 1F85EB51 		.word	1374389535
+ 169              		.cfi_endproc
+ 170              	.LFE2:
+ 171              		.size	message_buff_add, .-message_buff_add
+ 172              		.section	.text.move_queue_init,"ax",%progbits
+ 173              		.align	2
+ 174              		.global	move_queue_init
+ 175              		.thumb
+ 176              		.thumb_func
+ 177              		.type	move_queue_init, %function
+ 178              	move_queue_init:
+ 179              	.LFB4:
+  42:comms.c       **** 
+  43:comms.c       **** void message_buff_execute(Message_Buff * msg_buff){
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 5
+
+
+  44:comms.c       ****     //execute oldest message received
+  45:comms.c       ****     uint8 joint;
+  46:comms.c       ****     uint8 direction;
+  47:comms.c       ****     uint32 tuningWord;
+  48:comms.c       ****     uint32 duration;
+  49:comms.c       ****     if(msg_buff->msgs[msg_buff->tail].command == SET_VELOCITY){
+  50:comms.c       ****         //add message to move queue
+  51:comms.c       ****         //move queue is global
+  52:comms.c       ****         joint = msg_buff->msgs[msg_buff->tail].joint;
+  53:comms.c       ****         direction = msg_buff->msgs[msg_buff->tail].data[0];
+  54:comms.c       ****         tuningWord =    (msg_buff->msgs[msg_buff->tail].data[1]<<16) + \
+  55:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[2]<<8) + \
+  56:comms.c       ****                         msg_buff->msgs[msg_buff->tail].data[3];
+  57:comms.c       ****         duration =      (msg_buff->msgs[msg_buff->tail].data[4]<<24) + \
+  58:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[5]<<16) + \
+  59:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[6]<<8) + \
+  60:comms.c       ****                         msg_buff->msgs[msg_buff->tail].data[7];
+  61:comms.c       ****         move_queue_add(&move_queue,joint,direction,tuningWord,duration);
+  62:comms.c       ****         msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
+  63:comms.c       ****         msg_buff->size -= 1;
+  64:comms.c       ****     }
+  65:comms.c       **** }
+  66:comms.c       **** 
+  67:comms.c       **** void move_queue_init(Move_Queue * move_queue){
+ 180              		.loc 1 67 0
+ 181              		.cfi_startproc
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 184              		@ link register save eliminated.
+ 185              	.LVL13:
+ 186 0000 10B4     		push	{r4}
+ 187              		.cfi_def_cfa_offset 4
+ 188              		.cfi_offset 4, -4
+  68:comms.c       ****     int i;
+  69:comms.c       ****     move_queue->head = 0;
+ 189              		.loc 1 69 0
+ 190 0002 0023     		movs	r3, #0
+ 191 0004 A0F8B034 		strh	r3, [r0, #1200]	@ movhi
+  70:comms.c       ****     move_queue->tail = 0;
+ 192              		.loc 1 70 0
+ 193 0008 A0F8B234 		strh	r3, [r0, #1202]	@ movhi
+  71:comms.c       ****     move_queue->size = 0;
+ 194              		.loc 1 71 0
+ 195 000c A0F8B434 		strh	r3, [r0, #1204]	@ movhi
+ 196              	.LVL14:
+  72:comms.c       ****     for(i = 0; i < MOVE_QUEUE_SIZE; i++){
+ 197              		.loc 1 72 0
+ 198 0010 09E0     		b	.L14
+ 199              	.LVL15:
+ 200              	.L15:
+  73:comms.c       ****         move_queue->moves[i].direction = 0;
+ 201              		.loc 1 73 0 discriminator 3
+ 202 0012 5A00     		lsls	r2, r3, #1
+ 203 0014 1A44     		add	r2, r2, r3
+ 204 0016 9400     		lsls	r4, r2, #2
+ 205 0018 0119     		adds	r1, r0, r4
+ 206 001a 0022     		movs	r2, #0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 6
+
+
+ 207 001c 4A70     		strb	r2, [r1, #1]
+  74:comms.c       ****         move_queue->moves[i].duration = 0;
+ 208              		.loc 1 74 0 discriminator 3
+ 209 001e 8A60     		str	r2, [r1, #8]
+  75:comms.c       ****         move_queue->moves[i].joint = 0;
+ 210              		.loc 1 75 0 discriminator 3
+ 211 0020 0255     		strb	r2, [r0, r4]
+  76:comms.c       ****         move_queue->moves[i].tuningWord = 0;
+ 212              		.loc 1 76 0 discriminator 3
+ 213 0022 4A60     		str	r2, [r1, #4]
+  72:comms.c       ****         move_queue->moves[i].direction = 0;
+ 214              		.loc 1 72 0 discriminator 3
+ 215 0024 0133     		adds	r3, r3, #1
+ 216              	.LVL16:
+ 217              	.L14:
+  72:comms.c       ****         move_queue->moves[i].direction = 0;
+ 218              		.loc 1 72 0 is_stmt 0 discriminator 1
+ 219 0026 632B     		cmp	r3, #99
+ 220 0028 F3DD     		ble	.L15
+  77:comms.c       ****     }
+  78:comms.c       **** }
+ 221              		.loc 1 78 0 is_stmt 1
+ 222 002a 10BC     		pop	{r4}
+ 223              		.cfi_restore 4
+ 224              		.cfi_def_cfa_offset 0
+ 225 002c 7047     		bx	lr
+ 226              		.cfi_endproc
+ 227              	.LFE4:
+ 228              		.size	move_queue_init, .-move_queue_init
+ 229 002e 00BF     		.section	.text.move_queue_add,"ax",%progbits
+ 230              		.align	2
+ 231              		.global	move_queue_add
+ 232              		.thumb
+ 233              		.thumb_func
+ 234              		.type	move_queue_add, %function
+ 235              	move_queue_add:
+ 236              	.LFB5:
+  79:comms.c       **** int16 move_queue_add(Move_Queue * move_queue, uint8 joint, uint8 direction, uint32 tuningWord, uint
+ 237              		.loc 1 79 0
+ 238              		.cfi_startproc
+ 239              		@ args = 4, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              		@ link register save eliminated.
+ 242              	.LVL17:
+ 243 0000 F0B4     		push	{r4, r5, r6, r7}
+ 244              		.cfi_def_cfa_offset 16
+ 245              		.cfi_offset 4, -16
+ 246              		.cfi_offset 5, -12
+ 247              		.cfi_offset 6, -8
+ 248              		.cfi_offset 7, -4
+  80:comms.c       ****     //return 0 if successful, 1 otherwise
+  81:comms.c       ****     if(move_queue->size < MOVE_QUEUE_SIZE){
+ 249              		.loc 1 81 0
+ 250 0002 B0F8B454 		ldrh	r5, [r0, #1204]
+ 251 0006 632D     		cmp	r5, #99
+ 252 0008 1BD8     		bhi	.L19
+  82:comms.c       ****         move_queue->moves[move_queue->head].direction = direction;
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 7
+
+
+ 253              		.loc 1 82 0
+ 254 000a B0F8B044 		ldrh	r4, [r0, #1200]
+ 255 000e 6600     		lsls	r6, r4, #1
+ 256 0010 2644     		add	r6, r6, r4
+ 257 0012 B700     		lsls	r7, r6, #2
+ 258 0014 C619     		adds	r6, r0, r7
+ 259 0016 7270     		strb	r2, [r6, #1]
+  83:comms.c       ****         move_queue->moves[move_queue->head].duration = duration;
+ 260              		.loc 1 83 0
+ 261 0018 049A     		ldr	r2, [sp, #16]
+ 262              	.LVL18:
+ 263 001a B260     		str	r2, [r6, #8]
+  84:comms.c       ****         move_queue->moves[move_queue->head].joint = joint;
+ 264              		.loc 1 84 0
+ 265 001c C155     		strb	r1, [r0, r7]
+  85:comms.c       ****         move_queue->moves[move_queue->head].tuningWord = tuningWord;
+ 266              		.loc 1 85 0
+ 267 001e 7360     		str	r3, [r6, #4]
+  86:comms.c       ****         move_queue->head = (move_queue->head + 1) % MOVE_QUEUE_SIZE;
+ 268              		.loc 1 86 0
+ 269 0020 631C     		adds	r3, r4, #1
+ 270              	.LVL19:
+ 271 0022 0A4A     		ldr	r2, .L21
+ 272 0024 82FB0321 		smull	r2, r1, r2, r3
+ 273              	.LVL20:
+ 274 0028 DA17     		asrs	r2, r3, #31
+ 275 002a C2EB6112 		rsb	r2, r2, r1, asr #5
+ 276 002e 6421     		movs	r1, #100
+ 277 0030 01FB1232 		mls	r2, r1, r2, r3
+ 278 0034 A0F8B024 		strh	r2, [r0, #1200]	@ movhi
+ 279              	.LVL21:
+  87:comms.c       ****         move_queue->size += 1;
+ 280              		.loc 1 87 0
+ 281 0038 0135     		adds	r5, r5, #1
+ 282 003a A0F8B454 		strh	r5, [r0, #1204]	@ movhi
+  88:comms.c       ****         return 0;
+ 283              		.loc 1 88 0
+ 284 003e 0020     		movs	r0, #0
+ 285              	.LVL22:
+ 286 0040 01E0     		b	.L18
+ 287              	.LVL23:
+ 288              	.L19:
+  89:comms.c       ****     }
+  90:comms.c       ****     else{
+  91:comms.c       ****         return -1;
+ 289              		.loc 1 91 0
+ 290 0042 4FF0FF30 		mov	r0, #-1
+ 291              	.LVL24:
+ 292              	.L18:
+  92:comms.c       ****     }
+  93:comms.c       **** }
+ 293              		.loc 1 93 0
+ 294 0046 F0BC     		pop	{r4, r5, r6, r7}
+ 295              		.cfi_restore 7
+ 296              		.cfi_restore 6
+ 297              		.cfi_restore 5
+ 298              		.cfi_restore 4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 8
+
+
+ 299              		.cfi_def_cfa_offset 0
+ 300              	.LVL25:
+ 301 0048 7047     		bx	lr
+ 302              	.L22:
+ 303 004a 00BF     		.align	2
+ 304              	.L21:
+ 305 004c 1F85EB51 		.word	1374389535
+ 306              		.cfi_endproc
+ 307              	.LFE5:
+ 308              		.size	move_queue_add, .-move_queue_add
+ 309              		.section	.text.message_buff_execute,"ax",%progbits
+ 310              		.align	2
+ 311              		.global	message_buff_execute
+ 312              		.thumb
+ 313              		.thumb_func
+ 314              		.type	message_buff_execute, %function
+ 315              	message_buff_execute:
+ 316              	.LFB3:
+  43:comms.c       ****     //execute oldest message received
+ 317              		.loc 1 43 0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              	.LVL26:
+ 322 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 323              		.cfi_def_cfa_offset 20
+ 324              		.cfi_offset 4, -20
+ 325              		.cfi_offset 5, -16
+ 326              		.cfi_offset 6, -12
+ 327              		.cfi_offset 7, -8
+ 328              		.cfi_offset 14, -4
+ 329 0002 83B0     		sub	sp, sp, #12
+ 330              		.cfi_def_cfa_offset 32
+  49:comms.c       ****         //add message to move queue
+ 331              		.loc 1 49 0
+ 332 0004 B0F8D247 		ldrh	r4, [r0, #2002]
+ 333 0008 04EB8402 		add	r2, r4, r4, lsl #2
+ 334 000c 9300     		lsls	r3, r2, #2
+ 335 000e C25A     		ldrh	r2, [r0, r3]
+ 336 0010 45F25363 		movw	r3, #22099
+ 337 0014 9A42     		cmp	r2, r3
+ 338 0016 34D1     		bne	.L23
+ 339 0018 0546     		mov	r5, r0
+  52:comms.c       ****         direction = msg_buff->msgs[msg_buff->tail].data[0];
+ 340              		.loc 1 52 0
+ 341 001a 4FEA840E 		lsl	lr, r4, #2
+ 342 001e 0EEB0403 		add	r3, lr, r4
+ 343 0022 9800     		lsls	r0, r3, #2
+ 344              	.LVL27:
+ 345 0024 2844     		add	r0, r0, r5
+ 346 0026 8178     		ldrb	r1, [r0, #2]	@ zero_extendqisi2
+ 347              	.LVL28:
+  53:comms.c       ****         tuningWord =    (msg_buff->msgs[msg_buff->tail].data[1]<<16) + \
+ 348              		.loc 1 53 0
+ 349 0028 C278     		ldrb	r2, [r0, #3]	@ zero_extendqisi2
+ 350              	.LVL29:
+  54:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[2]<<8) + \
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 9
+
+
+ 351              		.loc 1 54 0
+ 352 002a 0679     		ldrb	r6, [r0, #4]	@ zero_extendqisi2
+  55:comms.c       ****                         msg_buff->msgs[msg_buff->tail].data[3];
+ 353              		.loc 1 55 0
+ 354 002c 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 355 002e 1B02     		lsls	r3, r3, #8
+  54:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[2]<<8) + \
+ 356              		.loc 1 54 0
+ 357 0030 03EB0643 		add	r3, r3, r6, lsl #16
+  56:comms.c       ****         duration =      (msg_buff->msgs[msg_buff->tail].data[4]<<24) + \
+ 358              		.loc 1 56 0
+ 359 0034 8779     		ldrb	r7, [r0, #6]	@ zero_extendqisi2
+ 360              	.LVL30:
+  57:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[5]<<16) + \
+ 361              		.loc 1 57 0
+ 362 0036 90F807C0 		ldrb	ip, [r0, #7]	@ zero_extendqisi2
+  58:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[6]<<8) + \
+ 363              		.loc 1 58 0
+ 364 003a 067A     		ldrb	r6, [r0, #8]	@ zero_extendqisi2
+ 365 003c 3604     		lsls	r6, r6, #16
+  57:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[5]<<16) + \
+ 366              		.loc 1 57 0
+ 367 003e 06EB0C66 		add	r6, r6, ip, lsl #24
+  59:comms.c       ****                         msg_buff->msgs[msg_buff->tail].data[7];
+ 368              		.loc 1 59 0
+ 369 0042 407A     		ldrb	r0, [r0, #9]	@ zero_extendqisi2
+  58:comms.c       ****                         (msg_buff->msgs[msg_buff->tail].data[6]<<8) + \
+ 370              		.loc 1 58 0
+ 371 0044 06EB0020 		add	r0, r6, r0, lsl #8
+  60:comms.c       ****         move_queue_add(&move_queue,joint,direction,tuningWord,duration);
+ 372              		.loc 1 60 0
+ 373 0048 7444     		add	r4, r4, lr
+ 374 004a A600     		lsls	r6, r4, #2
+ 375 004c 2E44     		add	r6, r6, r5
+ 376 004e B47A     		ldrb	r4, [r6, #10]	@ zero_extendqisi2
+  59:comms.c       ****                         msg_buff->msgs[msg_buff->tail].data[7];
+ 377              		.loc 1 59 0
+ 378 0050 2044     		add	r0, r0, r4
+ 379              	.LVL31:
+  61:comms.c       ****         msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
+ 380              		.loc 1 61 0
+ 381 0052 0090     		str	r0, [sp]
+ 382 0054 3B44     		add	r3, r3, r7
+ 383              	.LVL32:
+ 384 0056 0C48     		ldr	r0, .L26
+ 385              	.LVL33:
+ 386 0058 FFF7FEFF 		bl	move_queue_add
+ 387              	.LVL34:
+  62:comms.c       ****         msg_buff->size -= 1;
+ 388              		.loc 1 62 0
+ 389 005c B5F8D227 		ldrh	r2, [r5, #2002]
+ 390 0060 0132     		adds	r2, r2, #1
+ 391 0062 0A4B     		ldr	r3, .L26+4
+ 392 0064 83FB0231 		smull	r3, r1, r3, r2
+ 393 0068 D317     		asrs	r3, r2, #31
+ 394 006a C3EB6113 		rsb	r3, r3, r1, asr #5
+ 395 006e 6421     		movs	r1, #100
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 10
+
+
+ 396 0070 01FB1323 		mls	r3, r1, r3, r2
+ 397 0074 A5F8D237 		strh	r3, [r5, #2002]	@ movhi
+  63:comms.c       ****     }
+ 398              		.loc 1 63 0
+ 399 0078 B5F8D437 		ldrh	r3, [r5, #2004]
+ 400 007c 013B     		subs	r3, r3, #1
+ 401 007e A5F8D437 		strh	r3, [r5, #2004]	@ movhi
+ 402              	.LVL35:
+ 403              	.L23:
+  65:comms.c       **** 
+ 404              		.loc 1 65 0
+ 405 0082 03B0     		add	sp, sp, #12
+ 406              		.cfi_def_cfa_offset 20
+ 407              		@ sp needed
+ 408 0084 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 409              	.L27:
+ 410 0086 00BF     		.align	2
+ 411              	.L26:
+ 412 0088 00000000 		.word	move_queue
+ 413 008c 1F85EB51 		.word	1374389535
+ 414              		.cfi_endproc
+ 415              	.LFE3:
+ 416              		.size	message_buff_execute, .-message_buff_execute
+ 417              		.section	.text.move_queue_get,"ax",%progbits
+ 418              		.align	2
+ 419              		.global	move_queue_get
+ 420              		.thumb
+ 421              		.thumb_func
+ 422              		.type	move_queue_get, %function
+ 423              	move_queue_get:
+ 424              	.LFB6:
+  94:comms.c       **** Move * move_queue_get(Move_Queue * move_queue){
+ 425              		.loc 1 94 0
+ 426              		.cfi_startproc
+ 427              		@ args = 0, pretend = 0, frame = 0
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 429              		@ link register save eliminated.
+ 430              	.LVL36:
+  95:comms.c       ****     //gives pointer to oldest move, increments tail index
+  96:comms.c       ****     Move * move;
+  97:comms.c       ****     if(move_queue->size > 0){
+ 431              		.loc 1 97 0
+ 432 0000 B0F8B434 		ldrh	r3, [r0, #1204]
+ 433 0004 B3B1     		cbz	r3, .L30
+  94:comms.c       **** Move * move_queue_get(Move_Queue * move_queue){
+ 434              		.loc 1 94 0
+ 435 0006 10B4     		push	{r4}
+ 436              		.cfi_def_cfa_offset 4
+ 437              		.cfi_offset 4, -4
+  98:comms.c       ****         move_queue->size -= 1;
+ 438              		.loc 1 98 0
+ 439 0008 013B     		subs	r3, r3, #1
+ 440 000a A0F8B434 		strh	r3, [r0, #1204]	@ movhi
+  99:comms.c       ****         move = &move_queue->moves[move_queue->tail];
+ 441              		.loc 1 99 0
+ 442 000e B0F8B234 		ldrh	r3, [r0, #1202]
+ 443 0012 03EB4302 		add	r2, r3, r3, lsl #1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 11
+
+
+ 444 0016 9100     		lsls	r1, r2, #2
+ 445              	.LVL37:
+ 100:comms.c       ****         move_queue->tail = (move_queue->tail + 1) % MOVE_QUEUE_SIZE;
+ 446              		.loc 1 100 0
+ 447 0018 0133     		adds	r3, r3, #1
+ 448 001a 084A     		ldr	r2, .L33
+ 449 001c 82FB0324 		smull	r2, r4, r2, r3
+ 450 0020 DA17     		asrs	r2, r3, #31
+ 451 0022 C2EB6412 		rsb	r2, r2, r4, asr #5
+ 452 0026 6424     		movs	r4, #100
+ 453 0028 04FB1232 		mls	r2, r4, r2, r3
+ 454 002c A0F8B224 		strh	r2, [r0, #1202]	@ movhi
+ 101:comms.c       ****     }
+ 102:comms.c       ****     else{
+ 103:comms.c       ****         //move queue empty
+ 104:comms.c       ****         return 0;
+ 105:comms.c       ****     }
+ 106:comms.c       ****     return move;
+ 455              		.loc 1 106 0
+ 456 0030 0844     		add	r0, r0, r1
+ 457              	.LVL38:
+ 458 0032 01E0     		b	.L29
+ 459              	.LVL39:
+ 460              	.L30:
+ 461              		.cfi_def_cfa_offset 0
+ 462              		.cfi_restore 4
+ 104:comms.c       ****     }
+ 463              		.loc 1 104 0
+ 464 0034 0020     		movs	r0, #0
+ 465              	.LVL40:
+ 466 0036 7047     		bx	lr
+ 467              	.LVL41:
+ 468              	.L29:
+ 469              		.cfi_def_cfa_offset 4
+ 470              		.cfi_offset 4, -4
+ 107:comms.c       **** }
+ 471              		.loc 1 107 0
+ 472 0038 10BC     		pop	{r4}
+ 473              		.cfi_restore 4
+ 474              		.cfi_def_cfa_offset 0
+ 475 003a 7047     		bx	lr
+ 476              	.L34:
+ 477              		.align	2
+ 478              	.L33:
+ 479 003c 1F85EB51 		.word	1374389535
+ 480              		.cfi_endproc
+ 481              	.LFE6:
+ 482              		.size	move_queue_get, .-move_queue_get
+ 483              		.text
+ 484              	.Letext0:
+ 485              		.file 2 "Generated_Source\\PSoC5/cytypes.h"
+ 486              		.file 3 "comms.h"
+ 487              		.section	.debug_info,"",%progbits
+ 488              	.Ldebug_info0:
+ 489 0000 D4030000 		.4byte	0x3d4
+ 490 0004 0400     		.2byte	0x4
+ 491 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 12
+
+
+ 492 000a 04       		.byte	0x4
+ 493 000b 01       		.uleb128 0x1
+ 494 000c 83000000 		.4byte	.LASF42
+ 495 0010 0C       		.byte	0xc
+ 496 0011 D8010000 		.4byte	.LASF43
+ 497 0015 46010000 		.4byte	.LASF44
+ 498 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 499 001d 00000000 		.4byte	0
+ 500 0021 00000000 		.4byte	.Ldebug_line0
+ 501 0025 02       		.uleb128 0x2
+ 502 0026 01       		.byte	0x1
+ 503 0027 06       		.byte	0x6
+ 504 0028 60020000 		.4byte	.LASF0
+ 505 002c 02       		.uleb128 0x2
+ 506 002d 01       		.byte	0x1
+ 507 002e 08       		.byte	0x8
+ 508 002f 81010000 		.4byte	.LASF1
+ 509 0033 02       		.uleb128 0x2
+ 510 0034 02       		.byte	0x2
+ 511 0035 05       		.byte	0x5
+ 512 0036 27020000 		.4byte	.LASF2
+ 513 003a 02       		.uleb128 0x2
+ 514 003b 02       		.byte	0x2
+ 515 003c 07       		.byte	0x7
+ 516 003d 34000000 		.4byte	.LASF3
+ 517 0041 02       		.uleb128 0x2
+ 518 0042 04       		.byte	0x4
+ 519 0043 05       		.byte	0x5
+ 520 0044 36020000 		.4byte	.LASF4
+ 521 0048 02       		.uleb128 0x2
+ 522 0049 04       		.byte	0x4
+ 523 004a 07       		.byte	0x7
+ 524 004b 2E010000 		.4byte	.LASF5
+ 525 004f 02       		.uleb128 0x2
+ 526 0050 08       		.byte	0x8
+ 527 0051 05       		.byte	0x5
+ 528 0052 F4010000 		.4byte	.LASF6
+ 529 0056 02       		.uleb128 0x2
+ 530 0057 08       		.byte	0x8
+ 531 0058 07       		.byte	0x7
+ 532 0059 B1010000 		.4byte	.LASF7
+ 533 005d 03       		.uleb128 0x3
+ 534 005e 04       		.byte	0x4
+ 535 005f 05       		.byte	0x5
+ 536 0060 696E7400 		.ascii	"int\000"
+ 537 0064 02       		.uleb128 0x2
+ 538 0065 04       		.byte	0x4
+ 539 0066 07       		.byte	0x7
+ 540 0067 A4010000 		.4byte	.LASF8
+ 541 006b 04       		.uleb128 0x4
+ 542 006c 40010000 		.4byte	.LASF9
+ 543 0070 02       		.byte	0x2
+ 544 0071 E401     		.2byte	0x1e4
+ 545 0073 2C000000 		.4byte	0x2c
+ 546 0077 04       		.uleb128 0x4
+ 547 0078 96010000 		.4byte	.LASF10
+ 548 007c 02       		.byte	0x2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 13
+
+
+ 549 007d E501     		.2byte	0x1e5
+ 550 007f 3A000000 		.4byte	0x3a
+ 551 0083 04       		.uleb128 0x4
+ 552 0084 9D010000 		.4byte	.LASF11
+ 553 0088 02       		.byte	0x2
+ 554 0089 E601     		.2byte	0x1e6
+ 555 008b 48000000 		.4byte	0x48
+ 556 008f 04       		.uleb128 0x4
+ 557 0090 28010000 		.4byte	.LASF12
+ 558 0094 02       		.byte	0x2
+ 559 0095 E801     		.2byte	0x1e8
+ 560 0097 33000000 		.4byte	0x33
+ 561 009b 02       		.uleb128 0x2
+ 562 009c 04       		.byte	0x4
+ 563 009d 04       		.byte	0x4
+ 564 009e 73000000 		.4byte	.LASF13
+ 565 00a2 02       		.uleb128 0x2
+ 566 00a3 08       		.byte	0x8
+ 567 00a4 04       		.byte	0x4
+ 568 00a5 8F010000 		.4byte	.LASF14
+ 569 00a9 02       		.uleb128 0x2
+ 570 00aa 01       		.byte	0x1
+ 571 00ab 08       		.byte	0x8
+ 572 00ac 08000000 		.4byte	.LASF15
+ 573 00b0 02       		.uleb128 0x2
+ 574 00b1 08       		.byte	0x8
+ 575 00b2 04       		.byte	0x4
+ 576 00b3 54020000 		.4byte	.LASF16
+ 577 00b7 02       		.uleb128 0x2
+ 578 00b8 04       		.byte	0x4
+ 579 00b9 07       		.byte	0x7
+ 580 00ba E6010000 		.4byte	.LASF17
+ 581 00be 05       		.uleb128 0x5
+ 582 00bf 00000000 		.4byte	.LASF45
+ 583 00c3 14       		.byte	0x14
+ 584 00c4 03       		.byte	0x3
+ 585 00c5 1A       		.byte	0x1a
+ 586 00c6 EF000000 		.4byte	0xef
+ 587 00ca 06       		.uleb128 0x6
+ 588 00cb 47000000 		.4byte	.LASF18
+ 589 00cf 03       		.byte	0x3
+ 590 00d0 1B       		.byte	0x1b
+ 591 00d1 77000000 		.4byte	0x77
+ 592 00d5 00       		.byte	0
+ 593 00d6 06       		.uleb128 0x6
+ 594 00d7 E0010000 		.4byte	.LASF19
+ 595 00db 03       		.byte	0x3
+ 596 00dc 1C       		.byte	0x1c
+ 597 00dd 6B000000 		.4byte	0x6b
+ 598 00e1 02       		.byte	0x2
+ 599 00e2 06       		.uleb128 0x6
+ 600 00e3 79000000 		.4byte	.LASF20
+ 601 00e7 03       		.byte	0x3
+ 602 00e8 1D       		.byte	0x1d
+ 603 00e9 EF000000 		.4byte	0xef
+ 604 00ed 03       		.byte	0x3
+ 605 00ee 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 14
+
+
+ 606 00ef 07       		.uleb128 0x7
+ 607 00f0 6B000000 		.4byte	0x6b
+ 608 00f4 FF000000 		.4byte	0xff
+ 609 00f8 08       		.uleb128 0x8
+ 610 00f9 B7000000 		.4byte	0xb7
+ 611 00fd 0F       		.byte	0xf
+ 612 00fe 00       		.byte	0
+ 613 00ff 09       		.uleb128 0x9
+ 614 0100 18000000 		.4byte	.LASF21
+ 615 0104 03       		.byte	0x3
+ 616 0105 1E       		.byte	0x1e
+ 617 0106 BE000000 		.4byte	0xbe
+ 618 010a 0A       		.uleb128 0xa
+ 619 010b D607     		.2byte	0x7d6
+ 620 010d 03       		.byte	0x3
+ 621 010e 20       		.byte	0x20
+ 622 010f 47010000 		.4byte	0x147
+ 623 0113 06       		.uleb128 0x6
+ 624 0114 EF010000 		.4byte	.LASF22
+ 625 0118 03       		.byte	0x3
+ 626 0119 21       		.byte	0x21
+ 627 011a 47010000 		.4byte	0x147
+ 628 011e 00       		.byte	0
+ 629 011f 0B       		.uleb128 0xb
+ 630 0120 6C020000 		.4byte	.LASF23
+ 631 0124 03       		.byte	0x3
+ 632 0125 22       		.byte	0x22
+ 633 0126 77000000 		.4byte	0x77
+ 634 012a D007     		.2byte	0x7d0
+ 635 012c 0B       		.uleb128 0xb
+ 636 012d 31020000 		.4byte	.LASF24
+ 637 0131 03       		.byte	0x3
+ 638 0132 23       		.byte	0x23
+ 639 0133 77000000 		.4byte	0x77
+ 640 0137 D207     		.2byte	0x7d2
+ 641 0139 0B       		.uleb128 0xb
+ 642 013a 7E000000 		.4byte	.LASF25
+ 643 013e 03       		.byte	0x3
+ 644 013f 24       		.byte	0x24
+ 645 0140 77000000 		.4byte	0x77
+ 646 0144 D407     		.2byte	0x7d4
+ 647 0146 00       		.byte	0
+ 648 0147 07       		.uleb128 0x7
+ 649 0148 FF000000 		.4byte	0xff
+ 650 014c 57010000 		.4byte	0x157
+ 651 0150 08       		.uleb128 0x8
+ 652 0151 B7000000 		.4byte	0xb7
+ 653 0155 63       		.byte	0x63
+ 654 0156 00       		.byte	0
+ 655 0157 09       		.uleb128 0x9
+ 656 0158 02020000 		.4byte	.LASF26
+ 657 015c 03       		.byte	0x3
+ 658 015d 25       		.byte	0x25
+ 659 015e 0A010000 		.4byte	0x10a
+ 660 0162 0C       		.uleb128 0xc
+ 661 0163 0C       		.byte	0xc
+ 662 0164 03       		.byte	0x3
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 15
+
+
+ 663 0165 27       		.byte	0x27
+ 664 0166 9B010000 		.4byte	0x19b
+ 665 016a 06       		.uleb128 0x6
+ 666 016b E0010000 		.4byte	.LASF19
+ 667 016f 03       		.byte	0x3
+ 668 0170 28       		.byte	0x28
+ 669 0171 6B000000 		.4byte	0x6b
+ 670 0175 00       		.byte	0
+ 671 0176 06       		.uleb128 0x6
+ 672 0177 5E000000 		.4byte	.LASF27
+ 673 017b 03       		.byte	0x3
+ 674 017c 29       		.byte	0x29
+ 675 017d 6B000000 		.4byte	0x6b
+ 676 0181 01       		.byte	0x1
+ 677 0182 06       		.uleb128 0x6
+ 678 0183 71020000 		.4byte	.LASF28
+ 679 0187 03       		.byte	0x3
+ 680 0188 2A       		.byte	0x2a
+ 681 0189 83000000 		.4byte	0x83
+ 682 018d 04       		.byte	0x4
+ 683 018e 06       		.uleb128 0x6
+ 684 018f 20000000 		.4byte	.LASF29
+ 685 0193 03       		.byte	0x3
+ 686 0194 2B       		.byte	0x2b
+ 687 0195 83000000 		.4byte	0x83
+ 688 0199 08       		.byte	0x8
+ 689 019a 00       		.byte	0
+ 690 019b 09       		.uleb128 0x9
+ 691 019c 11010000 		.4byte	.LASF30
+ 692 01a0 03       		.byte	0x3
+ 693 01a1 2C       		.byte	0x2c
+ 694 01a2 62010000 		.4byte	0x162
+ 695 01a6 0A       		.uleb128 0xa
+ 696 01a7 B804     		.2byte	0x4b8
+ 697 01a9 03       		.byte	0x3
+ 698 01aa 30       		.byte	0x30
+ 699 01ab E3010000 		.4byte	0x1e3
+ 700 01af 06       		.uleb128 0x6
+ 701 01b0 2E000000 		.4byte	.LASF31
+ 702 01b4 03       		.byte	0x3
+ 703 01b5 31       		.byte	0x31
+ 704 01b6 E3010000 		.4byte	0x1e3
+ 705 01ba 00       		.byte	0
+ 706 01bb 0B       		.uleb128 0xb
+ 707 01bc 6C020000 		.4byte	.LASF23
+ 708 01c0 03       		.byte	0x3
+ 709 01c1 32       		.byte	0x32
+ 710 01c2 77000000 		.4byte	0x77
+ 711 01c6 B004     		.2byte	0x4b0
+ 712 01c8 0B       		.uleb128 0xb
+ 713 01c9 31020000 		.4byte	.LASF24
+ 714 01cd 03       		.byte	0x3
+ 715 01ce 33       		.byte	0x33
+ 716 01cf 77000000 		.4byte	0x77
+ 717 01d3 B204     		.2byte	0x4b2
+ 718 01d5 0B       		.uleb128 0xb
+ 719 01d6 7E000000 		.4byte	.LASF25
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 16
+
+
+ 720 01da 03       		.byte	0x3
+ 721 01db 34       		.byte	0x34
+ 722 01dc 77000000 		.4byte	0x77
+ 723 01e0 B404     		.2byte	0x4b4
+ 724 01e2 00       		.byte	0
+ 725 01e3 07       		.uleb128 0x7
+ 726 01e4 9B010000 		.4byte	0x19b
+ 727 01e8 F3010000 		.4byte	0x1f3
+ 728 01ec 08       		.uleb128 0x8
+ 729 01ed B7000000 		.4byte	0xb7
+ 730 01f1 63       		.byte	0x63
+ 731 01f2 00       		.byte	0
+ 732 01f3 09       		.uleb128 0x9
+ 733 01f4 0D000000 		.4byte	.LASF32
+ 734 01f8 03       		.byte	0x3
+ 735 01f9 35       		.byte	0x35
+ 736 01fa A6010000 		.4byte	0x1a6
+ 737 01fe 0D       		.uleb128 0xd
+ 738 01ff 16010000 		.4byte	.LASF33
+ 739 0203 01       		.byte	0x1
+ 740 0204 0E       		.byte	0xe
+ 741 0205 00000000 		.4byte	.LFB1
+ 742 0209 40000000 		.4byte	.LFE1-.LFB1
+ 743 020d 01       		.uleb128 0x1
+ 744 020e 9C       		.byte	0x9c
+ 745 020f 3B020000 		.4byte	0x23b
+ 746 0213 0E       		.uleb128 0xe
+ 747 0214 1E020000 		.4byte	.LASF35
+ 748 0218 01       		.byte	0x1
+ 749 0219 0E       		.byte	0xe
+ 750 021a 3B020000 		.4byte	0x23b
+ 751 021e 01       		.uleb128 0x1
+ 752 021f 50       		.byte	0x50
+ 753 0220 0F       		.uleb128 0xf
+ 754 0221 6900     		.ascii	"i\000"
+ 755 0223 01       		.byte	0x1
+ 756 0224 10       		.byte	0x10
+ 757 0225 5D000000 		.4byte	0x5d
+ 758 0229 00000000 		.4byte	.LLST0
+ 759 022d 0F       		.uleb128 0xf
+ 760 022e 6A00     		.ascii	"j\000"
+ 761 0230 01       		.byte	0x1
+ 762 0231 11       		.byte	0x11
+ 763 0232 5D000000 		.4byte	0x5d
+ 764 0236 1F000000 		.4byte	.LLST1
+ 765 023a 00       		.byte	0
+ 766 023b 10       		.uleb128 0x10
+ 767 023c 04       		.byte	0x4
+ 768 023d 57010000 		.4byte	0x157
+ 769 0241 0D       		.uleb128 0xd
+ 770 0242 7C020000 		.4byte	.LASF34
+ 771 0246 01       		.byte	0x1
+ 772 0247 1E       		.byte	0x1e
+ 773 0248 00000000 		.4byte	.LFB2
+ 774 024c 5C000000 		.4byte	.LFE2-.LFB2
+ 775 0250 01       		.uleb128 0x1
+ 776 0251 9C       		.byte	0x9c
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 17
+
+
+ 777 0252 7E020000 		.4byte	0x27e
+ 778 0256 0E       		.uleb128 0xe
+ 779 0257 1E020000 		.4byte	.LASF35
+ 780 025b 01       		.byte	0x1
+ 781 025c 1E       		.byte	0x1e
+ 782 025d 3B020000 		.4byte	0x23b
+ 783 0261 01       		.uleb128 0x1
+ 784 0262 50       		.byte	0x50
+ 785 0263 11       		.uleb128 0x11
+ 786 0264 6D736700 		.ascii	"msg\000"
+ 787 0268 01       		.byte	0x1
+ 788 0269 1E       		.byte	0x1e
+ 789 026a 7E020000 		.4byte	0x27e
+ 790 026e 01       		.uleb128 0x1
+ 791 026f 51       		.byte	0x51
+ 792 0270 0F       		.uleb128 0xf
+ 793 0271 6900     		.ascii	"i\000"
+ 794 0273 01       		.byte	0x1
+ 795 0274 20       		.byte	0x20
+ 796 0275 5D000000 		.4byte	0x5d
+ 797 0279 4A000000 		.4byte	.LLST2
+ 798 027d 00       		.byte	0
+ 799 027e 10       		.uleb128 0x10
+ 800 027f 04       		.byte	0x4
+ 801 0280 FF000000 		.4byte	0xff
+ 802 0284 0D       		.uleb128 0xd
+ 803 0285 C8010000 		.4byte	.LASF36
+ 804 0289 01       		.byte	0x1
+ 805 028a 43       		.byte	0x43
+ 806 028b 00000000 		.4byte	.LFB4
+ 807 028f 2E000000 		.4byte	.LFE4-.LFB4
+ 808 0293 01       		.uleb128 0x1
+ 809 0294 9C       		.byte	0x9c
+ 810 0295 B4020000 		.4byte	0x2b4
+ 811 0299 0E       		.uleb128 0xe
+ 812 029a 68000000 		.4byte	.LASF37
+ 813 029e 01       		.byte	0x1
+ 814 029f 43       		.byte	0x43
+ 815 02a0 B4020000 		.4byte	0x2b4
+ 816 02a4 01       		.uleb128 0x1
+ 817 02a5 50       		.byte	0x50
+ 818 02a6 0F       		.uleb128 0xf
+ 819 02a7 6900     		.ascii	"i\000"
+ 820 02a9 01       		.byte	0x1
+ 821 02aa 44       		.byte	0x44
+ 822 02ab 5D000000 		.4byte	0x5d
+ 823 02af 69000000 		.4byte	.LLST3
+ 824 02b3 00       		.byte	0
+ 825 02b4 10       		.uleb128 0x10
+ 826 02b5 04       		.byte	0x4
+ 827 02b6 F3010000 		.4byte	0x1f3
+ 828 02ba 12       		.uleb128 0x12
+ 829 02bb 4F000000 		.4byte	.LASF39
+ 830 02bf 01       		.byte	0x1
+ 831 02c0 4F       		.byte	0x4f
+ 832 02c1 8F000000 		.4byte	0x8f
+ 833 02c5 00000000 		.4byte	.LFB5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 18
+
+
+ 834 02c9 50000000 		.4byte	.LFE5-.LFB5
+ 835 02cd 01       		.uleb128 0x1
+ 836 02ce 9C       		.byte	0x9c
+ 837 02cf 1F030000 		.4byte	0x31f
+ 838 02d3 13       		.uleb128 0x13
+ 839 02d4 68000000 		.4byte	.LASF37
+ 840 02d8 01       		.byte	0x1
+ 841 02d9 4F       		.byte	0x4f
+ 842 02da B4020000 		.4byte	0x2b4
+ 843 02de 88000000 		.4byte	.LLST4
+ 844 02e2 13       		.uleb128 0x13
+ 845 02e3 E0010000 		.4byte	.LASF19
+ 846 02e7 01       		.byte	0x1
+ 847 02e8 4F       		.byte	0x4f
+ 848 02e9 6B000000 		.4byte	0x6b
+ 849 02ed C2000000 		.4byte	.LLST5
+ 850 02f1 13       		.uleb128 0x13
+ 851 02f2 5E000000 		.4byte	.LASF27
+ 852 02f6 01       		.byte	0x1
+ 853 02f7 4F       		.byte	0x4f
+ 854 02f8 6B000000 		.4byte	0x6b
+ 855 02fc 08010000 		.4byte	.LLST6
+ 856 0300 13       		.uleb128 0x13
+ 857 0301 71020000 		.4byte	.LASF28
+ 858 0305 01       		.byte	0x1
+ 859 0306 4F       		.byte	0x4f
+ 860 0307 83000000 		.4byte	0x83
+ 861 030b 4E010000 		.4byte	.LLST7
+ 862 030f 13       		.uleb128 0x13
+ 863 0310 20000000 		.4byte	.LASF29
+ 864 0314 01       		.byte	0x1
+ 865 0315 4F       		.byte	0x4f
+ 866 0316 83000000 		.4byte	0x83
+ 867 031a 94010000 		.4byte	.LLST8
+ 868 031e 00       		.byte	0
+ 869 031f 0D       		.uleb128 0xd
+ 870 0320 3F020000 		.4byte	.LASF38
+ 871 0324 01       		.byte	0x1
+ 872 0325 2B       		.byte	0x2b
+ 873 0326 00000000 		.4byte	.LFB3
+ 874 032a 90000000 		.4byte	.LFE3-.LFB3
+ 875 032e 01       		.uleb128 0x1
+ 876 032f 9C       		.byte	0x9c
+ 877 0330 89030000 		.4byte	0x389
+ 878 0334 13       		.uleb128 0x13
+ 879 0335 1E020000 		.4byte	.LASF35
+ 880 0339 01       		.byte	0x1
+ 881 033a 2B       		.byte	0x2b
+ 882 033b 3B020000 		.4byte	0x23b
+ 883 033f B4010000 		.4byte	.LLST9
+ 884 0343 14       		.uleb128 0x14
+ 885 0344 E0010000 		.4byte	.LASF19
+ 886 0348 01       		.byte	0x1
+ 887 0349 2D       		.byte	0x2d
+ 888 034a 6B000000 		.4byte	0x6b
+ 889 034e E0010000 		.4byte	.LLST10
+ 890 0352 14       		.uleb128 0x14
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 19
+
+
+ 891 0353 5E000000 		.4byte	.LASF27
+ 892 0357 01       		.byte	0x1
+ 893 0358 2E       		.byte	0x2e
+ 894 0359 6B000000 		.4byte	0x6b
+ 895 035d F3010000 		.4byte	.LLST11
+ 896 0361 14       		.uleb128 0x14
+ 897 0362 71020000 		.4byte	.LASF28
+ 898 0366 01       		.byte	0x1
+ 899 0367 2F       		.byte	0x2f
+ 900 0368 83000000 		.4byte	0x83
+ 901 036c 06020000 		.4byte	.LLST12
+ 902 0370 14       		.uleb128 0x14
+ 903 0371 20000000 		.4byte	.LASF29
+ 904 0375 01       		.byte	0x1
+ 905 0376 30       		.byte	0x30
+ 906 0377 83000000 		.4byte	0x83
+ 907 037b 29020000 		.4byte	.LLST13
+ 908 037f 15       		.uleb128 0x15
+ 909 0380 5C000000 		.4byte	.LVL34
+ 910 0384 BA020000 		.4byte	0x2ba
+ 911 0388 00       		.byte	0
+ 912 0389 12       		.uleb128 0x12
+ 913 038a 0F020000 		.4byte	.LASF40
+ 914 038e 01       		.byte	0x1
+ 915 038f 5E       		.byte	0x5e
+ 916 0390 C1030000 		.4byte	0x3c1
+ 917 0394 00000000 		.4byte	.LFB6
+ 918 0398 40000000 		.4byte	.LFE6-.LFB6
+ 919 039c 01       		.uleb128 0x1
+ 920 039d 9C       		.byte	0x9c
+ 921 039e C1030000 		.4byte	0x3c1
+ 922 03a2 13       		.uleb128 0x13
+ 923 03a3 68000000 		.4byte	.LASF37
+ 924 03a7 01       		.byte	0x1
+ 925 03a8 5E       		.byte	0x5e
+ 926 03a9 B4020000 		.4byte	0x2b4
+ 927 03ad 48020000 		.4byte	.LLST14
+ 928 03b1 14       		.uleb128 0x14
+ 929 03b2 29000000 		.4byte	.LASF41
+ 930 03b6 01       		.byte	0x1
+ 931 03b7 60       		.byte	0x60
+ 932 03b8 C1030000 		.4byte	0x3c1
+ 933 03bc 82020000 		.4byte	.LLST15
+ 934 03c0 00       		.byte	0
+ 935 03c1 10       		.uleb128 0x10
+ 936 03c2 04       		.byte	0x4
+ 937 03c3 9B010000 		.4byte	0x19b
+ 938 03c7 16       		.uleb128 0x16
+ 939 03c8 68000000 		.4byte	.LASF37
+ 940 03cc 03       		.byte	0x3
+ 941 03cd 38       		.byte	0x38
+ 942 03ce D2030000 		.4byte	0x3d2
+ 943 03d2 17       		.uleb128 0x17
+ 944 03d3 F3010000 		.4byte	0x1f3
+ 945 03d7 00       		.byte	0
+ 946              		.section	.debug_abbrev,"",%progbits
+ 947              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 20
+
+
+ 948 0000 01       		.uleb128 0x1
+ 949 0001 11       		.uleb128 0x11
+ 950 0002 01       		.byte	0x1
+ 951 0003 25       		.uleb128 0x25
+ 952 0004 0E       		.uleb128 0xe
+ 953 0005 13       		.uleb128 0x13
+ 954 0006 0B       		.uleb128 0xb
+ 955 0007 03       		.uleb128 0x3
+ 956 0008 0E       		.uleb128 0xe
+ 957 0009 1B       		.uleb128 0x1b
+ 958 000a 0E       		.uleb128 0xe
+ 959 000b 55       		.uleb128 0x55
+ 960 000c 17       		.uleb128 0x17
+ 961 000d 11       		.uleb128 0x11
+ 962 000e 01       		.uleb128 0x1
+ 963 000f 10       		.uleb128 0x10
+ 964 0010 17       		.uleb128 0x17
+ 965 0011 00       		.byte	0
+ 966 0012 00       		.byte	0
+ 967 0013 02       		.uleb128 0x2
+ 968 0014 24       		.uleb128 0x24
+ 969 0015 00       		.byte	0
+ 970 0016 0B       		.uleb128 0xb
+ 971 0017 0B       		.uleb128 0xb
+ 972 0018 3E       		.uleb128 0x3e
+ 973 0019 0B       		.uleb128 0xb
+ 974 001a 03       		.uleb128 0x3
+ 975 001b 0E       		.uleb128 0xe
+ 976 001c 00       		.byte	0
+ 977 001d 00       		.byte	0
+ 978 001e 03       		.uleb128 0x3
+ 979 001f 24       		.uleb128 0x24
+ 980 0020 00       		.byte	0
+ 981 0021 0B       		.uleb128 0xb
+ 982 0022 0B       		.uleb128 0xb
+ 983 0023 3E       		.uleb128 0x3e
+ 984 0024 0B       		.uleb128 0xb
+ 985 0025 03       		.uleb128 0x3
+ 986 0026 08       		.uleb128 0x8
+ 987 0027 00       		.byte	0
+ 988 0028 00       		.byte	0
+ 989 0029 04       		.uleb128 0x4
+ 990 002a 16       		.uleb128 0x16
+ 991 002b 00       		.byte	0
+ 992 002c 03       		.uleb128 0x3
+ 993 002d 0E       		.uleb128 0xe
+ 994 002e 3A       		.uleb128 0x3a
+ 995 002f 0B       		.uleb128 0xb
+ 996 0030 3B       		.uleb128 0x3b
+ 997 0031 05       		.uleb128 0x5
+ 998 0032 49       		.uleb128 0x49
+ 999 0033 13       		.uleb128 0x13
+ 1000 0034 00       		.byte	0
+ 1001 0035 00       		.byte	0
+ 1002 0036 05       		.uleb128 0x5
+ 1003 0037 13       		.uleb128 0x13
+ 1004 0038 01       		.byte	0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 21
+
+
+ 1005 0039 03       		.uleb128 0x3
+ 1006 003a 0E       		.uleb128 0xe
+ 1007 003b 0B       		.uleb128 0xb
+ 1008 003c 0B       		.uleb128 0xb
+ 1009 003d 3A       		.uleb128 0x3a
+ 1010 003e 0B       		.uleb128 0xb
+ 1011 003f 3B       		.uleb128 0x3b
+ 1012 0040 0B       		.uleb128 0xb
+ 1013 0041 01       		.uleb128 0x1
+ 1014 0042 13       		.uleb128 0x13
+ 1015 0043 00       		.byte	0
+ 1016 0044 00       		.byte	0
+ 1017 0045 06       		.uleb128 0x6
+ 1018 0046 0D       		.uleb128 0xd
+ 1019 0047 00       		.byte	0
+ 1020 0048 03       		.uleb128 0x3
+ 1021 0049 0E       		.uleb128 0xe
+ 1022 004a 3A       		.uleb128 0x3a
+ 1023 004b 0B       		.uleb128 0xb
+ 1024 004c 3B       		.uleb128 0x3b
+ 1025 004d 0B       		.uleb128 0xb
+ 1026 004e 49       		.uleb128 0x49
+ 1027 004f 13       		.uleb128 0x13
+ 1028 0050 38       		.uleb128 0x38
+ 1029 0051 0B       		.uleb128 0xb
+ 1030 0052 00       		.byte	0
+ 1031 0053 00       		.byte	0
+ 1032 0054 07       		.uleb128 0x7
+ 1033 0055 01       		.uleb128 0x1
+ 1034 0056 01       		.byte	0x1
+ 1035 0057 49       		.uleb128 0x49
+ 1036 0058 13       		.uleb128 0x13
+ 1037 0059 01       		.uleb128 0x1
+ 1038 005a 13       		.uleb128 0x13
+ 1039 005b 00       		.byte	0
+ 1040 005c 00       		.byte	0
+ 1041 005d 08       		.uleb128 0x8
+ 1042 005e 21       		.uleb128 0x21
+ 1043 005f 00       		.byte	0
+ 1044 0060 49       		.uleb128 0x49
+ 1045 0061 13       		.uleb128 0x13
+ 1046 0062 2F       		.uleb128 0x2f
+ 1047 0063 0B       		.uleb128 0xb
+ 1048 0064 00       		.byte	0
+ 1049 0065 00       		.byte	0
+ 1050 0066 09       		.uleb128 0x9
+ 1051 0067 16       		.uleb128 0x16
+ 1052 0068 00       		.byte	0
+ 1053 0069 03       		.uleb128 0x3
+ 1054 006a 0E       		.uleb128 0xe
+ 1055 006b 3A       		.uleb128 0x3a
+ 1056 006c 0B       		.uleb128 0xb
+ 1057 006d 3B       		.uleb128 0x3b
+ 1058 006e 0B       		.uleb128 0xb
+ 1059 006f 49       		.uleb128 0x49
+ 1060 0070 13       		.uleb128 0x13
+ 1061 0071 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 22
+
+
+ 1062 0072 00       		.byte	0
+ 1063 0073 0A       		.uleb128 0xa
+ 1064 0074 13       		.uleb128 0x13
+ 1065 0075 01       		.byte	0x1
+ 1066 0076 0B       		.uleb128 0xb
+ 1067 0077 05       		.uleb128 0x5
+ 1068 0078 3A       		.uleb128 0x3a
+ 1069 0079 0B       		.uleb128 0xb
+ 1070 007a 3B       		.uleb128 0x3b
+ 1071 007b 0B       		.uleb128 0xb
+ 1072 007c 01       		.uleb128 0x1
+ 1073 007d 13       		.uleb128 0x13
+ 1074 007e 00       		.byte	0
+ 1075 007f 00       		.byte	0
+ 1076 0080 0B       		.uleb128 0xb
+ 1077 0081 0D       		.uleb128 0xd
+ 1078 0082 00       		.byte	0
+ 1079 0083 03       		.uleb128 0x3
+ 1080 0084 0E       		.uleb128 0xe
+ 1081 0085 3A       		.uleb128 0x3a
+ 1082 0086 0B       		.uleb128 0xb
+ 1083 0087 3B       		.uleb128 0x3b
+ 1084 0088 0B       		.uleb128 0xb
+ 1085 0089 49       		.uleb128 0x49
+ 1086 008a 13       		.uleb128 0x13
+ 1087 008b 38       		.uleb128 0x38
+ 1088 008c 05       		.uleb128 0x5
+ 1089 008d 00       		.byte	0
+ 1090 008e 00       		.byte	0
+ 1091 008f 0C       		.uleb128 0xc
+ 1092 0090 13       		.uleb128 0x13
+ 1093 0091 01       		.byte	0x1
+ 1094 0092 0B       		.uleb128 0xb
+ 1095 0093 0B       		.uleb128 0xb
+ 1096 0094 3A       		.uleb128 0x3a
+ 1097 0095 0B       		.uleb128 0xb
+ 1098 0096 3B       		.uleb128 0x3b
+ 1099 0097 0B       		.uleb128 0xb
+ 1100 0098 01       		.uleb128 0x1
+ 1101 0099 13       		.uleb128 0x13
+ 1102 009a 00       		.byte	0
+ 1103 009b 00       		.byte	0
+ 1104 009c 0D       		.uleb128 0xd
+ 1105 009d 2E       		.uleb128 0x2e
+ 1106 009e 01       		.byte	0x1
+ 1107 009f 3F       		.uleb128 0x3f
+ 1108 00a0 19       		.uleb128 0x19
+ 1109 00a1 03       		.uleb128 0x3
+ 1110 00a2 0E       		.uleb128 0xe
+ 1111 00a3 3A       		.uleb128 0x3a
+ 1112 00a4 0B       		.uleb128 0xb
+ 1113 00a5 3B       		.uleb128 0x3b
+ 1114 00a6 0B       		.uleb128 0xb
+ 1115 00a7 27       		.uleb128 0x27
+ 1116 00a8 19       		.uleb128 0x19
+ 1117 00a9 11       		.uleb128 0x11
+ 1118 00aa 01       		.uleb128 0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 23
+
+
+ 1119 00ab 12       		.uleb128 0x12
+ 1120 00ac 06       		.uleb128 0x6
+ 1121 00ad 40       		.uleb128 0x40
+ 1122 00ae 18       		.uleb128 0x18
+ 1123 00af 9742     		.uleb128 0x2117
+ 1124 00b1 19       		.uleb128 0x19
+ 1125 00b2 01       		.uleb128 0x1
+ 1126 00b3 13       		.uleb128 0x13
+ 1127 00b4 00       		.byte	0
+ 1128 00b5 00       		.byte	0
+ 1129 00b6 0E       		.uleb128 0xe
+ 1130 00b7 05       		.uleb128 0x5
+ 1131 00b8 00       		.byte	0
+ 1132 00b9 03       		.uleb128 0x3
+ 1133 00ba 0E       		.uleb128 0xe
+ 1134 00bb 3A       		.uleb128 0x3a
+ 1135 00bc 0B       		.uleb128 0xb
+ 1136 00bd 3B       		.uleb128 0x3b
+ 1137 00be 0B       		.uleb128 0xb
+ 1138 00bf 49       		.uleb128 0x49
+ 1139 00c0 13       		.uleb128 0x13
+ 1140 00c1 02       		.uleb128 0x2
+ 1141 00c2 18       		.uleb128 0x18
+ 1142 00c3 00       		.byte	0
+ 1143 00c4 00       		.byte	0
+ 1144 00c5 0F       		.uleb128 0xf
+ 1145 00c6 34       		.uleb128 0x34
+ 1146 00c7 00       		.byte	0
+ 1147 00c8 03       		.uleb128 0x3
+ 1148 00c9 08       		.uleb128 0x8
+ 1149 00ca 3A       		.uleb128 0x3a
+ 1150 00cb 0B       		.uleb128 0xb
+ 1151 00cc 3B       		.uleb128 0x3b
+ 1152 00cd 0B       		.uleb128 0xb
+ 1153 00ce 49       		.uleb128 0x49
+ 1154 00cf 13       		.uleb128 0x13
+ 1155 00d0 02       		.uleb128 0x2
+ 1156 00d1 17       		.uleb128 0x17
+ 1157 00d2 00       		.byte	0
+ 1158 00d3 00       		.byte	0
+ 1159 00d4 10       		.uleb128 0x10
+ 1160 00d5 0F       		.uleb128 0xf
+ 1161 00d6 00       		.byte	0
+ 1162 00d7 0B       		.uleb128 0xb
+ 1163 00d8 0B       		.uleb128 0xb
+ 1164 00d9 49       		.uleb128 0x49
+ 1165 00da 13       		.uleb128 0x13
+ 1166 00db 00       		.byte	0
+ 1167 00dc 00       		.byte	0
+ 1168 00dd 11       		.uleb128 0x11
+ 1169 00de 05       		.uleb128 0x5
+ 1170 00df 00       		.byte	0
+ 1171 00e0 03       		.uleb128 0x3
+ 1172 00e1 08       		.uleb128 0x8
+ 1173 00e2 3A       		.uleb128 0x3a
+ 1174 00e3 0B       		.uleb128 0xb
+ 1175 00e4 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 24
+
+
+ 1176 00e5 0B       		.uleb128 0xb
+ 1177 00e6 49       		.uleb128 0x49
+ 1178 00e7 13       		.uleb128 0x13
+ 1179 00e8 02       		.uleb128 0x2
+ 1180 00e9 18       		.uleb128 0x18
+ 1181 00ea 00       		.byte	0
+ 1182 00eb 00       		.byte	0
+ 1183 00ec 12       		.uleb128 0x12
+ 1184 00ed 2E       		.uleb128 0x2e
+ 1185 00ee 01       		.byte	0x1
+ 1186 00ef 3F       		.uleb128 0x3f
+ 1187 00f0 19       		.uleb128 0x19
+ 1188 00f1 03       		.uleb128 0x3
+ 1189 00f2 0E       		.uleb128 0xe
+ 1190 00f3 3A       		.uleb128 0x3a
+ 1191 00f4 0B       		.uleb128 0xb
+ 1192 00f5 3B       		.uleb128 0x3b
+ 1193 00f6 0B       		.uleb128 0xb
+ 1194 00f7 27       		.uleb128 0x27
+ 1195 00f8 19       		.uleb128 0x19
+ 1196 00f9 49       		.uleb128 0x49
+ 1197 00fa 13       		.uleb128 0x13
+ 1198 00fb 11       		.uleb128 0x11
+ 1199 00fc 01       		.uleb128 0x1
+ 1200 00fd 12       		.uleb128 0x12
+ 1201 00fe 06       		.uleb128 0x6
+ 1202 00ff 40       		.uleb128 0x40
+ 1203 0100 18       		.uleb128 0x18
+ 1204 0101 9742     		.uleb128 0x2117
+ 1205 0103 19       		.uleb128 0x19
+ 1206 0104 01       		.uleb128 0x1
+ 1207 0105 13       		.uleb128 0x13
+ 1208 0106 00       		.byte	0
+ 1209 0107 00       		.byte	0
+ 1210 0108 13       		.uleb128 0x13
+ 1211 0109 05       		.uleb128 0x5
+ 1212 010a 00       		.byte	0
+ 1213 010b 03       		.uleb128 0x3
+ 1214 010c 0E       		.uleb128 0xe
+ 1215 010d 3A       		.uleb128 0x3a
+ 1216 010e 0B       		.uleb128 0xb
+ 1217 010f 3B       		.uleb128 0x3b
+ 1218 0110 0B       		.uleb128 0xb
+ 1219 0111 49       		.uleb128 0x49
+ 1220 0112 13       		.uleb128 0x13
+ 1221 0113 02       		.uleb128 0x2
+ 1222 0114 17       		.uleb128 0x17
+ 1223 0115 00       		.byte	0
+ 1224 0116 00       		.byte	0
+ 1225 0117 14       		.uleb128 0x14
+ 1226 0118 34       		.uleb128 0x34
+ 1227 0119 00       		.byte	0
+ 1228 011a 03       		.uleb128 0x3
+ 1229 011b 0E       		.uleb128 0xe
+ 1230 011c 3A       		.uleb128 0x3a
+ 1231 011d 0B       		.uleb128 0xb
+ 1232 011e 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 25
+
+
+ 1233 011f 0B       		.uleb128 0xb
+ 1234 0120 49       		.uleb128 0x49
+ 1235 0121 13       		.uleb128 0x13
+ 1236 0122 02       		.uleb128 0x2
+ 1237 0123 17       		.uleb128 0x17
+ 1238 0124 00       		.byte	0
+ 1239 0125 00       		.byte	0
+ 1240 0126 15       		.uleb128 0x15
+ 1241 0127 898201   		.uleb128 0x4109
+ 1242 012a 00       		.byte	0
+ 1243 012b 11       		.uleb128 0x11
+ 1244 012c 01       		.uleb128 0x1
+ 1245 012d 31       		.uleb128 0x31
+ 1246 012e 13       		.uleb128 0x13
+ 1247 012f 00       		.byte	0
+ 1248 0130 00       		.byte	0
+ 1249 0131 16       		.uleb128 0x16
+ 1250 0132 34       		.uleb128 0x34
+ 1251 0133 00       		.byte	0
+ 1252 0134 03       		.uleb128 0x3
+ 1253 0135 0E       		.uleb128 0xe
+ 1254 0136 3A       		.uleb128 0x3a
+ 1255 0137 0B       		.uleb128 0xb
+ 1256 0138 3B       		.uleb128 0x3b
+ 1257 0139 0B       		.uleb128 0xb
+ 1258 013a 49       		.uleb128 0x49
+ 1259 013b 13       		.uleb128 0x13
+ 1260 013c 3F       		.uleb128 0x3f
+ 1261 013d 19       		.uleb128 0x19
+ 1262 013e 3C       		.uleb128 0x3c
+ 1263 013f 19       		.uleb128 0x19
+ 1264 0140 00       		.byte	0
+ 1265 0141 00       		.byte	0
+ 1266 0142 17       		.uleb128 0x17
+ 1267 0143 35       		.uleb128 0x35
+ 1268 0144 00       		.byte	0
+ 1269 0145 49       		.uleb128 0x49
+ 1270 0146 13       		.uleb128 0x13
+ 1271 0147 00       		.byte	0
+ 1272 0148 00       		.byte	0
+ 1273 0149 00       		.byte	0
+ 1274              		.section	.debug_loc,"",%progbits
+ 1275              	.Ldebug_loc0:
+ 1276              	.LLST0:
+ 1277 0000 02000000 		.4byte	.LVL1
+ 1278 0004 12000000 		.4byte	.LVL2
+ 1279 0008 0200     		.2byte	0x2
+ 1280 000a 30       		.byte	0x30
+ 1281 000b 9F       		.byte	0x9f
+ 1282 000c 12000000 		.4byte	.LVL2
+ 1283 0010 3E000000 		.4byte	.LVL7
+ 1284 0014 0100     		.2byte	0x1
+ 1285 0016 54       		.byte	0x54
+ 1286 0017 00000000 		.4byte	0
+ 1287 001b 00000000 		.4byte	0
+ 1288              	.LLST1:
+ 1289 001f 02000000 		.4byte	.LVL1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 26
+
+
+ 1290 0023 12000000 		.4byte	.LVL2
+ 1291 0027 0200     		.2byte	0x2
+ 1292 0029 30       		.byte	0x30
+ 1293 002a 9F       		.byte	0x9f
+ 1294 002b 20000000 		.4byte	.LVL3
+ 1295 002f 22000000 		.4byte	.LVL4
+ 1296 0033 0200     		.2byte	0x2
+ 1297 0035 30       		.byte	0x30
+ 1298 0036 9F       		.byte	0x9f
+ 1299 0037 22000000 		.4byte	.LVL4
+ 1300 003b 38000000 		.4byte	.LVL6
+ 1301 003f 0100     		.2byte	0x1
+ 1302 0041 52       		.byte	0x52
+ 1303 0042 00000000 		.4byte	0
+ 1304 0046 00000000 		.4byte	0
+ 1305              	.LLST2:
+ 1306 004a 16000000 		.4byte	.LVL9
+ 1307 004e 1A000000 		.4byte	.LVL10
+ 1308 0052 0200     		.2byte	0x2
+ 1309 0054 30       		.byte	0x30
+ 1310 0055 9F       		.byte	0x9f
+ 1311 0056 1A000000 		.4byte	.LVL10
+ 1312 005a 38000000 		.4byte	.LVL12
+ 1313 005e 0100     		.2byte	0x1
+ 1314 0060 52       		.byte	0x52
+ 1315 0061 00000000 		.4byte	0
+ 1316 0065 00000000 		.4byte	0
+ 1317              	.LLST3:
+ 1318 0069 10000000 		.4byte	.LVL14
+ 1319 006d 12000000 		.4byte	.LVL15
+ 1320 0071 0200     		.2byte	0x2
+ 1321 0073 30       		.byte	0x30
+ 1322 0074 9F       		.byte	0x9f
+ 1323 0075 12000000 		.4byte	.LVL15
+ 1324 0079 2E000000 		.4byte	.LFE4
+ 1325 007d 0100     		.2byte	0x1
+ 1326 007f 53       		.byte	0x53
+ 1327 0080 00000000 		.4byte	0
+ 1328 0084 00000000 		.4byte	0
+ 1329              	.LLST4:
+ 1330 0088 00000000 		.4byte	.LVL17
+ 1331 008c 40000000 		.4byte	.LVL22
+ 1332 0090 0100     		.2byte	0x1
+ 1333 0092 50       		.byte	0x50
+ 1334 0093 40000000 		.4byte	.LVL22
+ 1335 0097 42000000 		.4byte	.LVL23
+ 1336 009b 0400     		.2byte	0x4
+ 1337 009d F3       		.byte	0xf3
+ 1338 009e 01       		.uleb128 0x1
+ 1339 009f 50       		.byte	0x50
+ 1340 00a0 9F       		.byte	0x9f
+ 1341 00a1 42000000 		.4byte	.LVL23
+ 1342 00a5 46000000 		.4byte	.LVL24
+ 1343 00a9 0100     		.2byte	0x1
+ 1344 00ab 50       		.byte	0x50
+ 1345 00ac 46000000 		.4byte	.LVL24
+ 1346 00b0 50000000 		.4byte	.LFE5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 27
+
+
+ 1347 00b4 0400     		.2byte	0x4
+ 1348 00b6 F3       		.byte	0xf3
+ 1349 00b7 01       		.uleb128 0x1
+ 1350 00b8 50       		.byte	0x50
+ 1351 00b9 9F       		.byte	0x9f
+ 1352 00ba 00000000 		.4byte	0
+ 1353 00be 00000000 		.4byte	0
+ 1354              	.LLST5:
+ 1355 00c2 00000000 		.4byte	.LVL17
+ 1356 00c6 28000000 		.4byte	.LVL20
+ 1357 00ca 0100     		.2byte	0x1
+ 1358 00cc 51       		.byte	0x51
+ 1359 00cd 28000000 		.4byte	.LVL20
+ 1360 00d1 38000000 		.4byte	.LVL21
+ 1361 00d5 0200     		.2byte	0x2
+ 1362 00d7 76       		.byte	0x76
+ 1363 00d8 00       		.sleb128 0
+ 1364 00d9 38000000 		.4byte	.LVL21
+ 1365 00dd 42000000 		.4byte	.LVL23
+ 1366 00e1 0400     		.2byte	0x4
+ 1367 00e3 F3       		.byte	0xf3
+ 1368 00e4 01       		.uleb128 0x1
+ 1369 00e5 51       		.byte	0x51
+ 1370 00e6 9F       		.byte	0x9f
+ 1371 00e7 42000000 		.4byte	.LVL23
+ 1372 00eb 46000000 		.4byte	.LVL24
+ 1373 00ef 0100     		.2byte	0x1
+ 1374 00f1 51       		.byte	0x51
+ 1375 00f2 46000000 		.4byte	.LVL24
+ 1376 00f6 50000000 		.4byte	.LFE5
+ 1377 00fa 0400     		.2byte	0x4
+ 1378 00fc F3       		.byte	0xf3
+ 1379 00fd 01       		.uleb128 0x1
+ 1380 00fe 51       		.byte	0x51
+ 1381 00ff 9F       		.byte	0x9f
+ 1382 0100 00000000 		.4byte	0
+ 1383 0104 00000000 		.4byte	0
+ 1384              	.LLST6:
+ 1385 0108 00000000 		.4byte	.LVL17
+ 1386 010c 1A000000 		.4byte	.LVL18
+ 1387 0110 0100     		.2byte	0x1
+ 1388 0112 52       		.byte	0x52
+ 1389 0113 1A000000 		.4byte	.LVL18
+ 1390 0117 38000000 		.4byte	.LVL21
+ 1391 011b 0200     		.2byte	0x2
+ 1392 011d 76       		.byte	0x76
+ 1393 011e 01       		.sleb128 1
+ 1394 011f 38000000 		.4byte	.LVL21
+ 1395 0123 42000000 		.4byte	.LVL23
+ 1396 0127 0400     		.2byte	0x4
+ 1397 0129 F3       		.byte	0xf3
+ 1398 012a 01       		.uleb128 0x1
+ 1399 012b 52       		.byte	0x52
+ 1400 012c 9F       		.byte	0x9f
+ 1401 012d 42000000 		.4byte	.LVL23
+ 1402 0131 46000000 		.4byte	.LVL24
+ 1403 0135 0100     		.2byte	0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 28
+
+
+ 1404 0137 52       		.byte	0x52
+ 1405 0138 46000000 		.4byte	.LVL24
+ 1406 013c 50000000 		.4byte	.LFE5
+ 1407 0140 0400     		.2byte	0x4
+ 1408 0142 F3       		.byte	0xf3
+ 1409 0143 01       		.uleb128 0x1
+ 1410 0144 52       		.byte	0x52
+ 1411 0145 9F       		.byte	0x9f
+ 1412 0146 00000000 		.4byte	0
+ 1413 014a 00000000 		.4byte	0
+ 1414              	.LLST7:
+ 1415 014e 00000000 		.4byte	.LVL17
+ 1416 0152 22000000 		.4byte	.LVL19
+ 1417 0156 0100     		.2byte	0x1
+ 1418 0158 53       		.byte	0x53
+ 1419 0159 22000000 		.4byte	.LVL19
+ 1420 015d 38000000 		.4byte	.LVL21
+ 1421 0161 0200     		.2byte	0x2
+ 1422 0163 76       		.byte	0x76
+ 1423 0164 04       		.sleb128 4
+ 1424 0165 38000000 		.4byte	.LVL21
+ 1425 0169 42000000 		.4byte	.LVL23
+ 1426 016d 0400     		.2byte	0x4
+ 1427 016f F3       		.byte	0xf3
+ 1428 0170 01       		.uleb128 0x1
+ 1429 0171 53       		.byte	0x53
+ 1430 0172 9F       		.byte	0x9f
+ 1431 0173 42000000 		.4byte	.LVL23
+ 1432 0177 46000000 		.4byte	.LVL24
+ 1433 017b 0100     		.2byte	0x1
+ 1434 017d 53       		.byte	0x53
+ 1435 017e 46000000 		.4byte	.LVL24
+ 1436 0182 50000000 		.4byte	.LFE5
+ 1437 0186 0400     		.2byte	0x4
+ 1438 0188 F3       		.byte	0xf3
+ 1439 0189 01       		.uleb128 0x1
+ 1440 018a 53       		.byte	0x53
+ 1441 018b 9F       		.byte	0x9f
+ 1442 018c 00000000 		.4byte	0
+ 1443 0190 00000000 		.4byte	0
+ 1444              	.LLST8:
+ 1445 0194 00000000 		.4byte	.LVL17
+ 1446 0198 48000000 		.4byte	.LVL25
+ 1447 019c 0200     		.2byte	0x2
+ 1448 019e 91       		.byte	0x91
+ 1449 019f 00       		.sleb128 0
+ 1450 01a0 48000000 		.4byte	.LVL25
+ 1451 01a4 50000000 		.4byte	.LFE5
+ 1452 01a8 0200     		.2byte	0x2
+ 1453 01aa 7D       		.byte	0x7d
+ 1454 01ab 00       		.sleb128 0
+ 1455 01ac 00000000 		.4byte	0
+ 1456 01b0 00000000 		.4byte	0
+ 1457              	.LLST9:
+ 1458 01b4 00000000 		.4byte	.LVL26
+ 1459 01b8 24000000 		.4byte	.LVL27
+ 1460 01bc 0100     		.2byte	0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 29
+
+
+ 1461 01be 50       		.byte	0x50
+ 1462 01bf 24000000 		.4byte	.LVL27
+ 1463 01c3 82000000 		.4byte	.LVL35
+ 1464 01c7 0100     		.2byte	0x1
+ 1465 01c9 55       		.byte	0x55
+ 1466 01ca 82000000 		.4byte	.LVL35
+ 1467 01ce 90000000 		.4byte	.LFE3
+ 1468 01d2 0400     		.2byte	0x4
+ 1469 01d4 F3       		.byte	0xf3
+ 1470 01d5 01       		.uleb128 0x1
+ 1471 01d6 50       		.byte	0x50
+ 1472 01d7 9F       		.byte	0x9f
+ 1473 01d8 00000000 		.4byte	0
+ 1474 01dc 00000000 		.4byte	0
+ 1475              	.LLST10:
+ 1476 01e0 28000000 		.4byte	.LVL28
+ 1477 01e4 5B000000 		.4byte	.LVL34-1
+ 1478 01e8 0100     		.2byte	0x1
+ 1479 01ea 51       		.byte	0x51
+ 1480 01eb 00000000 		.4byte	0
+ 1481 01ef 00000000 		.4byte	0
+ 1482              	.LLST11:
+ 1483 01f3 2A000000 		.4byte	.LVL29
+ 1484 01f7 5B000000 		.4byte	.LVL34-1
+ 1485 01fb 0100     		.2byte	0x1
+ 1486 01fd 52       		.byte	0x52
+ 1487 01fe 00000000 		.4byte	0
+ 1488 0202 00000000 		.4byte	0
+ 1489              	.LLST12:
+ 1490 0206 36000000 		.4byte	.LVL30
+ 1491 020a 56000000 		.4byte	.LVL32
+ 1492 020e 0600     		.2byte	0x6
+ 1493 0210 77       		.byte	0x77
+ 1494 0211 00       		.sleb128 0
+ 1495 0212 73       		.byte	0x73
+ 1496 0213 00       		.sleb128 0
+ 1497 0214 22       		.byte	0x22
+ 1498 0215 9F       		.byte	0x9f
+ 1499 0216 56000000 		.4byte	.LVL32
+ 1500 021a 5B000000 		.4byte	.LVL34-1
+ 1501 021e 0100     		.2byte	0x1
+ 1502 0220 53       		.byte	0x53
+ 1503 0221 00000000 		.4byte	0
+ 1504 0225 00000000 		.4byte	0
+ 1505              	.LLST13:
+ 1506 0229 52000000 		.4byte	.LVL31
+ 1507 022d 58000000 		.4byte	.LVL33
+ 1508 0231 0100     		.2byte	0x1
+ 1509 0233 50       		.byte	0x50
+ 1510 0234 58000000 		.4byte	.LVL33
+ 1511 0238 5B000000 		.4byte	.LVL34-1
+ 1512 023c 0200     		.2byte	0x2
+ 1513 023e 7D       		.byte	0x7d
+ 1514 023f 00       		.sleb128 0
+ 1515 0240 00000000 		.4byte	0
+ 1516 0244 00000000 		.4byte	0
+ 1517              	.LLST14:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 30
+
+
+ 1518 0248 00000000 		.4byte	.LVL36
+ 1519 024c 32000000 		.4byte	.LVL38
+ 1520 0250 0100     		.2byte	0x1
+ 1521 0252 50       		.byte	0x50
+ 1522 0253 32000000 		.4byte	.LVL38
+ 1523 0257 34000000 		.4byte	.LVL39
+ 1524 025b 0400     		.2byte	0x4
+ 1525 025d F3       		.byte	0xf3
+ 1526 025e 01       		.uleb128 0x1
+ 1527 025f 50       		.byte	0x50
+ 1528 0260 9F       		.byte	0x9f
+ 1529 0261 34000000 		.4byte	.LVL39
+ 1530 0265 36000000 		.4byte	.LVL40
+ 1531 0269 0100     		.2byte	0x1
+ 1532 026b 50       		.byte	0x50
+ 1533 026c 36000000 		.4byte	.LVL40
+ 1534 0270 40000000 		.4byte	.LFE6
+ 1535 0274 0400     		.2byte	0x4
+ 1536 0276 F3       		.byte	0xf3
+ 1537 0277 01       		.uleb128 0x1
+ 1538 0278 50       		.byte	0x50
+ 1539 0279 9F       		.byte	0x9f
+ 1540 027a 00000000 		.4byte	0
+ 1541 027e 00000000 		.4byte	0
+ 1542              	.LLST15:
+ 1543 0282 18000000 		.4byte	.LVL37
+ 1544 0286 32000000 		.4byte	.LVL38
+ 1545 028a 0600     		.2byte	0x6
+ 1546 028c 70       		.byte	0x70
+ 1547 028d 00       		.sleb128 0
+ 1548 028e 71       		.byte	0x71
+ 1549 028f 00       		.sleb128 0
+ 1550 0290 22       		.byte	0x22
+ 1551 0291 9F       		.byte	0x9f
+ 1552 0292 32000000 		.4byte	.LVL38
+ 1553 0296 34000000 		.4byte	.LVL39
+ 1554 029a 0100     		.2byte	0x1
+ 1555 029c 50       		.byte	0x50
+ 1556 029d 38000000 		.4byte	.LVL41
+ 1557 02a1 40000000 		.4byte	.LFE6
+ 1558 02a5 0100     		.2byte	0x1
+ 1559 02a7 50       		.byte	0x50
+ 1560 02a8 00000000 		.4byte	0
+ 1561 02ac 00000000 		.4byte	0
+ 1562              		.section	.debug_aranges,"",%progbits
+ 1563 0000 44000000 		.4byte	0x44
+ 1564 0004 0200     		.2byte	0x2
+ 1565 0006 00000000 		.4byte	.Ldebug_info0
+ 1566 000a 04       		.byte	0x4
+ 1567 000b 00       		.byte	0
+ 1568 000c 0000     		.2byte	0
+ 1569 000e 0000     		.2byte	0
+ 1570 0010 00000000 		.4byte	.LFB1
+ 1571 0014 40000000 		.4byte	.LFE1-.LFB1
+ 1572 0018 00000000 		.4byte	.LFB2
+ 1573 001c 5C000000 		.4byte	.LFE2-.LFB2
+ 1574 0020 00000000 		.4byte	.LFB4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 31
+
+
+ 1575 0024 2E000000 		.4byte	.LFE4-.LFB4
+ 1576 0028 00000000 		.4byte	.LFB5
+ 1577 002c 50000000 		.4byte	.LFE5-.LFB5
+ 1578 0030 00000000 		.4byte	.LFB3
+ 1579 0034 90000000 		.4byte	.LFE3-.LFB3
+ 1580 0038 00000000 		.4byte	.LFB6
+ 1581 003c 40000000 		.4byte	.LFE6-.LFB6
+ 1582 0040 00000000 		.4byte	0
+ 1583 0044 00000000 		.4byte	0
+ 1584              		.section	.debug_ranges,"",%progbits
+ 1585              	.Ldebug_ranges0:
+ 1586 0000 00000000 		.4byte	.LFB1
+ 1587 0004 40000000 		.4byte	.LFE1
+ 1588 0008 00000000 		.4byte	.LFB2
+ 1589 000c 5C000000 		.4byte	.LFE2
+ 1590 0010 00000000 		.4byte	.LFB4
+ 1591 0014 2E000000 		.4byte	.LFE4
+ 1592 0018 00000000 		.4byte	.LFB5
+ 1593 001c 50000000 		.4byte	.LFE5
+ 1594 0020 00000000 		.4byte	.LFB3
+ 1595 0024 90000000 		.4byte	.LFE3
+ 1596 0028 00000000 		.4byte	.LFB6
+ 1597 002c 40000000 		.4byte	.LFE6
+ 1598 0030 00000000 		.4byte	0
+ 1599 0034 00000000 		.4byte	0
+ 1600              		.section	.debug_line,"",%progbits
+ 1601              	.Ldebug_line0:
+ 1602 0000 35010000 		.section	.debug_str,"MS",%progbits,1
+ 1602      02004D00 
+ 1602      00000201 
+ 1602      FB0E0D00 
+ 1602      01010101 
+ 1603              	.LASF45:
+ 1604 0000 6D657373 		.ascii	"message\000"
+ 1604      61676500 
+ 1605              	.LASF15:
+ 1606 0008 63686172 		.ascii	"char\000"
+ 1606      00
+ 1607              	.LASF32:
+ 1608 000d 4D6F7665 		.ascii	"Move_Queue\000"
+ 1608      5F517565 
+ 1608      756500
+ 1609              	.LASF21:
+ 1610 0018 4D657373 		.ascii	"Message\000"
+ 1610      61676500 
+ 1611              	.LASF29:
+ 1612 0020 64757261 		.ascii	"duration\000"
+ 1612      74696F6E 
+ 1612      00
+ 1613              	.LASF41:
+ 1614 0029 6D6F7665 		.ascii	"move\000"
+ 1614      00
+ 1615              	.LASF31:
+ 1616 002e 6D6F7665 		.ascii	"moves\000"
+ 1616      7300
+ 1617              	.LASF3:
+ 1618 0034 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 32
+
+
+ 1618      7420756E 
+ 1618      7369676E 
+ 1618      65642069 
+ 1618      6E7400
+ 1619              	.LASF18:
+ 1620 0047 636F6D6D 		.ascii	"command\000"
+ 1620      616E6400 
+ 1621              	.LASF39:
+ 1622 004f 6D6F7665 		.ascii	"move_queue_add\000"
+ 1622      5F717565 
+ 1622      75655F61 
+ 1622      646400
+ 1623              	.LASF27:
+ 1624 005e 64697265 		.ascii	"direction\000"
+ 1624      6374696F 
+ 1624      6E00
+ 1625              	.LASF37:
+ 1626 0068 6D6F7665 		.ascii	"move_queue\000"
+ 1626      5F717565 
+ 1626      756500
+ 1627              	.LASF13:
+ 1628 0073 666C6F61 		.ascii	"float\000"
+ 1628      7400
+ 1629              	.LASF20:
+ 1630 0079 64617461 		.ascii	"data\000"
+ 1630      00
+ 1631              	.LASF25:
+ 1632 007e 73697A65 		.ascii	"size\000"
+ 1632      00
+ 1633              	.LASF42:
+ 1634 0083 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1634      43313120 
+ 1634      352E342E 
+ 1634      31203230 
+ 1634      31363036 
+ 1635 00b6 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1635      20726576 
+ 1635      6973696F 
+ 1635      6E203233 
+ 1635      37373135 
+ 1636 00e9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1636      66756E63 
+ 1636      74696F6E 
+ 1636      2D736563 
+ 1636      74696F6E 
+ 1637              	.LASF30:
+ 1638 0111 4D6F7665 		.ascii	"Move\000"
+ 1638      00
+ 1639              	.LASF33:
+ 1640 0116 6D657373 		.ascii	"message_buff_init\000"
+ 1640      6167655F 
+ 1640      62756666 
+ 1640      5F696E69 
+ 1640      7400
+ 1641              	.LASF12:
+ 1642 0128 696E7431 		.ascii	"int16\000"
+ 1642      3600
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 33
+
+
+ 1643              	.LASF5:
+ 1644 012e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1644      20756E73 
+ 1644      69676E65 
+ 1644      6420696E 
+ 1644      7400
+ 1645              	.LASF9:
+ 1646 0140 75696E74 		.ascii	"uint8\000"
+ 1646      3800
+ 1647              	.LASF44:
+ 1648 0146 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
+ 1648      73657273 
+ 1648      5C70616A 
+ 1648      6F685C70 
+ 1648      726F6A65 
+ 1649 0173 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
+ 1649      646F662E 
+ 1649      63796473 
+ 1649      6E00
+ 1650              	.LASF1:
+ 1651 0181 756E7369 		.ascii	"unsigned char\000"
+ 1651      676E6564 
+ 1651      20636861 
+ 1651      7200
+ 1652              	.LASF14:
+ 1653 018f 646F7562 		.ascii	"double\000"
+ 1653      6C6500
+ 1654              	.LASF10:
+ 1655 0196 75696E74 		.ascii	"uint16\000"
+ 1655      313600
+ 1656              	.LASF11:
+ 1657 019d 75696E74 		.ascii	"uint32\000"
+ 1657      333200
+ 1658              	.LASF8:
+ 1659 01a4 756E7369 		.ascii	"unsigned int\000"
+ 1659      676E6564 
+ 1659      20696E74 
+ 1659      00
+ 1660              	.LASF7:
+ 1661 01b1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1661      206C6F6E 
+ 1661      6720756E 
+ 1661      7369676E 
+ 1661      65642069 
+ 1662              	.LASF36:
+ 1663 01c8 6D6F7665 		.ascii	"move_queue_init\000"
+ 1663      5F717565 
+ 1663      75655F69 
+ 1663      6E697400 
+ 1664              	.LASF43:
+ 1665 01d8 636F6D6D 		.ascii	"comms.c\000"
+ 1665      732E6300 
+ 1666              	.LASF19:
+ 1667 01e0 6A6F696E 		.ascii	"joint\000"
+ 1667      7400
+ 1668              	.LASF17:
+ 1669 01e6 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 34
+
+
+ 1669      74797065 
+ 1669      00
+ 1670              	.LASF22:
+ 1671 01ef 6D736773 		.ascii	"msgs\000"
+ 1671      00
+ 1672              	.LASF6:
+ 1673 01f4 6C6F6E67 		.ascii	"long long int\000"
+ 1673      206C6F6E 
+ 1673      6720696E 
+ 1673      7400
+ 1674              	.LASF26:
+ 1675 0202 4D657373 		.ascii	"Message_Buff\000"
+ 1675      6167655F 
+ 1675      42756666 
+ 1675      00
+ 1676              	.LASF40:
+ 1677 020f 6D6F7665 		.ascii	"move_queue_get\000"
+ 1677      5F717565 
+ 1677      75655F67 
+ 1677      657400
+ 1678              	.LASF35:
+ 1679 021e 6D73675F 		.ascii	"msg_buff\000"
+ 1679      62756666 
+ 1679      00
+ 1680              	.LASF2:
+ 1681 0227 73686F72 		.ascii	"short int\000"
+ 1681      7420696E 
+ 1681      7400
+ 1682              	.LASF24:
+ 1683 0231 7461696C 		.ascii	"tail\000"
+ 1683      00
+ 1684              	.LASF4:
+ 1685 0236 6C6F6E67 		.ascii	"long int\000"
+ 1685      20696E74 
+ 1685      00
+ 1686              	.LASF38:
+ 1687 023f 6D657373 		.ascii	"message_buff_execute\000"
+ 1687      6167655F 
+ 1687      62756666 
+ 1687      5F657865 
+ 1687      63757465 
+ 1688              	.LASF16:
+ 1689 0254 6C6F6E67 		.ascii	"long double\000"
+ 1689      20646F75 
+ 1689      626C6500 
+ 1690              	.LASF0:
+ 1691 0260 7369676E 		.ascii	"signed char\000"
+ 1691      65642063 
+ 1691      68617200 
+ 1692              	.LASF23:
+ 1693 026c 68656164 		.ascii	"head\000"
+ 1693      00
+ 1694              	.LASF28:
+ 1695 0271 74756E69 		.ascii	"tuningWord\000"
+ 1695      6E67576F 
+ 1695      726400
+ 1696              	.LASF34:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccwnrqgo.s 			page 35
+
+
+ 1697 027c 6D657373 		.ascii	"message_buff_add\000"
+ 1697      6167655F 
+ 1697      62756666 
+ 1697      5F616464 
+ 1697      00
+ 1698              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
