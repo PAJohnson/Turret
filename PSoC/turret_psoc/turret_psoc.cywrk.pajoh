@@ -175,43 +175,6 @@
 <VisibleNodeIds>
 <v>turret_psoc</v>
 <v>turret_psoc\3dof</v>
-<v>turret_psoc\3dof\CortexM3</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_AMux.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_Bypass_P03.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_Ext_CP_Clk.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_INT.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_IRQ.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_PM.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_theACLK.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\as5048.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_3.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\comms.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CS_J2.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CS_J3.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J1_DIR.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J1_EN.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J1_POT.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J1_STEP.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_DIR.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_EN.lst</v>
-<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_LIM.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>

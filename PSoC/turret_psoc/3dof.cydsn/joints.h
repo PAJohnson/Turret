@@ -38,35 +38,12 @@ typedef struct{
     int32 pos;
     uint32 duration;
     char limit;
+    uint32 accumulator;
+    int16 angle;
+    int16 angleOld;
 } Joint;
 
-//NCOs for joint speed control
-volatile uint32 J1_tuningWord;
-volatile uint32 J2_tuningWord;
-volatile uint32 J3_tuningWord;
-volatile uint32 J1_accumulator;
-volatile uint32 J2_accumulator;
-volatile uint32 J3_accumulator;
-volatile char J1_step;
-volatile char J2_step;
-volatile char J3_step;
-volatile char J1_dir;
-volatile char J2_dir;
-volatile char J3_dir;
-
-volatile int32 J1_pos;
-volatile int32 J2_pos;
-volatile int32 J3_pos;
-    
-volatile uint32 J1_duration;
-volatile uint32 J2_duration;
-volatile uint32 J3_duration;
-
 volatile int32 J1_home;
-
-volatile char J1_limit;
-volatile char J2_limit;
-volatile char J3_limit;
 
 volatile Joint joints[3]; //declare array of joints
 

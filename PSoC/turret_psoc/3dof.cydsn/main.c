@@ -64,14 +64,6 @@ int main(void)
     ADC_DelSig_1_Start();
     ADC_DelSig_1_StartConvert();
     NCO_ISR_Start();
-    tick_isr_Start();
-    rx_isr_Start();
-    
-    J2_limit = J2_LIM_Read();
-    J3_limit = J3_LIM_Read();
-    if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_WAIT_FOR_RESULT)){
-        J1_pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
-    }
     
     message_buff_init(&msg_buff);
     move_queue_init(&move_queue);
@@ -81,6 +73,8 @@ int main(void)
     UART_1_PutString("COM port open");
     send_cmd(SPI_REG_CLRERR|SPI_CMD_READ,0);
     send_cmd(SPI_REG_CLRERR|SPI_CMD_READ,1);
+    tick_isr_Start();
+    rx_isr_Start();
     for(;;)
     {
         /* Place your application code here. */
@@ -103,19 +97,19 @@ void home_joints(void){
     J2_EN_Write(0);
     J3_EN_Write(0);
     update_positions();
-    while(J1_pos > J1_home + 100 || J1_pos < J1_home - 100){
+    while(joints[0].pos > J1_home + 100 || joints[0].pos < J1_home - 100){
         //home J1
         update_positions();
-        if(J1_pos - J1_home > 0){
+        if(joints[0].pos - J1_home > 0){
             set_velocity(1,vel_to_tuningWord(1000),J1_REV);
         }
-        if(J1_pos - J1_home < 0){
+        if(joints[0].pos - J1_home < 0){
             set_velocity(1,vel_to_tuningWord(1000),J1_FWD);   
         }
     }
     set_velocity(1,0,J1_FWD);
     update_positions();
-    while(J2_limit != 0){
+    while(joints[1].limit != 0){
         update_positions();
         J2_DIR_Write(J2_FWD);
         J3_DIR_Write(J3_FWD);
@@ -125,7 +119,7 @@ void home_joints(void){
     set_velocity(2,vel_to_tuningWord(0),J2_FWD);
     set_velocity(3,vel_to_tuningWord(0),J3_FWD);
     update_positions();
-    while(J3_limit != 0){
+    while(joints[2].limit != 0){
         update_positions();
         set_velocity(3,vel_to_tuningWord(1000),J3_REV);
     }
@@ -139,32 +133,18 @@ void home_joints(void){
 void update_positions(void){
     //joint 1, pot for position and home
     if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_WAIT_FOR_RESULT)){
-        J1_pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
+        joints[0].pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
     }
     //joint 2, SPI for position
-    J2_limit = J2_LIM_Read();
+    joints[1].limit = J2_LIM_Read();
     //joint 3, SPI for position
-    J3_limit = J3_LIM_Read();
+    joints[2].limit = J3_LIM_Read();
 }
 
 void set_velocity(int joint, int32 tuningWord, char direction){
     //set tuning word for each joint
-    switch(joint){
-        case 1:
-            J1_tuningWord = tuningWord;
-            J1_dir = direction;
-            break;
-        case 2:
-            J2_tuningWord = tuningWord;
-            J2_dir = direction;
-            break;
-        case 3:
-            J3_tuningWord = tuningWord;
-            J3_dir = direction;
-            break;
-        default:
-            break;
-    }
+    joints[joint-1].tuningWord = tuningWord;
+    joints[joint-1].dir = direction;
 }
 
 uint32 vel_to_tuningWord(uint32 velocity){
