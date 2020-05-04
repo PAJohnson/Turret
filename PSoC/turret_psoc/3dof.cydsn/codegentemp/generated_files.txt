@@ -91,6 +91,10 @@
   <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\UART_1_BOOT.c" value="SOURCE_C;CortexM3;;;;UART_1" />
   <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\rx_isr.c" value="SOURCE_C;CortexM3;;;;rx_isr" />
   <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\rx_isr.h" value="HEADER;;;;;rx_isr" />
+  <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\Clock_3.c" value="SOURCE_C;CortexM3;;;;Clock_3" />
+  <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\Clock_3.h" value="HEADER;;;;;Clock_3" />
+  <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\tick_isr.c" value="SOURCE_C;CortexM3;;;;tick_isr" />
+  <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\tick_isr.h" value="HEADER;;;;;tick_isr" />
   <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\ADC_DelSig_1_AMux.c" value="SOURCE_C;CortexM3;;;;ADC_DelSig_1_AMux" />
   <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\ADC_DelSig_1_AMux.h" value="HEADER;;;;;ADC_DelSig_1_AMux" />
   <file name="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\codegentemp\ADC_DelSig_1_Ext_CP_Clk.c" value="SOURCE_C;CortexM3;;;;ADC_DelSig_1_Ext_CP_Clk" />

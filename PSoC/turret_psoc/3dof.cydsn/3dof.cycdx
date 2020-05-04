@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="J2_DIR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="J3_EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="J3_STEP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="J2_STEP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="J1_STEP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="J3_DIR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="J2_DIR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="J1_DIR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="J2_EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="rx_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Tx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="J3_DIR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="J2_STEP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="UART_1" BASE="0x0" SIZE="0x0" desc="UART" visible="true" hidden="false">
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -20,7 +15,7 @@
     <register name="RX_UART_1_RX_ADDRESS2" address="0x40006538" bitWidth="8" desc="RX Address2 Register" hidden="false" />
     <register name="RX_UART_1_RX_DATA" address="0x40006548" bitWidth="8" desc="RX Data Register" hidden="false" />
     <register name="TX_UART_1_TX_DATA" address="0x4000654A" bitWidth="8" desc="TX Data Register" hidden="false" />
-    <register name="TX_UART_1_TX_STATUS" address="0x40006569" bitWidth="8" desc="TX status register" hidden="false">
+    <register name="TX_UART_1_TX_STATUS" address="0x4000656A" bitWidth="8" desc="TX status register" hidden="false">
       <field name="UART_1_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" hidden="false" />
       <field name="UART_1_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" hidden="false" />
       <field name="UART_1_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" hidden="false" />
@@ -36,7 +31,13 @@
       <field name="UART_1_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" hidden="false" />
     </register>
   </block>
+  <block name="tick_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Rx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Tx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="rx_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="MOSI" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SCLK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -871,11 +872,12 @@
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="BSPIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="J1_EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="CS_J2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Clock_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="NCO_ISR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="J3_LIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="CS_J2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="J1_STEP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="J1_EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="CS_J3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="J2_LIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="J3_LIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

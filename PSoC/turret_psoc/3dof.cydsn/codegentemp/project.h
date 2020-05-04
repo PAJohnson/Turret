@@ -61,6 +61,8 @@
 #include "J3_DIR.h"
 #include "UART_1.h"
 #include "rx_isr.h"
+#include "Clock_3.h"
+#include "tick_isr.h"
 #include "ADC_DelSig_1_AMux.h"
 #include "ADC_DelSig_1_Ext_CP_Clk.h"
 #include "ADC_DelSig_1_Bypass_P03_aliases.h"

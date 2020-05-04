@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 1
 
 
    1              		.syntax unified
@@ -27,2163 +27,2096 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 1
   24              		.section	.cyconfigecc,"a",%progbits
   25              		.align	2
   26              		.type	cy_meta_configecc, %object
-  27              		.size	cy_meta_configecc, 1600
+  27              		.size	cy_meta_configecc, 1536
   28              	cy_meta_configecc:
-  29 0000 02       		.byte	2
+  29 0000 04       		.byte	4
   30 0001 52       		.byte	82
   31 0002 00       		.byte	0
   32 0003 40       		.byte	64
-  33 0004 02       		.byte	2
+  33 0004 01       		.byte	1
   34 0005 64       		.byte	100
   35 0006 00       		.byte	0
   36 0007 40       		.byte	64
-  37 0008 02       		.byte	2
+  37 0008 03       		.byte	3
   38 0009 65       		.byte	101
   39 000a 00       		.byte	0
   40 000b 40       		.byte	64
-  41 000c 02       		.byte	2
-  42 000d 05       		.byte	5
+  41 000c 22       		.byte	34
+  42 000d 08       		.byte	8
   43 000e 01       		.byte	1
   44 000f 40       		.byte	64
-  45 0010 01       		.byte	1
-  46 0011 07       		.byte	7
+  45 0010 45       		.byte	69
+  46 0011 09       		.byte	9
   47 0012 01       		.byte	1
   48 0013 40       		.byte	64
-  49 0014 4A       		.byte	74
-  50 0015 08       		.byte	8
+  49 0014 50       		.byte	80
+  50 0015 0A       		.byte	10
   51 0016 01       		.byte	1
   52 0017 40       		.byte	64
-  53 0018 4B       		.byte	75
-  54 0019 09       		.byte	9
+  53 0018 37       		.byte	55
+  54 0019 0B       		.byte	11
   55 001a 01       		.byte	1
   56 001b 40       		.byte	64
-  57 001c 51       		.byte	81
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 2
+  57 001c 02       		.byte	2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 2
 
 
-  58 001d 0A       		.byte	10
+  58 001d 15       		.byte	21
   59 001e 01       		.byte	1
   60 001f 40       		.byte	64
-  61 0020 31       		.byte	49
-  62 0021 0B       		.byte	11
+  61 0020 07       		.byte	7
+  62 0021 18       		.byte	24
   63 0022 01       		.byte	1
   64 0023 40       		.byte	64
-  65 0024 02       		.byte	2
-  66 0025 15       		.byte	21
+  65 0024 47       		.byte	71
+  66 0025 19       		.byte	25
   67 0026 01       		.byte	1
   68 0027 40       		.byte	64
-  69 0028 04       		.byte	4
-  70 0029 16       		.byte	22
+  69 0028 63       		.byte	99
+  70 0029 1A       		.byte	26
   71 002a 01       		.byte	1
   72 002b 40       		.byte	64
-  73 002c 02       		.byte	2
-  74 002d 17       		.byte	23
+  73 002c 44       		.byte	68
+  74 002d 1B       		.byte	27
   75 002e 01       		.byte	1
   76 002f 40       		.byte	64
-  77 0030 6B       		.byte	107
-  78 0031 18       		.byte	24
+  77 0030 03       		.byte	3
+  78 0031 40       		.byte	64
   79 0032 01       		.byte	1
   80 0033 40       		.byte	64
-  81 0034 52       		.byte	82
-  82 0035 19       		.byte	25
+  81 0034 02       		.byte	2
+  82 0035 41       		.byte	65
   83 0036 01       		.byte	1
   84 0037 40       		.byte	64
-  85 0038 59       		.byte	89
-  86 0039 1A       		.byte	26
+  85 0038 02       		.byte	2
+  86 0039 42       		.byte	66
   87 003a 01       		.byte	1
   88 003b 40       		.byte	64
-  89 003c 4D       		.byte	77
-  90 003d 1B       		.byte	27
+  89 003c 02       		.byte	2
+  90 003d 43       		.byte	67
   91 003e 01       		.byte	1
   92 003f 40       		.byte	64
-  93 0040 03       		.byte	3
-  94 0041 40       		.byte	64
+  93 0040 02       		.byte	2
+  94 0041 44       		.byte	68
   95 0042 01       		.byte	1
   96 0043 40       		.byte	64
-  97 0044 02       		.byte	2
-  98 0045 41       		.byte	65
+  97 0044 01       		.byte	1
+  98 0045 45       		.byte	69
   99 0046 01       		.byte	1
  100 0047 40       		.byte	64
- 101 0048 02       		.byte	2
- 102 0049 42       		.byte	66
+ 101 0048 05       		.byte	5
+ 102 0049 46       		.byte	70
  103 004a 01       		.byte	1
  104 004b 40       		.byte	64
- 105 004c 02       		.byte	2
- 106 004d 43       		.byte	67
+ 105 004c 04       		.byte	4
+ 106 004d 47       		.byte	71
  107 004e 01       		.byte	1
  108 004f 40       		.byte	64
- 109 0050 02       		.byte	2
- 110 0051 44       		.byte	68
+ 109 0050 04       		.byte	4
+ 110 0051 48       		.byte	72
  111 0052 01       		.byte	1
  112 0053 40       		.byte	64
- 113 0054 01       		.byte	1
- 114 0055 45       		.byte	69
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 3
+ 113 0054 0A       		.byte	10
+ 114 0055 49       		.byte	73
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 3
 
 
  115 0056 01       		.byte	1
  116 0057 40       		.byte	64
- 117 0058 06       		.byte	6
- 118 0059 46       		.byte	70
+ 117 0058 0D       		.byte	13
+ 118 0059 4C       		.byte	76
  119 005a 01       		.byte	1
  120 005b 40       		.byte	64
- 121 005c 07       		.byte	7
- 122 005d 47       		.byte	71
+ 121 005c 0B       		.byte	11
+ 122 005d 4D       		.byte	77
  123 005e 01       		.byte	1
  124 005f 40       		.byte	64
- 125 0060 04       		.byte	4
- 126 0061 48       		.byte	72
+ 125 0060 08       		.byte	8
+ 126 0061 50       		.byte	80
  127 0062 01       		.byte	1
  128 0063 40       		.byte	64
- 129 0064 07       		.byte	7
- 130 0065 49       		.byte	73
+ 129 0064 01       		.byte	1
+ 130 0065 51       		.byte	81
  131 0066 01       		.byte	1
  132 0067 40       		.byte	64
- 133 0068 0A       		.byte	10
- 134 0069 4C       		.byte	76
- 135 006a 01       		.byte	1
- 136 006b 40       		.byte	64
- 137 006c 09       		.byte	9
- 138 006d 4D       		.byte	77
- 139 006e 01       		.byte	1
- 140 006f 40       		.byte	64
- 141 0070 08       		.byte	8
- 142 0071 50       		.byte	80
- 143 0072 01       		.byte	1
- 144 0073 40       		.byte	64
- 145 0074 01       		.byte	1
- 146 0075 51       		.byte	81
- 147 0076 01       		.byte	1
- 148 0077 40       		.byte	64
- 149 0078 08       		.byte	8
- 150 0079 20       		.byte	32
- 151 007a 61       		.byte	97
- 152 007b 80       		.byte	-128
- 153 007c 89       		.byte	-119
- 154 007d 0F       		.byte	15
- 155 007e 8B       		.byte	-117
- 156 007f 72       		.byte	114
- 157 0080 89       		.byte	-119
- 158 0081 0F       		.byte	15
- 159 0082 8B       		.byte	-117
- 160 0083 38       		.byte	56
- 161 0084 87       		.byte	-121
- 162 0085 20       		.byte	32
- 163 0086 E4       		.byte	-28
- 164 0087 08       		.byte	8
- 165 0088 A7       		.byte	-89
- 166 0089 20       		.byte	32
- 167 008a 00       		.byte	0
- 168 008b 0F       		.byte	15
- 169 008c 01       		.byte	1
- 170 008d 04       		.byte	4
- 171 008e 03       		.byte	3
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 4
+ 133 0068 08       		.byte	8
+ 134 0069 20       		.byte	32
+ 135 006a 09       		.byte	9
+ 136 006b 30       		.byte	48
+ 137 006c 60       		.byte	96
+ 138 006d 80       		.byte	-128
+ 139 006e 61       		.byte	97
+ 140 006f 80       		.byte	-128
+ 141 0070 8A       		.byte	-118
+ 142 0071 1F       		.byte	31
+ 143 0072 88       		.byte	-120
+ 144 0073 72       		.byte	114
+ 145 0074 8A       		.byte	-118
+ 146 0075 0F       		.byte	15
+ 147 0076 8B       		.byte	-117
+ 148 0077 38       		.byte	56
+ 149 0078 80       		.byte	-128
+ 150 0079 01       		.byte	1
+ 151 007a B4       		.byte	-76
+ 152 007b 01       		.byte	1
+ 153 007c BE       		.byte	-66
+ 154 007d 10       		.byte	16
+ 155 007e C0       		.byte	-64
+ 156 007f 36       		.byte	54
+ 157 0080 C1       		.byte	-63
+ 158 0081 05       		.byte	5
+ 159 0082 C2       		.byte	-62
+ 160 0083 20       		.byte	32
+ 161 0084 C4       		.byte	-60
+ 162 0085 01       		.byte	1
+ 163 0086 C5       		.byte	-59
+ 164 0087 BE       		.byte	-66
+ 165 0088 C6       		.byte	-58
+ 166 0089 FD       		.byte	-3
+ 167 008a C7       		.byte	-57
+ 168 008b 0C       		.byte	12
+ 169 008c C8       		.byte	-56
+ 170 008d 1F       		.byte	31
+ 171 008e C9       		.byte	-55
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 4
 
 
- 172 008f 21       		.byte	33
- 173 0090 04       		.byte	4
- 174 0091 30       		.byte	48
- 175 0092 05       		.byte	5
- 176 0093 0F       		.byte	15
- 177 0094 06       		.byte	6
- 178 0095 8F       		.byte	-113
- 179 0096 08       		.byte	8
- 180 0097 8F       		.byte	-113
- 181 0098 09       		.byte	9
- 182 0099 0F       		.byte	15
- 183 009a 0A       		.byte	10
- 184 009b 30       		.byte	48
- 185 009c 0C       		.byte	12
- 186 009d 20       		.byte	32
- 187 009e 10       		.byte	16
- 188 009f 3C       		.byte	60
- 189 00a0 11       		.byte	17
- 190 00a1 08       		.byte	8
- 191 00a2 12       		.byte	18
- 192 00a3 83       		.byte	-125
- 193 00a4 16       		.byte	22
- 194 00a5 0F       		.byte	15
- 195 00a6 18       		.byte	24
- 196 00a7 BF       		.byte	-65
- 197 00a8 1C       		.byte	28
- 198 00a9 0A       		.byte	10
- 199 00aa 1D       		.byte	29
- 200 00ab 01       		.byte	1
- 201 00ac 1E       		.byte	30
- 202 00ad 40       		.byte	64
- 203 00ae 1F       		.byte	31
- 204 00af 16       		.byte	22
- 205 00b0 20       		.byte	32
- 206 00b1 05       		.byte	5
- 207 00b2 21       		.byte	33
- 208 00b3 02       		.byte	2
- 209 00b4 23       		.byte	35
- 210 00b5 21       		.byte	33
- 211 00b6 24       		.byte	36
- 212 00b7 10       		.byte	16
- 213 00b8 28       		.byte	40
- 214 00b9 30       		.byte	48
- 215 00ba 30       		.byte	48
- 216 00bb 40       		.byte	64
- 217 00bc 31       		.byte	49
- 218 00bd 08       		.byte	8
- 219 00be 32       		.byte	50
- 220 00bf 80       		.byte	-128
- 221 00c0 34       		.byte	52
- 222 00c1 3C       		.byte	60
- 223 00c2 35       		.byte	53
- 224 00c3 30       		.byte	48
- 225 00c4 36       		.byte	54
- 226 00c5 03       		.byte	3
- 227 00c6 37       		.byte	55
- 228 00c7 07       		.byte	7
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 5
+ 172 008f FF       		.byte	-1
+ 173 0090 CA       		.byte	-54
+ 174 0091 FF       		.byte	-1
+ 175 0092 CB       		.byte	-53
+ 176 0093 FF       		.byte	-1
+ 177 0094 CC       		.byte	-52
+ 178 0095 23       		.byte	35
+ 179 0096 CE       		.byte	-50
+ 180 0097 F0       		.byte	-16
+ 181 0098 CF       		.byte	-49
+ 182 0099 0C       		.byte	12
+ 183 009a D0       		.byte	-48
+ 184 009b 04       		.byte	4
+ 185 009c D8       		.byte	-40
+ 186 009d 04       		.byte	4
+ 187 009e DA       		.byte	-38
+ 188 009f 04       		.byte	4
+ 189 00a0 DD       		.byte	-35
+ 190 00a1 01       		.byte	1
+ 191 00a2 DF       		.byte	-33
+ 192 00a3 01       		.byte	1
+ 193 00a4 E2       		.byte	-30
+ 194 00a5 C0       		.byte	-64
+ 195 00a6 E4       		.byte	-28
+ 196 00a7 40       		.byte	64
+ 197 00a8 E5       		.byte	-27
+ 198 00a9 01       		.byte	1
+ 199 00aa E6       		.byte	-26
+ 200 00ab 10       		.byte	16
+ 201 00ac E7       		.byte	-25
+ 202 00ad 11       		.byte	17
+ 203 00ae E8       		.byte	-24
+ 204 00af C0       		.byte	-64
+ 205 00b0 E9       		.byte	-23
+ 206 00b1 01       		.byte	1
+ 207 00b2 EB       		.byte	-21
+ 208 00b3 11       		.byte	17
+ 209 00b4 EC       		.byte	-20
+ 210 00b5 40       		.byte	64
+ 211 00b6 ED       		.byte	-19
+ 212 00b7 01       		.byte	1
+ 213 00b8 EE       		.byte	-18
+ 214 00b9 40       		.byte	64
+ 215 00ba EF       		.byte	-17
+ 216 00bb 01       		.byte	1
+ 217 00bc 01       		.byte	1
+ 218 00bd 02       		.byte	2
+ 219 00be 05       		.byte	5
+ 220 00bf 40       		.byte	64
+ 221 00c0 06       		.byte	6
+ 222 00c1 88       		.byte	-120
+ 223 00c2 07       		.byte	7
+ 224 00c3 10       		.byte	16
+ 225 00c4 0C       		.byte	12
+ 226 00c5 08       		.byte	8
+ 227 00c6 0D       		.byte	13
+ 228 00c7 02       		.byte	2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 5
 
 
- 229 00c8 38       		.byte	56
- 230 00c9 08       		.byte	8
- 231 00ca 3A       		.byte	58
- 232 00cb 20       		.byte	32
- 233 00cc 3B       		.byte	59
- 234 00cd 08       		.byte	8
- 235 00ce 3F       		.byte	63
- 236 00cf 10       		.byte	16
- 237 00d0 56       		.byte	86
- 238 00d1 08       		.byte	8
- 239 00d2 58       		.byte	88
- 240 00d3 04       		.byte	4
- 241 00d4 59       		.byte	89
- 242 00d5 04       		.byte	4
- 243 00d6 5B       		.byte	91
- 244 00d7 04       		.byte	4
- 245 00d8 5C       		.byte	92
- 246 00d9 22       		.byte	34
- 247 00da 5D       		.byte	93
- 248 00db 90       		.byte	-112
- 249 00dc 5F       		.byte	95
- 250 00dd 01       		.byte	1
- 251 00de 81       		.byte	-127
- 252 00df 02       		.byte	2
- 253 00e0 84       		.byte	-124
- 254 00e1 01       		.byte	1
- 255 00e2 85       		.byte	-123
- 256 00e3 18       		.byte	24
- 257 00e4 87       		.byte	-121
- 258 00e5 02       		.byte	2
- 259 00e6 89       		.byte	-119
- 260 00e7 33       		.byte	51
- 261 00e8 8B       		.byte	-117
- 262 00e9 04       		.byte	4
- 263 00ea 8D       		.byte	-115
- 264 00eb 18       		.byte	24
- 265 00ec 95       		.byte	-107
- 266 00ed 1C       		.byte	28
- 267 00ee 97       		.byte	-105
- 268 00ef 63       		.byte	99
- 269 00f0 99       		.byte	-103
- 270 00f1 02       		.byte	2
- 271 00f2 9B       		.byte	-101
- 272 00f3 18       		.byte	24
- 273 00f4 9F       		.byte	-97
+ 229 00c8 0E       		.byte	14
+ 230 00c9 0A       		.byte	10
+ 231 00ca 0F       		.byte	15
+ 232 00cb 01       		.byte	1
+ 233 00cc 14       		.byte	20
+ 234 00cd 40       		.byte	64
+ 235 00ce 16       		.byte	22
+ 236 00cf 02       		.byte	2
+ 237 00d0 17       		.byte	23
+ 238 00d1 24       		.byte	36
+ 239 00d2 1A       		.byte	26
+ 240 00d3 08       		.byte	8
+ 241 00d4 1C       		.byte	28
+ 242 00d5 02       		.byte	2
+ 243 00d6 1E       		.byte	30
+ 244 00d7 48       		.byte	72
+ 245 00d8 24       		.byte	36
+ 246 00d9 02       		.byte	2
+ 247 00da 25       		.byte	37
+ 248 00db 32       		.byte	50
+ 249 00dc 27       		.byte	39
+ 250 00dd 24       		.byte	36
+ 251 00de 2D       		.byte	45
+ 252 00df 80       		.byte	-128
+ 253 00e0 2E       		.byte	46
+ 254 00e1 C0       		.byte	-64
+ 255 00e2 2F       		.byte	47
+ 256 00e3 28       		.byte	40
+ 257 00e4 34       		.byte	52
+ 258 00e5 40       		.byte	64
+ 259 00e6 36       		.byte	54
+ 260 00e7 05       		.byte	5
+ 261 00e8 37       		.byte	55
+ 262 00e9 60       		.byte	96
+ 263 00ea 38       		.byte	56
+ 264 00eb 02       		.byte	2
+ 265 00ec 39       		.byte	57
+ 266 00ed 01       		.byte	1
+ 267 00ee 3C       		.byte	60
+ 268 00ef 02       		.byte	2
+ 269 00f0 3D       		.byte	61
+ 270 00f1 20       		.byte	32
+ 271 00f2 3E       		.byte	62
+ 272 00f3 02       		.byte	2
+ 273 00f4 3F       		.byte	63
  274 00f5 40       		.byte	64
- 275 00f6 A1       		.byte	-95
- 276 00f7 18       		.byte	24
- 277 00f8 A3       		.byte	-93
- 278 00f9 02       		.byte	2
- 279 00fa A5       		.byte	-91
- 280 00fb 01       		.byte	1
- 281 00fc A7       		.byte	-89
- 282 00fd 78       		.byte	120
- 283 00fe A9       		.byte	-87
- 284 00ff 1A       		.byte	26
- 285 0100 AD       		.byte	-83
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 6
+ 275 00f6 40       		.byte	64
+ 276 00f7 08       		.byte	8
+ 277 00f8 41       		.byte	65
+ 278 00f9 48       		.byte	72
+ 279 00fa 44       		.byte	68
+ 280 00fb 08       		.byte	8
+ 281 00fc 45       		.byte	69
+ 282 00fd 09       		.byte	9
+ 283 00fe 46       		.byte	70
+ 284 00ff 01       		.byte	1
+ 285 0100 47       		.byte	71
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 6
 
 
- 286 0101 1A       		.byte	26
- 287 0102 B2       		.byte	-78
- 288 0103 01       		.byte	1
- 289 0104 B3       		.byte	-77
- 290 0105 0F       		.byte	15
- 291 0106 B5       		.byte	-75
- 292 0107 13       		.byte	19
- 293 0108 B7       		.byte	-73
- 294 0109 60       		.byte	96
- 295 010a BB       		.byte	-69
- 296 010b 08       		.byte	8
- 297 010c BE       		.byte	-66
- 298 010d 04       		.byte	4
- 299 010e D6       		.byte	-42
- 300 010f 02       		.byte	2
- 301 0110 D7       		.byte	-41
- 302 0111 24       		.byte	36
- 303 0112 D8       		.byte	-40
- 304 0113 04       		.byte	4
- 305 0114 D9       		.byte	-39
- 306 0115 04       		.byte	4
- 307 0116 DB       		.byte	-37
- 308 0117 04       		.byte	4
- 309 0118 DC       		.byte	-36
- 310 0119 10       		.byte	16
- 311 011a DD       		.byte	-35
- 312 011b 10       		.byte	16
- 313 011c DF       		.byte	-33
- 314 011d 01       		.byte	1
- 315 011e 02       		.byte	2
- 316 011f 10       		.byte	16
- 317 0120 04       		.byte	4
- 318 0121 02       		.byte	2
- 319 0122 05       		.byte	5
- 320 0123 10       		.byte	16
- 321 0124 06       		.byte	6
- 322 0125 01       		.byte	1
- 323 0126 07       		.byte	7
- 324 0127 10       		.byte	16
- 325 0128 0E       		.byte	14
- 326 0129 18       		.byte	24
- 327 012a 0F       		.byte	15
- 328 012b 41       		.byte	65
- 329 012c 14       		.byte	20
- 330 012d 40       		.byte	64
- 331 012e 17       		.byte	23
- 332 012f 24       		.byte	36
- 333 0130 19       		.byte	25
- 334 0131 08       		.byte	8
- 335 0132 1D       		.byte	29
- 336 0133 10       		.byte	16
- 337 0134 1E       		.byte	30
- 338 0135 02       		.byte	2
- 339 0136 1F       		.byte	31
- 340 0137 2A       		.byte	42
- 341 0138 20       		.byte	32
- 342 0139 18       		.byte	24
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 7
+ 286 0101 01       		.byte	1
+ 287 0102 48       		.byte	72
+ 288 0103 02       		.byte	2
+ 289 0104 49       		.byte	73
+ 290 0105 25       		.byte	37
+ 291 0106 4E       		.byte	78
+ 292 0107 02       		.byte	2
+ 293 0108 52       		.byte	82
+ 294 0109 54       		.byte	84
+ 295 010a 66       		.byte	102
+ 296 010b 50       		.byte	80
+ 297 010c 67       		.byte	103
+ 298 010d 20       		.byte	32
+ 299 010e 86       		.byte	-122
+ 300 010f 20       		.byte	32
+ 301 0110 87       		.byte	-121
+ 302 0111 40       		.byte	64
+ 303 0112 8C       		.byte	-116
+ 304 0113 12       		.byte	18
+ 305 0114 8D       		.byte	-115
+ 306 0115 21       		.byte	33
+ 307 0116 8E       		.byte	-114
+ 308 0117 01       		.byte	1
+ 309 0118 90       		.byte	-112
+ 310 0119 A0       		.byte	-96
+ 311 011a 91       		.byte	-111
+ 312 011b 5A       		.byte	90
+ 313 011c 92       		.byte	-110
+ 314 011d 80       		.byte	-128
+ 315 011e 93       		.byte	-109
+ 316 011f 21       		.byte	33
+ 317 0120 98       		.byte	-104
+ 318 0121 10       		.byte	16
+ 319 0122 9C       		.byte	-100
+ 320 0123 80       		.byte	-128
+ 321 0124 9D       		.byte	-99
+ 322 0125 11       		.byte	17
+ 323 0126 9E       		.byte	-98
+ 324 0127 44       		.byte	68
+ 325 0128 A1       		.byte	-95
+ 326 0129 09       		.byte	9
+ 327 012a A2       		.byte	-94
+ 328 012b A0       		.byte	-96
+ 329 012c AF       		.byte	-81
+ 330 012d 20       		.byte	32
+ 331 012e B4       		.byte	-76
+ 332 012f 40       		.byte	64
+ 333 0130 B7       		.byte	-73
+ 334 0131 20       		.byte	32
+ 335 0132 C0       		.byte	-64
+ 336 0133 F8       		.byte	-8
+ 337 0134 C2       		.byte	-62
+ 338 0135 F0       		.byte	-16
+ 339 0136 C4       		.byte	-60
+ 340 0137 F0       		.byte	-16
+ 341 0138 CA       		.byte	-54
+ 342 0139 70       		.byte	112
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 7
 
 
- 343 013a 21       		.byte	33
- 344 013b 14       		.byte	20
- 345 013c 22       		.byte	34
- 346 013d 40       		.byte	64
- 347 013e 24       		.byte	36
- 348 013f 02       		.byte	2
- 349 0140 26       		.byte	38
- 350 0141 46       		.byte	70
- 351 0142 27       		.byte	39
- 352 0143 08       		.byte	8
- 353 0144 28       		.byte	40
- 354 0145 02       		.byte	2
- 355 0146 29       		.byte	41
- 356 0147 04       		.byte	4
- 357 0148 2A       		.byte	42
- 358 0149 20       		.byte	32
- 359 014a 2B       		.byte	43
- 360 014b 40       		.byte	64
- 361 014c 2C       		.byte	44
- 362 014d 40       		.byte	64
- 363 014e 2F       		.byte	47
- 364 014f 40       		.byte	64
- 365 0150 31       		.byte	49
- 366 0151 08       		.byte	8
- 367 0152 32       		.byte	50
- 368 0153 50       		.byte	80
- 369 0154 36       		.byte	54
- 370 0155 40       		.byte	64
- 371 0156 37       		.byte	55
- 372 0157 01       		.byte	1
- 373 0158 38       		.byte	56
- 374 0159 40       		.byte	64
- 375 015a 39       		.byte	57
- 376 015b 24       		.byte	36
- 377 015c 3B       		.byte	59
- 378 015d 02       		.byte	2
- 379 015e 3D       		.byte	61
+ 343 013a CC       		.byte	-52
+ 344 013b F0       		.byte	-16
+ 345 013c CE       		.byte	-50
+ 346 013d B0       		.byte	-80
+ 347 013e D0       		.byte	-48
+ 348 013f FE       		.byte	-2
+ 349 0140 D2       		.byte	-46
+ 350 0141 1C       		.byte	28
+ 351 0142 D8       		.byte	-40
+ 352 0143 70       		.byte	112
+ 353 0144 EC       		.byte	-20
+ 354 0145 08       		.byte	8
+ 355 0146 00       		.byte	0
+ 356 0147 3D       		.byte	61
+ 357 0148 01       		.byte	1
+ 358 0149 02       		.byte	2
+ 359 014a 02       		.byte	2
+ 360 014b 42       		.byte	66
+ 361 014c 03       		.byte	3
+ 362 014d 10       		.byte	16
+ 363 014e 04       		.byte	4
+ 364 014f 32       		.byte	50
+ 365 0150 05       		.byte	5
+ 366 0151 12       		.byte	18
+ 367 0152 08       		.byte	8
+ 368 0153 23       		.byte	35
+ 369 0154 09       		.byte	9
+ 370 0155 41       		.byte	65
+ 371 0156 0A       		.byte	10
+ 372 0157 44       		.byte	68
+ 373 0158 0B       		.byte	11
+ 374 0159 94       		.byte	-108
+ 375 015a 0D       		.byte	13
+ 376 015b 12       		.byte	18
+ 377 015c 14       		.byte	20
+ 378 015d 48       		.byte	72
+ 379 015e 15       		.byte	21
  380 015f 10       		.byte	16
- 381 0160 3E       		.byte	62
- 382 0161 44       		.byte	68
- 383 0162 3F       		.byte	63
- 384 0163 81       		.byte	-127
- 385 0164 5C       		.byte	92
- 386 0165 8A       		.byte	-118
- 387 0166 5D       		.byte	93
- 388 0167 01       		.byte	1
- 389 0168 5E       		.byte	94
- 390 0169 08       		.byte	8
- 391 016a 60       		.byte	96
- 392 016b 04       		.byte	4
- 393 016c 67       		.byte	103
- 394 016d 01       		.byte	1
- 395 016e 68       		.byte	104
- 396 016f 08       		.byte	8
- 397 0170 69       		.byte	105
- 398 0171 05       		.byte	5
- 399 0172 6A       		.byte	106
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 8
+ 381 0160 16       		.byte	22
+ 382 0161 33       		.byte	51
+ 383 0162 17       		.byte	23
+ 384 0163 02       		.byte	2
+ 385 0164 18       		.byte	24
+ 386 0165 30       		.byte	48
+ 387 0166 1A       		.byte	26
+ 388 0167 08       		.byte	8
+ 389 0168 1B       		.byte	27
+ 390 0169 60       		.byte	96
+ 391 016a 1C       		.byte	28
+ 392 016b 32       		.byte	50
+ 393 016c 1D       		.byte	29
+ 394 016d 12       		.byte	18
+ 395 016e 23       		.byte	35
+ 396 016f 80       		.byte	-128
+ 397 0170 24       		.byte	36
+ 398 0171 32       		.byte	50
+ 399 0172 25       		.byte	37
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 8
 
 
- 400 0173 68       		.byte	104
- 401 0174 70       		.byte	112
- 402 0175 80       		.byte	-128
- 403 0176 72       		.byte	114
- 404 0177 01       		.byte	1
- 405 0178 8A       		.byte	-118
- 406 0179 21       		.byte	33
- 407 017a 8E       		.byte	-114
- 408 017b 40       		.byte	64
- 409 017c 90       		.byte	-112
- 410 017d 28       		.byte	40
- 411 017e 91       		.byte	-111
- 412 017f 10       		.byte	16
- 413 0180 92       		.byte	-110
- 414 0181 04       		.byte	4
- 415 0182 93       		.byte	-109
- 416 0183 42       		.byte	66
- 417 0184 94       		.byte	-108
+ 400 0173 02       		.byte	2
+ 401 0174 28       		.byte	40
+ 402 0175 02       		.byte	2
+ 403 0176 29       		.byte	41
+ 404 0177 A3       		.byte	-93
+ 405 0178 2A       		.byte	42
+ 406 0179 30       		.byte	48
+ 407 017a 2B       		.byte	43
+ 408 017b 4C       		.byte	76
+ 409 017c 2C       		.byte	44
+ 410 017d 30       		.byte	48
+ 411 017e 2D       		.byte	45
+ 412 017f C3       		.byte	-61
+ 413 0180 2E       		.byte	46
+ 414 0181 02       		.byte	2
+ 415 0182 2F       		.byte	47
+ 416 0183 38       		.byte	56
+ 417 0184 30       		.byte	48
  418 0185 40       		.byte	64
- 419 0186 95       		.byte	-107
- 420 0187 01       		.byte	1
- 421 0188 96       		.byte	-106
- 422 0189 49       		.byte	73
- 423 018a 97       		.byte	-105
- 424 018b 05       		.byte	5
- 425 018c 9A       		.byte	-102
- 426 018d 05       		.byte	5
- 427 018e 9B       		.byte	-101
- 428 018f 35       		.byte	53
- 429 0190 9D       		.byte	-99
- 430 0191 80       		.byte	-128
- 431 0192 9F       		.byte	-97
- 432 0193 40       		.byte	64
- 433 0194 A2       		.byte	-94
- 434 0195 20       		.byte	32
- 435 0196 A4       		.byte	-92
- 436 0197 0C       		.byte	12
- 437 0198 A5       		.byte	-91
- 438 0199 08       		.byte	8
- 439 019a A6       		.byte	-90
- 440 019b 06       		.byte	6
- 441 019c A7       		.byte	-89
- 442 019d 22       		.byte	34
- 443 019e A9       		.byte	-87
- 444 019f 10       		.byte	16
- 445 01a0 AB       		.byte	-85
- 446 01a1 01       		.byte	1
- 447 01a2 B0       		.byte	-80
- 448 01a3 01       		.byte	1
- 449 01a4 C0       		.byte	-64
- 450 01a5 F4       		.byte	-12
- 451 01a6 C2       		.byte	-62
- 452 01a7 F0       		.byte	-16
- 453 01a8 C4       		.byte	-60
- 454 01a9 70       		.byte	112
- 455 01aa CA       		.byte	-54
- 456 01ab 8F       		.byte	-113
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 9
+ 419 0186 32       		.byte	50
+ 420 0187 22       		.byte	34
+ 421 0188 33       		.byte	51
+ 422 0189 1F       		.byte	31
+ 423 018a 34       		.byte	52
+ 424 018b 01       		.byte	1
+ 425 018c 35       		.byte	53
+ 426 018d E0       		.byte	-32
+ 427 018e 36       		.byte	54
+ 428 018f 1E       		.byte	30
+ 429 0190 37       		.byte	55
+ 430 0191 01       		.byte	1
+ 431 0192 39       		.byte	57
+ 432 0193 08       		.byte	8
+ 433 0194 3A       		.byte	58
+ 434 0195 C0       		.byte	-64
+ 435 0196 3E       		.byte	62
+ 436 0197 01       		.byte	1
+ 437 0198 3F       		.byte	63
+ 438 0199 40       		.byte	64
+ 439 019a 56       		.byte	86
+ 440 019b 02       		.byte	2
+ 441 019c 57       		.byte	87
+ 442 019d 24       		.byte	36
+ 443 019e 58       		.byte	88
+ 444 019f 04       		.byte	4
+ 445 01a0 59       		.byte	89
+ 446 01a1 04       		.byte	4
+ 447 01a2 5B       		.byte	91
+ 448 01a3 04       		.byte	4
+ 449 01a4 5C       		.byte	92
+ 450 01a5 11       		.byte	17
+ 451 01a6 5D       		.byte	93
+ 452 01a7 10       		.byte	16
+ 453 01a8 5F       		.byte	95
+ 454 01a9 01       		.byte	1
+ 455 01aa 82       		.byte	-126
+ 456 01ab 01       		.byte	1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 9
 
 
- 457 01ac CC       		.byte	-52
- 458 01ad 9E       		.byte	-98
- 459 01ae CE       		.byte	-50
- 460 01af EF       		.byte	-17
- 461 01b0 D6       		.byte	-42
- 462 01b1 10       		.byte	16
- 463 01b2 D8       		.byte	-40
- 464 01b3 14       		.byte	20
- 465 01b4 00       		.byte	0
- 466 01b5 84       		.byte	-124
- 467 01b6 04       		.byte	4
- 468 01b7 07       		.byte	7
- 469 01b8 06       		.byte	6
- 470 01b9 38       		.byte	56
- 471 01ba 08       		.byte	8
- 472 01bb 01       		.byte	1
- 473 01bc 0C       		.byte	12
- 474 01bd 04       		.byte	4
- 475 01be 10       		.byte	16
- 476 01bf 04       		.byte	4
- 477 01c0 12       		.byte	18
- 478 01c1 80       		.byte	-128
- 479 01c2 14       		.byte	20
- 480 01c3 56       		.byte	86
- 481 01c4 16       		.byte	22
- 482 01c5 09       		.byte	9
- 483 01c6 18       		.byte	24
- 484 01c7 84       		.byte	-124
- 485 01c8 1C       		.byte	28
- 486 01c9 84       		.byte	-124
- 487 01ca 20       		.byte	32
- 488 01cb 60       		.byte	96
- 489 01cc 24       		.byte	36
- 490 01cd 0A       		.byte	10
- 491 01ce 26       		.byte	38
- 492 01cf 10       		.byte	16
- 493 01d0 28       		.byte	40
+ 457 01ac 84       		.byte	-124
+ 458 01ad D1       		.byte	-47
+ 459 01ae 88       		.byte	-120
+ 460 01af 16       		.byte	22
+ 461 01b0 8A       		.byte	-118
+ 462 01b1 28       		.byte	40
+ 463 01b2 8C       		.byte	-116
+ 464 01b3 20       		.byte	32
+ 465 01b4 8E       		.byte	-114
+ 466 01b5 82       		.byte	-126
+ 467 01b6 90       		.byte	-112
+ 468 01b7 20       		.byte	32
+ 469 01b8 92       		.byte	-110
+ 470 01b9 D0       		.byte	-48
+ 471 01ba 94       		.byte	-108
+ 472 01bb 2A       		.byte	42
+ 473 01bc 96       		.byte	-106
+ 474 01bd 44       		.byte	68
+ 475 01be 9C       		.byte	-100
+ 476 01bf 0C       		.byte	12
+ 477 01c0 A0       		.byte	-96
+ 478 01c1 D1       		.byte	-47
+ 479 01c2 A4       		.byte	-92
+ 480 01c3 D1       		.byte	-47
+ 481 01c4 A8       		.byte	-88
+ 482 01c5 D1       		.byte	-47
+ 483 01c6 AC       		.byte	-84
+ 484 01c7 D0       		.byte	-48
+ 485 01c8 AE       		.byte	-82
+ 486 01c9 01       		.byte	1
+ 487 01ca B0       		.byte	-80
+ 488 01cb F0       		.byte	-16
+ 489 01cc B4       		.byte	-76
+ 490 01cd 01       		.byte	1
+ 491 01ce B6       		.byte	-74
+ 492 01cf 0E       		.byte	14
+ 493 01d0 B8       		.byte	-72
  494 01d1 80       		.byte	-128
- 495 01d2 2A       		.byte	42
- 496 01d3 04       		.byte	4
- 497 01d4 30       		.byte	48
- 498 01d5 02       		.byte	2
- 499 01d6 32       		.byte	50
- 500 01d7 7F       		.byte	127
- 501 01d8 34       		.byte	52
- 502 01d9 80       		.byte	-128
- 503 01da 38       		.byte	56
- 504 01db 08       		.byte	8
- 505 01dc 3E       		.byte	62
- 506 01dd 11       		.byte	17
- 507 01de 40       		.byte	64
- 508 01df 13       		.byte	19
- 509 01e0 41       		.byte	65
- 510 01e1 06       		.byte	6
- 511 01e2 42       		.byte	66
- 512 01e3 20       		.byte	32
- 513 01e4 44       		.byte	68
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 10
+ 495 01d2 BA       		.byte	-70
+ 496 01d3 02       		.byte	2
+ 497 01d4 BB       		.byte	-69
+ 498 01d5 20       		.byte	32
+ 499 01d6 BE       		.byte	-66
+ 500 01d7 10       		.byte	16
+ 501 01d8 D6       		.byte	-42
+ 502 01d9 08       		.byte	8
+ 503 01da D8       		.byte	-40
+ 504 01db 04       		.byte	4
+ 505 01dc D9       		.byte	-39
+ 506 01dd 04       		.byte	4
+ 507 01de DB       		.byte	-37
+ 508 01df 04       		.byte	4
+ 509 01e0 DC       		.byte	-36
+ 510 01e1 21       		.byte	33
+ 511 01e2 DD       		.byte	-35
+ 512 01e3 90       		.byte	-112
+ 513 01e4 DF       		.byte	-33
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 10
 
 
- 514 01e5 05       		.byte	5
- 515 01e6 45       		.byte	69
- 516 01e7 CE       		.byte	-50
- 517 01e8 46       		.byte	70
- 518 01e9 FB       		.byte	-5
- 519 01ea 47       		.byte	71
- 520 01eb 0D       		.byte	13
- 521 01ec 48       		.byte	72
- 522 01ed 1F       		.byte	31
- 523 01ee 49       		.byte	73
- 524 01ef FF       		.byte	-1
- 525 01f0 4A       		.byte	74
- 526 01f1 FF       		.byte	-1
- 527 01f2 4B       		.byte	75
- 528 01f3 FF       		.byte	-1
- 529 01f4 4C       		.byte	76
- 530 01f5 22       		.byte	34
- 531 01f6 4E       		.byte	78
- 532 01f7 F0       		.byte	-16
- 533 01f8 4F       		.byte	79
+ 514 01e5 01       		.byte	1
+ 515 01e6 00       		.byte	0
+ 516 01e7 05       		.byte	5
+ 517 01e8 03       		.byte	3
+ 518 01e9 08       		.byte	8
+ 519 01ea 04       		.byte	4
+ 520 01eb 24       		.byte	36
+ 521 01ec 05       		.byte	5
+ 522 01ed 40       		.byte	64
+ 523 01ee 06       		.byte	6
+ 524 01ef 40       		.byte	64
+ 525 01f0 07       		.byte	7
+ 526 01f1 20       		.byte	32
+ 527 01f2 08       		.byte	8
+ 528 01f3 10       		.byte	16
+ 529 01f4 09       		.byte	9
+ 530 01f5 08       		.byte	8
+ 531 01f6 0A       		.byte	10
+ 532 01f7 02       		.byte	2
+ 533 01f8 0D       		.byte	13
  534 01f9 08       		.byte	8
- 535 01fa 50       		.byte	80
- 536 01fb 04       		.byte	4
- 537 01fc 54       		.byte	84
- 538 01fd 09       		.byte	9
- 539 01fe 58       		.byte	88
- 540 01ff 04       		.byte	4
- 541 0200 5A       		.byte	90
- 542 0201 04       		.byte	4
- 543 0202 5B       		.byte	91
- 544 0203 04       		.byte	4
- 545 0204 5C       		.byte	92
- 546 0205 01       		.byte	1
- 547 0206 5D       		.byte	93
- 548 0207 11       		.byte	17
- 549 0208 5F       		.byte	95
- 550 0209 01       		.byte	1
- 551 020a 62       		.byte	98
- 552 020b C0       		.byte	-64
- 553 020c 64       		.byte	100
- 554 020d 40       		.byte	64
- 555 020e 65       		.byte	101
- 556 020f 01       		.byte	1
- 557 0210 66       		.byte	102
- 558 0211 10       		.byte	16
- 559 0212 67       		.byte	103
- 560 0213 11       		.byte	17
- 561 0214 68       		.byte	104
- 562 0215 C0       		.byte	-64
- 563 0216 69       		.byte	105
- 564 0217 01       		.byte	1
- 565 0218 6B       		.byte	107
- 566 0219 11       		.byte	17
- 567 021a 6C       		.byte	108
- 568 021b 40       		.byte	64
- 569 021c 6D       		.byte	109
- 570 021d 01       		.byte	1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 11
+ 535 01fa 0E       		.byte	14
+ 536 01fb 82       		.byte	-126
+ 537 01fc 10       		.byte	16
+ 538 01fd 28       		.byte	40
+ 539 01fe 11       		.byte	17
+ 540 01ff 40       		.byte	64
+ 541 0200 15       		.byte	21
+ 542 0201 5A       		.byte	90
+ 543 0202 16       		.byte	22
+ 544 0203 02       		.byte	2
+ 545 0204 18       		.byte	24
+ 546 0205 21       		.byte	33
+ 547 0206 19       		.byte	25
+ 548 0207 40       		.byte	64
+ 549 0208 1A       		.byte	26
+ 550 0209 80       		.byte	-128
+ 551 020a 1B       		.byte	27
+ 552 020b 28       		.byte	40
+ 553 020c 1E       		.byte	30
+ 554 020d 82       		.byte	-126
+ 555 020e 1F       		.byte	31
+ 556 020f 10       		.byte	16
+ 557 0210 21       		.byte	33
+ 558 0211 28       		.byte	40
+ 559 0212 22       		.byte	34
+ 560 0213 80       		.byte	-128
+ 561 0214 23       		.byte	35
+ 562 0215 10       		.byte	16
+ 563 0216 26       		.byte	38
+ 564 0217 20       		.byte	32
+ 565 0218 28       		.byte	40
+ 566 0219 10       		.byte	16
+ 567 021a 29       		.byte	41
+ 568 021b 41       		.byte	65
+ 569 021c 2A       		.byte	42
+ 570 021d 04       		.byte	4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 11
 
 
- 571 021e 6E       		.byte	110
- 572 021f 40       		.byte	64
- 573 0220 6F       		.byte	111
- 574 0221 01       		.byte	1
- 575 0222 81       		.byte	-127
+ 571 021e 2B       		.byte	43
+ 572 021f 08       		.byte	8
+ 573 0220 30       		.byte	48
+ 574 0221 08       		.byte	8
+ 575 0222 31       		.byte	49
  576 0223 20       		.byte	32
- 577 0224 85       		.byte	-123
- 578 0225 02       		.byte	2
- 579 0226 89       		.byte	-119
- 580 0227 06       		.byte	6
- 581 0228 8D       		.byte	-115
- 582 0229 66       		.byte	102
- 583 022a 8F       		.byte	-113
- 584 022b 89       		.byte	-119
- 585 022c 93       		.byte	-109
- 586 022d 99       		.byte	-103
- 587 022e 95       		.byte	-107
- 588 022f FF       		.byte	-1
- 589 0230 99       		.byte	-103
- 590 0231 E6       		.byte	-26
- 591 0232 9B       		.byte	-101
- 592 0233 11       		.byte	17
- 593 0234 A1       		.byte	-95
- 594 0235 04       		.byte	4
- 595 0236 A5       		.byte	-91
- 596 0237 F9       		.byte	-7
- 597 0238 A7       		.byte	-89
- 598 0239 06       		.byte	6
- 599 023a AF       		.byte	-81
- 600 023b 20       		.byte	32
- 601 023c B1       		.byte	-79
- 602 023d 40       		.byte	64
- 603 023e B3       		.byte	-77
- 604 023f 3E       		.byte	62
- 605 0240 B5       		.byte	-75
- 606 0241 86       		.byte	-122
- 607 0242 B7       		.byte	-73
- 608 0243 07       		.byte	7
- 609 0244 BB       		.byte	-69
- 610 0245 88       		.byte	-120
- 611 0246 BF       		.byte	-65
- 612 0247 01       		.byte	1
- 613 0248 D6       		.byte	-42
- 614 0249 02       		.byte	2
- 615 024a D7       		.byte	-41
- 616 024b 13       		.byte	19
- 617 024c D9       		.byte	-39
- 618 024d 04       		.byte	4
- 619 024e DB       		.byte	-37
- 620 024f 04       		.byte	4
- 621 0250 DC       		.byte	-36
- 622 0251 20       		.byte	32
- 623 0252 DD       		.byte	-35
- 624 0253 20       		.byte	32
- 625 0254 DF       		.byte	-33
- 626 0255 01       		.byte	1
- 627 0256 00       		.byte	0
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 12
+ 577 0224 33       		.byte	51
+ 578 0225 40       		.byte	64
+ 579 0226 38       		.byte	56
+ 580 0227 80       		.byte	-128
+ 581 0228 39       		.byte	57
+ 582 0229 08       		.byte	8
+ 583 022a 3A       		.byte	58
+ 584 022b 02       		.byte	2
+ 585 022c 3B       		.byte	59
+ 586 022d 10       		.byte	16
+ 587 022e 3C       		.byte	60
+ 588 022f 01       		.byte	1
+ 589 0230 3D       		.byte	61
+ 590 0231 02       		.byte	2
+ 591 0232 5C       		.byte	92
+ 592 0233 80       		.byte	-128
+ 593 0234 61       		.byte	97
+ 594 0235 10       		.byte	16
+ 595 0236 67       		.byte	103
+ 596 0237 01       		.byte	1
+ 597 0238 68       		.byte	104
+ 598 0239 28       		.byte	40
+ 599 023a 69       		.byte	105
+ 600 023b 5A       		.byte	90
+ 601 023c 6A       		.byte	106
+ 602 023d 02       		.byte	2
+ 603 023e 6B       		.byte	107
+ 604 023f 40       		.byte	64
+ 605 0240 70       		.byte	112
+ 606 0241 40       		.byte	64
+ 607 0242 8D       		.byte	-115
+ 608 0243 20       		.byte	32
+ 609 0244 C0       		.byte	-64
+ 610 0245 FE       		.byte	-2
+ 611 0246 C2       		.byte	-62
+ 612 0247 B7       		.byte	-73
+ 613 0248 C4       		.byte	-60
+ 614 0249 F7       		.byte	-9
+ 615 024a CA       		.byte	-54
+ 616 024b 0F       		.byte	15
+ 617 024c CC       		.byte	-52
+ 618 024d 0E       		.byte	14
+ 619 024e CE       		.byte	-50
+ 620 024f 0F       		.byte	15
+ 621 0250 D6       		.byte	-42
+ 622 0251 10       		.byte	16
+ 623 0252 D8       		.byte	-40
+ 624 0253 14       		.byte	20
+ 625 0254 E6       		.byte	-26
+ 626 0255 02       		.byte	2
+ 627 0256 EC       		.byte	-20
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 12
 
 
- 628 0257 58       		.byte	88
- 629 0258 01       		.byte	1
- 630 0259 01       		.byte	1
- 631 025a 09       		.byte	9
- 632 025b 08       		.byte	8
- 633 025c 0A       		.byte	10
- 634 025d 49       		.byte	73
- 635 025e 10       		.byte	16
- 636 025f 88       		.byte	-120
- 637 0260 13       		.byte	19
+ 628 0257 10       		.byte	16
+ 629 0258 B8       		.byte	-72
+ 630 0259 80       		.byte	-128
+ 631 025a BE       		.byte	-66
+ 632 025b 40       		.byte	64
+ 633 025c D4       		.byte	-44
+ 634 025d 09       		.byte	9
+ 635 025e D8       		.byte	-40
+ 636 025f 04       		.byte	4
+ 637 0260 DB       		.byte	-37
  638 0261 04       		.byte	4
- 639 0262 18       		.byte	24
- 640 0263 14       		.byte	20
- 641 0264 1B       		.byte	27
+ 639 0262 DD       		.byte	-35
+ 640 0263 10       		.byte	16
+ 641 0264 DF       		.byte	-33
  642 0265 01       		.byte	1
- 643 0266 24       		.byte	36
- 644 0267 08       		.byte	8
- 645 0268 25       		.byte	37
+ 643 0266 05       		.byte	5
+ 644 0267 10       		.byte	16
+ 645 0268 06       		.byte	6
  646 0269 40       		.byte	64
- 647 026a 26       		.byte	38
- 648 026b 01       		.byte	1
- 649 026c 27       		.byte	39
- 650 026d 10       		.byte	16
- 651 026e 2E       		.byte	46
- 652 026f 02       		.byte	2
- 653 0270 2F       		.byte	47
- 654 0271 22       		.byte	34
- 655 0272 36       		.byte	54
- 656 0273 06       		.byte	6
- 657 0274 37       		.byte	55
- 658 0275 10       		.byte	16
- 659 0276 3D       		.byte	61
- 660 0277 80       		.byte	-128
- 661 0278 3E       		.byte	62
- 662 0279 28       		.byte	40
- 663 027a 3F       		.byte	63
- 664 027b 41       		.byte	65
- 665 027c 40       		.byte	64
- 666 027d 04       		.byte	4
- 667 027e 41       		.byte	65
- 668 027f 08       		.byte	8
- 669 0280 43       		.byte	67
+ 647 026a 07       		.byte	7
+ 648 026b 21       		.byte	33
+ 649 026c 0C       		.byte	12
+ 650 026d 02       		.byte	2
+ 651 026e 0D       		.byte	13
+ 652 026f 28       		.byte	40
+ 653 0270 0F       		.byte	15
+ 654 0271 01       		.byte	1
+ 655 0272 15       		.byte	21
+ 656 0273 5A       		.byte	90
+ 657 0274 18       		.byte	24
+ 658 0275 02       		.byte	2
+ 659 0276 1C       		.byte	28
+ 660 0277 10       		.byte	16
+ 661 0278 1D       		.byte	29
+ 662 0279 90       		.byte	-112
+ 663 027a 1F       		.byte	31
+ 664 027b 04       		.byte	4
+ 665 027c 25       		.byte	37
+ 666 027d 44       		.byte	68
+ 667 027e 26       		.byte	38
+ 668 027f 12       		.byte	18
+ 669 0280 27       		.byte	39
  670 0281 40       		.byte	64
- 671 0282 48       		.byte	72
- 672 0283 05       		.byte	5
- 673 0284 49       		.byte	73
- 674 0285 04       		.byte	4
- 675 0286 4B       		.byte	75
- 676 0287 02       		.byte	2
- 677 0288 50       		.byte	80
- 678 0289 80       		.byte	-128
- 679 028a 52       		.byte	82
- 680 028b 24       		.byte	36
- 681 028c 59       		.byte	89
- 682 028d 95       		.byte	-107
- 683 028e 5E       		.byte	94
- 684 028f 02       		.byte	2
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 13
+ 671 0282 2F       		.byte	47
+ 672 0283 2A       		.byte	42
+ 673 0284 35       		.byte	53
+ 674 0285 80       		.byte	-128
+ 675 0286 36       		.byte	54
+ 676 0287 26       		.byte	38
+ 677 0288 37       		.byte	55
+ 678 0289 10       		.byte	16
+ 679 028a 38       		.byte	56
+ 680 028b 80       		.byte	-128
+ 681 028c 3A       		.byte	58
+ 682 028d 40       		.byte	64
+ 683 028e 3C       		.byte	60
+ 684 028f 82       		.byte	-126
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 13
 
 
- 685 0290 63       		.byte	99
- 686 0291 02       		.byte	2
- 687 0292 6C       		.byte	108
- 688 0293 10       		.byte	16
- 689 0294 6D       		.byte	109
- 690 0295 10       		.byte	16
- 691 0296 6E       		.byte	110
- 692 0297 04       		.byte	4
- 693 0298 6F       		.byte	111
- 694 0299 01       		.byte	1
- 695 029a 76       		.byte	118
- 696 029b 2B       		.byte	43
- 697 029c 77       		.byte	119
- 698 029d 24       		.byte	36
- 699 029e 8C       		.byte	-116
- 700 029f 14       		.byte	20
- 701 02a0 8D       		.byte	-115
- 702 02a1 01       		.byte	1
- 703 02a2 C0       		.byte	-64
- 704 02a3 0F       		.byte	15
- 705 02a4 C2       		.byte	-62
- 706 02a5 0F       		.byte	15
- 707 02a6 C4       		.byte	-60
- 708 02a7 0E       		.byte	14
- 709 02a8 CA       		.byte	-54
- 710 02a9 D0       		.byte	-48
- 711 02aa CC       		.byte	-52
- 712 02ab E0       		.byte	-32
- 713 02ac CE       		.byte	-50
- 714 02ad F0       		.byte	-16
- 715 02ae D0       		.byte	-48
- 716 02af 0E       		.byte	14
- 717 02b0 D2       		.byte	-46
- 718 02b1 0C       		.byte	12
- 719 02b2 D6       		.byte	-42
- 720 02b3 8F       		.byte	-113
- 721 02b4 D8       		.byte	-40
- 722 02b5 08       		.byte	8
- 723 02b6 E4       		.byte	-28
- 724 02b7 08       		.byte	8
- 725 02b8 E6       		.byte	-26
- 726 02b9 02       		.byte	2
- 727 02ba EC       		.byte	-20
- 728 02bb 10       		.byte	16
- 729 02bc 38       		.byte	56
- 730 02bd 20       		.byte	32
- 731 02be 3E       		.byte	62
- 732 02bf 10       		.byte	16
- 733 02c0 58       		.byte	88
- 734 02c1 04       		.byte	4
- 735 02c2 5F       		.byte	95
- 736 02c3 01       		.byte	1
- 737 02c4 1F       		.byte	31
- 738 02c5 20       		.byte	32
- 739 02c6 A7       		.byte	-89
- 740 02c7 20       		.byte	32
- 741 02c8 05       		.byte	5
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 14
+ 685 0290 3E       		.byte	62
+ 686 0291 28       		.byte	40
+ 687 0292 45       		.byte	69
+ 688 0293 84       		.byte	-124
+ 689 0294 46       		.byte	70
+ 690 0295 80       		.byte	-128
+ 691 0296 47       		.byte	71
+ 692 0297 10       		.byte	16
+ 693 0298 4C       		.byte	76
+ 694 0299 80       		.byte	-128
+ 695 029a 4E       		.byte	78
+ 696 029b 02       		.byte	2
+ 697 029c 57       		.byte	87
+ 698 029d 10       		.byte	16
+ 699 029e 58       		.byte	88
+ 700 029f 12       		.byte	18
+ 701 02a0 59       		.byte	89
+ 702 02a1 04       		.byte	4
+ 703 02a2 5A       		.byte	90
+ 704 02a3 80       		.byte	-128
+ 705 02a4 5E       		.byte	94
+ 706 02a5 20       		.byte	32
+ 707 02a6 62       		.byte	98
+ 708 02a7 80       		.byte	-128
+ 709 02a8 64       		.byte	100
+ 710 02a9 08       		.byte	8
+ 711 02aa 65       		.byte	101
+ 712 02ab 80       		.byte	-128
+ 713 02ac 66       		.byte	102
+ 714 02ad 80       		.byte	-128
+ 715 02ae 67       		.byte	103
+ 716 02af 08       		.byte	8
+ 717 02b0 6F       		.byte	111
+ 718 02b1 2A       		.byte	42
+ 719 02b2 74       		.byte	116
+ 720 02b3 48       		.byte	72
+ 721 02b4 75       		.byte	117
+ 722 02b5 40       		.byte	64
+ 723 02b6 76       		.byte	118
+ 724 02b7 28       		.byte	40
+ 725 02b8 8C       		.byte	-116
+ 726 02b9 12       		.byte	18
+ 727 02ba 90       		.byte	-112
+ 728 02bb 80       		.byte	-128
+ 729 02bc 91       		.byte	-111
+ 730 02bd 5B       		.byte	91
+ 731 02be 92       		.byte	-110
+ 732 02bf 80       		.byte	-128
+ 733 02c0 93       		.byte	-109
+ 734 02c1 01       		.byte	1
+ 735 02c2 98       		.byte	-104
+ 736 02c3 10       		.byte	16
+ 737 02c4 99       		.byte	-103
+ 738 02c5 84       		.byte	-124
+ 739 02c6 9B       		.byte	-101
+ 740 02c7 21       		.byte	33
+ 741 02c8 9C       		.byte	-100
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 14
 
 
- 742 02c9 01       		.byte	1
- 743 02ca 07       		.byte	7
- 744 02cb 02       		.byte	2
- 745 02cc 08       		.byte	8
- 746 02cd 03       		.byte	3
- 747 02ce 0C       		.byte	12
- 748 02cf 01       		.byte	1
- 749 02d0 0E       		.byte	14
- 750 02d1 02       		.byte	2
- 751 02d2 0F       		.byte	15
- 752 02d3 08       		.byte	8
- 753 02d4 15       		.byte	21
- 754 02d5 04       		.byte	4
- 755 02d6 1C       		.byte	28
- 756 02d7 02       		.byte	2
- 757 02d8 1E       		.byte	30
- 758 02d9 01       		.byte	1
- 759 02da 25       		.byte	37
+ 742 02c9 88       		.byte	-120
+ 743 02ca 9D       		.byte	-99
+ 744 02cb 52       		.byte	82
+ 745 02cc 9E       		.byte	-98
+ 746 02cd 08       		.byte	8
+ 747 02ce 9F       		.byte	-97
+ 748 02cf 50       		.byte	80
+ 749 02d0 A0       		.byte	-96
+ 750 02d1 03       		.byte	3
+ 751 02d2 A1       		.byte	-95
+ 752 02d3 28       		.byte	40
+ 753 02d4 A2       		.byte	-94
+ 754 02d5 A4       		.byte	-92
+ 755 02d6 A4       		.byte	-92
+ 756 02d7 08       		.byte	8
+ 757 02d8 A7       		.byte	-89
+ 758 02d9 28       		.byte	40
+ 759 02da B2       		.byte	-78
  760 02db 06       		.byte	6
- 761 02dc 27       		.byte	39
- 762 02dd 01       		.byte	1
- 763 02de 28       		.byte	40
- 764 02df 03       		.byte	3
- 765 02e0 2B       		.byte	43
- 766 02e1 08       		.byte	8
- 767 02e2 2D       		.byte	45
- 768 02e3 04       		.byte	4
- 769 02e4 35       		.byte	53
- 770 02e5 07       		.byte	7
- 771 02e6 36       		.byte	54
- 772 02e7 03       		.byte	3
- 773 02e8 37       		.byte	55
- 774 02e9 08       		.byte	8
- 775 02ea 3B       		.byte	59
- 776 02eb 20       		.byte	32
- 777 02ec 3F       		.byte	63
- 778 02ed 40       		.byte	64
- 779 02ee 40       		.byte	64
- 780 02ef 45       		.byte	69
- 781 02f0 41       		.byte	65
- 782 02f1 02       		.byte	2
- 783 02f2 42       		.byte	66
- 784 02f3 06       		.byte	6
- 785 02f4 44       		.byte	68
+ 761 02dc B5       		.byte	-75
+ 762 02dd 40       		.byte	64
+ 763 02de B6       		.byte	-74
+ 764 02df 02       		.byte	2
+ 765 02e0 C0       		.byte	-64
+ 766 02e1 F0       		.byte	-16
+ 767 02e2 C2       		.byte	-62
+ 768 02e3 F0       		.byte	-16
+ 769 02e4 C4       		.byte	-60
+ 770 02e5 F0       		.byte	-16
+ 771 02e6 CA       		.byte	-54
+ 772 02e7 70       		.byte	112
+ 773 02e8 CC       		.byte	-52
+ 774 02e9 F0       		.byte	-16
+ 775 02ea CE       		.byte	-50
+ 776 02eb F0       		.byte	-16
+ 777 02ec D0       		.byte	-48
+ 778 02ed F0       		.byte	-16
+ 779 02ee D2       		.byte	-46
+ 780 02ef 10       		.byte	16
+ 781 02f0 D6       		.byte	-42
+ 782 02f1 2F       		.byte	47
+ 783 02f2 D8       		.byte	-40
+ 784 02f3 08       		.byte	8
+ 785 02f4 02       		.byte	2
  786 02f5 03       		.byte	3
- 787 02f6 46       		.byte	70
- 788 02f7 0E       		.byte	14
- 789 02f8 47       		.byte	71
- 790 02f9 C0       		.byte	-64
- 791 02fa 48       		.byte	72
- 792 02fb 24       		.byte	36
- 793 02fc 49       		.byte	73
- 794 02fd FF       		.byte	-1
- 795 02fe 4A       		.byte	74
- 796 02ff FF       		.byte	-1
- 797 0300 4B       		.byte	75
- 798 0301 FF       		.byte	-1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 15
+ 787 02f6 04       		.byte	4
+ 788 02f7 0C       		.byte	12
+ 789 02f8 05       		.byte	5
+ 790 02f9 33       		.byte	51
+ 791 02fa 06       		.byte	6
+ 792 02fb 11       		.byte	17
+ 793 02fc 07       		.byte	7
+ 794 02fd 04       		.byte	4
+ 795 02fe 08       		.byte	8
+ 796 02ff 10       		.byte	16
+ 797 0300 09       		.byte	9
+ 798 0301 40       		.byte	64
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 15
 
 
- 799 0302 4C       		.byte	76
- 800 0303 62       		.byte	98
- 801 0304 4D       		.byte	77
- 802 0305 A0       		.byte	-96
- 803 0306 4E       		.byte	78
- 804 0307 F0       		.byte	-16
- 805 0308 4F       		.byte	79
- 806 0309 41       		.byte	65
- 807 030a 50       		.byte	80
- 808 030b 0C       		.byte	12
- 809 030c 58       		.byte	88
- 810 030d 04       		.byte	4
- 811 030e 59       		.byte	89
- 812 030f 04       		.byte	4
- 813 0310 5A       		.byte	90
- 814 0311 04       		.byte	4
- 815 0312 5C       		.byte	92
- 816 0313 12       		.byte	18
- 817 0314 5D       		.byte	93
- 818 0315 02       		.byte	2
- 819 0316 5F       		.byte	95
- 820 0317 01       		.byte	1
- 821 0318 66       		.byte	102
- 822 0319 40       		.byte	64
- 823 031a 67       		.byte	103
- 824 031b 02       		.byte	2
- 825 031c 69       		.byte	105
+ 799 0302 0B       		.byte	11
+ 800 0303 15       		.byte	21
+ 801 0304 0C       		.byte	12
+ 802 0305 1C       		.byte	28
+ 803 0306 0D       		.byte	13
+ 804 0307 0A       		.byte	10
+ 805 0308 0E       		.byte	14
+ 806 0309 02       		.byte	2
+ 807 030a 0F       		.byte	15
+ 808 030b 34       		.byte	52
+ 809 030c 14       		.byte	20
+ 810 030d 09       		.byte	9
+ 811 030e 15       		.byte	21
+ 812 030f 33       		.byte	51
+ 813 0310 16       		.byte	22
+ 814 0311 10       		.byte	16
+ 815 0312 17       		.byte	23
+ 816 0313 0C       		.byte	12
+ 817 0314 19       		.byte	25
+ 818 0315 03       		.byte	3
+ 819 0316 1B       		.byte	27
+ 820 0317 14       		.byte	20
+ 821 0318 20       		.byte	32
+ 822 0319 20       		.byte	32
+ 823 031a 24       		.byte	36
+ 824 031b 14       		.byte	20
+ 825 031c 28       		.byte	40
  826 031d 10       		.byte	16
- 827 031e 6A       		.byte	106
- 828 031f 30       		.byte	48
- 829 0320 6B       		.byte	107
- 830 0321 10       		.byte	16
- 831 0322 6D       		.byte	109
- 832 0323 10       		.byte	16
- 833 0324 6E       		.byte	110
+ 827 031e 2A       		.byte	42
+ 828 031f 0C       		.byte	12
+ 829 0320 2B       		.byte	43
+ 830 0321 08       		.byte	8
+ 831 0322 30       		.byte	48
+ 832 0323 1F       		.byte	31
+ 833 0324 31       		.byte	49
  834 0325 10       		.byte	16
- 835 0326 6F       		.byte	111
- 836 0327 12       		.byte	18
- 837 0328 80       		.byte	-128
- 838 0329 CD       		.byte	-51
- 839 032a 84       		.byte	-124
- 840 032b CD       		.byte	-51
- 841 032c 85       		.byte	-123
- 842 032d 2A       		.byte	42
- 843 032e 87       		.byte	-121
- 844 032f 14       		.byte	20
- 845 0330 89       		.byte	-119
- 846 0331 06       		.byte	6
- 847 0332 8A       		.byte	-118
- 848 0333 80       		.byte	-128
- 849 0334 8B       		.byte	-117
- 850 0335 38       		.byte	56
- 851 0336 8C       		.byte	-116
- 852 0337 10       		.byte	16
- 853 0338 8E       		.byte	-114
- 854 0339 60       		.byte	96
- 855 033a 90       		.byte	-112
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 16
+ 835 0326 33       		.byte	51
+ 836 0327 0F       		.byte	15
+ 837 0328 34       		.byte	52
+ 838 0329 20       		.byte	32
+ 839 032a 35       		.byte	53
+ 840 032b 60       		.byte	96
+ 841 032c 39       		.byte	57
+ 842 032d 20       		.byte	32
+ 843 032e 3B       		.byte	59
+ 844 032f 08       		.byte	8
+ 845 0330 3E       		.byte	62
+ 846 0331 10       		.byte	16
+ 847 0332 3F       		.byte	63
+ 848 0333 01       		.byte	1
+ 849 0334 40       		.byte	64
+ 850 0335 63       		.byte	99
+ 851 0336 41       		.byte	65
+ 852 0337 02       		.byte	2
+ 853 0338 45       		.byte	69
+ 854 0339 0C       		.byte	12
+ 855 033a 46       		.byte	70
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 16
 
 
- 856 033b 4D       		.byte	77
- 857 033c 92       		.byte	-110
- 858 033d 80       		.byte	-128
- 859 033e 94       		.byte	-108
- 860 033f 72       		.byte	114
- 861 0340 95       		.byte	-107
- 862 0341 12       		.byte	18
- 863 0342 96       		.byte	-106
- 864 0343 08       		.byte	8
- 865 0344 97       		.byte	-105
- 866 0345 2C       		.byte	44
- 867 0346 98       		.byte	-104
- 868 0347 01       		.byte	1
- 869 0348 99       		.byte	-103
- 870 0349 04       		.byte	4
- 871 034a 9A       		.byte	-102
- 872 034b 32       		.byte	50
- 873 034c 9B       		.byte	-101
- 874 034d 1A       		.byte	26
- 875 034e 9C       		.byte	-100
- 876 034f 02       		.byte	2
- 877 0350 9D       		.byte	-99
- 878 0351 01       		.byte	1
- 879 0352 9E       		.byte	-98
- 880 0353 0D       		.byte	13
- 881 0354 A0       		.byte	-96
- 882 0355 CD       		.byte	-51
- 883 0356 A4       		.byte	-92
- 884 0357 12       		.byte	18
- 885 0358 A6       		.byte	-90
- 886 0359 64       		.byte	100
- 887 035a A8       		.byte	-88
- 888 035b 8D       		.byte	-115
- 889 035c AA       		.byte	-86
+ 856 033b BE       		.byte	-66
+ 857 033c 48       		.byte	72
+ 858 033d 0D       		.byte	13
+ 859 033e 49       		.byte	73
+ 860 033f FF       		.byte	-1
+ 861 0340 4A       		.byte	74
+ 862 0341 FF       		.byte	-1
+ 863 0342 4B       		.byte	75
+ 864 0343 FF       		.byte	-1
+ 865 0344 4E       		.byte	78
+ 866 0345 F0       		.byte	-16
+ 867 0346 4F       		.byte	79
+ 868 0347 44       		.byte	68
+ 869 0348 50       		.byte	80
+ 870 0349 0C       		.byte	12
+ 871 034a 54       		.byte	84
+ 872 034b 01       		.byte	1
+ 873 034c 58       		.byte	88
+ 874 034d 04       		.byte	4
+ 875 034e 59       		.byte	89
+ 876 034f 04       		.byte	4
+ 877 0350 5A       		.byte	90
+ 878 0351 04       		.byte	4
+ 879 0352 5B       		.byte	91
+ 880 0353 04       		.byte	4
+ 881 0354 5C       		.byte	92
+ 882 0355 22       		.byte	34
+ 883 0356 5D       		.byte	93
+ 884 0357 22       		.byte	34
+ 885 0358 5F       		.byte	95
+ 886 0359 01       		.byte	1
+ 887 035a 66       		.byte	102
+ 888 035b C0       		.byte	-64
+ 889 035c 6A       		.byte	106
  890 035d 40       		.byte	64
- 891 035e B0       		.byte	-80
- 892 035f 70       		.byte	112
- 893 0360 B1       		.byte	-79
- 894 0361 01       		.byte	1
- 895 0362 B3       		.byte	-77
- 896 0363 20       		.byte	32
- 897 0364 B4       		.byte	-76
- 898 0365 80       		.byte	-128
- 899 0366 B5       		.byte	-75
- 900 0367 1E       		.byte	30
- 901 0368 B6       		.byte	-74
- 902 0369 0F       		.byte	15
- 903 036a BA       		.byte	-70
- 904 036b 82       		.byte	-126
- 905 036c BB       		.byte	-69
- 906 036d 20       		.byte	32
- 907 036e BE       		.byte	-66
- 908 036f 10       		.byte	16
- 909 0370 BF       		.byte	-65
- 910 0371 05       		.byte	5
- 911 0372 C0       		.byte	-64
- 912 0373 06       		.byte	6
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 17
+ 891 035e 6B       		.byte	107
+ 892 035f 02       		.byte	2
+ 893 0360 84       		.byte	-124
+ 894 0361 07       		.byte	7
+ 895 0362 86       		.byte	-122
+ 896 0363 38       		.byte	56
+ 897 0364 87       		.byte	-121
+ 898 0365 01       		.byte	1
+ 899 0366 8A       		.byte	-118
+ 900 0367 20       		.byte	32
+ 901 0368 8B       		.byte	-117
+ 902 0369 01       		.byte	1
+ 903 036a 8C       		.byte	-116
+ 904 036b 72       		.byte	114
+ 905 036c 8E       		.byte	-114
+ 906 036d 0C       		.byte	12
+ 907 036e 8F       		.byte	-113
+ 908 036f 02       		.byte	2
+ 909 0370 94       		.byte	-108
+ 910 0371 07       		.byte	7
+ 911 0372 96       		.byte	-106
+ 912 0373 58       		.byte	88
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 17
 
 
- 913 0374 C6       		.byte	-58
- 914 0375 04       		.byte	4
- 915 0376 C9       		.byte	-55
- 916 0377 FF       		.byte	-1
- 917 0378 CA       		.byte	-54
- 918 0379 07       		.byte	7
- 919 037a CB       		.byte	-53
- 920 037b FF       		.byte	-1
- 921 037c CC       		.byte	-52
- 922 037d 40       		.byte	64
- 923 037e CD       		.byte	-51
- 924 037f 20       		.byte	32
- 925 0380 CE       		.byte	-50
- 926 0381 F0       		.byte	-16
- 927 0382 CF       		.byte	-49
- 928 0383 05       		.byte	5
- 929 0384 D0       		.byte	-48
- 930 0385 08       		.byte	8
- 931 0386 D4       		.byte	-44
- 932 0387 01       		.byte	1
- 933 0388 D8       		.byte	-40
- 934 0389 04       		.byte	4
- 935 038a D9       		.byte	-39
- 936 038b 04       		.byte	4
- 937 038c DA       		.byte	-38
- 938 038d 04       		.byte	4
- 939 038e DB       		.byte	-37
+ 913 0374 A3       		.byte	-93
+ 914 0375 02       		.byte	2
+ 915 0376 A6       		.byte	-90
+ 916 0377 0D       		.byte	13
+ 917 0378 AA       		.byte	-86
+ 918 0379 70       		.byte	112
+ 919 037a B0       		.byte	-80
+ 920 037b 3C       		.byte	60
+ 921 037c B3       		.byte	-77
+ 922 037d 02       		.byte	2
+ 923 037e B4       		.byte	-76
+ 924 037f 68       		.byte	104
+ 925 0380 B6       		.byte	-74
+ 926 0381 03       		.byte	3
+ 927 0382 B7       		.byte	-73
+ 928 0383 01       		.byte	1
+ 929 0384 B8       		.byte	-72
+ 930 0385 80       		.byte	-128
+ 931 0386 BA       		.byte	-70
+ 932 0387 22       		.byte	34
+ 933 0388 BE       		.byte	-66
+ 934 0389 40       		.byte	64
+ 935 038a BF       		.byte	-65
+ 936 038b 44       		.byte	68
+ 937 038c C0       		.byte	-64
+ 938 038d 01       		.byte	1
+ 939 038e C7       		.byte	-57
  940 038f 04       		.byte	4
- 941 0390 DC       		.byte	-36
- 942 0391 11       		.byte	17
- 943 0392 DD       		.byte	-35
- 944 0393 22       		.byte	34
- 945 0394 DF       		.byte	-33
- 946 0395 01       		.byte	1
- 947 0396 E0       		.byte	-32
+ 941 0390 C9       		.byte	-55
+ 942 0391 FF       		.byte	-1
+ 943 0392 CA       		.byte	-54
+ 944 0393 07       		.byte	7
+ 945 0394 CB       		.byte	-53
+ 946 0395 FF       		.byte	-1
+ 947 0396 CC       		.byte	-52
  948 0397 40       		.byte	64
- 949 0398 E1       		.byte	-31
- 950 0399 A8       		.byte	-88
- 951 039a E2       		.byte	-30
- 952 039b 40       		.byte	64
- 953 039c E3       		.byte	-29
- 954 039d 20       		.byte	32
- 955 039e 00       		.byte	0
- 956 039f 40       		.byte	64
- 957 03a0 01       		.byte	1
- 958 03a1 05       		.byte	5
- 959 03a2 02       		.byte	2
+ 949 0398 CD       		.byte	-51
+ 950 0399 20       		.byte	32
+ 951 039a CE       		.byte	-50
+ 952 039b F0       		.byte	-16
+ 953 039c CF       		.byte	-49
+ 954 039d 05       		.byte	5
+ 955 039e D0       		.byte	-48
+ 956 039f 08       		.byte	8
+ 957 03a0 D4       		.byte	-44
+ 958 03a1 18       		.byte	24
+ 959 03a2 D6       		.byte	-42
  960 03a3 04       		.byte	4
- 961 03a4 04       		.byte	4
- 962 03a5 20       		.byte	32
- 963 03a6 05       		.byte	5
- 964 03a7 40       		.byte	64
- 965 03a8 08       		.byte	8
- 966 03a9 10       		.byte	16
- 967 03aa 09       		.byte	9
- 968 03ab 08       		.byte	8
- 969 03ac 0A       		.byte	10
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 18
+ 961 03a4 D8       		.byte	-40
+ 962 03a5 04       		.byte	4
+ 963 03a6 D9       		.byte	-39
+ 964 03a7 04       		.byte	4
+ 965 03a8 DA       		.byte	-38
+ 966 03a9 04       		.byte	4
+ 967 03aa DB       		.byte	-37
+ 968 03ab 04       		.byte	4
+ 969 03ac DC       		.byte	-36
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 18
 
 
- 970 03ad 41       		.byte	65
- 971 03ae 0C       		.byte	12
- 972 03af 10       		.byte	16
- 973 03b0 0D       		.byte	13
- 974 03b1 10       		.byte	16
- 975 03b2 0F       		.byte	15
- 976 03b3 01       		.byte	1
- 977 03b4 10       		.byte	16
- 978 03b5 88       		.byte	-120
- 979 03b6 13       		.byte	19
- 980 03b7 04       		.byte	4
- 981 03b8 15       		.byte	21
- 982 03b9 10       		.byte	16
- 983 03ba 18       		.byte	24
- 984 03bb 40       		.byte	64
- 985 03bc 1A       		.byte	26
- 986 03bd 01       		.byte	1
- 987 03be 1B       		.byte	27
- 988 03bf 10       		.byte	16
- 989 03c0 1D       		.byte	29
- 990 03c1 40       		.byte	64
- 991 03c2 1F       		.byte	31
- 992 03c3 40       		.byte	64
- 993 03c4 20       		.byte	32
- 994 03c5 24       		.byte	36
- 995 03c6 21       		.byte	33
- 996 03c7 02       		.byte	2
- 997 03c8 22       		.byte	34
- 998 03c9 10       		.byte	16
- 999 03ca 25       		.byte	37
- 1000 03cb 40       		.byte	64
- 1001 03cc 27       		.byte	39
- 1002 03cd 04       		.byte	4
- 1003 03ce 2E       		.byte	46
- 1004 03cf 08       		.byte	8
- 1005 03d0 2F       		.byte	47
- 1006 03d1 09       		.byte	9
- 1007 03d2 31       		.byte	49
- 1008 03d3 08       		.byte	8
- 1009 03d4 32       		.byte	50
- 1010 03d5 10       		.byte	16
- 1011 03d6 33       		.byte	51
+ 970 03ad 02       		.byte	2
+ 971 03ae DD       		.byte	-35
+ 972 03af 22       		.byte	34
+ 973 03b0 DF       		.byte	-33
+ 974 03b1 01       		.byte	1
+ 975 03b2 E0       		.byte	-32
+ 976 03b3 40       		.byte	64
+ 977 03b4 E1       		.byte	-31
+ 978 03b5 A8       		.byte	-88
+ 979 03b6 E2       		.byte	-30
+ 980 03b7 40       		.byte	64
+ 981 03b8 E3       		.byte	-29
+ 982 03b9 20       		.byte	32
+ 983 03ba 00       		.byte	0
+ 984 03bb 44       		.byte	68
+ 985 03bc 01       		.byte	1
+ 986 03bd 02       		.byte	2
+ 987 03be 02       		.byte	2
+ 988 03bf 04       		.byte	4
+ 989 03c0 04       		.byte	4
+ 990 03c1 44       		.byte	68
+ 991 03c2 06       		.byte	6
+ 992 03c3 04       		.byte	4
+ 993 03c4 0A       		.byte	10
+ 994 03c5 20       		.byte	32
+ 995 03c6 0F       		.byte	15
+ 996 03c7 10       		.byte	16
+ 997 03c8 12       		.byte	18
+ 998 03c9 A0       		.byte	-96
+ 999 03ca 13       		.byte	19
+ 1000 03cb 10       		.byte	16
+ 1001 03cc 14       		.byte	20
+ 1002 03cd 28       		.byte	40
+ 1003 03ce 15       		.byte	21
+ 1004 03cf 20       		.byte	32
+ 1005 03d0 16       		.byte	22
+ 1006 03d1 10       		.byte	16
+ 1007 03d2 19       		.byte	25
+ 1008 03d3 02       		.byte	2
+ 1009 03d4 1A       		.byte	26
+ 1010 03d5 04       		.byte	4
+ 1011 03d6 1C       		.byte	28
  1012 03d7 44       		.byte	68
- 1013 03d8 37       		.byte	55
- 1014 03d9 04       		.byte	4
- 1015 03da 39       		.byte	57
- 1016 03db 28       		.byte	40
- 1017 03dc 3A       		.byte	58
- 1018 03dd 08       		.byte	8
- 1019 03de 3B       		.byte	59
- 1020 03df 04       		.byte	4
- 1021 03e0 3C       		.byte	60
- 1022 03e1 08       		.byte	8
- 1023 03e2 3F       		.byte	63
- 1024 03e3 80       		.byte	-128
- 1025 03e4 44       		.byte	68
- 1026 03e5 48       		.byte	72
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 19
+ 1013 03d8 1D       		.byte	29
+ 1014 03d9 80       		.byte	-128
+ 1015 03da 21       		.byte	33
+ 1016 03db 10       		.byte	16
+ 1017 03dc 22       		.byte	34
+ 1018 03dd 14       		.byte	20
+ 1019 03de 23       		.byte	35
+ 1020 03df 90       		.byte	-112
+ 1021 03e0 26       		.byte	38
+ 1022 03e1 04       		.byte	4
+ 1023 03e2 27       		.byte	39
+ 1024 03e3 01       		.byte	1
+ 1025 03e4 28       		.byte	40
+ 1026 03e5 08       		.byte	8
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 19
 
 
- 1027 03e6 47       		.byte	71
- 1028 03e7 08       		.byte	8
- 1029 03e8 48       		.byte	72
- 1030 03e9 20       		.byte	32
- 1031 03ea 49       		.byte	73
- 1032 03eb 10       		.byte	16
- 1033 03ec 4C       		.byte	76
+ 1027 03e6 2C       		.byte	44
+ 1028 03e7 80       		.byte	-128
+ 1029 03e8 30       		.byte	48
+ 1030 03e9 30       		.byte	48
+ 1031 03ea 32       		.byte	50
+ 1032 03eb 04       		.byte	4
+ 1033 03ec 34       		.byte	52
  1034 03ed 04       		.byte	4
- 1035 03ee 4E       		.byte	78
- 1036 03ef 02       		.byte	2
- 1037 03f0 52       		.byte	82
- 1038 03f1 40       		.byte	64
- 1039 03f2 56       		.byte	86
- 1040 03f3 02       		.byte	2
- 1041 03f4 57       		.byte	87
- 1042 03f5 40       		.byte	64
- 1043 03f6 58       		.byte	88
- 1044 03f7 01       		.byte	1
- 1045 03f8 59       		.byte	89
- 1046 03f9 08       		.byte	8
- 1047 03fa 5A       		.byte	90
+ 1035 03ee 36       		.byte	54
+ 1036 03ef 04       		.byte	4
+ 1037 03f0 38       		.byte	56
+ 1038 03f1 44       		.byte	68
+ 1039 03f2 3A       		.byte	58
+ 1040 03f3 10       		.byte	16
+ 1041 03f4 3D       		.byte	61
+ 1042 03f5 88       		.byte	-120
+ 1043 03f6 3F       		.byte	63
+ 1044 03f7 20       		.byte	32
+ 1045 03f8 40       		.byte	64
+ 1046 03f9 24       		.byte	36
+ 1047 03fa 45       		.byte	69
  1048 03fb 80       		.byte	-128
- 1049 03fc 5B       		.byte	91
- 1050 03fd 10       		.byte	16
- 1051 03fe 81       		.byte	-127
- 1052 03ff 02       		.byte	2
- 1053 0400 88       		.byte	-120
- 1054 0401 40       		.byte	64
- 1055 0402 8B       		.byte	-117
- 1056 0403 20       		.byte	32
- 1057 0404 90       		.byte	-112
- 1058 0405 28       		.byte	40
- 1059 0406 91       		.byte	-111
- 1060 0407 3D       		.byte	61
- 1061 0408 92       		.byte	-110
- 1062 0409 40       		.byte	64
- 1063 040a 93       		.byte	-109
- 1064 040b 03       		.byte	3
- 1065 040c 94       		.byte	-108
- 1066 040d 44       		.byte	68
- 1067 040e 97       		.byte	-105
- 1068 040f 84       		.byte	-124
- 1069 0410 98       		.byte	-104
- 1070 0411 08       		.byte	8
- 1071 0412 99       		.byte	-103
- 1072 0413 08       		.byte	8
- 1073 0414 9A       		.byte	-102
- 1074 0415 04       		.byte	4
- 1075 0416 9B       		.byte	-101
- 1076 0417 08       		.byte	8
- 1077 0418 9C       		.byte	-100
+ 1049 03fc 46       		.byte	70
+ 1050 03fd 40       		.byte	64
+ 1051 03fe 47       		.byte	71
+ 1052 03ff 01       		.byte	1
+ 1053 0400 48       		.byte	72
+ 1054 0401 20       		.byte	32
+ 1055 0402 4B       		.byte	75
+ 1056 0403 10       		.byte	16
+ 1057 0404 52       		.byte	82
+ 1058 0405 A0       		.byte	-96
+ 1059 0406 56       		.byte	86
+ 1060 0407 14       		.byte	20
+ 1061 0408 58       		.byte	88
+ 1062 0409 11       		.byte	17
+ 1063 040a 5A       		.byte	90
+ 1064 040b 04       		.byte	4
+ 1065 040c 5B       		.byte	91
+ 1066 040d 80       		.byte	-128
+ 1067 040e 5D       		.byte	93
+ 1068 040f 01       		.byte	1
+ 1069 0410 64       		.byte	100
+ 1070 0411 04       		.byte	4
+ 1071 0412 66       		.byte	102
+ 1072 0413 40       		.byte	64
+ 1073 0414 67       		.byte	103
+ 1074 0415 40       		.byte	64
+ 1075 0416 78       		.byte	120
+ 1076 0417 01       		.byte	1
+ 1077 0418 7A       		.byte	122
  1078 0419 80       		.byte	-128
- 1079 041a 9D       		.byte	-99
- 1080 041b 80       		.byte	-128
- 1081 041c 9E       		.byte	-98
- 1082 041d 10       		.byte	16
- 1083 041e A0       		.byte	-96
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 20
+ 1079 041a 87       		.byte	-121
+ 1080 041b 40       		.byte	64
+ 1081 041c 8C       		.byte	-116
+ 1082 041d 80       		.byte	-128
+ 1083 041e 91       		.byte	-111
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 20
 
 
- 1084 041f 8C       		.byte	-116
- 1085 0420 A2       		.byte	-94
- 1086 0421 23       		.byte	35
- 1087 0422 A3       		.byte	-93
- 1088 0423 28       		.byte	40
- 1089 0424 A5       		.byte	-91
- 1090 0425 08       		.byte	8
- 1091 0426 B4       		.byte	-76
- 1092 0427 10       		.byte	16
- 1093 0428 B5       		.byte	-75
- 1094 0429 04       		.byte	4
- 1095 042a B6       		.byte	-74
- 1096 042b 12       		.byte	18
- 1097 042c B7       		.byte	-73
- 1098 042d 40       		.byte	64
- 1099 042e C0       		.byte	-64
- 1100 042f CF       		.byte	-49
- 1101 0430 C2       		.byte	-62
- 1102 0431 8F       		.byte	-113
- 1103 0432 C4       		.byte	-60
- 1104 0433 4E       		.byte	78
- 1105 0434 CA       		.byte	-54
- 1106 0435 70       		.byte	112
- 1107 0436 CC       		.byte	-52
- 1108 0437 4E       		.byte	78
- 1109 0438 CE       		.byte	-50
- 1110 0439 56       		.byte	86
- 1111 043a D0       		.byte	-48
- 1112 043b E0       		.byte	-32
- 1113 043c D2       		.byte	-46
- 1114 043d 34       		.byte	52
- 1115 043e D6       		.byte	-42
- 1116 043f 0F       		.byte	15
- 1117 0440 E0       		.byte	-32
- 1118 0441 01       		.byte	1
- 1119 0442 00       		.byte	0
- 1120 0443 03       		.byte	3
- 1121 0444 02       		.byte	2
- 1122 0445 04       		.byte	4
- 1123 0446 0C       		.byte	12
- 1124 0447 C3       		.byte	-61
- 1125 0448 0D       		.byte	13
- 1126 0449 31       		.byte	49
- 1127 044a 0E       		.byte	14
- 1128 044b 1C       		.byte	28
- 1129 044c 0F       		.byte	15
- 1130 044d 06       		.byte	6
- 1131 044e 14       		.byte	20
- 1132 044f C3       		.byte	-61
- 1133 0450 15       		.byte	21
- 1134 0451 0C       		.byte	12
- 1135 0452 16       		.byte	22
- 1136 0453 34       		.byte	52
- 1137 0454 17       		.byte	23
- 1138 0455 33       		.byte	51
- 1139 0456 19       		.byte	25
- 1140 0457 40       		.byte	64
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 21
+ 1084 041f 01       		.byte	1
+ 1085 0420 9C       		.byte	-100
+ 1086 0421 80       		.byte	-128
+ 1087 0422 9D       		.byte	-99
+ 1088 0423 02       		.byte	2
+ 1089 0424 A0       		.byte	-96
+ 1090 0425 80       		.byte	-128
+ 1091 0426 A1       		.byte	-95
+ 1092 0427 44       		.byte	68
+ 1093 0428 A3       		.byte	-93
+ 1094 0429 10       		.byte	16
+ 1095 042a B4       		.byte	-76
+ 1096 042b 01       		.byte	1
+ 1097 042c C0       		.byte	-64
+ 1098 042d EF       		.byte	-17
+ 1099 042e C2       		.byte	-62
+ 1100 042f 24       		.byte	36
+ 1101 0430 C4       		.byte	-60
+ 1102 0431 6E       		.byte	110
+ 1103 0432 CA       		.byte	-54
+ 1104 0433 84       		.byte	-124
+ 1105 0434 CC       		.byte	-52
+ 1106 0435 06       		.byte	6
+ 1107 0436 CE       		.byte	-50
+ 1108 0437 7E       		.byte	126
+ 1109 0438 D0       		.byte	-48
+ 1110 0439 16       		.byte	22
+ 1111 043a D2       		.byte	-46
+ 1112 043b 04       		.byte	4
+ 1113 043c D6       		.byte	-42
+ 1114 043d 8F       		.byte	-113
+ 1115 043e D8       		.byte	-40
+ 1116 043f B0       		.byte	-80
+ 1117 0440 EC       		.byte	-20
+ 1118 0441 10       		.byte	16
+ 1119 0442 33       		.byte	51
+ 1120 0443 88       		.byte	-120
+ 1121 0444 36       		.byte	54
+ 1122 0445 20       		.byte	32
+ 1123 0446 CC       		.byte	-52
+ 1124 0447 70       		.byte	112
+ 1125 0448 A6       		.byte	-90
+ 1126 0449 20       		.byte	32
+ 1127 044a A7       		.byte	-89
+ 1128 044b 88       		.byte	-120
+ 1129 044c A6       		.byte	-90
+ 1130 044d 20       		.byte	32
+ 1131 044e A7       		.byte	-89
+ 1132 044f 88       		.byte	-120
+ 1133 0450 A6       		.byte	-90
+ 1134 0451 20       		.byte	32
+ 1135 0452 A7       		.byte	-89
+ 1136 0453 88       		.byte	-120
+ 1137 0454 7C       		.byte	124
+ 1138 0455 08       		.byte	8
+ 1139 0456 DE       		.byte	-34
+ 1140 0457 01       		.byte	1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 21
 
 
- 1141 0458 1A       		.byte	26
- 1142 0459 28       		.byte	40
- 1143 045a 1B       		.byte	27
- 1144 045b 13       		.byte	19
- 1145 045c 1F       		.byte	31
- 1146 045d 10       		.byte	16
- 1147 045e 22       		.byte	34
- 1148 045f 20       		.byte	32
- 1149 0460 26       		.byte	38
- 1150 0461 55       		.byte	85
- 1151 0462 27       		.byte	39
- 1152 0463 0C       		.byte	12
- 1153 0464 28       		.byte	40
- 1154 0465 AA       		.byte	-86
- 1155 0466 29       		.byte	41
- 1156 0467 31       		.byte	49
- 1157 0468 2A       		.byte	42
- 1158 0469 14       		.byte	20
- 1159 046a 2B       		.byte	43
- 1160 046b 0E       		.byte	14
- 1161 046c 2F       		.byte	47
- 1162 046d 08       		.byte	8
- 1163 046e 30       		.byte	48
- 1164 046f 0F       		.byte	15
- 1165 0470 32       		.byte	50
- 1166 0471 38       		.byte	56
- 1167 0472 33       		.byte	51
- 1168 0473 0F       		.byte	15
- 1169 0474 34       		.byte	52
- 1170 0475 C0       		.byte	-64
- 1171 0476 35       		.byte	53
- 1172 0477 60       		.byte	96
- 1173 0478 37       		.byte	55
- 1174 0479 10       		.byte	16
- 1175 047a 38       		.byte	56
- 1176 047b 20       		.byte	32
- 1177 047c 39       		.byte	57
+ 1141 0458 9C       		.byte	-100
+ 1142 0459 08       		.byte	8
+ 1143 045a 45       		.byte	69
+ 1144 045b 08       		.byte	8
+ 1145 045c 8E       		.byte	-114
+ 1146 045d 01       		.byte	1
+ 1147 045e 9C       		.byte	-100
+ 1148 045f 08       		.byte	8
+ 1149 0460 D0       		.byte	-48
+ 1150 0461 01       		.byte	1
+ 1151 0462 E4       		.byte	-28
+ 1152 0463 02       		.byte	2
+ 1153 0464 9A       		.byte	-102
+ 1154 0465 03       		.byte	3
+ 1155 0466 9C       		.byte	-100
+ 1156 0467 08       		.byte	8
+ 1157 0468 A5       		.byte	-91
+ 1158 0469 08       		.byte	8
+ 1159 046a AE       		.byte	-82
+ 1160 046b 02       		.byte	2
+ 1161 046c 25       		.byte	37
+ 1162 046d 10       		.byte	16
+ 1163 046e A6       		.byte	-90
+ 1164 046f 20       		.byte	32
+ 1165 0470 A7       		.byte	-89
+ 1166 0471 88       		.byte	-120
+ 1167 0472 C8       		.byte	-56
+ 1168 0473 20       		.byte	32
+ 1169 0474 1B       		.byte	27
+ 1170 0475 80       		.byte	-128
+ 1171 0476 1E       		.byte	30
+ 1172 0477 02       		.byte	2
+ 1173 0478 82       		.byte	-126
+ 1174 0479 01       		.byte	1
+ 1175 047a 83       		.byte	-125
+ 1176 047b 08       		.byte	8
+ 1177 047c 86       		.byte	-122
  1178 047d 20       		.byte	32
- 1179 047e 3A       		.byte	58
- 1180 047f 0A       		.byte	10
- 1181 0480 3B       		.byte	59
- 1182 0481 08       		.byte	8
- 1183 0482 3E       		.byte	62
+ 1179 047e A6       		.byte	-90
+ 1180 047f 20       		.byte	32
+ 1181 0480 A7       		.byte	-89
+ 1182 0481 88       		.byte	-120
+ 1183 0482 B5       		.byte	-75
  1184 0483 10       		.byte	16
- 1185 0484 3F       		.byte	63
- 1186 0485 40       		.byte	64
- 1187 0486 40       		.byte	64
- 1188 0487 42       		.byte	66
- 1189 0488 41       		.byte	65
- 1190 0489 03       		.byte	3
- 1191 048a 45       		.byte	69
- 1192 048b 0B       		.byte	11
- 1193 048c 46       		.byte	70
- 1194 048d EC       		.byte	-20
- 1195 048e 48       		.byte	72
- 1196 048f 0D       		.byte	13
- 1197 0490 49       		.byte	73
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 22
+ 1185 0484 C6       		.byte	-58
+ 1186 0485 C0       		.byte	-64
+ 1187 0486 E6       		.byte	-26
+ 1188 0487 40       		.byte	64
+ 1189 0488 00       		.byte	0
+ 1190 0489 80       		.byte	-128
+ 1191 048a 62       		.byte	98
+ 1192 048b 01       		.byte	1
+ 1193 048c 66       		.byte	102
+ 1194 048d 02       		.byte	2
+ 1195 048e 9A       		.byte	-102
+ 1196 048f 03       		.byte	3
+ 1197 0490 9C       		.byte	-100
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 22
 
 
- 1198 0491 FF       		.byte	-1
- 1199 0492 4A       		.byte	74
- 1200 0493 FF       		.byte	-1
- 1201 0494 4B       		.byte	75
- 1202 0495 FF       		.byte	-1
- 1203 0496 4E       		.byte	78
- 1204 0497 F0       		.byte	-16
- 1205 0498 4F       		.byte	79
- 1206 0499 44       		.byte	68
- 1207 049a 50       		.byte	80
- 1208 049b 0C       		.byte	12
- 1209 049c 54       		.byte	84
- 1210 049d 40       		.byte	64
- 1211 049e 58       		.byte	88
- 1212 049f 04       		.byte	4
- 1213 04a0 59       		.byte	89
+ 1198 0491 08       		.byte	8
+ 1199 0492 A0       		.byte	-96
+ 1200 0493 01       		.byte	1
+ 1201 0494 A4       		.byte	-92
+ 1202 0495 40       		.byte	64
+ 1203 0496 A5       		.byte	-91
+ 1204 0497 08       		.byte	8
+ 1205 0498 B0       		.byte	-80
+ 1206 0499 41       		.byte	65
+ 1207 049a C0       		.byte	-64
+ 1208 049b 02       		.byte	2
+ 1209 049c D8       		.byte	-40
+ 1210 049d 03       		.byte	3
+ 1211 049e E8       		.byte	-24
+ 1212 049f 01       		.byte	1
+ 1213 04a0 EE       		.byte	-18
  1214 04a1 04       		.byte	4
- 1215 04a2 5A       		.byte	90
- 1216 04a3 04       		.byte	4
- 1217 04a4 5B       		.byte	91
- 1218 04a5 04       		.byte	4
- 1219 04a6 5C       		.byte	92
- 1220 04a7 22       		.byte	34
- 1221 04a8 5D       		.byte	93
- 1222 04a9 12       		.byte	18
- 1223 04aa 5F       		.byte	95
- 1224 04ab 01       		.byte	1
- 1225 04ac 66       		.byte	102
- 1226 04ad C0       		.byte	-64
- 1227 04ae 6A       		.byte	106
- 1228 04af 40       		.byte	64
- 1229 04b0 6B       		.byte	107
- 1230 04b1 02       		.byte	2
- 1231 04b2 85       		.byte	-123
- 1232 04b3 09       		.byte	9
- 1233 04b4 86       		.byte	-122
- 1234 04b5 10       		.byte	16
- 1235 04b6 87       		.byte	-121
- 1236 04b7 10       		.byte	16
- 1237 04b8 88       		.byte	-120
- 1238 04b9 04       		.byte	4
- 1239 04ba 89       		.byte	-119
- 1240 04bb 14       		.byte	20
- 1241 04bc 8A       		.byte	-118
- 1242 04bd 09       		.byte	9
- 1243 04be 8D       		.byte	-115
- 1244 04bf 10       		.byte	16
- 1245 04c0 8E       		.byte	-114
- 1246 04c1 10       		.byte	16
- 1247 04c2 8F       		.byte	-113
- 1248 04c3 0C       		.byte	12
- 1249 04c4 91       		.byte	-111
- 1250 04c5 10       		.byte	16
- 1251 04c6 95       		.byte	-107
- 1252 04c7 1C       		.byte	28
- 1253 04c8 97       		.byte	-105
- 1254 04c9 02       		.byte	2
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 23
+ 1215 04a2 12       		.byte	18
+ 1216 04a3 20       		.byte	32
+ 1217 04a4 74       		.byte	116
+ 1218 04a5 01       		.byte	1
+ 1219 04a6 8E       		.byte	-114
+ 1220 04a7 20       		.byte	32
+ 1221 04a8 A0       		.byte	-96
+ 1222 04a9 01       		.byte	1
+ 1223 04aa B4       		.byte	-76
+ 1224 04ab 08       		.byte	8
+ 1225 04ac B5       		.byte	-75
+ 1226 04ad 08       		.byte	8
+ 1227 04ae C4       		.byte	-60
+ 1228 04af 08       		.byte	8
+ 1229 04b0 DE       		.byte	-34
+ 1230 04b1 04       		.byte	4
+ 1231 04b2 E2       		.byte	-30
+ 1232 04b3 08       		.byte	8
+ 1233 04b4 E8       		.byte	-24
+ 1234 04b5 02       		.byte	2
+ 1235 04b6 EC       		.byte	-20
+ 1236 04b7 08       		.byte	8
+ 1237 04b8 00       		.byte	0
+ 1238 04b9 06       		.byte	6
+ 1239 04ba 01       		.byte	1
+ 1240 04bb 01       		.byte	1
+ 1241 04bc 02       		.byte	2
+ 1242 04bd 14       		.byte	20
+ 1243 04be 0C       		.byte	12
+ 1244 04bf 06       		.byte	6
+ 1245 04c0 0D       		.byte	13
+ 1246 04c1 01       		.byte	1
+ 1247 04c2 10       		.byte	16
+ 1248 04c3 06       		.byte	6
+ 1249 04c4 12       		.byte	18
+ 1250 04c5 14       		.byte	20
+ 1251 04c6 1C       		.byte	28
+ 1252 04c7 06       		.byte	6
+ 1253 04c8 00       		.byte	0
+ 1254 04c9 3F       		.byte	63
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 23
 
 
- 1255 04ca 98       		.byte	-104
- 1256 04cb 03       		.byte	3
- 1257 04cc 9A       		.byte	-102
- 1258 04cd 04       		.byte	4
- 1259 04ce 9C       		.byte	-100
- 1260 04cf 0E       		.byte	14
- 1261 04d0 9F       		.byte	-97
- 1262 04d1 03       		.byte	3
- 1263 04d2 A4       		.byte	-92
- 1264 04d3 05       		.byte	5
- 1265 04d4 A6       		.byte	-90
- 1266 04d5 0A       		.byte	10
- 1267 04d6 A9       		.byte	-87
- 1268 04d7 0C       		.byte	12
- 1269 04d8 AB       		.byte	-85
- 1270 04d9 11       		.byte	17
- 1271 04da B0       		.byte	-80
- 1272 04db 10       		.byte	16
- 1273 04dc B1       		.byte	-79
- 1274 04dd 1F       		.byte	31
- 1275 04de B6       		.byte	-74
- 1276 04df 0F       		.byte	15
- 1277 04e0 B8       		.byte	-72
- 1278 04e1 80       		.byte	-128
- 1279 04e2 BE       		.byte	-66
- 1280 04e3 01       		.byte	1
- 1281 04e4 D4       		.byte	-44
- 1282 04e5 18       		.byte	24
- 1283 04e6 D6       		.byte	-42
- 1284 04e7 04       		.byte	4
- 1285 04e8 D8       		.byte	-40
- 1286 04e9 04       		.byte	4
- 1287 04ea D9       		.byte	-39
- 1288 04eb 04       		.byte	4
- 1289 04ec DB       		.byte	-37
- 1290 04ed 04       		.byte	4
- 1291 04ee DC       		.byte	-36
- 1292 04ef 21       		.byte	33
- 1293 04f0 DD       		.byte	-35
- 1294 04f1 20       		.byte	32
- 1295 04f2 DF       		.byte	-33
- 1296 04f3 01       		.byte	1
- 1297 04f4 00       		.byte	0
- 1298 04f5 40       		.byte	64
- 1299 04f6 02       		.byte	2
- 1300 04f7 80       		.byte	-128
- 1301 04f8 04       		.byte	4
- 1302 04f9 08       		.byte	8
- 1303 04fa 06       		.byte	6
- 1304 04fb 02       		.byte	2
- 1305 04fc 07       		.byte	7
- 1306 04fd 04       		.byte	4
- 1307 04fe 0A       		.byte	10
- 1308 04ff 14       		.byte	20
- 1309 0500 0D       		.byte	13
- 1310 0501 10       		.byte	16
- 1311 0502 0E       		.byte	14
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 24
+ 1255 04ca 00       		.byte	0
+ 1256 04cb 00       		.byte	0
+ 1257 04cc F3       		.byte	-13
+ 1258 04cd 00       		.byte	0
+ 1259 04ce 0C       		.byte	12
+ 1260 04cf 60       		.byte	96
+ 1261 04d0 FF       		.byte	-1
+ 1262 04d1 00       		.byte	0
+ 1263 04d2 00       		.byte	0
+ 1264 04d3 00       		.byte	0
+ 1265 04d4 04       		.byte	4
+ 1266 04d5 2A       		.byte	42
+ 1267 04d6 00       		.byte	0
+ 1268 04d7 11       		.byte	17
+ 1269 04d8 08       		.byte	8
+ 1270 04d9 60       		.byte	96
+ 1271 04da 00       		.byte	0
+ 1272 04db 00       		.byte	0
+ 1273 04dc 00       		.byte	0
+ 1274 04dd 54       		.byte	84
+ 1275 04de 40       		.byte	64
+ 1276 04df 89       		.byte	-119
+ 1277 04e0 0C       		.byte	12
+ 1278 04e1 00       		.byte	0
+ 1279 04e2 00       		.byte	0
+ 1280 04e3 60       		.byte	96
+ 1281 04e4 4C       		.byte	76
+ 1282 04e5 61       		.byte	97
+ 1283 04e6 A3       		.byte	-93
+ 1284 04e7 06       		.byte	6
+ 1285 04e8 42       		.byte	66
+ 1286 04e9 00       		.byte	0
+ 1287 04ea 00       		.byte	0
+ 1288 04eb 60       		.byte	96
+ 1289 04ec 00       		.byte	0
+ 1290 04ed 00       		.byte	0
+ 1291 04ee B3       		.byte	-77
+ 1292 04ef 00       		.byte	0
+ 1293 04f0 01       		.byte	1
+ 1294 04f1 1F       		.byte	31
+ 1295 04f2 00       		.byte	0
+ 1296 04f3 00       		.byte	0
+ 1297 04f4 03       		.byte	3
+ 1298 04f5 1F       		.byte	31
+ 1299 04f6 00       		.byte	0
+ 1300 04f7 00       		.byte	0
+ 1301 04f8 4F       		.byte	79
+ 1302 04f9 60       		.byte	96
+ 1303 04fa 90       		.byte	-112
+ 1304 04fb 00       		.byte	0
+ 1305 04fc 0F       		.byte	15
+ 1306 04fd 80       		.byte	-128
+ 1307 04fe 00       		.byte	0
+ 1308 04ff 07       		.byte	7
+ 1309 0500 7C       		.byte	124
+ 1310 0501 18       		.byte	24
+ 1311 0502 8C       		.byte	-116
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 24
 
 
- 1312 0503 01       		.byte	1
- 1313 0504 10       		.byte	16
- 1314 0505 20       		.byte	32
- 1315 0506 12       		.byte	18
- 1316 0507 48       		.byte	72
- 1317 0508 15       		.byte	21
- 1318 0509 08       		.byte	8
- 1319 050a 18       		.byte	24
- 1320 050b 40       		.byte	64
- 1321 050c 19       		.byte	25
- 1322 050d 10       		.byte	16
- 1323 050e 1A       		.byte	26
- 1324 050f 10       		.byte	16
- 1325 0510 1B       		.byte	27
- 1326 0511 08       		.byte	8
- 1327 0512 1E       		.byte	30
- 1328 0513 01       		.byte	1
- 1329 0514 1F       		.byte	31
- 1330 0515 01       		.byte	1
- 1331 0516 20       		.byte	32
- 1332 0517 04       		.byte	4
- 1333 0518 22       		.byte	34
- 1334 0519 48       		.byte	72
- 1335 051a 27       		.byte	39
- 1336 051b 40       		.byte	64
- 1337 051c 28       		.byte	40
- 1338 051d 01       		.byte	1
- 1339 051e 2A       		.byte	42
- 1340 051f 48       		.byte	72
- 1341 0520 2B       		.byte	43
- 1342 0521 08       		.byte	8
- 1343 0522 2F       		.byte	47
- 1344 0523 08       		.byte	8
- 1345 0524 30       		.byte	48
- 1346 0525 A0       		.byte	-96
- 1347 0526 32       		.byte	50
- 1348 0527 08       		.byte	8
- 1349 0528 33       		.byte	51
- 1350 0529 20       		.byte	32
- 1351 052a 34       		.byte	52
+ 1312 0503 60       		.byte	96
+ 1313 0504 00       		.byte	0
+ 1314 0505 00       		.byte	0
+ 1315 0506 A2       		.byte	-94
+ 1316 0507 00       		.byte	0
+ 1317 0508 00       		.byte	0
+ 1318 0509 00       		.byte	0
+ 1319 050a 00       		.byte	0
+ 1320 050b 00       		.byte	0
+ 1321 050c 34       		.byte	52
+ 1322 050d 01       		.byte	1
+ 1323 050e 20       		.byte	32
+ 1324 050f 00       		.byte	0
+ 1325 0510 05       		.byte	5
+ 1326 0511 00       		.byte	0
+ 1327 0512 00       		.byte	0
+ 1328 0513 00       		.byte	0
+ 1329 0514 00       		.byte	0
+ 1330 0515 FF       		.byte	-1
+ 1331 0516 FF       		.byte	-1
+ 1332 0517 FF       		.byte	-1
+ 1333 0518 02       		.byte	2
+ 1334 0519 00       		.byte	0
+ 1335 051a 70       		.byte	112
+ 1336 051b 0C       		.byte	12
+ 1337 051c 04       		.byte	4
+ 1338 051d 00       		.byte	0
+ 1339 051e 00       		.byte	0
+ 1340 051f 00       		.byte	0
+ 1341 0520 40       		.byte	64
+ 1342 0521 00       		.byte	0
+ 1343 0522 00       		.byte	0
+ 1344 0523 00       		.byte	0
+ 1345 0524 04       		.byte	4
+ 1346 0525 04       		.byte	4
+ 1347 0526 04       		.byte	4
+ 1348 0527 04       		.byte	4
+ 1349 0528 22       		.byte	34
+ 1350 0529 11       		.byte	17
+ 1351 052a 00       		.byte	0
  1352 052b 01       		.byte	1
- 1353 052c 36       		.byte	54
- 1354 052d 08       		.byte	8
- 1355 052e 37       		.byte	55
- 1356 052f 40       		.byte	64
- 1357 0530 38       		.byte	56
- 1358 0531 40       		.byte	64
- 1359 0532 3C       		.byte	60
- 1360 0533 64       		.byte	100
- 1361 0534 3E       		.byte	62
- 1362 0535 0C       		.byte	12
- 1363 0536 40       		.byte	64
- 1364 0537 40       		.byte	64
- 1365 0538 42       		.byte	66
- 1366 0539 10       		.byte	16
- 1367 053a 43       		.byte	67
- 1368 053b 20       		.byte	32
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 25
+ 1353 052c 00       		.byte	0
+ 1354 052d 00       		.byte	0
+ 1355 052e C0       		.byte	-64
+ 1356 052f 00       		.byte	0
+ 1357 0530 40       		.byte	64
+ 1358 0531 01       		.byte	1
+ 1359 0532 10       		.byte	16
+ 1360 0533 11       		.byte	17
+ 1361 0534 C0       		.byte	-64
+ 1362 0535 01       		.byte	1
+ 1363 0536 00       		.byte	0
+ 1364 0537 11       		.byte	17
+ 1365 0538 40       		.byte	64
+ 1366 0539 01       		.byte	1
+ 1367 053a 40       		.byte	64
+ 1368 053b 01       		.byte	1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 25
 
 
- 1369 053c 48       		.byte	72
- 1370 053d 10       		.byte	16
- 1371 053e 50       		.byte	80
- 1372 053f 80       		.byte	-128
- 1373 0540 52       		.byte	82
- 1374 0541 90       		.byte	-112
- 1375 0542 5E       		.byte	94
- 1376 0543 02       		.byte	2
- 1377 0544 62       		.byte	98
- 1378 0545 20       		.byte	32
- 1379 0546 63       		.byte	99
- 1380 0547 21       		.byte	33
- 1381 0548 67       		.byte	103
- 1382 0549 46       		.byte	70
- 1383 054a 80       		.byte	-128
- 1384 054b 80       		.byte	-128
- 1385 054c 83       		.byte	-125
- 1386 054d 10       		.byte	16
- 1387 054e 85       		.byte	-123
- 1388 054f 40       		.byte	64
- 1389 0550 87       		.byte	-121
- 1390 0551 44       		.byte	68
- 1391 0552 8C       		.byte	-116
- 1392 0553 80       		.byte	-128
- 1393 0554 8E       		.byte	-114
- 1394 0555 04       		.byte	4
- 1395 0556 8F       		.byte	-113
- 1396 0557 01       		.byte	1
- 1397 0558 90       		.byte	-112
- 1398 0559 08       		.byte	8
- 1399 055a 91       		.byte	-111
- 1400 055b 28       		.byte	40
- 1401 055c 96       		.byte	-106
- 1402 055d 80       		.byte	-128
- 1403 055e 9A       		.byte	-102
- 1404 055f 46       		.byte	70
- 1405 0560 9B       		.byte	-101
- 1406 0561 04       		.byte	4
- 1407 0562 9C       		.byte	-100
- 1408 0563 80       		.byte	-128
- 1409 0564 9D       		.byte	-99
- 1410 0565 10       		.byte	16
- 1411 0566 9E       		.byte	-98
- 1412 0567 10       		.byte	16
- 1413 0568 9F       		.byte	-97
- 1414 0569 50       		.byte	80
- 1415 056a A0       		.byte	-96
- 1416 056b 20       		.byte	32
- 1417 056c A1       		.byte	-95
- 1418 056d 40       		.byte	64
- 1419 056e A2       		.byte	-94
- 1420 056f 21       		.byte	33
- 1421 0570 A3       		.byte	-93
- 1422 0571 10       		.byte	16
- 1423 0572 AC       		.byte	-84
- 1424 0573 01       		.byte	1
- 1425 0574 AE       		.byte	-82
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 26
+ 1369 053c 00       		.byte	0
+ 1370 053d 00       		.byte	0
+ 1371 053e 00       		.byte	0
+ 1372 053f 00       		.byte	0
+ 1373 0540 00       		.byte	0
+ 1374 0541 00       		.byte	0
+ 1375 0542 00       		.byte	0
+ 1376 0543 00       		.byte	0
+ 1377 0544 00       		.byte	0
+ 1378 0545 00       		.byte	0
+ 1379 0546 00       		.byte	0
+ 1380 0547 00       		.byte	0
+ 1381 0548 00       		.byte	0
+ 1382 0549 00       		.byte	0
+ 1383 054a 00       		.byte	0
+ 1384 054b 00       		.byte	0
+ 1385 054c 30       		.byte	48
+ 1386 054d 38       		.byte	56
+ 1387 054e 00       		.byte	0
+ 1388 054f 06       		.byte	6
+ 1389 0550 00       		.byte	0
+ 1390 0551 08       		.byte	8
+ 1391 0552 40       		.byte	64
+ 1392 0553 00       		.byte	0
+ 1393 0554 02       		.byte	2
+ 1394 0555 18       		.byte	24
+ 1395 0556 1D       		.byte	29
+ 1396 0557 00       		.byte	0
+ 1397 0558 01       		.byte	1
+ 1398 0559 10       		.byte	16
+ 1399 055a 1A       		.byte	26
+ 1400 055b 00       		.byte	0
+ 1401 055c 03       		.byte	3
+ 1402 055d 00       		.byte	0
+ 1403 055e 0C       		.byte	12
+ 1404 055f 04       		.byte	4
+ 1405 0560 03       		.byte	3
+ 1406 0561 3C       		.byte	60
+ 1407 0562 14       		.byte	20
+ 1408 0563 02       		.byte	2
+ 1409 0564 00       		.byte	0
+ 1410 0565 3E       		.byte	62
+ 1411 0566 80       		.byte	-128
+ 1412 0567 00       		.byte	0
+ 1413 0568 00       		.byte	0
+ 1414 0569 26       		.byte	38
+ 1415 056a 80       		.byte	-128
+ 1416 056b 18       		.byte	24
+ 1417 056c 30       		.byte	48
+ 1418 056d 00       		.byte	0
+ 1419 056e 00       		.byte	0
+ 1420 056f 00       		.byte	0
+ 1421 0570 30       		.byte	48
+ 1422 0571 01       		.byte	1
+ 1423 0572 00       		.byte	0
+ 1424 0573 00       		.byte	0
+ 1425 0574 30       		.byte	48
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 26
 
 
- 1426 0575 10       		.byte	16
- 1427 0576 B0       		.byte	-80
- 1428 0577 10       		.byte	16
- 1429 0578 B1       		.byte	-79
- 1430 0579 80       		.byte	-128
- 1431 057a C0       		.byte	-64
- 1432 057b E9       		.byte	-23
- 1433 057c C2       		.byte	-62
- 1434 057d C6       		.byte	-58
- 1435 057e C4       		.byte	-60
- 1436 057f 2E       		.byte	46
- 1437 0580 CA       		.byte	-54
- 1438 0581 2E       		.byte	46
- 1439 0582 CC       		.byte	-52
- 1440 0583 DE       		.byte	-34
- 1441 0584 CE       		.byte	-50
- 1442 0585 78       		.byte	120
- 1443 0586 D0       		.byte	-48
- 1444 0587 07       		.byte	7
- 1445 0588 D6       		.byte	-42
- 1446 0589 80       		.byte	-128
- 1447 058a D8       		.byte	-40
- 1448 058b BE       		.byte	-66
- 1449 058c EC       		.byte	-20
- 1450 058d 10       		.byte	16
- 1451 058e 33       		.byte	51
- 1452 058f 80       		.byte	-128
- 1453 0590 36       		.byte	54
- 1454 0591 20       		.byte	32
- 1455 0592 CC       		.byte	-52
- 1456 0593 30       		.byte	48
- 1457 0594 A6       		.byte	-90
- 1458 0595 20       		.byte	32
- 1459 0596 A7       		.byte	-89
- 1460 0597 80       		.byte	-128
- 1461 0598 A6       		.byte	-90
- 1462 0599 20       		.byte	32
- 1463 059a A7       		.byte	-89
- 1464 059b 80       		.byte	-128
- 1465 059c A6       		.byte	-90
- 1466 059d 20       		.byte	32
- 1467 059e A7       		.byte	-89
- 1468 059f 80       		.byte	-128
- 1469 05a0 7C       		.byte	124
- 1470 05a1 08       		.byte	8
- 1471 05a2 DE       		.byte	-34
- 1472 05a3 01       		.byte	1
- 1473 05a4 9C       		.byte	-100
- 1474 05a5 08       		.byte	8
- 1475 05a6 45       		.byte	69
- 1476 05a7 08       		.byte	8
- 1477 05a8 84       		.byte	-124
- 1478 05a9 08       		.byte	8
- 1479 05aa 8F       		.byte	-113
- 1480 05ab 02       		.byte	2
- 1481 05ac 9C       		.byte	-100
- 1482 05ad 08       		.byte	8
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 27
+ 1426 0575 01       		.byte	1
+ 1427 0576 00       		.byte	0
+ 1428 0577 00       		.byte	0
+ 1429 0578 00       		.byte	0
+ 1430 0579 01       		.byte	1
+ 1431 057a 30       		.byte	48
+ 1432 057b 00       		.byte	0
+ 1433 057c 00       		.byte	0
+ 1434 057d 01       		.byte	1
+ 1435 057e 20       		.byte	32
+ 1436 057f 1C       		.byte	28
+ 1437 0580 1F       		.byte	31
+ 1438 0581 20       		.byte	32
+ 1439 0582 C0       		.byte	-64
+ 1440 0583 02       		.byte	2
+ 1441 0584 00       		.byte	0
+ 1442 0585 80       		.byte	-128
+ 1443 0586 20       		.byte	32
+ 1444 0587 00       		.byte	0
+ 1445 0588 00       		.byte	0
+ 1446 0589 00       		.byte	0
+ 1447 058a 44       		.byte	68
+ 1448 058b 10       		.byte	16
+ 1449 058c 45       		.byte	69
+ 1450 058d 02       		.byte	2
+ 1451 058e 03       		.byte	3
+ 1452 058f 00       		.byte	0
+ 1453 0590 01       		.byte	1
+ 1454 0591 E0       		.byte	-32
+ 1455 0592 C0       		.byte	-64
+ 1456 0593 00       		.byte	0
+ 1457 0594 0A       		.byte	10
+ 1458 0595 FF       		.byte	-1
+ 1459 0596 FF       		.byte	-1
+ 1460 0597 FF       		.byte	-1
+ 1461 0598 62       		.byte	98
+ 1462 0599 A0       		.byte	-96
+ 1463 059a F0       		.byte	-16
+ 1464 059b 41       		.byte	65
+ 1465 059c 0C       		.byte	12
+ 1466 059d 00       		.byte	0
+ 1467 059e 00       		.byte	0
+ 1468 059f 00       		.byte	0
+ 1469 05a0 00       		.byte	0
+ 1470 05a1 00       		.byte	0
+ 1471 05a2 02       		.byte	2
+ 1472 05a3 11       		.byte	17
+ 1473 05a4 04       		.byte	4
+ 1474 05a5 04       		.byte	4
+ 1475 05a6 04       		.byte	4
+ 1476 05a7 04       		.byte	4
+ 1477 05a8 21       		.byte	33
+ 1478 05a9 22       		.byte	34
+ 1479 05aa 00       		.byte	0
+ 1480 05ab 01       		.byte	1
+ 1481 05ac 00       		.byte	0
+ 1482 05ad 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 27
 
 
- 1483 05ae D0       		.byte	-48
- 1484 05af 01       		.byte	1
- 1485 05b0 E0       		.byte	-32
- 1486 05b1 08       		.byte	8
- 1487 05b2 8E       		.byte	-114
- 1488 05b3 01       		.byte	1
- 1489 05b4 95       		.byte	-107
+ 1483 05ae 00       		.byte	0
+ 1484 05af 00       		.byte	0
+ 1485 05b0 00       		.byte	0
+ 1486 05b1 00       		.byte	0
+ 1487 05b2 40       		.byte	64
+ 1488 05b3 02       		.byte	2
+ 1489 05b4 00       		.byte	0
  1490 05b5 10       		.byte	16
- 1491 05b6 9B       		.byte	-101
- 1492 05b7 02       		.byte	2
- 1493 05b8 A5       		.byte	-91
- 1494 05b9 08       		.byte	8
- 1495 05ba B1       		.byte	-79
- 1496 05bb 10       		.byte	16
- 1497 05bc E0       		.byte	-32
- 1498 05bd 08       		.byte	8
- 1499 05be EA       		.byte	-22
- 1500 05bf 01       		.byte	1
- 1501 05c0 25       		.byte	37
- 1502 05c1 10       		.byte	16
- 1503 05c2 A6       		.byte	-90
- 1504 05c3 20       		.byte	32
- 1505 05c4 A7       		.byte	-89
- 1506 05c5 80       		.byte	-128
- 1507 05c6 C8       		.byte	-56
- 1508 05c7 20       		.byte	32
- 1509 05c8 1B       		.byte	27
- 1510 05c9 80       		.byte	-128
- 1511 05ca 86       		.byte	-122
- 1512 05cb 20       		.byte	32
- 1513 05cc A6       		.byte	-90
- 1514 05cd 20       		.byte	32
- 1515 05ce A7       		.byte	-89
- 1516 05cf 80       		.byte	-128
- 1517 05d0 B5       		.byte	-75
- 1518 05d1 10       		.byte	16
- 1519 05d2 C6       		.byte	-58
- 1520 05d3 40       		.byte	64
- 1521 05d4 E6       		.byte	-26
- 1522 05d5 40       		.byte	64
- 1523 05d6 01       		.byte	1
- 1524 05d7 10       		.byte	16
- 1525 05d8 5B       		.byte	91
- 1526 05d9 02       		.byte	2
- 1527 05da 5E       		.byte	94
- 1528 05db 02       		.byte	2
- 1529 05dc 82       		.byte	-126
- 1530 05dd 10       		.byte	16
- 1531 05de 95       		.byte	-107
- 1532 05df 10       		.byte	16
- 1533 05e0 9B       		.byte	-101
- 1534 05e1 02       		.byte	2
- 1535 05e2 A2       		.byte	-94
- 1536 05e3 01       		.byte	1
- 1537 05e4 A5       		.byte	-91
- 1538 05e5 08       		.byte	8
- 1539 05e6 C0       		.byte	-64
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 28
+ 1491 05b6 30       		.byte	48
+ 1492 05b7 10       		.byte	16
+ 1493 05b8 00       		.byte	0
+ 1494 05b9 10       		.byte	16
+ 1495 05ba 10       		.byte	16
+ 1496 05bb 12       		.byte	18
+ 1497 05bc 00       		.byte	0
+ 1498 05bd 00       		.byte	0
+ 1499 05be 00       		.byte	0
+ 1500 05bf 00       		.byte	0
+ 1501 05c0 00       		.byte	0
+ 1502 05c1 00       		.byte	0
+ 1503 05c2 00       		.byte	0
+ 1504 05c3 00       		.byte	0
+ 1505 05c4 00       		.byte	0
+ 1506 05c5 00       		.byte	0
+ 1507 05c6 00       		.byte	0
+ 1508 05c7 00       		.byte	0
+ 1509 05c8 00       		.byte	0
+ 1510 05c9 00       		.byte	0
+ 1511 05ca 00       		.byte	0
+ 1512 05cb 00       		.byte	0
+ 1513 05cc 82       		.byte	-126
+ 1514 05cd 00       		.byte	0
+ 1515 05ce 00       		.byte	0
+ 1516 05cf F6       		.byte	-10
+ 1517 05d0 F6       		.byte	-10
+ 1518 05d1 00       		.byte	0
+ 1519 05d2 00       		.byte	0
+ 1520 05d3 00       		.byte	0
+ 1521 05d4 08       		.byte	8
+ 1522 05d5 00       		.byte	0
+ 1523 05d6 00       		.byte	0
+ 1524 05d7 00       		.byte	0
+ 1525 05d8 80       		.byte	-128
+ 1526 05d9 00       		.byte	0
+ 1527 05da 40       		.byte	64
+ 1528 05db 80       		.byte	-128
+ 1529 05dc 80       		.byte	-128
+ 1530 05dd 00       		.byte	0
+ 1531 05de 80       		.byte	-128
+ 1532 05df 00       		.byte	0
+ 1533 05e0 00       		.byte	0
+ 1534 05e1 00       		.byte	0
+ 1535 05e2 00       		.byte	0
+ 1536 05e3 00       		.byte	0
+ 1537 05e4 C0       		.byte	-64
+ 1538 05e5 00       		.byte	0
+ 1539 05e6 04       		.byte	4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 28
 
 
- 1540 05e7 02       		.byte	2
- 1541 05e8 D6       		.byte	-42
- 1542 05e9 03       		.byte	3
- 1543 05ea 12       		.byte	18
- 1544 05eb 20       		.byte	32
- 1545 05ec 72       		.byte	114
- 1546 05ed 10       		.byte	16
- 1547 05ee 8E       		.byte	-114
- 1548 05ef 20       		.byte	32
- 1549 05f0 92       		.byte	-110
- 1550 05f1 10       		.byte	16
- 1551 05f2 B5       		.byte	-75
- 1552 05f3 08       		.byte	8
- 1553 05f4 C4       		.byte	-60
- 1554 05f5 08       		.byte	8
- 1555 05f6 DC       		.byte	-36
- 1556 05f7 01       		.byte	1
- 1557 05f8 E2       		.byte	-30
- 1558 05f9 08       		.byte	8
- 1559 05fa EC       		.byte	-20
- 1560 05fb 08       		.byte	8
- 1561 05fc 00       		.byte	0
- 1562 05fd 06       		.byte	6
- 1563 05fe 01       		.byte	1
+ 1540 05e7 FB       		.byte	-5
+ 1541 05e8 FB       		.byte	-5
+ 1542 05e9 00       		.byte	0
+ 1543 05ea 30       		.byte	48
+ 1544 05eb 00       		.byte	0
+ 1545 05ec 00       		.byte	0
+ 1546 05ed 00       		.byte	0
+ 1547 05ee 00       		.byte	0
+ 1548 05ef 00       		.byte	0
+ 1549 05f0 66       		.byte	102
+ 1550 05f1 00       		.byte	0
+ 1551 05f2 00       		.byte	0
+ 1552 05f3 67       		.byte	103
+ 1553 05f4 07       		.byte	7
+ 1554 05f5 00       		.byte	0
+ 1555 05f6 00       		.byte	0
+ 1556 05f7 00       		.byte	0
+ 1557 05f8 80       		.byte	-128
+ 1558 05f9 00       		.byte	0
+ 1559 05fa 00       		.byte	0
+ 1560 05fb 00       		.byte	0
+ 1561 05fc 70       		.byte	112
+ 1562 05fd 00       		.byte	0
+ 1563 05fe 18       		.byte	24
  1564 05ff 01       		.byte	1
- 1565 0600 02       		.byte	2
- 1566 0601 14       		.byte	20
- 1567 0602 0C       		.byte	12
- 1568 0603 06       		.byte	6
- 1569 0604 0D       		.byte	13
- 1570 0605 01       		.byte	1
- 1571 0606 10       		.byte	16
- 1572 0607 06       		.byte	6
- 1573 0608 12       		.byte	18
- 1574 0609 14       		.byte	20
- 1575 060a 1C       		.byte	28
- 1576 060b 06       		.byte	6
- 1577 060c 00       		.byte	0
- 1578 060d 0F       		.byte	15
- 1579 060e 00       		.byte	0
- 1580 060f 00       		.byte	0
- 1581 0610 82       		.byte	-126
- 1582 0611 00       		.byte	0
- 1583 0612 00       		.byte	0
- 1584 0613 F6       		.byte	-10
- 1585 0614 F6       		.byte	-10
- 1586 0615 00       		.byte	0
- 1587 0616 00       		.byte	0
- 1588 0617 00       		.byte	0
- 1589 0618 08       		.byte	8
- 1590 0619 00       		.byte	0
- 1591 061a 00       		.byte	0
- 1592 061b 00       		.byte	0
- 1593 061c 80       		.byte	-128
- 1594 061d 00       		.byte	0
- 1595 061e 40       		.byte	64
- 1596 061f 80       		.byte	-128
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 29
+ 1565              		.section	.cywolatch,"a",%progbits
+ 1566              		.align	2
+ 1567              		.type	cy_meta_wonvl, %object
+ 1568              		.size	cy_meta_wonvl, 4
+ 1569              	cy_meta_wonvl:
+ 1570 0000 BC       		.byte	-68
+ 1571 0001 90       		.byte	-112
+ 1572 0002 AC       		.byte	-84
+ 1573 0003 AF       		.byte	-81
+ 1574              		.section	.cycustnvl,"a",%progbits
+ 1575              		.align	2
+ 1576              		.type	cy_meta_custnvl, %object
+ 1577              		.size	cy_meta_custnvl, 4
+ 1578              	cy_meta_custnvl:
+ 1579 0000 00       		.byte	0
+ 1580 0001 00       		.byte	0
+ 1581 0002 40       		.byte	64
+ 1582 0003 05       		.byte	5
+ 1583              		.section	.cymeta,"a",%progbits
+ 1584              		.align	2
+ 1585              		.type	cy_metadata, %object
+ 1586              		.size	cy_metadata, 12
+ 1587              	cy_metadata:
+ 1588 0000 00       		.byte	0
+ 1589 0001 01       		.byte	1
+ 1590 0002 2E       		.byte	46
+ 1591 0003 16       		.byte	22
+ 1592 0004 10       		.byte	16
+ 1593 0005 69       		.byte	105
+ 1594 0006 00       		.byte	0
+ 1595 0007 01       		.byte	1
+ 1596 0008 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 29
 
 
- 1597 0620 80       		.byte	-128
- 1598 0621 00       		.byte	0
- 1599 0622 80       		.byte	-128
- 1600 0623 00       		.byte	0
- 1601 0624 00       		.byte	0
- 1602 0625 00       		.byte	0
- 1603 0626 00       		.byte	0
- 1604 0627 00       		.byte	0
- 1605 0628 04       		.byte	4
- 1606 0629 FB       		.byte	-5
- 1607 062a FB       		.byte	-5
- 1608 062b 00       		.byte	0
- 1609 062c 30       		.byte	48
- 1610 062d 00       		.byte	0
- 1611 062e 00       		.byte	0
- 1612 062f 00       		.byte	0
- 1613 0630 66       		.byte	102
- 1614 0631 00       		.byte	0
- 1615 0632 00       		.byte	0
- 1616 0633 67       		.byte	103
- 1617 0634 07       		.byte	7
- 1618 0635 00       		.byte	0
- 1619 0636 00       		.byte	0
- 1620 0637 00       		.byte	0
- 1621 0638 80       		.byte	-128
- 1622 0639 00       		.byte	0
- 1623 063a 00       		.byte	0
- 1624 063b 00       		.byte	0
- 1625 063c 70       		.byte	112
- 1626 063d 00       		.byte	0
- 1627 063e 18       		.byte	24
- 1628 063f 01       		.byte	1
- 1629              		.section	.cywolatch,"a",%progbits
- 1630              		.align	2
- 1631              		.type	cy_meta_wonvl, %object
- 1632              		.size	cy_meta_wonvl, 4
- 1633              	cy_meta_wonvl:
- 1634 0000 BC       		.byte	-68
- 1635 0001 90       		.byte	-112
- 1636 0002 AC       		.byte	-84
- 1637 0003 AF       		.byte	-81
- 1638              		.section	.cycustnvl,"a",%progbits
- 1639              		.align	2
- 1640              		.type	cy_meta_custnvl, %object
- 1641              		.size	cy_meta_custnvl, 4
- 1642              	cy_meta_custnvl:
- 1643 0000 00       		.byte	0
- 1644 0001 00       		.byte	0
- 1645 0002 40       		.byte	64
- 1646 0003 05       		.byte	5
- 1647              		.section	.cymeta,"a",%progbits
- 1648              		.align	2
- 1649              		.type	cy_metadata, %object
- 1650              		.size	cy_metadata, 12
- 1651              	cy_metadata:
- 1652 0000 00       		.byte	0
- 1653 0001 01       		.byte	1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 30
+ 1597 0009 00       		.byte	0
+ 1598 000a 00       		.byte	0
+ 1599 000b 00       		.byte	0
+ 1600              		.section	.cyflashprotect,"a",%progbits
+ 1601              		.align	2
+ 1602              		.type	cy_meta_flashprotect, %object
+ 1603              		.size	cy_meta_flashprotect, 256
+ 1604              	cy_meta_flashprotect:
+ 1605 0000 00000000 		.space	256
+ 1605      00000000 
+ 1605      00000000 
+ 1605      00000000 
+ 1605      00000000 
+ 1606              		.text
+ 1607              	.Letext0:
+ 1608              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1609              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1610              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 1611              		.section	.debug_info,"",%progbits
+ 1612              	.Ldebug_info0:
+ 1613 0000 33010000 		.4byte	0x133
+ 1614 0004 0400     		.2byte	0x4
+ 1615 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1616 000a 04       		.byte	0x4
+ 1617 000b 01       		.uleb128 0x1
+ 1618 000c 24000000 		.4byte	.LASF17
+ 1619 0010 0C       		.byte	0xc
+ 1620 0011 B9010000 		.4byte	.LASF18
+ 1621 0015 D7000000 		.4byte	.LASF19
+ 1622 0019 00000000 		.4byte	.Ldebug_line0
+ 1623 001d 02       		.uleb128 0x2
+ 1624 001e 01       		.byte	0x1
+ 1625 001f 06       		.byte	0x6
+ 1626 0020 AD010000 		.4byte	.LASF0
+ 1627 0024 03       		.uleb128 0x3
+ 1628 0025 00000000 		.4byte	.LASF9
+ 1629 0029 01       		.byte	0x1
+ 1630 002a 1D       		.byte	0x1d
+ 1631 002b 2F000000 		.4byte	0x2f
+ 1632 002f 02       		.uleb128 0x2
+ 1633 0030 01       		.byte	0x1
+ 1634 0031 08       		.byte	0x8
+ 1635 0032 16000000 		.4byte	.LASF1
+ 1636 0036 02       		.uleb128 0x2
+ 1637 0037 02       		.byte	0x2
+ 1638 0038 05       		.byte	0x5
+ 1639 0039 9A010000 		.4byte	.LASF2
+ 1640 003d 02       		.uleb128 0x2
+ 1641 003e 02       		.byte	0x2
+ 1642 003f 07       		.byte	0x7
+ 1643 0040 C4000000 		.4byte	.LASF3
+ 1644 0044 02       		.uleb128 0x2
+ 1645 0045 04       		.byte	0x4
+ 1646 0046 05       		.byte	0x5
+ 1647 0047 A4010000 		.4byte	.LASF4
+ 1648 004b 02       		.uleb128 0x2
+ 1649 004c 04       		.byte	0x4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 30
 
 
- 1654 0002 2E       		.byte	46
- 1655 0003 16       		.byte	22
- 1656 0004 10       		.byte	16
- 1657 0005 69       		.byte	105
- 1658 0006 00       		.byte	0
- 1659 0007 01       		.byte	1
- 1660 0008 00       		.byte	0
- 1661 0009 00       		.byte	0
- 1662 000a 00       		.byte	0
- 1663 000b 00       		.byte	0
- 1664              		.section	.cyflashprotect,"a",%progbits
- 1665              		.align	2
- 1666              		.type	cy_meta_flashprotect, %object
- 1667              		.size	cy_meta_flashprotect, 256
- 1668              	cy_meta_flashprotect:
- 1669 0000 00000000 		.space	256
- 1669      00000000 
- 1669      00000000 
- 1669      00000000 
- 1669      00000000 
- 1670              		.text
- 1671              	.Letext0:
- 1672              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 1673              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 1674              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
- 1675              		.section	.debug_info,"",%progbits
- 1676              	.Ldebug_info0:
- 1677 0000 34010000 		.4byte	0x134
- 1678 0004 0400     		.2byte	0x4
- 1679 0006 00000000 		.4byte	.Ldebug_abbrev0
- 1680 000a 04       		.byte	0x4
- 1681 000b 01       		.uleb128 0x1
- 1682 000c 24000000 		.4byte	.LASF17
- 1683 0010 0C       		.byte	0xc
- 1684 0011 B9010000 		.4byte	.LASF18
- 1685 0015 D7000000 		.4byte	.LASF19
- 1686 0019 00000000 		.4byte	.Ldebug_line0
- 1687 001d 02       		.uleb128 0x2
- 1688 001e 01       		.byte	0x1
- 1689 001f 06       		.byte	0x6
- 1690 0020 AD010000 		.4byte	.LASF0
- 1691 0024 03       		.uleb128 0x3
- 1692 0025 00000000 		.4byte	.LASF9
- 1693 0029 01       		.byte	0x1
- 1694 002a 1D       		.byte	0x1d
- 1695 002b 2F000000 		.4byte	0x2f
- 1696 002f 02       		.uleb128 0x2
- 1697 0030 01       		.byte	0x1
- 1698 0031 08       		.byte	0x8
- 1699 0032 16000000 		.4byte	.LASF1
- 1700 0036 02       		.uleb128 0x2
- 1701 0037 02       		.byte	0x2
- 1702 0038 05       		.byte	0x5
- 1703 0039 9A010000 		.4byte	.LASF2
- 1704 003d 02       		.uleb128 0x2
- 1705 003e 02       		.byte	0x2
- 1706 003f 07       		.byte	0x7
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 31
+ 1650 004d 07       		.byte	0x7
+ 1651 004e B2000000 		.4byte	.LASF5
+ 1652 0052 02       		.uleb128 0x2
+ 1653 0053 08       		.byte	0x8
+ 1654 0054 05       		.byte	0x5
+ 1655 0055 8C010000 		.4byte	.LASF6
+ 1656 0059 02       		.uleb128 0x2
+ 1657 005a 08       		.byte	0x8
+ 1658 005b 07       		.byte	0x7
+ 1659 005c 41010000 		.4byte	.LASF7
+ 1660 0060 04       		.uleb128 0x4
+ 1661 0061 04       		.byte	0x4
+ 1662 0062 05       		.byte	0x5
+ 1663 0063 696E7400 		.ascii	"int\000"
+ 1664 0067 02       		.uleb128 0x2
+ 1665 0068 04       		.byte	0x4
+ 1666 0069 07       		.byte	0x7
+ 1667 006a 34010000 		.4byte	.LASF8
+ 1668 006e 03       		.uleb128 0x3
+ 1669 006f 58010000 		.4byte	.LASF10
+ 1670 0073 02       		.byte	0x2
+ 1671 0074 18       		.byte	0x18
+ 1672 0075 24000000 		.4byte	0x24
+ 1673 0079 05       		.uleb128 0x5
+ 1674 007a 91000000 		.4byte	0x91
+ 1675 007e 8A000000 		.4byte	0x8a
+ 1676 0082 06       		.uleb128 0x6
+ 1677 0083 8A000000 		.4byte	0x8a
+ 1678 0087 FF05     		.2byte	0x5ff
+ 1679 0089 00       		.byte	0
+ 1680 008a 02       		.uleb128 0x2
+ 1681 008b 04       		.byte	0x4
+ 1682 008c 07       		.byte	0x7
+ 1683 008d 83010000 		.4byte	.LASF11
+ 1684 0091 07       		.uleb128 0x7
+ 1685 0092 6E000000 		.4byte	0x6e
+ 1686 0096 08       		.uleb128 0x8
+ 1687 0097 22010000 		.4byte	.LASF12
+ 1688 009b 03       		.byte	0x3
+ 1689 009c 1F       		.byte	0x1f
+ 1690 009d A7000000 		.4byte	0xa7
+ 1691 00a1 05       		.uleb128 0x5
+ 1692 00a2 03       		.byte	0x3
+ 1693 00a3 00000000 		.4byte	cy_meta_configecc
+ 1694 00a7 07       		.uleb128 0x7
+ 1695 00a8 79000000 		.4byte	0x79
+ 1696 00ac 05       		.uleb128 0x5
+ 1697 00ad 91000000 		.4byte	0x91
+ 1698 00b1 BC000000 		.4byte	0xbc
+ 1699 00b5 09       		.uleb128 0x9
+ 1700 00b6 8A000000 		.4byte	0x8a
+ 1701 00ba 03       		.byte	0x3
+ 1702 00bb 00       		.byte	0
+ 1703 00bc 08       		.uleb128 0x8
+ 1704 00bd 12010000 		.4byte	.LASF13
+ 1705 00c1 03       		.byte	0x3
+ 1706 00c2 EC       		.byte	0xec
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 31
 
 
- 1707 0040 C4000000 		.4byte	.LASF3
- 1708 0044 02       		.uleb128 0x2
- 1709 0045 04       		.byte	0x4
- 1710 0046 05       		.byte	0x5
- 1711 0047 A4010000 		.4byte	.LASF4
- 1712 004b 02       		.uleb128 0x2
- 1713 004c 04       		.byte	0x4
- 1714 004d 07       		.byte	0x7
- 1715 004e B2000000 		.4byte	.LASF5
- 1716 0052 02       		.uleb128 0x2
- 1717 0053 08       		.byte	0x8
- 1718 0054 05       		.byte	0x5
- 1719 0055 8C010000 		.4byte	.LASF6
- 1720 0059 02       		.uleb128 0x2
- 1721 005a 08       		.byte	0x8
- 1722 005b 07       		.byte	0x7
- 1723 005c 41010000 		.4byte	.LASF7
- 1724 0060 04       		.uleb128 0x4
- 1725 0061 04       		.byte	0x4
- 1726 0062 05       		.byte	0x5
- 1727 0063 696E7400 		.ascii	"int\000"
- 1728 0067 02       		.uleb128 0x2
- 1729 0068 04       		.byte	0x4
- 1730 0069 07       		.byte	0x7
- 1731 006a 34010000 		.4byte	.LASF8
- 1732 006e 03       		.uleb128 0x3
- 1733 006f 58010000 		.4byte	.LASF10
- 1734 0073 02       		.byte	0x2
- 1735 0074 18       		.byte	0x18
- 1736 0075 24000000 		.4byte	0x24
- 1737 0079 05       		.uleb128 0x5
- 1738 007a 91000000 		.4byte	0x91
- 1739 007e 8A000000 		.4byte	0x8a
- 1740 0082 06       		.uleb128 0x6
- 1741 0083 8A000000 		.4byte	0x8a
- 1742 0087 3F06     		.2byte	0x63f
- 1743 0089 00       		.byte	0
- 1744 008a 02       		.uleb128 0x2
- 1745 008b 04       		.byte	0x4
- 1746 008c 07       		.byte	0x7
- 1747 008d 83010000 		.4byte	.LASF11
- 1748 0091 07       		.uleb128 0x7
- 1749 0092 6E000000 		.4byte	0x6e
- 1750 0096 08       		.uleb128 0x8
- 1751 0097 22010000 		.4byte	.LASF12
- 1752 009b 03       		.byte	0x3
- 1753 009c 1F       		.byte	0x1f
- 1754 009d A7000000 		.4byte	0xa7
- 1755 00a1 05       		.uleb128 0x5
- 1756 00a2 03       		.byte	0x3
- 1757 00a3 00000000 		.4byte	cy_meta_configecc
- 1758 00a7 07       		.uleb128 0x7
- 1759 00a8 79000000 		.4byte	0x79
- 1760 00ac 05       		.uleb128 0x5
- 1761 00ad 91000000 		.4byte	0x91
- 1762 00b1 BC000000 		.4byte	0xbc
- 1763 00b5 09       		.uleb128 0x9
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 32
+ 1707 00c3 CD000000 		.4byte	0xcd
+ 1708 00c7 05       		.uleb128 0x5
+ 1709 00c8 03       		.byte	0x3
+ 1710 00c9 00000000 		.4byte	cy_meta_custnvl
+ 1711 00cd 07       		.uleb128 0x7
+ 1712 00ce AC000000 		.4byte	0xac
+ 1713 00d2 08       		.uleb128 0x8
+ 1714 00d3 75010000 		.4byte	.LASF14
+ 1715 00d7 03       		.byte	0x3
+ 1716 00d8 FA       		.byte	0xfa
+ 1717 00d9 E3000000 		.4byte	0xe3
+ 1718 00dd 05       		.uleb128 0x5
+ 1719 00de 03       		.byte	0x3
+ 1720 00df 00000000 		.4byte	cy_meta_wonvl
+ 1721 00e3 07       		.uleb128 0x7
+ 1722 00e4 AC000000 		.4byte	0xac
+ 1723 00e8 05       		.uleb128 0x5
+ 1724 00e9 91000000 		.4byte	0x91
+ 1725 00ed F8000000 		.4byte	0xf8
+ 1726 00f1 09       		.uleb128 0x9
+ 1727 00f2 8A000000 		.4byte	0x8a
+ 1728 00f6 FF       		.byte	0xff
+ 1729 00f7 00       		.byte	0
+ 1730 00f8 0A       		.uleb128 0xa
+ 1731 00f9 60010000 		.4byte	.LASF15
+ 1732 00fd 03       		.byte	0x3
+ 1733 00fe 0801     		.2byte	0x108
+ 1734 0100 0A010000 		.4byte	0x10a
+ 1735 0104 05       		.uleb128 0x5
+ 1736 0105 03       		.byte	0x3
+ 1737 0106 00000000 		.4byte	cy_meta_flashprotect
+ 1738 010a 07       		.uleb128 0x7
+ 1739 010b E8000000 		.4byte	0xe8
+ 1740 010f 05       		.uleb128 0x5
+ 1741 0110 91000000 		.4byte	0x91
+ 1742 0114 1F010000 		.4byte	0x11f
+ 1743 0118 09       		.uleb128 0x9
+ 1744 0119 8A000000 		.4byte	0x8a
+ 1745 011d 0B       		.byte	0xb
+ 1746 011e 00       		.byte	0
+ 1747 011f 0A       		.uleb128 0xa
+ 1748 0120 0A000000 		.4byte	.LASF16
+ 1749 0124 03       		.byte	0x3
+ 1750 0125 3501     		.2byte	0x135
+ 1751 0127 31010000 		.4byte	0x131
+ 1752 012b 05       		.uleb128 0x5
+ 1753 012c 03       		.byte	0x3
+ 1754 012d 00000000 		.4byte	cy_metadata
+ 1755 0131 07       		.uleb128 0x7
+ 1756 0132 0F010000 		.4byte	0x10f
+ 1757 0136 00       		.byte	0
+ 1758              		.section	.debug_abbrev,"",%progbits
+ 1759              	.Ldebug_abbrev0:
+ 1760 0000 01       		.uleb128 0x1
+ 1761 0001 11       		.uleb128 0x11
+ 1762 0002 01       		.byte	0x1
+ 1763 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 32
 
 
- 1764 00b6 8A000000 		.4byte	0x8a
- 1765 00ba 03       		.byte	0x3
- 1766 00bb 00       		.byte	0
- 1767 00bc 08       		.uleb128 0x8
- 1768 00bd 12010000 		.4byte	.LASF13
- 1769 00c1 03       		.byte	0x3
- 1770 00c2 F4       		.byte	0xf4
- 1771 00c3 CD000000 		.4byte	0xcd
- 1772 00c7 05       		.uleb128 0x5
- 1773 00c8 03       		.byte	0x3
- 1774 00c9 00000000 		.4byte	cy_meta_custnvl
- 1775 00cd 07       		.uleb128 0x7
- 1776 00ce AC000000 		.4byte	0xac
- 1777 00d2 0A       		.uleb128 0xa
- 1778 00d3 75010000 		.4byte	.LASF14
- 1779 00d7 03       		.byte	0x3
- 1780 00d8 0201     		.2byte	0x102
- 1781 00da E4000000 		.4byte	0xe4
- 1782 00de 05       		.uleb128 0x5
- 1783 00df 03       		.byte	0x3
- 1784 00e0 00000000 		.4byte	cy_meta_wonvl
- 1785 00e4 07       		.uleb128 0x7
- 1786 00e5 AC000000 		.4byte	0xac
- 1787 00e9 05       		.uleb128 0x5
- 1788 00ea 91000000 		.4byte	0x91
- 1789 00ee F9000000 		.4byte	0xf9
- 1790 00f2 09       		.uleb128 0x9
- 1791 00f3 8A000000 		.4byte	0x8a
- 1792 00f7 FF       		.byte	0xff
- 1793 00f8 00       		.byte	0
- 1794 00f9 0A       		.uleb128 0xa
- 1795 00fa 60010000 		.4byte	.LASF15
- 1796 00fe 03       		.byte	0x3
- 1797 00ff 1001     		.2byte	0x110
- 1798 0101 0B010000 		.4byte	0x10b
- 1799 0105 05       		.uleb128 0x5
- 1800 0106 03       		.byte	0x3
- 1801 0107 00000000 		.4byte	cy_meta_flashprotect
- 1802 010b 07       		.uleb128 0x7
- 1803 010c E9000000 		.4byte	0xe9
- 1804 0110 05       		.uleb128 0x5
- 1805 0111 91000000 		.4byte	0x91
- 1806 0115 20010000 		.4byte	0x120
- 1807 0119 09       		.uleb128 0x9
- 1808 011a 8A000000 		.4byte	0x8a
- 1809 011e 0B       		.byte	0xb
- 1810 011f 00       		.byte	0
- 1811 0120 0A       		.uleb128 0xa
- 1812 0121 0A000000 		.4byte	.LASF16
- 1813 0125 03       		.byte	0x3
- 1814 0126 3D01     		.2byte	0x13d
- 1815 0128 32010000 		.4byte	0x132
- 1816 012c 05       		.uleb128 0x5
- 1817 012d 03       		.byte	0x3
- 1818 012e 00000000 		.4byte	cy_metadata
- 1819 0132 07       		.uleb128 0x7
- 1820 0133 10010000 		.4byte	0x110
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 33
+ 1764 0004 0E       		.uleb128 0xe
+ 1765 0005 13       		.uleb128 0x13
+ 1766 0006 0B       		.uleb128 0xb
+ 1767 0007 03       		.uleb128 0x3
+ 1768 0008 0E       		.uleb128 0xe
+ 1769 0009 1B       		.uleb128 0x1b
+ 1770 000a 0E       		.uleb128 0xe
+ 1771 000b 10       		.uleb128 0x10
+ 1772 000c 17       		.uleb128 0x17
+ 1773 000d 00       		.byte	0
+ 1774 000e 00       		.byte	0
+ 1775 000f 02       		.uleb128 0x2
+ 1776 0010 24       		.uleb128 0x24
+ 1777 0011 00       		.byte	0
+ 1778 0012 0B       		.uleb128 0xb
+ 1779 0013 0B       		.uleb128 0xb
+ 1780 0014 3E       		.uleb128 0x3e
+ 1781 0015 0B       		.uleb128 0xb
+ 1782 0016 03       		.uleb128 0x3
+ 1783 0017 0E       		.uleb128 0xe
+ 1784 0018 00       		.byte	0
+ 1785 0019 00       		.byte	0
+ 1786 001a 03       		.uleb128 0x3
+ 1787 001b 16       		.uleb128 0x16
+ 1788 001c 00       		.byte	0
+ 1789 001d 03       		.uleb128 0x3
+ 1790 001e 0E       		.uleb128 0xe
+ 1791 001f 3A       		.uleb128 0x3a
+ 1792 0020 0B       		.uleb128 0xb
+ 1793 0021 3B       		.uleb128 0x3b
+ 1794 0022 0B       		.uleb128 0xb
+ 1795 0023 49       		.uleb128 0x49
+ 1796 0024 13       		.uleb128 0x13
+ 1797 0025 00       		.byte	0
+ 1798 0026 00       		.byte	0
+ 1799 0027 04       		.uleb128 0x4
+ 1800 0028 24       		.uleb128 0x24
+ 1801 0029 00       		.byte	0
+ 1802 002a 0B       		.uleb128 0xb
+ 1803 002b 0B       		.uleb128 0xb
+ 1804 002c 3E       		.uleb128 0x3e
+ 1805 002d 0B       		.uleb128 0xb
+ 1806 002e 03       		.uleb128 0x3
+ 1807 002f 08       		.uleb128 0x8
+ 1808 0030 00       		.byte	0
+ 1809 0031 00       		.byte	0
+ 1810 0032 05       		.uleb128 0x5
+ 1811 0033 01       		.uleb128 0x1
+ 1812 0034 01       		.byte	0x1
+ 1813 0035 49       		.uleb128 0x49
+ 1814 0036 13       		.uleb128 0x13
+ 1815 0037 01       		.uleb128 0x1
+ 1816 0038 13       		.uleb128 0x13
+ 1817 0039 00       		.byte	0
+ 1818 003a 00       		.byte	0
+ 1819 003b 06       		.uleb128 0x6
+ 1820 003c 21       		.uleb128 0x21
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 33
 
 
- 1821 0137 00       		.byte	0
- 1822              		.section	.debug_abbrev,"",%progbits
- 1823              	.Ldebug_abbrev0:
- 1824 0000 01       		.uleb128 0x1
- 1825 0001 11       		.uleb128 0x11
- 1826 0002 01       		.byte	0x1
- 1827 0003 25       		.uleb128 0x25
- 1828 0004 0E       		.uleb128 0xe
- 1829 0005 13       		.uleb128 0x13
- 1830 0006 0B       		.uleb128 0xb
- 1831 0007 03       		.uleb128 0x3
- 1832 0008 0E       		.uleb128 0xe
- 1833 0009 1B       		.uleb128 0x1b
- 1834 000a 0E       		.uleb128 0xe
- 1835 000b 10       		.uleb128 0x10
- 1836 000c 17       		.uleb128 0x17
- 1837 000d 00       		.byte	0
- 1838 000e 00       		.byte	0
- 1839 000f 02       		.uleb128 0x2
- 1840 0010 24       		.uleb128 0x24
- 1841 0011 00       		.byte	0
- 1842 0012 0B       		.uleb128 0xb
- 1843 0013 0B       		.uleb128 0xb
- 1844 0014 3E       		.uleb128 0x3e
- 1845 0015 0B       		.uleb128 0xb
- 1846 0016 03       		.uleb128 0x3
- 1847 0017 0E       		.uleb128 0xe
- 1848 0018 00       		.byte	0
- 1849 0019 00       		.byte	0
- 1850 001a 03       		.uleb128 0x3
- 1851 001b 16       		.uleb128 0x16
- 1852 001c 00       		.byte	0
- 1853 001d 03       		.uleb128 0x3
- 1854 001e 0E       		.uleb128 0xe
- 1855 001f 3A       		.uleb128 0x3a
- 1856 0020 0B       		.uleb128 0xb
- 1857 0021 3B       		.uleb128 0x3b
- 1858 0022 0B       		.uleb128 0xb
- 1859 0023 49       		.uleb128 0x49
- 1860 0024 13       		.uleb128 0x13
- 1861 0025 00       		.byte	0
- 1862 0026 00       		.byte	0
- 1863 0027 04       		.uleb128 0x4
- 1864 0028 24       		.uleb128 0x24
- 1865 0029 00       		.byte	0
- 1866 002a 0B       		.uleb128 0xb
- 1867 002b 0B       		.uleb128 0xb
- 1868 002c 3E       		.uleb128 0x3e
- 1869 002d 0B       		.uleb128 0xb
- 1870 002e 03       		.uleb128 0x3
- 1871 002f 08       		.uleb128 0x8
- 1872 0030 00       		.byte	0
- 1873 0031 00       		.byte	0
- 1874 0032 05       		.uleb128 0x5
- 1875 0033 01       		.uleb128 0x1
- 1876 0034 01       		.byte	0x1
- 1877 0035 49       		.uleb128 0x49
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 34
+ 1821 003d 00       		.byte	0
+ 1822 003e 49       		.uleb128 0x49
+ 1823 003f 13       		.uleb128 0x13
+ 1824 0040 2F       		.uleb128 0x2f
+ 1825 0041 05       		.uleb128 0x5
+ 1826 0042 00       		.byte	0
+ 1827 0043 00       		.byte	0
+ 1828 0044 07       		.uleb128 0x7
+ 1829 0045 26       		.uleb128 0x26
+ 1830 0046 00       		.byte	0
+ 1831 0047 49       		.uleb128 0x49
+ 1832 0048 13       		.uleb128 0x13
+ 1833 0049 00       		.byte	0
+ 1834 004a 00       		.byte	0
+ 1835 004b 08       		.uleb128 0x8
+ 1836 004c 34       		.uleb128 0x34
+ 1837 004d 00       		.byte	0
+ 1838 004e 03       		.uleb128 0x3
+ 1839 004f 0E       		.uleb128 0xe
+ 1840 0050 3A       		.uleb128 0x3a
+ 1841 0051 0B       		.uleb128 0xb
+ 1842 0052 3B       		.uleb128 0x3b
+ 1843 0053 0B       		.uleb128 0xb
+ 1844 0054 49       		.uleb128 0x49
+ 1845 0055 13       		.uleb128 0x13
+ 1846 0056 3F       		.uleb128 0x3f
+ 1847 0057 19       		.uleb128 0x19
+ 1848 0058 02       		.uleb128 0x2
+ 1849 0059 18       		.uleb128 0x18
+ 1850 005a 00       		.byte	0
+ 1851 005b 00       		.byte	0
+ 1852 005c 09       		.uleb128 0x9
+ 1853 005d 21       		.uleb128 0x21
+ 1854 005e 00       		.byte	0
+ 1855 005f 49       		.uleb128 0x49
+ 1856 0060 13       		.uleb128 0x13
+ 1857 0061 2F       		.uleb128 0x2f
+ 1858 0062 0B       		.uleb128 0xb
+ 1859 0063 00       		.byte	0
+ 1860 0064 00       		.byte	0
+ 1861 0065 0A       		.uleb128 0xa
+ 1862 0066 34       		.uleb128 0x34
+ 1863 0067 00       		.byte	0
+ 1864 0068 03       		.uleb128 0x3
+ 1865 0069 0E       		.uleb128 0xe
+ 1866 006a 3A       		.uleb128 0x3a
+ 1867 006b 0B       		.uleb128 0xb
+ 1868 006c 3B       		.uleb128 0x3b
+ 1869 006d 05       		.uleb128 0x5
+ 1870 006e 49       		.uleb128 0x49
+ 1871 006f 13       		.uleb128 0x13
+ 1872 0070 3F       		.uleb128 0x3f
+ 1873 0071 19       		.uleb128 0x19
+ 1874 0072 02       		.uleb128 0x2
+ 1875 0073 18       		.uleb128 0x18
+ 1876 0074 00       		.byte	0
+ 1877 0075 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 34
 
 
- 1878 0036 13       		.uleb128 0x13
- 1879 0037 01       		.uleb128 0x1
- 1880 0038 13       		.uleb128 0x13
- 1881 0039 00       		.byte	0
- 1882 003a 00       		.byte	0
- 1883 003b 06       		.uleb128 0x6
- 1884 003c 21       		.uleb128 0x21
- 1885 003d 00       		.byte	0
- 1886 003e 49       		.uleb128 0x49
- 1887 003f 13       		.uleb128 0x13
- 1888 0040 2F       		.uleb128 0x2f
- 1889 0041 05       		.uleb128 0x5
- 1890 0042 00       		.byte	0
- 1891 0043 00       		.byte	0
- 1892 0044 07       		.uleb128 0x7
- 1893 0045 26       		.uleb128 0x26
- 1894 0046 00       		.byte	0
- 1895 0047 49       		.uleb128 0x49
- 1896 0048 13       		.uleb128 0x13
- 1897 0049 00       		.byte	0
- 1898 004a 00       		.byte	0
- 1899 004b 08       		.uleb128 0x8
- 1900 004c 34       		.uleb128 0x34
- 1901 004d 00       		.byte	0
- 1902 004e 03       		.uleb128 0x3
- 1903 004f 0E       		.uleb128 0xe
- 1904 0050 3A       		.uleb128 0x3a
- 1905 0051 0B       		.uleb128 0xb
- 1906 0052 3B       		.uleb128 0x3b
- 1907 0053 0B       		.uleb128 0xb
- 1908 0054 49       		.uleb128 0x49
- 1909 0055 13       		.uleb128 0x13
- 1910 0056 3F       		.uleb128 0x3f
- 1911 0057 19       		.uleb128 0x19
- 1912 0058 02       		.uleb128 0x2
- 1913 0059 18       		.uleb128 0x18
- 1914 005a 00       		.byte	0
- 1915 005b 00       		.byte	0
- 1916 005c 09       		.uleb128 0x9
- 1917 005d 21       		.uleb128 0x21
- 1918 005e 00       		.byte	0
- 1919 005f 49       		.uleb128 0x49
- 1920 0060 13       		.uleb128 0x13
- 1921 0061 2F       		.uleb128 0x2f
- 1922 0062 0B       		.uleb128 0xb
- 1923 0063 00       		.byte	0
- 1924 0064 00       		.byte	0
- 1925 0065 0A       		.uleb128 0xa
- 1926 0066 34       		.uleb128 0x34
- 1927 0067 00       		.byte	0
- 1928 0068 03       		.uleb128 0x3
- 1929 0069 0E       		.uleb128 0xe
- 1930 006a 3A       		.uleb128 0x3a
- 1931 006b 0B       		.uleb128 0xb
- 1932 006c 3B       		.uleb128 0x3b
- 1933 006d 05       		.uleb128 0x5
- 1934 006e 49       		.uleb128 0x49
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 35
+ 1878 0076 00       		.byte	0
+ 1879              		.section	.debug_aranges,"",%progbits
+ 1880 0000 14000000 		.4byte	0x14
+ 1881 0004 0200     		.2byte	0x2
+ 1882 0006 00000000 		.4byte	.Ldebug_info0
+ 1883 000a 04       		.byte	0x4
+ 1884 000b 00       		.byte	0
+ 1885 000c 0000     		.2byte	0
+ 1886 000e 0000     		.2byte	0
+ 1887 0010 00000000 		.4byte	0
+ 1888 0014 00000000 		.4byte	0
+ 1889              		.section	.debug_line,"",%progbits
+ 1890              	.Ldebug_line0:
+ 1891 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 1891      02003701 
+ 1891      00000201 
+ 1891      FB0E0D00 
+ 1891      01010101 
+ 1892              	.LASF9:
+ 1893 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1893      6E74385F 
+ 1893      7400
+ 1894              	.LASF16:
+ 1895 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 1895      65746164 
+ 1895      61746100 
+ 1896              	.LASF1:
+ 1897 0016 756E7369 		.ascii	"unsigned char\000"
+ 1897      676E6564 
+ 1897      20636861 
+ 1897      7200
+ 1898              	.LASF17:
+ 1899 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1899      43313120 
+ 1899      352E342E 
+ 1899      31203230 
+ 1899      31363036 
+ 1900 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1900      20726576 
+ 1900      6973696F 
+ 1900      6E203233 
+ 1900      37373135 
+ 1901 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1901      66756E63 
+ 1901      74696F6E 
+ 1901      2D736563 
+ 1901      74696F6E 
+ 1902              	.LASF5:
+ 1903 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1903      20756E73 
+ 1903      69676E65 
+ 1903      6420696E 
+ 1903      7400
+ 1904              	.LASF3:
+ 1905 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 1905      7420756E 
+ 1905      7369676E 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 35
 
 
- 1935 006f 13       		.uleb128 0x13
- 1936 0070 3F       		.uleb128 0x3f
- 1937 0071 19       		.uleb128 0x19
- 1938 0072 02       		.uleb128 0x2
- 1939 0073 18       		.uleb128 0x18
- 1940 0074 00       		.byte	0
- 1941 0075 00       		.byte	0
- 1942 0076 00       		.byte	0
- 1943              		.section	.debug_aranges,"",%progbits
- 1944 0000 14000000 		.4byte	0x14
- 1945 0004 0200     		.2byte	0x2
- 1946 0006 00000000 		.4byte	.Ldebug_info0
- 1947 000a 04       		.byte	0x4
- 1948 000b 00       		.byte	0
- 1949 000c 0000     		.2byte	0
- 1950 000e 0000     		.2byte	0
- 1951 0010 00000000 		.4byte	0
- 1952 0014 00000000 		.4byte	0
- 1953              		.section	.debug_line,"",%progbits
- 1954              	.Ldebug_line0:
- 1955 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
- 1955      02003701 
- 1955      00000201 
- 1955      FB0E0D00 
- 1955      01010101 
- 1956              	.LASF9:
- 1957 0000 5F5F7569 		.ascii	"__uint8_t\000"
- 1957      6E74385F 
- 1957      7400
- 1958              	.LASF16:
- 1959 000a 63795F6D 		.ascii	"cy_metadata\000"
- 1959      65746164 
- 1959      61746100 
- 1960              	.LASF1:
- 1961 0016 756E7369 		.ascii	"unsigned char\000"
- 1961      676E6564 
- 1961      20636861 
- 1961      7200
- 1962              	.LASF17:
- 1963 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1963      43313120 
- 1963      352E342E 
- 1963      31203230 
- 1963      31363036 
- 1964 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1964      20726576 
- 1964      6973696F 
- 1964      6E203233 
- 1964      37373135 
- 1965 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1965      66756E63 
- 1965      74696F6E 
- 1965      2D736563 
- 1965      74696F6E 
- 1966              	.LASF5:
- 1967 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
- 1967      20756E73 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 36
+ 1905      65642069 
+ 1905      6E7400
+ 1906              	.LASF19:
+ 1907 00d7 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
+ 1907      73657273 
+ 1907      5C70616A 
+ 1907      6F685C70 
+ 1907      726F6A65 
+ 1908 0104 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
+ 1908      646F662E 
+ 1908      63796473 
+ 1908      6E00
+ 1909              	.LASF13:
+ 1910 0112 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1910      6574615F 
+ 1910      63757374 
+ 1910      6E766C00 
+ 1911              	.LASF12:
+ 1912 0122 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1912      6574615F 
+ 1912      636F6E66 
+ 1912      69676563 
+ 1912      6300
+ 1913              	.LASF8:
+ 1914 0134 756E7369 		.ascii	"unsigned int\000"
+ 1914      676E6564 
+ 1914      20696E74 
+ 1914      00
+ 1915              	.LASF7:
+ 1916 0141 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1916      206C6F6E 
+ 1916      6720756E 
+ 1916      7369676E 
+ 1916      65642069 
+ 1917              	.LASF10:
+ 1918 0158 75696E74 		.ascii	"uint8_t\000"
+ 1918      385F7400 
+ 1919              	.LASF15:
+ 1920 0160 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1920      6574615F 
+ 1920      666C6173 
+ 1920      6870726F 
+ 1920      74656374 
+ 1921              	.LASF14:
+ 1922 0175 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1922      6574615F 
+ 1922      776F6E76 
+ 1922      6C00
+ 1923              	.LASF11:
+ 1924 0183 73697A65 		.ascii	"sizetype\000"
+ 1924      74797065 
+ 1924      00
+ 1925              	.LASF6:
+ 1926 018c 6C6F6E67 		.ascii	"long long int\000"
+ 1926      206C6F6E 
+ 1926      6720696E 
+ 1926      7400
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cc57KYL4.s 			page 36
 
 
- 1967      69676E65 
- 1967      6420696E 
- 1967      7400
- 1968              	.LASF3:
- 1969 00c4 73686F72 		.ascii	"short unsigned int\000"
- 1969      7420756E 
- 1969      7369676E 
- 1969      65642069 
- 1969      6E7400
- 1970              	.LASF19:
- 1971 00d7 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
- 1971      73657273 
- 1971      5C70616A 
- 1971      6F685C70 
- 1971      726F6A65 
- 1972 0104 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
- 1972      646F662E 
- 1972      63796473 
- 1972      6E00
- 1973              	.LASF13:
- 1974 0112 63795F6D 		.ascii	"cy_meta_custnvl\000"
- 1974      6574615F 
- 1974      63757374 
- 1974      6E766C00 
- 1975              	.LASF12:
- 1976 0122 63795F6D 		.ascii	"cy_meta_configecc\000"
- 1976      6574615F 
- 1976      636F6E66 
- 1976      69676563 
- 1976      6300
- 1977              	.LASF8:
- 1978 0134 756E7369 		.ascii	"unsigned int\000"
- 1978      676E6564 
- 1978      20696E74 
- 1978      00
- 1979              	.LASF7:
- 1980 0141 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1980      206C6F6E 
- 1980      6720756E 
- 1980      7369676E 
- 1980      65642069 
- 1981              	.LASF10:
- 1982 0158 75696E74 		.ascii	"uint8_t\000"
- 1982      385F7400 
- 1983              	.LASF15:
- 1984 0160 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 1984      6574615F 
- 1984      666C6173 
- 1984      6870726F 
- 1984      74656374 
- 1985              	.LASF14:
- 1986 0175 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 1986      6574615F 
- 1986      776F6E76 
- 1986      6C00
- 1987              	.LASF11:
- 1988 0183 73697A65 		.ascii	"sizetype\000"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchiNkp1.s 			page 37
-
-
- 1988      74797065 
- 1988      00
- 1989              	.LASF6:
- 1990 018c 6C6F6E67 		.ascii	"long long int\000"
- 1990      206C6F6E 
- 1990      6720696E 
- 1990      7400
- 1991              	.LASF2:
- 1992 019a 73686F72 		.ascii	"short int\000"
- 1992      7420696E 
- 1992      7400
- 1993              	.LASF4:
- 1994 01a4 6C6F6E67 		.ascii	"long int\000"
- 1994      20696E74 
- 1994      00
- 1995              	.LASF0:
- 1996 01ad 7369676E 		.ascii	"signed char\000"
- 1996      65642063 
- 1996      68617200 
- 1997              	.LASF18:
- 1998 01b9 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
- 1998      72617465 
- 1998      645F536F 
- 1998      75726365 
- 1998      5C50536F 
- 1999              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1927              	.LASF2:
+ 1928 019a 73686F72 		.ascii	"short int\000"
+ 1928      7420696E 
+ 1928      7400
+ 1929              	.LASF4:
+ 1930 01a4 6C6F6E67 		.ascii	"long int\000"
+ 1930      20696E74 
+ 1930      00
+ 1931              	.LASF0:
+ 1932 01ad 7369676E 		.ascii	"signed char\000"
+ 1932      65642063 
+ 1932      68617200 
+ 1933              	.LASF18:
+ 1934 01b9 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1934      72617465 
+ 1934      645F536F 
+ 1934      75726365 
+ 1934      5C50536F 
+ 1935              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

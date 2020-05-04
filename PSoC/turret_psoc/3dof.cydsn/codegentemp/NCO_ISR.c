@@ -28,18 +28,9 @@
 ********************************************************************************/
 /* `#START NCO_ISR_intc` */
 #include "project.h"
-extern volatile uint32 J1_tuningWord;
-extern volatile uint32 J2_tuningWord;
-extern volatile uint32 J3_tuningWord;
-extern volatile uint32 J1_accumulator;
-extern volatile uint32 J2_accumulator;
-extern volatile uint32 J3_accumulator;
-extern volatile char J1_step;
-extern volatile char J2_step;
-extern volatile char J3_step;
-extern volatile char J1_dir;
-extern volatile char J2_dir;
-extern volatile char J3_dir;
+#include "comms.h"
+#include "stdio.h"
+#include "joints.h"
 /* `#END` */
 
 #ifndef CYINT_IRQ_BASE
@@ -178,6 +169,34 @@ CY_ISR(NCO_ISR_Interrupt)
     /*  Place your Interrupt code here. */
     /* `#START NCO_ISR_Interrupt` */
     //accumulator tuningwords
+    Move volatile * move;
+    //get the most recent move from the queue
+    move = move_queue_get(&move_queue);
+    //check for null pointer
+    if(move != 0){
+        switch(move->joint){
+            case 1:
+                J1_dir = move->direction;
+                J1_tuningWord = move->tuningWord;
+                J1_duration = move->duration;
+                J1_EN_Write(0);
+            break;
+            case 2:
+                J2_dir = move->direction;
+                J2_tuningWord = move->tuningWord;
+                J2_duration = move->duration;
+                J2_EN_Write(0);
+            break;
+            case 3:
+                J3_dir = move->direction;
+                J3_tuningWord = move->tuningWord;
+                J3_duration = move->duration;
+                J3_EN_Write(0);
+            break;
+            default:
+            break;
+        }
+    }
     J1_accumulator += J1_tuningWord;
     J2_accumulator += J2_tuningWord;
     J3_accumulator += J3_tuningWord;
@@ -211,6 +230,27 @@ CY_ISR(NCO_ISR_Interrupt)
     J1_STEP_Write(J1_step);
     J2_STEP_Write(J2_step);
     J3_STEP_Write(J3_step);
+    
+    //count down duration timers
+    if(J1_duration != 0){
+        J1_duration -= 1;   
+    }
+    if(J2_duration != 0){
+        J2_duration -= 1;   
+    }
+    if(J3_duration != 0){
+        J3_duration -= 1;   
+    }
+    //disable NCOs when duration is up, per joint.
+    if(J1_duration == 0){
+        J1_tuningWord = 0;
+    }
+    if(J2_duration == 0){
+        J2_tuningWord = 0;   
+    }
+    if(J3_duration == 0){
+        J3_tuningWord = 0;   
+    }
     /* `#END` */
 }
 

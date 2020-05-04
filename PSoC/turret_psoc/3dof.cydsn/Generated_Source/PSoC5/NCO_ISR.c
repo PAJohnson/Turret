@@ -30,21 +30,7 @@
 #include "project.h"
 #include "comms.h"
 #include "stdio.h"
-extern volatile uint32 J1_tuningWord;
-extern volatile uint32 J2_tuningWord;
-extern volatile uint32 J3_tuningWord;
-extern volatile uint32 J1_accumulator;
-extern volatile uint32 J2_accumulator;
-extern volatile uint32 J3_accumulator;
-extern volatile char J1_step;
-extern volatile char J2_step;
-extern volatile char J3_step;
-extern volatile char J1_dir;
-extern volatile char J2_dir;
-extern volatile char J3_dir;
-volatile uint32 J1_duration = 0;
-volatile uint32 J2_duration = 0;
-volatile uint32 J3_duration = 0;
+#include "joints.h"
 /* `#END` */
 
 #ifndef CYINT_IRQ_BASE
@@ -183,7 +169,7 @@ CY_ISR(NCO_ISR_Interrupt)
     /*  Place your Interrupt code here. */
     /* `#START NCO_ISR_Interrupt` */
     //accumulator tuningwords
-    Move * move;
+    Move volatile * move;
     //get the most recent move from the queue
     move = move_queue_get(&move_queue);
     //check for null pointer

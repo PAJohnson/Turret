@@ -10,6 +10,9 @@
  * ========================================
 */
 
+#ifndef COMMS_H
+#define COMMS_H
+
 #include "cytypes.h"
 #include "stdio.h"
 
@@ -52,18 +55,18 @@ typedef struct{
     uint16 size; //moves in queue
 } Move_Queue;
 
-extern volatile Message_Buff msg_buff;
-extern volatile Move_Queue move_queue;
-extern volatile char rx_buffer[RX_SIZE];
-extern volatile int rx_index;
+volatile Message_Buff msg_buff;
+volatile Move_Queue move_queue;
+volatile char rx_buffer[RX_SIZE];
+volatile int rx_index;
 
-void message_buff_init(Message_Buff * msg_buff);
-void message_buff_add(Message_Buff * msg_buff, Message * msg);
-void message_buff_execute(Message_Buff * msg_buff);
+void message_buff_init(Message_Buff volatile * msg_buff);
+void message_buff_add(Message_Buff volatile * msg_buff, Message * msg);
+void message_buff_execute(Message_Buff volatile * msg_buff);
 
-void move_queue_init(Move_Queue * move_queue);
-int16 move_queue_add(Move_Queue * move_queue, uint8 joint, uint8 direction, uint32 tuningWord, uint32 duration); //return 0 if successful, 1 otherwise
-Move * move_queue_get(Move_Queue * move_queue); //gives pointer to oldest move, increments tail index
+void move_queue_init(Move_Queue volatile * move_queue);
+int16 move_queue_add(Move_Queue volatile * move_queue, uint8 joint, uint8 direction, uint32 tuningWord, uint32 duration); //return 0 if successful, 1 otherwise
+Move volatile * move_queue_get(Move_Queue volatile * move_queue); //gives pointer to oldest move, increments tail index
 
-
+#endif
 /* [] END OF FILE */

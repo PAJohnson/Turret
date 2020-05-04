@@ -34,9 +34,9 @@
     #include "SPIM_1_IntClock.h"
 #endif /* (0u != SPIM_1_INTERNAL_CLOCK) */
 
-#define SPIM_1_MODE                       (1u)
-#define SPIM_1_DATA_WIDTH                 (8u)
-#define SPIM_1_MODE_USE_ZERO              (1u)
+#define SPIM_1_MODE                       (3u)
+#define SPIM_1_DATA_WIDTH                 (16u)
+#define SPIM_1_MODE_USE_ZERO              (0u)
 #define SPIM_1_BIDIRECTIONAL_MODE         (0u)
 
 /* Internal interrupt handling */
@@ -91,16 +91,16 @@ void  SPIM_1_SetTxInterruptMode(uint8 intSrc)     ;
 void  SPIM_1_SetRxInterruptMode(uint8 intSrc)     ;
 uint8 SPIM_1_ReadTxStatus(void)                   ;
 uint8 SPIM_1_ReadRxStatus(void)                   ;
-void  SPIM_1_WriteTxData(uint8 txData)  \
+void  SPIM_1_WriteTxData(uint16 txData)  \
                                                             ;
-uint8 SPIM_1_ReadRxData(void) \
+uint16 SPIM_1_ReadRxData(void) \
                                                             ;
 uint8 SPIM_1_GetRxBufferSize(void)                ;
 uint8 SPIM_1_GetTxBufferSize(void)                ;
 void  SPIM_1_ClearRxBuffer(void)                  ;
 void  SPIM_1_ClearTxBuffer(void)                  ;
 void  SPIM_1_ClearFIFO(void)                              ;
-void  SPIM_1_PutArray(const uint8 buffer[], uint8 byteCount) \
+void  SPIM_1_PutArray(const uint16 buffer[], uint8 byteCount) \
                                                             ;
 
 #if(0u != SPIM_1_BIDIRECTIONAL_MODE)
@@ -171,46 +171,46 @@ extern uint8 SPIM_1_initVar;
 *             Registers
 ***************************************/
 #if(CY_PSOC3 || CY_PSOC5)
-    #define SPIM_1_TXDATA_REG (* (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F0_REG)
-    #define SPIM_1_TXDATA_PTR (  (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F0_REG)
-    #define SPIM_1_RXDATA_REG (* (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F1_REG)
-    #define SPIM_1_RXDATA_PTR (  (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F1_REG)
+    #define SPIM_1_TXDATA_REG (* (reg16 *) \
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F0_REG)
+    #define SPIM_1_TXDATA_PTR (  (reg16 *) \
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F0_REG)
+    #define SPIM_1_RXDATA_REG (* (reg16 *) \
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F1_REG)
+    #define SPIM_1_RXDATA_PTR (  (reg16 *) \
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F1_REG)
 #else   /* PSOC4 */
     #if(SPIM_1_USE_SECOND_DATAPATH)
         #define SPIM_1_TXDATA_REG (* (reg16 *) \
-                                          SPIM_1_BSPIM_sR8_Dp_u0__16BIT_F0_REG)
+                                          SPIM_1_BSPIM_sR16_Dp_u0__16BIT_F0_REG)
         #define SPIM_1_TXDATA_PTR (  (reg16 *) \
-                                          SPIM_1_BSPIM_sR8_Dp_u0__16BIT_F0_REG)
+                                          SPIM_1_BSPIM_sR16_Dp_u0__16BIT_F0_REG)
         #define SPIM_1_RXDATA_REG (* (reg16 *) \
-                                          SPIM_1_BSPIM_sR8_Dp_u0__16BIT_F1_REG)
+                                          SPIM_1_BSPIM_sR16_Dp_u0__16BIT_F1_REG)
         #define SPIM_1_RXDATA_PTR (  (reg16 *) \
-                                          SPIM_1_BSPIM_sR8_Dp_u0__16BIT_F1_REG)
+                                          SPIM_1_BSPIM_sR16_Dp_u0__16BIT_F1_REG)
     #else
         #define SPIM_1_TXDATA_REG (* (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F0_REG)
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F0_REG)
         #define SPIM_1_TXDATA_PTR (  (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F0_REG)
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F0_REG)
         #define SPIM_1_RXDATA_REG (* (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F1_REG)
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F1_REG)
         #define SPIM_1_RXDATA_PTR (  (reg8 *) \
-                                                SPIM_1_BSPIM_sR8_Dp_u0__F1_REG)
+                                                SPIM_1_BSPIM_sR16_Dp_u0__F1_REG)
     #endif /* (SPIM_1_USE_SECOND_DATAPATH) */
 #endif     /* (CY_PSOC3 || CY_PSOC5) */
 
 #define SPIM_1_AUX_CONTROL_DP0_REG (* (reg8 *) \
-                                        SPIM_1_BSPIM_sR8_Dp_u0__DP_AUX_CTL_REG)
+                                        SPIM_1_BSPIM_sR16_Dp_u0__DP_AUX_CTL_REG)
 #define SPIM_1_AUX_CONTROL_DP0_PTR (  (reg8 *) \
-                                        SPIM_1_BSPIM_sR8_Dp_u0__DP_AUX_CTL_REG)
+                                        SPIM_1_BSPIM_sR16_Dp_u0__DP_AUX_CTL_REG)
 
 #if(SPIM_1_USE_SECOND_DATAPATH)
     #define SPIM_1_AUX_CONTROL_DP1_REG  (* (reg8 *) \
-                                        SPIM_1_BSPIM_sR8_Dp_u1__DP_AUX_CTL_REG)
+                                        SPIM_1_BSPIM_sR16_Dp_u1__DP_AUX_CTL_REG)
     #define SPIM_1_AUX_CONTROL_DP1_PTR  (  (reg8 *) \
-                                        SPIM_1_BSPIM_sR8_Dp_u1__DP_AUX_CTL_REG)
+                                        SPIM_1_BSPIM_sR16_Dp_u1__DP_AUX_CTL_REG)
 #endif /* (SPIM_1_USE_SECOND_DATAPATH) */
 
 #define SPIM_1_COUNTER_PERIOD_REG     (* (reg8 *) SPIM_1_BSPIM_BitCounter__PERIOD_REG)

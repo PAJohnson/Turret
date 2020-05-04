@@ -88,7 +88,7 @@ CY_ISR(SPIM_1_TX_ISR)
                 }
 
                 /* Put data element into the TX FIFO */
-                CY_SET_REG8(SPIM_1_TXDATA_PTR, 
+                CY_SET_REG16(SPIM_1_TXDATA_PTR, 
                                              SPIM_1_txBuffer[SPIM_1_txBufferRead]);
             }
             else
@@ -144,7 +144,7 @@ CY_ISR(SPIM_1_RX_ISR)
 {
     #if(SPIM_1_RX_SOFTWARE_BUF_ENABLED)
         uint8 tmpStatus;
-        uint8 rxData;
+        uint16 rxData;
     #endif /* (SPIM_1_RX_SOFTWARE_BUF_ENABLED) */
 
     #ifdef SPIM_1_RX_ISR_ENTRY_CALLBACK
@@ -164,7 +164,7 @@ CY_ISR(SPIM_1_RX_ISR)
         /* Check if RX data FIFO has some data to be moved into the RX Buffer */
         while(0u != (SPIM_1_swStatusRx & SPIM_1_STS_RX_FIFO_NOT_EMPTY))
         {
-            rxData = CY_GET_REG8(SPIM_1_RXDATA_PTR);
+            rxData = CY_GET_REG16(SPIM_1_RXDATA_PTR);
 
             /* Set next pointer. */
             SPIM_1_rxBufferWrite++;

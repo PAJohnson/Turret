@@ -11,7 +11,9 @@
 */
 #include "comms.h"
 
-void message_buff_init(Message_Buff * msg_buff){
+volatile int rx_index = 0;
+
+void message_buff_init(Message_Buff volatile * msg_buff){
     //set command to nop, joint to 0, data all to 0
     int i = 0;
     int j = 0;
@@ -27,7 +29,7 @@ void message_buff_init(Message_Buff * msg_buff){
     }
 }
 
-void message_buff_add(Message_Buff * msg_buff, Message * msg){
+void message_buff_add(Message_Buff volatile * msg_buff, Message * msg){
     //figure this out later
     int i;
     msg_buff->msgs[msg_buff->head].command = msg->command;
@@ -40,7 +42,7 @@ void message_buff_add(Message_Buff * msg_buff, Message * msg){
     return;
 }
 
-void message_buff_execute(Message_Buff * msg_buff){
+void message_buff_execute(Message_Buff volatile * msg_buff){
     //execute oldest message received
     uint8 joint;
     uint8 direction;
@@ -64,7 +66,7 @@ void message_buff_execute(Message_Buff * msg_buff){
     }
 }
 
-void move_queue_init(Move_Queue * move_queue){
+void move_queue_init(Move_Queue volatile * move_queue){
     int i;
     move_queue->head = 0;
     move_queue->tail = 0;
@@ -76,7 +78,7 @@ void move_queue_init(Move_Queue * move_queue){
         move_queue->moves[i].tuningWord = 0;
     }
 }
-int16 move_queue_add(Move_Queue * move_queue, uint8 joint, uint8 direction, uint32 tuningWord, uint32 duration){
+int16 move_queue_add(Move_Queue volatile * move_queue, uint8 joint, uint8 direction, uint32 tuningWord, uint32 duration){
     //return 0 if successful, 1 otherwise
     if(move_queue->size < MOVE_QUEUE_SIZE){
         move_queue->moves[move_queue->head].direction = direction;
@@ -91,9 +93,9 @@ int16 move_queue_add(Move_Queue * move_queue, uint8 joint, uint8 direction, uint
         return -1;
     }
 }
-Move * move_queue_get(Move_Queue * move_queue){
+Move volatile * move_queue_get(Move_Queue volatile * move_queue){
     //gives pointer to oldest move, increments tail index
-    Move * move;
+    Move volatile * move;
     if(move_queue->size > 0){
         move_queue->size -= 1;
         move = &move_queue->moves[move_queue->tail];

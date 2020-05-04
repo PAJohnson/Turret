@@ -1,5 +1,5 @@
 -- Project:   3dof
--- Generated: 04/19/2020 21:25:49
+-- Generated: 05/03/2020 23:31:04
 -- PSoC Creator  4.2
 
 ENTITY \3dof\ IS
@@ -61,6 +61,9 @@ ARCHITECTURE __DEFAULT__ OF \3dof\ IS
     SIGNAL J3_STEP(0)__PA : bit;
     SIGNAL MISO(0)__PA : bit;
     SIGNAL MOSI(0)__PA : bit;
+    SIGNAL Net_101 : bit;
+    ATTRIBUTE global_signal OF Net_101 : SIGNAL IS true;
+    SIGNAL Net_101_local : bit;
     SIGNAL Net_12 : bit;
     SIGNAL Net_13 : bit;
     SIGNAL Net_14 : bit;
@@ -112,7 +115,6 @@ ARCHITECTURE __DEFAULT__ OF \3dof\ IS
     SIGNAL \SPIM_1:BSPIM:count_4\ : bit;
     SIGNAL \SPIM_1:BSPIM:count_5\ : bit;
     SIGNAL \SPIM_1:BSPIM:count_6\ : bit;
-    SIGNAL \SPIM_1:BSPIM:ld_ident\ : bit;
     SIGNAL \SPIM_1:BSPIM:load_cond\ : bit;
     SIGNAL \SPIM_1:BSPIM:load_rx_data\ : bit;
     SIGNAL \SPIM_1:BSPIM:mosi_from_dp\ : bit;
@@ -177,6 +179,19 @@ ARCHITECTURE __DEFAULT__ OF \3dof\ IS
     SIGNAL zero : bit;
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     SIGNAL \ClockBlock.aclk_glb_ff_0__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.ce0__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.cl0__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.z0__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.ff0__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.ce1__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.cl1__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.z1__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.ff1__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.co_msb__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.sol_msb__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u0.cfbo__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u1.sor__sig\ : bit;
+    SIGNAL \SPIM_1:BSPIM:sR16:Dp:u1.cmsbo__sig\ : bit;
     ATTRIBUTE lib_model OF \ADC_DelSig_1:Bypass_P03(0)\ : LABEL IS "iocell1";
     ATTRIBUTE Location OF \ADC_DelSig_1:Bypass_P03(0)\ : LABEL IS "P0[3]";
     ATTRIBUTE lib_model OF J1_POT(0) : LABEL IS "iocell2";
@@ -233,11 +248,12 @@ ARCHITECTURE __DEFAULT__ OF \3dof\ IS
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell13";
     ATTRIBUTE lib_model OF \SPIM_1:BSPIM:TxStsReg\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \SPIM_1:BSPIM:RxStsReg\ : LABEL IS "statusicell2";
-    ATTRIBUTE lib_model OF \SPIM_1:BSPIM:sR8:Dp:u0\ : LABEL IS "datapathcell1";
-    ATTRIBUTE lib_model OF \UART_1:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell2";
-    ATTRIBUTE lib_model OF \UART_1:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell3";
+    ATTRIBUTE lib_model OF \SPIM_1:BSPIM:sR16:Dp:u0\ : LABEL IS "datapathcell1";
+    ATTRIBUTE lib_model OF \SPIM_1:BSPIM:sR16:Dp:u1\ : LABEL IS "datapathcell2";
+    ATTRIBUTE lib_model OF \UART_1:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell3";
+    ATTRIBUTE lib_model OF \UART_1:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell4";
     ATTRIBUTE lib_model OF \UART_1:BUART:sTX:TxSts\ : LABEL IS "statusicell3";
-    ATTRIBUTE lib_model OF \UART_1:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell4";
+    ATTRIBUTE lib_model OF \UART_1:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell5";
     ATTRIBUTE lib_model OF \UART_1:BUART:sRX:RxSts\ : LABEL IS "statusicell4";
     ATTRIBUTE lib_model OF Net_20 : LABEL IS "macrocell14";
     ATTRIBUTE lib_model OF \SPIM_1:BSPIM:state_2\ : LABEL IS "macrocell15";
@@ -245,25 +261,24 @@ ARCHITECTURE __DEFAULT__ OF \3dof\ IS
     ATTRIBUTE lib_model OF \SPIM_1:BSPIM:state_0\ : LABEL IS "macrocell17";
     ATTRIBUTE lib_model OF Net_12 : LABEL IS "macrocell18";
     ATTRIBUTE lib_model OF \SPIM_1:BSPIM:load_cond\ : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF \SPIM_1:BSPIM:ld_ident\ : LABEL IS "macrocell20";
-    ATTRIBUTE lib_model OF \SPIM_1:BSPIM:cnt_enable\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF Net_21 : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \UART_1:BUART:txn\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \UART_1:BUART:tx_state_1\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \UART_1:BUART:tx_state_0\ : LABEL IS "macrocell25";
-    ATTRIBUTE lib_model OF \UART_1:BUART:tx_state_2\ : LABEL IS "macrocell26";
-    ATTRIBUTE lib_model OF \UART_1:BUART:tx_bitclk\ : LABEL IS "macrocell27";
-    ATTRIBUTE lib_model OF \UART_1:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell28";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_0\ : LABEL IS "macrocell29";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_load_fifo\ : LABEL IS "macrocell30";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_3\ : LABEL IS "macrocell31";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_2\ : LABEL IS "macrocell32";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_bitclk_enable\ : LABEL IS "macrocell33";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF \UART_1:BUART:pollcount_1\ : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF \UART_1:BUART:pollcount_0\ : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_status_3\ : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF \UART_1:BUART:rx_last\ : LABEL IS "macrocell38";
+    ATTRIBUTE lib_model OF \SPIM_1:BSPIM:cnt_enable\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF Net_21 : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \UART_1:BUART:txn\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \UART_1:BUART:tx_state_1\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \UART_1:BUART:tx_state_0\ : LABEL IS "macrocell24";
+    ATTRIBUTE lib_model OF \UART_1:BUART:tx_state_2\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \UART_1:BUART:tx_bitclk\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \UART_1:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell27";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_0\ : LABEL IS "macrocell28";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_load_fifo\ : LABEL IS "macrocell29";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_3\ : LABEL IS "macrocell30";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_2\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_bitclk_enable\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \UART_1:BUART:pollcount_1\ : LABEL IS "macrocell34";
+    ATTRIBUTE lib_model OF \UART_1:BUART:pollcount_0\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_status_3\ : LABEL IS "macrocell36";
+    ATTRIBUTE lib_model OF \UART_1:BUART:rx_last\ : LABEL IS "macrocell37";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -644,6 +659,8 @@ BEGIN
             clk_a_dig_0 => \ADC_DelSig_1:Net_488_adig_local\,
             dclk_glb_3 => Net_97,
             dclk_3 => Net_97_local,
+            dclk_glb_4 => Net_101,
+            dclk_4 => Net_101_local,
             aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\);
 
     \ADC_DelSig_1:Bypass_P03\:logicalport
@@ -1104,7 +1121,7 @@ BEGIN
             drive_mode => "110",
             ibuf_enabled => "1",
             id => "37caf085-ab2e-4b2f-9754-b9735fb5a1e7",
-            init_dr_st => "0",
+            init_dr_st => "1",
             input_buffer_sel => "00",
             input_clk_en => 0,
             input_sync => "1",
@@ -1194,7 +1211,7 @@ BEGIN
             drive_mode => "110",
             ibuf_enabled => "1",
             id => "91736e0f-f420-4710-b596-ab19b227a7e9",
-            init_dr_st => "0",
+            init_dr_st => "1",
             input_buffer_sel => "00",
             input_clk_en => 0,
             input_sync => "1",
@@ -2654,7 +2671,7 @@ BEGIN
         GENERIC MAP(
             cy_alt_mode => 0,
             cy_init_value => "0000000",
-            cy_period => "0001111",
+            cy_period => "0011111",
             cy_route_en => 1,
             cy_route_ld => 0,
             clk_inv => '0',
@@ -2706,7 +2723,7 @@ BEGIN
             status_1 => open,
             status_0 => open);
 
-    \SPIM_1:BSPIM:sR8:Dp:u0\:datapathcell
+    \SPIM_1:BSPIM:sR16:Dp:u0\:datapathcell
         GENERIC MAP(
             a0_init => "00000000",
             a1_init => "00000000",
@@ -2716,7 +2733,56 @@ BEGIN
             cl1_sync => 1,
             cmsb_sync => 1,
             co_msb_sync => 1,
-            cy_dpconfig => "0000000000000000000000001100000000000001010000000001000100010000000000011100000000010001000000000000000101000000000000010100000011111111000000001111111111111111000000000010001000001000111100000000000000000100",
+            cy_dpconfig => "0000000000000000000000001100000000000001010000000001000100010000000000011100000000010001000000000000000101000000000000010100000011111111000000001111111111111111000000000000001000001100011100000000000000000100",
+            d0_init => "00000000",
+            d1_init => "00000000",
+            f0_blk_sync => 1,
+            f0_bus_sync => 1,
+            f1_blk_sync => 1,
+            f1_bus_sync => 1,
+            ff0_sync => 1,
+            ff1_sync => 1,
+            ov_msb_sync => 1,
+            so_sync => 1,
+            z0_sync => 1,
+            z1_sync => 1,
+            uses_p_in => '0',
+            uses_p_out => '0',
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_14,
+            cs_addr_2 => \SPIM_1:BSPIM:state_2\,
+            cs_addr_1 => \SPIM_1:BSPIM:state_1\,
+            cs_addr_0 => \SPIM_1:BSPIM:state_0\,
+            route_si => Net_13,
+            f1_load => \SPIM_1:BSPIM:load_rx_data\,
+            busclk => ClockBlock_BUS_CLK,
+            ce0 => \SPIM_1:BSPIM:sR16:Dp:u0.ce0__sig\,
+            cl0 => \SPIM_1:BSPIM:sR16:Dp:u0.cl0__sig\,
+            z0 => \SPIM_1:BSPIM:sR16:Dp:u0.z0__sig\,
+            ff0 => \SPIM_1:BSPIM:sR16:Dp:u0.ff0__sig\,
+            ce1 => \SPIM_1:BSPIM:sR16:Dp:u0.ce1__sig\,
+            cl1 => \SPIM_1:BSPIM:sR16:Dp:u0.cl1__sig\,
+            z1 => \SPIM_1:BSPIM:sR16:Dp:u0.z1__sig\,
+            ff1 => \SPIM_1:BSPIM:sR16:Dp:u0.ff1__sig\,
+            co_msb => \SPIM_1:BSPIM:sR16:Dp:u0.co_msb__sig\,
+            sol_msb => \SPIM_1:BSPIM:sR16:Dp:u0.sol_msb__sig\,
+            cfbo => \SPIM_1:BSPIM:sR16:Dp:u0.cfbo__sig\,
+            sil => \SPIM_1:BSPIM:sR16:Dp:u1.sor__sig\,
+            cmsbi => \SPIM_1:BSPIM:sR16:Dp:u1.cmsbo__sig\);
+
+    \SPIM_1:BSPIM:sR16:Dp:u1\:datapathcell
+        GENERIC MAP(
+            a0_init => "00000000",
+            a1_init => "00000000",
+            ce0_sync => 1,
+            ce1_sync => 1,
+            cl0_sync => 1,
+            cl1_sync => 1,
+            cmsb_sync => 1,
+            co_msb_sync => 1,
+            cy_dpconfig => "0000000000000000000000001100000000000001010000000001000100010000000000011100000000010001000000000000000101000000000000010100000011111111000000001111111111111111000000000010001100001100111100000000000000000100",
             d0_init => "00000000",
             d1_init => "00000000",
             f0_blk_sync => 1,
@@ -2745,7 +2811,20 @@ BEGIN
             f0_blk_stat_comb => \SPIM_1:BSPIM:tx_status_1\,
             f1_bus_stat_comb => \SPIM_1:BSPIM:rx_status_5\,
             f1_blk_stat_comb => \SPIM_1:BSPIM:rx_status_4\,
-            busclk => ClockBlock_BUS_CLK);
+            busclk => ClockBlock_BUS_CLK,
+            ce0i => \SPIM_1:BSPIM:sR16:Dp:u0.ce0__sig\,
+            cl0i => \SPIM_1:BSPIM:sR16:Dp:u0.cl0__sig\,
+            z0i => \SPIM_1:BSPIM:sR16:Dp:u0.z0__sig\,
+            ff0i => \SPIM_1:BSPIM:sR16:Dp:u0.ff0__sig\,
+            ce1i => \SPIM_1:BSPIM:sR16:Dp:u0.ce1__sig\,
+            cl1i => \SPIM_1:BSPIM:sR16:Dp:u0.cl1__sig\,
+            z1i => \SPIM_1:BSPIM:sR16:Dp:u0.z1__sig\,
+            ff1i => \SPIM_1:BSPIM:sR16:Dp:u0.ff1__sig\,
+            ci => \SPIM_1:BSPIM:sR16:Dp:u0.co_msb__sig\,
+            sir => \SPIM_1:BSPIM:sR16:Dp:u0.sol_msb__sig\,
+            cfbi => \SPIM_1:BSPIM:sR16:Dp:u0.cfbo__sig\,
+            sor => \SPIM_1:BSPIM:sR16:Dp:u1.sor__sig\,
+            cmsbo => \SPIM_1:BSPIM:sR16:Dp:u1.cmsbo__sig\);
 
     NCO_ISR:interrupt
         GENERIC MAP(
@@ -2935,9 +3014,17 @@ BEGIN
             interrupt => Net_90,
             clock => ClockBlock_BUS_CLK);
 
+    tick_isr:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_101_local,
+            clock => ClockBlock_BUS_CLK);
+
     Net_20:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * !main_1 * main_3) + (!main_1 * !main_2 * !main_3) + (!main_1 * !main_3 * !main_5 * !main_6 * !main_7 * main_8 * !main_9 * !main_10) + (main_1 * !main_2 * main_3) + (main_1 * main_2 * !main_3) + (main_1 * !main_4) + (!main_3 * !main_4)",
+            eqn_main => "(main_0 * !main_1 * main_3) + (main_0 * main_1 * !main_2 * !main_3) + (!main_1 * main_2 * !main_3 * main_4)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -2948,17 +3035,11 @@ BEGIN
             main_1 => \SPIM_1:BSPIM:state_2\,
             main_2 => \SPIM_1:BSPIM:state_1\,
             main_3 => \SPIM_1:BSPIM:state_0\,
-            main_4 => \SPIM_1:BSPIM:mosi_from_dp\,
-            main_5 => \SPIM_1:BSPIM:count_4\,
-            main_6 => \SPIM_1:BSPIM:count_3\,
-            main_7 => \SPIM_1:BSPIM:count_2\,
-            main_8 => \SPIM_1:BSPIM:count_1\,
-            main_9 => \SPIM_1:BSPIM:count_0\,
-            main_10 => \SPIM_1:BSPIM:ld_ident\);
+            main_4 => \SPIM_1:BSPIM:mosi_from_dp\);
 
     \SPIM_1:BSPIM:state_2\:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * !main_1 * main_2) + (!main_0 * main_1 * !main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_9) + (!main_0 * main_2 * !main_3 * !main_4 * main_5 * !main_6 * main_7 * !main_8)",
+            eqn_main => "(!main_0 * main_1 * !main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_8) + (!main_0 * main_1 * main_2 * !main_3 * !main_4 * !main_5 * !main_6 * main_7)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -2973,13 +3054,12 @@ BEGIN
             main_5 => \SPIM_1:BSPIM:count_2\,
             main_6 => \SPIM_1:BSPIM:count_1\,
             main_7 => \SPIM_1:BSPIM:count_0\,
-            main_8 => \SPIM_1:BSPIM:tx_status_1\,
-            main_9 => \SPIM_1:BSPIM:ld_ident\);
+            main_8 => \SPIM_1:BSPIM:tx_status_1\);
 
     \SPIM_1:BSPIM:state_1\:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * !main_1 * main_2) + (!main_0 * main_2 * !main_3 * !main_4 * main_5 * !main_6 * main_7 * !main_8) + (main_0 * !main_2) + (main_1 * !main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_9)",
-            regmode => 2,
+            eqn_main => "(!main_0 * !main_1 * !main_2) + (!main_0 * !main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_8) + (main_0 * main_1) + (main_0 * main_2) + (main_1 * main_2 * !main_3 * !main_4 * !main_5 * !main_6 * main_7)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -2993,12 +3073,11 @@ BEGIN
             main_5 => \SPIM_1:BSPIM:count_2\,
             main_6 => \SPIM_1:BSPIM:count_1\,
             main_7 => \SPIM_1:BSPIM:count_0\,
-            main_8 => \SPIM_1:BSPIM:tx_status_1\,
-            main_9 => \SPIM_1:BSPIM:ld_ident\);
+            main_8 => \SPIM_1:BSPIM:tx_status_1\);
 
     \SPIM_1:BSPIM:state_0\:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * main_1) + (main_0 * !main_1) + (!main_1 * !main_2 * !main_3)",
+            eqn_main => "(!main_0 * main_1 * main_2 * !main_3 * !main_4 * !main_5 * !main_6 * main_7) + (main_0 * !main_2) + (!main_1 * !main_2 * main_8) + (main_1 * !main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_8)",
             regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
@@ -3008,11 +3087,16 @@ BEGIN
             main_0 => \SPIM_1:BSPIM:state_2\,
             main_1 => \SPIM_1:BSPIM:state_1\,
             main_2 => \SPIM_1:BSPIM:state_0\,
-            main_3 => \SPIM_1:BSPIM:tx_status_1\);
+            main_3 => \SPIM_1:BSPIM:count_4\,
+            main_4 => \SPIM_1:BSPIM:count_3\,
+            main_5 => \SPIM_1:BSPIM:count_2\,
+            main_6 => \SPIM_1:BSPIM:count_1\,
+            main_7 => \SPIM_1:BSPIM:count_0\,
+            main_8 => \SPIM_1:BSPIM:tx_status_1\);
 
     Net_12:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * !main_1 * main_2) + (!main_0 * main_1 * !main_3) + (main_0 * !main_1 * !main_2 * !main_3) + (main_1 * main_2 * !main_3)",
+            eqn_main => "(!main_0 * !main_1 * main_2) + (!main_0 * main_1 * !main_3) + (main_0 * !main_1 * !main_3)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -3043,28 +3127,9 @@ BEGIN
             main_7 => \SPIM_1:BSPIM:count_0\,
             main_8 => \SPIM_1:BSPIM:load_cond\);
 
-    \SPIM_1:BSPIM:ld_ident\:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * !main_2 * !main_8) + (main_0 * main_1 * !main_2 * main_8) + (main_1 * !main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * main_8)",
-            regmode => 2,
-            clk_inv => '0',
-            clken_mode => 1)
-        PORT MAP(
-            q => \SPIM_1:BSPIM:ld_ident\,
-            clock_0 => Net_14,
-            main_0 => \SPIM_1:BSPIM:state_2\,
-            main_1 => \SPIM_1:BSPIM:state_1\,
-            main_2 => \SPIM_1:BSPIM:state_0\,
-            main_3 => \SPIM_1:BSPIM:count_4\,
-            main_4 => \SPIM_1:BSPIM:count_3\,
-            main_5 => \SPIM_1:BSPIM:count_2\,
-            main_6 => \SPIM_1:BSPIM:count_1\,
-            main_7 => \SPIM_1:BSPIM:count_0\,
-            main_8 => \SPIM_1:BSPIM:ld_ident\);
-
     \SPIM_1:BSPIM:cnt_enable\:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * !main_1 * !main_2 * main_3) + (!main_0 * main_1 * main_2 * !main_3) + (main_0 * !main_1 * main_2 * main_3) + (main_0 * main_1 * !main_2 * main_3)",
+            eqn_main => "(!main_0 * !main_1 * !main_2 * main_8) + (!main_0 * !main_1 * main_2 * !main_8) + (main_0 * main_1 * main_8) + (main_0 * main_2 * main_8) + (main_1 * main_2 * !main_3 * !main_4 * !main_5 * !main_6 * main_7 * main_8)",
             regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
@@ -3074,11 +3139,16 @@ BEGIN
             main_0 => \SPIM_1:BSPIM:state_2\,
             main_1 => \SPIM_1:BSPIM:state_1\,
             main_2 => \SPIM_1:BSPIM:state_0\,
-            main_3 => \SPIM_1:BSPIM:cnt_enable\);
+            main_3 => \SPIM_1:BSPIM:count_4\,
+            main_4 => \SPIM_1:BSPIM:count_3\,
+            main_5 => \SPIM_1:BSPIM:count_2\,
+            main_6 => \SPIM_1:BSPIM:count_1\,
+            main_7 => \SPIM_1:BSPIM:count_0\,
+            main_8 => \SPIM_1:BSPIM:cnt_enable\);
 
     Net_21:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * main_1 * main_2) + (main_1 * main_2 * main_3)",
+            eqn_main => "(!main_0 * main_1 * !main_2)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -3087,8 +3157,7 @@ BEGIN
             clock_0 => Net_14,
             main_0 => \SPIM_1:BSPIM:state_2\,
             main_1 => \SPIM_1:BSPIM:state_1\,
-            main_2 => \SPIM_1:BSPIM:state_0\,
-            main_3 => Net_21);
+            main_2 => \SPIM_1:BSPIM:state_0\);
 
     \UART_1:BUART:txn\:macrocell
         GENERIC MAP(

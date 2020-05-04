@@ -27,7 +27,10 @@
 *  Place your includes, defines and code here 
 ********************************************************************************/
 /* `#START rx_isr_intc` */
-
+#define RX_SIZE 80
+#include "comms.h"
+#include "project.h"
+#include "stdio.h"
 /* `#END` */
 
 #ifndef CYINT_IRQ_BASE
@@ -165,7 +168,37 @@ CY_ISR(rx_isr_Interrupt)
 
     /*  Place your Interrupt code here. */
     /* `#START rx_isr_Interrupt` */
-
+    //goal is to receive input strings and parse them
+    //<2 byte command><1 byte joint><data><delimiter>
+    //delimiter should be '\r'
+    uint8 ch;
+    Message tmp_msg;
+    int i;
+    ch = UART_1_GetByte();
+    rx_buffer[rx_index] = ch;
+    rx_index++;
+    if(rx_buffer[rx_index-1] == '\r'){
+        //delimiter has been found
+        tmp_msg.command = (rx_buffer[0]<<8)+rx_buffer[1];
+        tmp_msg.joint = rx_buffer[2] - 0x30;
+        if(3+rx_index-3 >= DATA_SIZE){
+            //unterminated command. Restart sequence on PC side.
+            UART_1_PutString("NO");
+            rx_index = 0;
+        }
+        else{
+            for(i = 3; i < 3 + rx_index - 3; i++){
+                tmp_msg.data[i-3] = rx_buffer[i] - 0x30;
+            }
+            message_buff_add(&msg_buff,&tmp_msg);
+            rx_index = 0;
+            for(i = 0; i < DATA_SIZE; i++){
+                tmp_msg.data[i] = 0;   
+            }
+        }
+    }
+    
+    
     /* `#END` */
 }
 
