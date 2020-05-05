@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
   28:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************/
   29:Generated_Source\PSoC5/NCO_ISR.c **** /* `#START NCO_ISR_intc` */
   30:Generated_Source\PSoC5/NCO_ISR.c **** #include "project.h"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 2
 
 
   31:Generated_Source\PSoC5/NCO_ISR.c **** #include "comms.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
   85:Generated_Source\PSoC5/NCO_ISR.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
   86:Generated_Source\PSoC5/NCO_ISR.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
   87:Generated_Source\PSoC5/NCO_ISR.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 3
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 3
 
 
   88:Generated_Source\PSoC5/NCO_ISR.c **** *  the interrupt to the interrupt controller.
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  142:Generated_Source\PSoC5/NCO_ISR.c ****     /* Set the ISR to point to the passive one. */
  143:Generated_Source\PSoC5/NCO_ISR.c ****     NCO_ISR_SetVector(&IntDefaultHandler);
  144:Generated_Source\PSoC5/NCO_ISR.c **** }
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 4
 
 
  145:Generated_Source\PSoC5/NCO_ISR.c **** 
@@ -221,7 +221,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  174:Generated_Source\PSoC5/NCO_ISR.c ****     //get the most recent move from the queue
  175:Generated_Source\PSoC5/NCO_ISR.c ****     move = move_queue_get(&move_queue);
   36              		.loc 1 175 0
-  37 0002 4148     		ldr	r0, .L13
+  37 0002 4948     		ldr	r0, .L13
   38 0004 FFF7FEFF 		bl	move_queue_get
   39              	.LVL0:
  176:Generated_Source\PSoC5/NCO_ISR.c ****     //check for null pointer
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
   48 0014 1BD0     		beq	.L4
   49 0016 012B     		cmp	r3, #1
   50 0018 17D1     		bne	.L2
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 5
 
 
  179:Generated_Source\PSoC5/NCO_ISR.c ****             case 1:
@@ -246,7 +246,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
   51              		.loc 1 180 0
   52 001a 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
   53 001c C9B2     		uxtb	r1, r1
-  54 001e 3B4B     		ldr	r3, .L13+4
+  54 001e 434B     		ldr	r3, .L13+4
   55 0020 5971     		strb	r1, [r3, #5]
  181:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[0].tuningWord = move->tuningWord;
   56              		.loc 1 181 0
@@ -255,7 +255,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  182:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[0].duration = move->duration;
   59              		.loc 1 182 0
   60 0026 8268     		ldr	r2, [r0, #8]
-  61 0028 DA60     		str	r2, [r3, #12]
+  61 0028 1A61     		str	r2, [r3, #16]
  183:Generated_Source\PSoC5/NCO_ISR.c ****                 J1_EN_Write(0);
   62              		.loc 1 183 0
   63 002a 0020     		movs	r0, #0
@@ -272,16 +272,16 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
   71              		.loc 1 186 0
   72 0032 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
   73 0034 C9B2     		uxtb	r1, r1
-  74 0036 354B     		ldr	r3, .L13+4
-  75 0038 83F82510 		strb	r1, [r3, #37]
+  74 0036 3D4B     		ldr	r3, .L13+4
+  75 0038 83F82910 		strb	r1, [r3, #41]
  187:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[1].tuningWord = move->tuningWord;
   76              		.loc 1 187 0
   77 003c 4168     		ldr	r1, [r0, #4]
-  78 003e 1962     		str	r1, [r3, #32]
+  78 003e 5962     		str	r1, [r3, #36]
  188:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[1].duration = move->duration;
   79              		.loc 1 188 0
   80 0040 8268     		ldr	r2, [r0, #8]
-  81 0042 DA62     		str	r2, [r3, #44]
+  81 0042 5A63     		str	r2, [r3, #52]
  189:Generated_Source\PSoC5/NCO_ISR.c ****                 J2_EN_Write(0);
   82              		.loc 1 189 0
   83 0044 0020     		movs	r0, #0
@@ -292,28 +292,28 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  164:Generated_Source\PSoC5/NCO_ISR.c ****     #ifdef NCO_ISR_INTERRUPT_INTERRUPT_CALLBACK
   88              		.loc 1 164 0 discriminator 1
   89 004a 0023     		movs	r3, #0
-  90 004c 42E0     		b	.L6
+  90 004c 52E0     		b	.L6
   91              	.LVL6:
   92              	.L4:
  190:Generated_Source\PSoC5/NCO_ISR.c ****             break;
  191:Generated_Source\PSoC5/NCO_ISR.c ****             case 3:
  192:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[2].dir = move->direction;
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 6
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 6
 
 
   93              		.loc 1 192 0
   94 004e 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
   95 0050 C9B2     		uxtb	r1, r1
-  96 0052 2E4B     		ldr	r3, .L13+4
-  97 0054 83F84510 		strb	r1, [r3, #69]
+  96 0052 364B     		ldr	r3, .L13+4
+  97 0054 83F84D10 		strb	r1, [r3, #77]
  193:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[2].tuningWord = move->tuningWord;
   98              		.loc 1 193 0
   99 0058 4168     		ldr	r1, [r0, #4]
- 100 005a 1964     		str	r1, [r3, #64]
+ 100 005a 9964     		str	r1, [r3, #72]
  194:Generated_Source\PSoC5/NCO_ISR.c ****                 joints[2].duration = move->duration;
  101              		.loc 1 194 0
  102 005c 8268     		ldr	r2, [r0, #8]
- 103 005e DA64     		str	r2, [r3, #76]
+ 103 005e 9A65     		str	r2, [r3, #88]
  195:Generated_Source\PSoC5/NCO_ISR.c ****                 J3_EN_Write(0);
  104              		.loc 1 195 0
  105 0060 0020     		movs	r0, #0
@@ -332,141 +332,161 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  201:Generated_Source\PSoC5/NCO_ISR.c ****     for(i = 0; i < NUM_JOINTS; i++){
  202:Generated_Source\PSoC5/NCO_ISR.c ****         joints[i].accumulator += joints[i].tuningWord;
  113              		.loc 1 202 0
- 114 0068 2848     		ldr	r0, .L13+4
- 115 006a 5901     		lsls	r1, r3, #5
- 116 006c 4218     		adds	r2, r0, r1
- 117 006e 4058     		ldr	r0, [r0, r1]
- 118 0070 5169     		ldr	r1, [r2, #20]
- 119 0072 0144     		add	r1, r1, r0
- 120 0074 5161     		str	r1, [r2, #20]
+ 114 0068 3048     		ldr	r0, .L13+4
+ 115 006a DA00     		lsls	r2, r3, #3
+ 116 006c 1A44     		add	r2, r2, r3
+ 117 006e 9100     		lsls	r1, r2, #2
+ 118 0070 4218     		adds	r2, r0, r1
+ 119 0072 4058     		ldr	r0, [r0, r1]
+ 120 0074 9169     		ldr	r1, [r2, #24]
+ 121 0076 0144     		add	r1, r1, r0
+ 122 0078 9161     		str	r1, [r2, #24]
  203:Generated_Source\PSoC5/NCO_ISR.c ****         if(joints[i].step != 0){
- 121              		.loc 1 203 0
- 122 0076 1279     		ldrb	r2, [r2, #4]	@ zero_extendqisi2
- 123 0078 12F0FF0F 		tst	r2, #255
- 124 007c 04D0     		beq	.L7
+ 123              		.loc 1 203 0
+ 124 007a 1279     		ldrb	r2, [r2, #4]	@ zero_extendqisi2
+ 125 007c 12F0FF0F 		tst	r2, #255
+ 126 0080 06D0     		beq	.L7
  204:Generated_Source\PSoC5/NCO_ISR.c ****             joints[i].step = 0;   
- 125              		.loc 1 204 0
- 126 007e 234A     		ldr	r2, .L13+4
- 127 0080 02EB4312 		add	r2, r2, r3, lsl #5
- 128 0084 0021     		movs	r1, #0
- 129 0086 1171     		strb	r1, [r2, #4]
- 130              	.L7:
+ 127              		.loc 1 204 0
+ 128 0082 03EBC301 		add	r1, r3, r3, lsl #3
+ 129 0086 8A00     		lsls	r2, r1, #2
+ 130 0088 2849     		ldr	r1, .L13+4
+ 131 008a 0A44     		add	r2, r2, r1
+ 132 008c 0021     		movs	r1, #0
+ 133 008e 1171     		strb	r1, [r2, #4]
+ 134              	.L7:
  205:Generated_Source\PSoC5/NCO_ISR.c ****         }
  206:Generated_Source\PSoC5/NCO_ISR.c ****         if(joints[i].accumulator > 16777215){
- 131              		.loc 1 206 0
- 132 0088 204A     		ldr	r2, .L13+4
- 133 008a 02EB4312 		add	r2, r2, r3, lsl #5
- 134 008e 5269     		ldr	r2, [r2, #20]
- 135 0090 B2F1807F 		cmp	r2, #16777216
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 7
+ 135              		.loc 1 206 0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 7
 
 
- 136 0094 09D3     		bcc	.L8
+ 136 0090 03EBC301 		add	r1, r3, r3, lsl #3
+ 137 0094 8A00     		lsls	r2, r1, #2
+ 138 0096 2549     		ldr	r1, .L13+4
+ 139 0098 0A44     		add	r2, r2, r1
+ 140 009a 9269     		ldr	r2, [r2, #24]
+ 141 009c B2F1807F 		cmp	r2, #16777216
+ 142 00a0 0BD3     		bcc	.L8
  207:Generated_Source\PSoC5/NCO_ISR.c ****             joints[i].accumulator -= 16777215;
- 137              		.loc 1 207 0
- 138 0096 1D4A     		ldr	r2, .L13+4
- 139 0098 02EB4312 		add	r2, r2, r3, lsl #5
- 140 009c 5169     		ldr	r1, [r2, #20]
- 141 009e 01F17F41 		add	r1, r1, #-16777216
- 142 00a2 0131     		adds	r1, r1, #1
- 143 00a4 5161     		str	r1, [r2, #20]
+ 143              		.loc 1 207 0
+ 144 00a2 D900     		lsls	r1, r3, #3
+ 145 00a4 1944     		add	r1, r1, r3
+ 146 00a6 8A00     		lsls	r2, r1, #2
+ 147 00a8 2049     		ldr	r1, .L13+4
+ 148 00aa 0A44     		add	r2, r2, r1
+ 149 00ac 9169     		ldr	r1, [r2, #24]
+ 150 00ae 01F17F41 		add	r1, r1, #-16777216
+ 151 00b2 0131     		adds	r1, r1, #1
+ 152 00b4 9161     		str	r1, [r2, #24]
  208:Generated_Source\PSoC5/NCO_ISR.c ****             joints[i].step = 1;
- 144              		.loc 1 208 0
- 145 00a6 0121     		movs	r1, #1
- 146 00a8 1171     		strb	r1, [r2, #4]
- 147              	.L8:
+ 153              		.loc 1 208 0
+ 154 00b6 0121     		movs	r1, #1
+ 155 00b8 1171     		strb	r1, [r2, #4]
+ 156              	.L8:
  209:Generated_Source\PSoC5/NCO_ISR.c ****         }
  210:Generated_Source\PSoC5/NCO_ISR.c ****         if(joints[i].duration != 0){
- 148              		.loc 1 210 0
- 149 00aa 184A     		ldr	r2, .L13+4
- 150 00ac 02EB4312 		add	r2, r2, r3, lsl #5
- 151 00b0 D268     		ldr	r2, [r2, #12]
- 152 00b2 2AB1     		cbz	r2, .L9
+ 157              		.loc 1 210 0
+ 158 00ba 03EBC301 		add	r1, r3, r3, lsl #3
+ 159 00be 8A00     		lsls	r2, r1, #2
+ 160 00c0 1A49     		ldr	r1, .L13+4
+ 161 00c2 0A44     		add	r2, r2, r1
+ 162 00c4 1269     		ldr	r2, [r2, #16]
+ 163 00c6 3AB1     		cbz	r2, .L9
  211:Generated_Source\PSoC5/NCO_ISR.c ****             joints[i].duration -= 1;   
- 153              		.loc 1 211 0
- 154 00b4 154A     		ldr	r2, .L13+4
- 155 00b6 02EB4312 		add	r2, r2, r3, lsl #5
- 156 00ba D168     		ldr	r1, [r2, #12]
- 157 00bc 0139     		subs	r1, r1, #1
- 158 00be D160     		str	r1, [r2, #12]
- 159              	.L9:
+ 164              		.loc 1 211 0
+ 165 00c8 D900     		lsls	r1, r3, #3
+ 166 00ca 1944     		add	r1, r1, r3
+ 167 00cc 8A00     		lsls	r2, r1, #2
+ 168 00ce 1749     		ldr	r1, .L13+4
+ 169 00d0 0A44     		add	r2, r2, r1
+ 170 00d2 1169     		ldr	r1, [r2, #16]
+ 171 00d4 0139     		subs	r1, r1, #1
+ 172 00d6 1161     		str	r1, [r2, #16]
+ 173              	.L9:
  212:Generated_Source\PSoC5/NCO_ISR.c ****         }
  213:Generated_Source\PSoC5/NCO_ISR.c ****         if(joints[i].duration == 0){
- 160              		.loc 1 213 0
- 161 00c0 124A     		ldr	r2, .L13+4
- 162 00c2 02EB4312 		add	r2, r2, r3, lsl #5
- 163 00c6 D268     		ldr	r2, [r2, #12]
- 164 00c8 1AB9     		cbnz	r2, .L10
+ 174              		.loc 1 213 0
+ 175 00d8 03EBC301 		add	r1, r3, r3, lsl #3
+ 176 00dc 8A00     		lsls	r2, r1, #2
+ 177 00de 1349     		ldr	r1, .L13+4
+ 178 00e0 0A44     		add	r2, r2, r1
+ 179 00e2 1269     		ldr	r2, [r2, #16]
+ 180 00e4 2AB9     		cbnz	r2, .L10
  214:Generated_Source\PSoC5/NCO_ISR.c ****             joints[i].tuningWord = 0;
- 165              		.loc 1 214 0
- 166 00ca 5A01     		lsls	r2, r3, #5
- 167 00cc 0020     		movs	r0, #0
- 168 00ce 0F49     		ldr	r1, .L13+4
- 169 00d0 8850     		str	r0, [r1, r2]
- 170              	.L10:
+ 181              		.loc 1 214 0
+ 182 00e6 03EBC301 		add	r1, r3, r3, lsl #3
+ 183 00ea 8A00     		lsls	r2, r1, #2
+ 184 00ec 0020     		movs	r0, #0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 8
+
+
+ 185 00ee 0F49     		ldr	r1, .L13+4
+ 186 00f0 8850     		str	r0, [r1, r2]
+ 187              	.L10:
  201:Generated_Source\PSoC5/NCO_ISR.c ****         joints[i].accumulator += joints[i].tuningWord;
- 171              		.loc 1 201 0 discriminator 2
- 172 00d2 0133     		adds	r3, r3, #1
- 173              	.LVL10:
- 174              	.L6:
+ 188              		.loc 1 201 0 discriminator 2
+ 189 00f2 0133     		adds	r3, r3, #1
+ 190              	.LVL10:
+ 191              	.L6:
  201:Generated_Source\PSoC5/NCO_ISR.c ****         joints[i].accumulator += joints[i].tuningWord;
- 175              		.loc 1 201 0 is_stmt 0 discriminator 1
- 176 00d4 022B     		cmp	r3, #2
- 177 00d6 C7DD     		ble	.L11
+ 192              		.loc 1 201 0 is_stmt 0 discriminator 1
+ 193 00f4 022B     		cmp	r3, #2
+ 194 00f6 B7DD     		ble	.L11
  215:Generated_Source\PSoC5/NCO_ISR.c ****         }
  216:Generated_Source\PSoC5/NCO_ISR.c ****     }
  217:Generated_Source\PSoC5/NCO_ISR.c ****     //write directions and step pins
  218:Generated_Source\PSoC5/NCO_ISR.c ****     J1_DIR_Write(joints[0].dir);
- 178              		.loc 1 218 0 is_stmt 1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 8
-
-
- 179 00d8 0C4C     		ldr	r4, .L13+4
- 180 00da 6079     		ldrb	r0, [r4, #5]	@ zero_extendqisi2
- 181 00dc FFF7FEFF 		bl	J1_DIR_Write
- 182              	.LVL11:
+ 195              		.loc 1 218 0 is_stmt 1
+ 196 00f8 0C4C     		ldr	r4, .L13+4
+ 197 00fa 6079     		ldrb	r0, [r4, #5]	@ zero_extendqisi2
+ 198 00fc FFF7FEFF 		bl	J1_DIR_Write
+ 199              	.LVL11:
  219:Generated_Source\PSoC5/NCO_ISR.c ****     J2_DIR_Write(joints[1].dir);
- 183              		.loc 1 219 0
- 184 00e0 94F82500 		ldrb	r0, [r4, #37]	@ zero_extendqisi2
- 185 00e4 FFF7FEFF 		bl	J2_DIR_Write
- 186              	.LVL12:
+ 200              		.loc 1 219 0
+ 201 0100 94F82900 		ldrb	r0, [r4, #41]	@ zero_extendqisi2
+ 202 0104 FFF7FEFF 		bl	J2_DIR_Write
+ 203              	.LVL12:
  220:Generated_Source\PSoC5/NCO_ISR.c ****     J3_DIR_Write(joints[2].dir);
- 187              		.loc 1 220 0
- 188 00e8 94F84500 		ldrb	r0, [r4, #69]	@ zero_extendqisi2
- 189 00ec FFF7FEFF 		bl	J3_DIR_Write
- 190              	.LVL13:
+ 204              		.loc 1 220 0
+ 205 0108 94F84D00 		ldrb	r0, [r4, #77]	@ zero_extendqisi2
+ 206 010c FFF7FEFF 		bl	J3_DIR_Write
+ 207              	.LVL13:
  221:Generated_Source\PSoC5/NCO_ISR.c ****     J1_STEP_Write(joints[0].step);
- 191              		.loc 1 221 0
- 192 00f0 2079     		ldrb	r0, [r4, #4]	@ zero_extendqisi2
- 193 00f2 FFF7FEFF 		bl	J1_STEP_Write
- 194              	.LVL14:
+ 208              		.loc 1 221 0
+ 209 0110 2079     		ldrb	r0, [r4, #4]	@ zero_extendqisi2
+ 210 0112 FFF7FEFF 		bl	J1_STEP_Write
+ 211              	.LVL14:
  222:Generated_Source\PSoC5/NCO_ISR.c ****     J2_STEP_Write(joints[1].step);
- 195              		.loc 1 222 0
- 196 00f6 94F82400 		ldrb	r0, [r4, #36]	@ zero_extendqisi2
- 197 00fa FFF7FEFF 		bl	J2_STEP_Write
- 198              	.LVL15:
+ 212              		.loc 1 222 0
+ 213 0116 94F82800 		ldrb	r0, [r4, #40]	@ zero_extendqisi2
+ 214 011a FFF7FEFF 		bl	J2_STEP_Write
+ 215              	.LVL15:
  223:Generated_Source\PSoC5/NCO_ISR.c ****     J3_STEP_Write(joints[2].step);
- 199              		.loc 1 223 0
- 200 00fe 94F84400 		ldrb	r0, [r4, #68]	@ zero_extendqisi2
- 201 0102 FFF7FEFF 		bl	J3_STEP_Write
- 202              	.LVL16:
- 203 0106 10BD     		pop	{r4, pc}
- 204              	.L14:
- 205              		.align	2
- 206              	.L13:
- 207 0108 00000000 		.word	move_queue
- 208 010c 00000000 		.word	joints
- 209              		.cfi_endproc
- 210              	.LFE67:
- 211              		.size	NCO_ISR_Interrupt, .-NCO_ISR_Interrupt
- 212              		.section	.text.NCO_ISR_SetVector,"ax",%progbits
- 213              		.align	2
- 214              		.global	NCO_ISR_SetVector
- 215              		.thumb
- 216              		.thumb_func
- 217              		.type	NCO_ISR_SetVector, %function
- 218              	NCO_ISR_SetVector:
- 219              	.LFB68:
+ 216              		.loc 1 223 0
+ 217 011e 94F84C00 		ldrb	r0, [r4, #76]	@ zero_extendqisi2
+ 218 0122 FFF7FEFF 		bl	J3_STEP_Write
+ 219              	.LVL16:
+ 220 0126 10BD     		pop	{r4, pc}
+ 221              	.L14:
+ 222              		.align	2
+ 223              	.L13:
+ 224 0128 00000000 		.word	move_queue
+ 225 012c 00000000 		.word	joints
+ 226              		.cfi_endproc
+ 227              	.LFE67:
+ 228              		.size	NCO_ISR_Interrupt, .-NCO_ISR_Interrupt
+ 229              		.section	.text.NCO_ISR_SetVector,"ax",%progbits
+ 230              		.align	2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 9
+
+
+ 231              		.global	NCO_ISR_SetVector
+ 232              		.thumb
+ 233              		.thumb_func
+ 234              		.type	NCO_ISR_SetVector, %function
+ 235              	NCO_ISR_SetVector:
+ 236              	.LFB68:
  224:Generated_Source\PSoC5/NCO_ISR.c ****     /* `#END` */
  225:Generated_Source\PSoC5/NCO_ISR.c **** }
  226:Generated_Source\PSoC5/NCO_ISR.c **** 
@@ -478,9 +498,6 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  232:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
  233:Generated_Source\PSoC5/NCO_ISR.c **** *   Change the ISR vector for the Interrupt. Note calling NCO_ISR_Start
  234:Generated_Source\PSoC5/NCO_ISR.c **** *   will override any effect this method would have had. To set the vector 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 9
-
-
  235:Generated_Source\PSoC5/NCO_ISR.c **** *   before the component has been started use NCO_ISR_StartEx instead.
  236:Generated_Source\PSoC5/NCO_ISR.c **** * 
  237:Generated_Source\PSoC5/NCO_ISR.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
@@ -503,44 +520,44 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  254:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  255:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_SetVector(cyisraddress address)
  256:Generated_Source\PSoC5/NCO_ISR.c **** {
- 220              		.loc 1 256 0
- 221              		.cfi_startproc
- 222              		@ args = 0, pretend = 0, frame = 0
- 223              		@ frame_needed = 0, uses_anonymous_args = 0
- 224              		@ link register save eliminated.
- 225              	.LVL17:
+ 237              		.loc 1 256 0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              		@ link register save eliminated.
+ 242              	.LVL17:
  257:Generated_Source\PSoC5/NCO_ISR.c ****     cyisraddress * ramVectorTable;
  258:Generated_Source\PSoC5/NCO_ISR.c **** 
  259:Generated_Source\PSoC5/NCO_ISR.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
- 226              		.loc 1 259 0
- 227 0000 014B     		ldr	r3, .L16
- 228 0002 1B68     		ldr	r3, [r3]
- 229              	.LVL18:
+ 243              		.loc 1 259 0
+ 244 0000 014B     		ldr	r3, .L16
+ 245 0002 1B68     		ldr	r3, [r3]
+ 246              	.LVL18:
  260:Generated_Source\PSoC5/NCO_ISR.c **** 
  261:Generated_Source\PSoC5/NCO_ISR.c ****     ramVectorTable[CYINT_IRQ_BASE + (uint32)NCO_ISR__INTC_NUMBER] = address;
- 230              		.loc 1 261 0
- 231 0004 1864     		str	r0, [r3, #64]
- 232 0006 7047     		bx	lr
- 233              	.L17:
- 234              		.align	2
- 235              	.L16:
- 236 0008 08ED00E0 		.word	-536810232
- 237              		.cfi_endproc
- 238              	.LFE68:
- 239              		.size	NCO_ISR_SetVector, .-NCO_ISR_SetVector
- 240              		.section	.text.NCO_ISR_GetVector,"ax",%progbits
- 241              		.align	2
- 242              		.global	NCO_ISR_GetVector
- 243              		.thumb
- 244              		.thumb_func
- 245              		.type	NCO_ISR_GetVector, %function
- 246              	NCO_ISR_GetVector:
- 247              	.LFB69:
+ 247              		.loc 1 261 0
+ 248 0004 1864     		str	r0, [r3, #64]
+ 249 0006 7047     		bx	lr
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 10
+
+
+ 250              	.L17:
+ 251              		.align	2
+ 252              	.L16:
+ 253 0008 08ED00E0 		.word	-536810232
+ 254              		.cfi_endproc
+ 255              	.LFE68:
+ 256              		.size	NCO_ISR_SetVector, .-NCO_ISR_SetVector
+ 257              		.section	.text.NCO_ISR_GetVector,"ax",%progbits
+ 258              		.align	2
+ 259              		.global	NCO_ISR_GetVector
+ 260              		.thumb
+ 261              		.thumb_func
+ 262              		.type	NCO_ISR_GetVector, %function
+ 263              	NCO_ISR_GetVector:
+ 264              	.LFB69:
  262:Generated_Source\PSoC5/NCO_ISR.c **** }
  263:Generated_Source\PSoC5/NCO_ISR.c **** 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 10
-
-
  264:Generated_Source\PSoC5/NCO_ISR.c **** 
  265:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
  266:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_GetVector
@@ -558,39 +575,42 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  278:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  279:Generated_Source\PSoC5/NCO_ISR.c **** cyisraddress NCO_ISR_GetVector(void)
  280:Generated_Source\PSoC5/NCO_ISR.c **** {
- 248              		.loc 1 280 0
- 249              		.cfi_startproc
- 250              		@ args = 0, pretend = 0, frame = 0
- 251              		@ frame_needed = 0, uses_anonymous_args = 0
- 252              		@ link register save eliminated.
+ 265              		.loc 1 280 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              		@ link register save eliminated.
  281:Generated_Source\PSoC5/NCO_ISR.c ****     cyisraddress * ramVectorTable;
  282:Generated_Source\PSoC5/NCO_ISR.c **** 
  283:Generated_Source\PSoC5/NCO_ISR.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
- 253              		.loc 1 283 0
- 254 0000 014B     		ldr	r3, .L19
- 255 0002 1B68     		ldr	r3, [r3]
- 256              	.LVL19:
+ 270              		.loc 1 283 0
+ 271 0000 014B     		ldr	r3, .L19
+ 272 0002 1B68     		ldr	r3, [r3]
+ 273              	.LVL19:
  284:Generated_Source\PSoC5/NCO_ISR.c **** 
  285:Generated_Source\PSoC5/NCO_ISR.c ****     return ramVectorTable[CYINT_IRQ_BASE + (uint32)NCO_ISR__INTC_NUMBER];
  286:Generated_Source\PSoC5/NCO_ISR.c **** }
- 257              		.loc 1 286 0
- 258 0004 186C     		ldr	r0, [r3, #64]
- 259 0006 7047     		bx	lr
- 260              	.L20:
- 261              		.align	2
- 262              	.L19:
- 263 0008 08ED00E0 		.word	-536810232
- 264              		.cfi_endproc
- 265              	.LFE69:
- 266              		.size	NCO_ISR_GetVector, .-NCO_ISR_GetVector
- 267              		.section	.text.NCO_ISR_SetPriority,"ax",%progbits
- 268              		.align	2
- 269              		.global	NCO_ISR_SetPriority
- 270              		.thumb
- 271              		.thumb_func
- 272              		.type	NCO_ISR_SetPriority, %function
- 273              	NCO_ISR_SetPriority:
- 274              	.LFB70:
+ 274              		.loc 1 286 0
+ 275 0004 186C     		ldr	r0, [r3, #64]
+ 276 0006 7047     		bx	lr
+ 277              	.L20:
+ 278              		.align	2
+ 279              	.L19:
+ 280 0008 08ED00E0 		.word	-536810232
+ 281              		.cfi_endproc
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 11
+
+
+ 282              	.LFE69:
+ 283              		.size	NCO_ISR_GetVector, .-NCO_ISR_GetVector
+ 284              		.section	.text.NCO_ISR_SetPriority,"ax",%progbits
+ 285              		.align	2
+ 286              		.global	NCO_ISR_SetPriority
+ 287              		.thumb
+ 288              		.thumb_func
+ 289              		.type	NCO_ISR_SetPriority, %function
+ 290              	NCO_ISR_SetPriority:
+ 291              	.LFB70:
  287:Generated_Source\PSoC5/NCO_ISR.c **** 
  288:Generated_Source\PSoC5/NCO_ISR.c **** 
  289:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
@@ -598,9 +618,6 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  291:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
  292:Generated_Source\PSoC5/NCO_ISR.c **** *
  293:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 11
-
-
  294:Generated_Source\PSoC5/NCO_ISR.c **** *   Sets the Priority of the Interrupt. 
  295:Generated_Source\PSoC5/NCO_ISR.c **** *
  296:Generated_Source\PSoC5/NCO_ISR.c **** *   Note calling NCO_ISR_Start or NCO_ISR_StartEx will 
@@ -622,35 +639,38 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  312:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  313:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_SetPriority(uint8 priority)
  314:Generated_Source\PSoC5/NCO_ISR.c **** {
- 275              		.loc 1 314 0
- 276              		.cfi_startproc
- 277              		@ args = 0, pretend = 0, frame = 0
- 278              		@ frame_needed = 0, uses_anonymous_args = 0
- 279              		@ link register save eliminated.
- 280              	.LVL20:
+ 292              		.loc 1 314 0
+ 293              		.cfi_startproc
+ 294              		@ args = 0, pretend = 0, frame = 0
+ 295              		@ frame_needed = 0, uses_anonymous_args = 0
+ 296              		@ link register save eliminated.
+ 297              	.LVL20:
  315:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_PRIOR = priority << 5;
- 281              		.loc 1 315 0
- 282 0000 4001     		lsls	r0, r0, #5
- 283              	.LVL21:
- 284 0002 C0B2     		uxtb	r0, r0
- 285 0004 014B     		ldr	r3, .L22
- 286 0006 1870     		strb	r0, [r3]
- 287 0008 7047     		bx	lr
- 288              	.L23:
- 289 000a 00BF     		.align	2
- 290              	.L22:
- 291 000c 00E400E0 		.word	-536812544
- 292              		.cfi_endproc
- 293              	.LFE70:
- 294              		.size	NCO_ISR_SetPriority, .-NCO_ISR_SetPriority
- 295              		.section	.text.NCO_ISR_GetPriority,"ax",%progbits
- 296              		.align	2
- 297              		.global	NCO_ISR_GetPriority
- 298              		.thumb
- 299              		.thumb_func
- 300              		.type	NCO_ISR_GetPriority, %function
- 301              	NCO_ISR_GetPriority:
- 302              	.LFB71:
+ 298              		.loc 1 315 0
+ 299 0000 4001     		lsls	r0, r0, #5
+ 300              	.LVL21:
+ 301 0002 C0B2     		uxtb	r0, r0
+ 302 0004 014B     		ldr	r3, .L22
+ 303 0006 1870     		strb	r0, [r3]
+ 304 0008 7047     		bx	lr
+ 305              	.L23:
+ 306 000a 00BF     		.align	2
+ 307              	.L22:
+ 308 000c 00E400E0 		.word	-536812544
+ 309              		.cfi_endproc
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 12
+
+
+ 310              	.LFE70:
+ 311              		.size	NCO_ISR_SetPriority, .-NCO_ISR_SetPriority
+ 312              		.section	.text.NCO_ISR_GetPriority,"ax",%progbits
+ 313              		.align	2
+ 314              		.global	NCO_ISR_GetPriority
+ 315              		.thumb
+ 316              		.thumb_func
+ 317              		.type	NCO_ISR_GetPriority, %function
+ 318              	NCO_ISR_GetPriority:
+ 319              	.LFB71:
  316:Generated_Source\PSoC5/NCO_ISR.c **** }
  317:Generated_Source\PSoC5/NCO_ISR.c **** 
  318:Generated_Source\PSoC5/NCO_ISR.c **** 
@@ -658,9 +678,6 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  320:Generated_Source\PSoC5/NCO_ISR.c **** * Function Name: NCO_ISR_GetPriority
  321:Generated_Source\PSoC5/NCO_ISR.c **** ********************************************************************************
  322:Generated_Source\PSoC5/NCO_ISR.c **** *
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 12
-
-
  323:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
  324:Generated_Source\PSoC5/NCO_ISR.c **** *   Gets the Priority of the Interrupt.
  325:Generated_Source\PSoC5/NCO_ISR.c **** *
@@ -675,41 +692,44 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  334:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  335:Generated_Source\PSoC5/NCO_ISR.c **** uint8 NCO_ISR_GetPriority(void)
  336:Generated_Source\PSoC5/NCO_ISR.c **** {
- 303              		.loc 1 336 0
- 304              		.cfi_startproc
- 305              		@ args = 0, pretend = 0, frame = 0
- 306              		@ frame_needed = 0, uses_anonymous_args = 0
- 307              		@ link register save eliminated.
+ 320              		.loc 1 336 0
+ 321              		.cfi_startproc
+ 322              		@ args = 0, pretend = 0, frame = 0
+ 323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324              		@ link register save eliminated.
  337:Generated_Source\PSoC5/NCO_ISR.c ****     uint8 priority;
  338:Generated_Source\PSoC5/NCO_ISR.c **** 
  339:Generated_Source\PSoC5/NCO_ISR.c **** 
  340:Generated_Source\PSoC5/NCO_ISR.c ****     priority = *NCO_ISR_INTC_PRIOR >> 5;
- 308              		.loc 1 340 0
- 309 0000 014B     		ldr	r3, .L25
- 310 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
- 311              	.LVL22:
+ 325              		.loc 1 340 0
+ 326 0000 014B     		ldr	r3, .L25
+ 327 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 328              	.LVL22:
  341:Generated_Source\PSoC5/NCO_ISR.c **** 
  342:Generated_Source\PSoC5/NCO_ISR.c ****     return priority;
  343:Generated_Source\PSoC5/NCO_ISR.c **** }
- 312              		.loc 1 343 0
- 313 0004 4009     		lsrs	r0, r0, #5
- 314              	.LVL23:
- 315 0006 7047     		bx	lr
- 316              	.L26:
- 317              		.align	2
- 318              	.L25:
- 319 0008 00E400E0 		.word	-536812544
- 320              		.cfi_endproc
- 321              	.LFE71:
- 322              		.size	NCO_ISR_GetPriority, .-NCO_ISR_GetPriority
- 323              		.section	.text.NCO_ISR_Enable,"ax",%progbits
- 324              		.align	2
- 325              		.global	NCO_ISR_Enable
- 326              		.thumb
- 327              		.thumb_func
- 328              		.type	NCO_ISR_Enable, %function
- 329              	NCO_ISR_Enable:
- 330              	.LFB72:
+ 329              		.loc 1 343 0
+ 330 0004 4009     		lsrs	r0, r0, #5
+ 331              	.LVL23:
+ 332 0006 7047     		bx	lr
+ 333              	.L26:
+ 334              		.align	2
+ 335              	.L25:
+ 336 0008 00E400E0 		.word	-536812544
+ 337              		.cfi_endproc
+ 338              	.LFE71:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 13
+
+
+ 339              		.size	NCO_ISR_GetPriority, .-NCO_ISR_GetPriority
+ 340              		.section	.text.NCO_ISR_Enable,"ax",%progbits
+ 341              		.align	2
+ 342              		.global	NCO_ISR_Enable
+ 343              		.thumb
+ 344              		.thumb_func
+ 345              		.type	NCO_ISR_Enable, %function
+ 346              	NCO_ISR_Enable:
+ 347              	.LFB72:
  344:Generated_Source\PSoC5/NCO_ISR.c **** 
  345:Generated_Source\PSoC5/NCO_ISR.c **** 
  346:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
@@ -718,9 +738,6 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  349:Generated_Source\PSoC5/NCO_ISR.c **** *
  350:Generated_Source\PSoC5/NCO_ISR.c **** * Summary:
  351:Generated_Source\PSoC5/NCO_ISR.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 13
-
-
  352:Generated_Source\PSoC5/NCO_ISR.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
  353:Generated_Source\PSoC5/NCO_ISR.c **** *   function, which sets the vector and the priority, has been called.
  354:Generated_Source\PSoC5/NCO_ISR.c **** *
@@ -733,34 +750,37 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  361:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  362:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_Enable(void)
  363:Generated_Source\PSoC5/NCO_ISR.c **** {
- 331              		.loc 1 363 0
- 332              		.cfi_startproc
- 333              		@ args = 0, pretend = 0, frame = 0
- 334              		@ frame_needed = 0, uses_anonymous_args = 0
- 335              		@ link register save eliminated.
+ 348              		.loc 1 363 0
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 0
+ 351              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352              		@ link register save eliminated.
  364:Generated_Source\PSoC5/NCO_ISR.c ****     /* Enable the general interrupt. */
  365:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_SET_EN = NCO_ISR__INTC_MASK;
- 336              		.loc 1 365 0
- 337 0000 0122     		movs	r2, #1
- 338 0002 014B     		ldr	r3, .L28
- 339 0004 1A60     		str	r2, [r3]
- 340 0006 7047     		bx	lr
- 341              	.L29:
- 342              		.align	2
- 343              	.L28:
- 344 0008 00E100E0 		.word	-536813312
- 345              		.cfi_endproc
- 346              	.LFE72:
- 347              		.size	NCO_ISR_Enable, .-NCO_ISR_Enable
- 348              		.section	.text.NCO_ISR_GetState,"ax",%progbits
- 349              		.align	2
- 350              		.global	NCO_ISR_GetState
- 351              		.thumb
- 352              		.thumb_func
- 353              		.type	NCO_ISR_GetState, %function
- 354              	NCO_ISR_GetState:
- 355              	.LFB73:
+ 353              		.loc 1 365 0
+ 354 0000 0122     		movs	r2, #1
+ 355 0002 014B     		ldr	r3, .L28
+ 356 0004 1A60     		str	r2, [r3]
+ 357 0006 7047     		bx	lr
+ 358              	.L29:
+ 359              		.align	2
+ 360              	.L28:
+ 361 0008 00E100E0 		.word	-536813312
+ 362              		.cfi_endproc
+ 363              	.LFE72:
+ 364              		.size	NCO_ISR_Enable, .-NCO_ISR_Enable
+ 365              		.section	.text.NCO_ISR_GetState,"ax",%progbits
+ 366              		.align	2
+ 367              		.global	NCO_ISR_GetState
+ 368              		.thumb
+ 369              		.thumb_func
+ 370              		.type	NCO_ISR_GetState, %function
+ 371              	NCO_ISR_GetState:
+ 372              	.LFB73:
  366:Generated_Source\PSoC5/NCO_ISR.c **** }
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 14
+
+
  367:Generated_Source\PSoC5/NCO_ISR.c **** 
  368:Generated_Source\PSoC5/NCO_ISR.c **** 
  369:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
@@ -778,39 +798,36 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  381:Generated_Source\PSoC5/NCO_ISR.c **** *
  382:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  383:Generated_Source\PSoC5/NCO_ISR.c **** uint8 NCO_ISR_GetState(void)
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 14
-
-
  384:Generated_Source\PSoC5/NCO_ISR.c **** {
- 356              		.loc 1 384 0
- 357              		.cfi_startproc
- 358              		@ args = 0, pretend = 0, frame = 0
- 359              		@ frame_needed = 0, uses_anonymous_args = 0
- 360              		@ link register save eliminated.
+ 373              		.loc 1 384 0
+ 374              		.cfi_startproc
+ 375              		@ args = 0, pretend = 0, frame = 0
+ 376              		@ frame_needed = 0, uses_anonymous_args = 0
+ 377              		@ link register save eliminated.
  385:Generated_Source\PSoC5/NCO_ISR.c ****     /* Get the state of the general interrupt. */
  386:Generated_Source\PSoC5/NCO_ISR.c ****     return ((*NCO_ISR_INTC_SET_EN & (uint32)NCO_ISR__INTC_MASK) != 0u) ? 1u:0u;
- 361              		.loc 1 386 0
- 362 0000 024B     		ldr	r3, .L31
- 363 0002 1868     		ldr	r0, [r3]
+ 378              		.loc 1 386 0
+ 379 0000 024B     		ldr	r3, .L31
+ 380 0002 1868     		ldr	r0, [r3]
  387:Generated_Source\PSoC5/NCO_ISR.c **** }
- 364              		.loc 1 387 0
- 365 0004 00F00100 		and	r0, r0, #1
- 366 0008 7047     		bx	lr
- 367              	.L32:
- 368 000a 00BF     		.align	2
- 369              	.L31:
- 370 000c 00E100E0 		.word	-536813312
- 371              		.cfi_endproc
- 372              	.LFE73:
- 373              		.size	NCO_ISR_GetState, .-NCO_ISR_GetState
- 374              		.section	.text.NCO_ISR_Disable,"ax",%progbits
- 375              		.align	2
- 376              		.global	NCO_ISR_Disable
- 377              		.thumb
- 378              		.thumb_func
- 379              		.type	NCO_ISR_Disable, %function
- 380              	NCO_ISR_Disable:
- 381              	.LFB74:
+ 381              		.loc 1 387 0
+ 382 0004 00F00100 		and	r0, r0, #1
+ 383 0008 7047     		bx	lr
+ 384              	.L32:
+ 385 000a 00BF     		.align	2
+ 386              	.L31:
+ 387 000c 00E100E0 		.word	-536813312
+ 388              		.cfi_endproc
+ 389              	.LFE73:
+ 390              		.size	NCO_ISR_GetState, .-NCO_ISR_GetState
+ 391              		.section	.text.NCO_ISR_Disable,"ax",%progbits
+ 392              		.align	2
+ 393              		.global	NCO_ISR_Disable
+ 394              		.thumb
+ 395              		.thumb_func
+ 396              		.type	NCO_ISR_Disable, %function
+ 397              	NCO_ISR_Disable:
+ 398              	.LFB74:
  388:Generated_Source\PSoC5/NCO_ISR.c **** 
  389:Generated_Source\PSoC5/NCO_ISR.c **** 
  390:Generated_Source\PSoC5/NCO_ISR.c **** /*******************************************************************************
@@ -821,6 +838,9 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  395:Generated_Source\PSoC5/NCO_ISR.c **** *   Disables the Interrupt in the interrupt controller.
  396:Generated_Source\PSoC5/NCO_ISR.c **** *
  397:Generated_Source\PSoC5/NCO_ISR.c **** * Parameters:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 15
+
+
  398:Generated_Source\PSoC5/NCO_ISR.c **** *   None
  399:Generated_Source\PSoC5/NCO_ISR.c **** *
  400:Generated_Source\PSoC5/NCO_ISR.c **** * Return:
@@ -829,160 +849,157 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  403:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  404:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_Disable(void)
  405:Generated_Source\PSoC5/NCO_ISR.c **** {
- 382              		.loc 1 405 0
- 383              		.cfi_startproc
- 384              		@ args = 0, pretend = 0, frame = 0
- 385              		@ frame_needed = 0, uses_anonymous_args = 0
- 386              		@ link register save eliminated.
+ 399              		.loc 1 405 0
+ 400              		.cfi_startproc
+ 401              		@ args = 0, pretend = 0, frame = 0
+ 402              		@ frame_needed = 0, uses_anonymous_args = 0
+ 403              		@ link register save eliminated.
  406:Generated_Source\PSoC5/NCO_ISR.c ****     /* Disable the general interrupt. */
  407:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_CLR_EN = NCO_ISR__INTC_MASK;
- 387              		.loc 1 407 0
- 388 0000 0122     		movs	r2, #1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 15
-
-
- 389 0002 014B     		ldr	r3, .L34
- 390 0004 1A60     		str	r2, [r3]
- 391 0006 7047     		bx	lr
- 392              	.L35:
- 393              		.align	2
- 394              	.L34:
- 395 0008 80E100E0 		.word	-536813184
- 396              		.cfi_endproc
- 397              	.LFE74:
- 398              		.size	NCO_ISR_Disable, .-NCO_ISR_Disable
- 399              		.section	.text.NCO_ISR_Start,"ax",%progbits
- 400              		.align	2
- 401              		.global	NCO_ISR_Start
- 402              		.thumb
- 403              		.thumb_func
- 404              		.type	NCO_ISR_Start, %function
- 405              	NCO_ISR_Start:
- 406              	.LFB64:
+ 404              		.loc 1 407 0
+ 405 0000 0122     		movs	r2, #1
+ 406 0002 014B     		ldr	r3, .L34
+ 407 0004 1A60     		str	r2, [r3]
+ 408 0006 7047     		bx	lr
+ 409              	.L35:
+ 410              		.align	2
+ 411              	.L34:
+ 412 0008 80E100E0 		.word	-536813184
+ 413              		.cfi_endproc
+ 414              	.LFE74:
+ 415              		.size	NCO_ISR_Disable, .-NCO_ISR_Disable
+ 416              		.section	.text.NCO_ISR_Start,"ax",%progbits
+ 417              		.align	2
+ 418              		.global	NCO_ISR_Start
+ 419              		.thumb
+ 420              		.thumb_func
+ 421              		.type	NCO_ISR_Start, %function
+ 422              	NCO_ISR_Start:
+ 423              	.LFB64:
   65:Generated_Source\PSoC5/NCO_ISR.c ****     /* For all we know the interrupt is active. */
- 407              		.loc 1 65 0
- 408              		.cfi_startproc
- 409              		@ args = 0, pretend = 0, frame = 0
- 410              		@ frame_needed = 0, uses_anonymous_args = 0
- 411 0000 08B5     		push	{r3, lr}
- 412              		.cfi_def_cfa_offset 8
- 413              		.cfi_offset 3, -8
- 414              		.cfi_offset 14, -4
+ 424              		.loc 1 65 0
+ 425              		.cfi_startproc
+ 426              		@ args = 0, pretend = 0, frame = 0
+ 427              		@ frame_needed = 0, uses_anonymous_args = 0
+ 428 0000 08B5     		push	{r3, lr}
+ 429              		.cfi_def_cfa_offset 8
+ 430              		.cfi_offset 3, -8
+ 431              		.cfi_offset 14, -4
   67:Generated_Source\PSoC5/NCO_ISR.c **** 
- 415              		.loc 1 67 0
- 416 0002 FFF7FEFF 		bl	NCO_ISR_Disable
- 417              	.LVL24:
+ 432              		.loc 1 67 0
+ 433 0002 FFF7FEFF 		bl	NCO_ISR_Disable
+ 434              	.LVL24:
   70:Generated_Source\PSoC5/NCO_ISR.c **** 
- 418              		.loc 1 70 0
- 419 0006 0448     		ldr	r0, .L38
- 420 0008 FFF7FEFF 		bl	NCO_ISR_SetVector
- 421              	.LVL25:
+ 435              		.loc 1 70 0
+ 436 0006 0448     		ldr	r0, .L38
+ 437 0008 FFF7FEFF 		bl	NCO_ISR_SetVector
+ 438              	.LVL25:
   73:Generated_Source\PSoC5/NCO_ISR.c **** 
- 422              		.loc 1 73 0
- 423 000c 0420     		movs	r0, #4
- 424 000e FFF7FEFF 		bl	NCO_ISR_SetPriority
- 425              	.LVL26:
+ 439              		.loc 1 73 0
+ 440 000c 0420     		movs	r0, #4
+ 441 000e FFF7FEFF 		bl	NCO_ISR_SetPriority
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 16
+
+
+ 442              	.LVL26:
   76:Generated_Source\PSoC5/NCO_ISR.c **** }
- 426              		.loc 1 76 0
- 427 0012 FFF7FEFF 		bl	NCO_ISR_Enable
- 428              	.LVL27:
- 429 0016 08BD     		pop	{r3, pc}
- 430              	.L39:
- 431              		.align	2
- 432              	.L38:
- 433 0018 00000000 		.word	NCO_ISR_Interrupt
- 434              		.cfi_endproc
- 435              	.LFE64:
- 436              		.size	NCO_ISR_Start, .-NCO_ISR_Start
- 437              		.section	.text.NCO_ISR_StartEx,"ax",%progbits
- 438              		.align	2
- 439              		.global	NCO_ISR_StartEx
- 440              		.thumb
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 16
-
-
- 441              		.thumb_func
- 442              		.type	NCO_ISR_StartEx, %function
- 443              	NCO_ISR_StartEx:
- 444              	.LFB65:
+ 443              		.loc 1 76 0
+ 444 0012 FFF7FEFF 		bl	NCO_ISR_Enable
+ 445              	.LVL27:
+ 446 0016 08BD     		pop	{r3, pc}
+ 447              	.L39:
+ 448              		.align	2
+ 449              	.L38:
+ 450 0018 00000000 		.word	NCO_ISR_Interrupt
+ 451              		.cfi_endproc
+ 452              	.LFE64:
+ 453              		.size	NCO_ISR_Start, .-NCO_ISR_Start
+ 454              		.section	.text.NCO_ISR_StartEx,"ax",%progbits
+ 455              		.align	2
+ 456              		.global	NCO_ISR_StartEx
+ 457              		.thumb
+ 458              		.thumb_func
+ 459              		.type	NCO_ISR_StartEx, %function
+ 460              	NCO_ISR_StartEx:
+ 461              	.LFB65:
  108:Generated_Source\PSoC5/NCO_ISR.c ****     /* For all we know the interrupt is active. */
- 445              		.loc 1 108 0
- 446              		.cfi_startproc
- 447              		@ args = 0, pretend = 0, frame = 0
- 448              		@ frame_needed = 0, uses_anonymous_args = 0
- 449              	.LVL28:
- 450 0000 10B5     		push	{r4, lr}
- 451              		.cfi_def_cfa_offset 8
- 452              		.cfi_offset 4, -8
- 453              		.cfi_offset 14, -4
- 454 0002 0446     		mov	r4, r0
+ 462              		.loc 1 108 0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466              	.LVL28:
+ 467 0000 10B5     		push	{r4, lr}
+ 468              		.cfi_def_cfa_offset 8
+ 469              		.cfi_offset 4, -8
+ 470              		.cfi_offset 14, -4
+ 471 0002 0446     		mov	r4, r0
  110:Generated_Source\PSoC5/NCO_ISR.c **** 
- 455              		.loc 1 110 0
- 456 0004 FFF7FEFF 		bl	NCO_ISR_Disable
- 457              	.LVL29:
+ 472              		.loc 1 110 0
+ 473 0004 FFF7FEFF 		bl	NCO_ISR_Disable
+ 474              	.LVL29:
  113:Generated_Source\PSoC5/NCO_ISR.c **** 
- 458              		.loc 1 113 0
- 459 0008 2046     		mov	r0, r4
- 460 000a FFF7FEFF 		bl	NCO_ISR_SetVector
- 461              	.LVL30:
+ 475              		.loc 1 113 0
+ 476 0008 2046     		mov	r0, r4
+ 477 000a FFF7FEFF 		bl	NCO_ISR_SetVector
+ 478              	.LVL30:
  116:Generated_Source\PSoC5/NCO_ISR.c **** 
- 462              		.loc 1 116 0
- 463 000e 0420     		movs	r0, #4
- 464 0010 FFF7FEFF 		bl	NCO_ISR_SetPriority
- 465              	.LVL31:
+ 479              		.loc 1 116 0
+ 480 000e 0420     		movs	r0, #4
+ 481 0010 FFF7FEFF 		bl	NCO_ISR_SetPriority
+ 482              	.LVL31:
  119:Generated_Source\PSoC5/NCO_ISR.c **** }
- 466              		.loc 1 119 0
- 467 0014 FFF7FEFF 		bl	NCO_ISR_Enable
- 468              	.LVL32:
- 469 0018 10BD     		pop	{r4, pc}
- 470              		.cfi_endproc
- 471              	.LFE65:
- 472              		.size	NCO_ISR_StartEx, .-NCO_ISR_StartEx
- 473 001a 00BF     		.section	.text.NCO_ISR_Stop,"ax",%progbits
- 474              		.align	2
- 475              		.global	NCO_ISR_Stop
- 476              		.thumb
- 477              		.thumb_func
- 478              		.type	NCO_ISR_Stop, %function
- 479              	NCO_ISR_Stop:
- 480              	.LFB66:
+ 483              		.loc 1 119 0
+ 484 0014 FFF7FEFF 		bl	NCO_ISR_Enable
+ 485              	.LVL32:
+ 486 0018 10BD     		pop	{r4, pc}
+ 487              		.cfi_endproc
+ 488              	.LFE65:
+ 489              		.size	NCO_ISR_StartEx, .-NCO_ISR_StartEx
+ 490 001a 00BF     		.section	.text.NCO_ISR_Stop,"ax",%progbits
+ 491              		.align	2
+ 492              		.global	NCO_ISR_Stop
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 17
+
+
+ 493              		.thumb
+ 494              		.thumb_func
+ 495              		.type	NCO_ISR_Stop, %function
+ 496              	NCO_ISR_Stop:
+ 497              	.LFB66:
  138:Generated_Source\PSoC5/NCO_ISR.c ****     /* Disable this interrupt. */
- 481              		.loc 1 138 0
- 482              		.cfi_startproc
- 483              		@ args = 0, pretend = 0, frame = 0
- 484              		@ frame_needed = 0, uses_anonymous_args = 0
- 485 0000 08B5     		push	{r3, lr}
- 486              		.cfi_def_cfa_offset 8
- 487              		.cfi_offset 3, -8
- 488              		.cfi_offset 14, -4
+ 498              		.loc 1 138 0
+ 499              		.cfi_startproc
+ 500              		@ args = 0, pretend = 0, frame = 0
+ 501              		@ frame_needed = 0, uses_anonymous_args = 0
+ 502 0000 08B5     		push	{r3, lr}
+ 503              		.cfi_def_cfa_offset 8
+ 504              		.cfi_offset 3, -8
+ 505              		.cfi_offset 14, -4
  140:Generated_Source\PSoC5/NCO_ISR.c **** 
- 489              		.loc 1 140 0
- 490 0002 FFF7FEFF 		bl	NCO_ISR_Disable
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 17
-
-
- 491              	.LVL33:
+ 506              		.loc 1 140 0
+ 507 0002 FFF7FEFF 		bl	NCO_ISR_Disable
+ 508              	.LVL33:
  143:Generated_Source\PSoC5/NCO_ISR.c **** }
- 492              		.loc 1 143 0
- 493 0006 0248     		ldr	r0, .L44
- 494 0008 FFF7FEFF 		bl	NCO_ISR_SetVector
- 495              	.LVL34:
- 496 000c 08BD     		pop	{r3, pc}
- 497              	.L45:
- 498 000e 00BF     		.align	2
- 499              	.L44:
- 500 0010 00000000 		.word	IntDefaultHandler
- 501              		.cfi_endproc
- 502              	.LFE66:
- 503              		.size	NCO_ISR_Stop, .-NCO_ISR_Stop
- 504              		.section	.text.NCO_ISR_SetPending,"ax",%progbits
- 505              		.align	2
- 506              		.global	NCO_ISR_SetPending
- 507              		.thumb
- 508              		.thumb_func
- 509              		.type	NCO_ISR_SetPending, %function
- 510              	NCO_ISR_SetPending:
- 511              	.LFB75:
+ 509              		.loc 1 143 0
+ 510 0006 0248     		ldr	r0, .L44
+ 511 0008 FFF7FEFF 		bl	NCO_ISR_SetVector
+ 512              	.LVL34:
+ 513 000c 08BD     		pop	{r3, pc}
+ 514              	.L45:
+ 515 000e 00BF     		.align	2
+ 516              	.L44:
+ 517 0010 00000000 		.word	IntDefaultHandler
+ 518              		.cfi_endproc
+ 519              	.LFE66:
+ 520              		.size	NCO_ISR_Stop, .-NCO_ISR_Stop
+ 521              		.section	.text.NCO_ISR_SetPending,"ax",%progbits
+ 522              		.align	2
+ 523              		.global	NCO_ISR_SetPending
+ 524              		.thumb
+ 525              		.thumb_func
+ 526              		.type	NCO_ISR_SetPending, %function
+ 527              	NCO_ISR_SetPending:
+ 528              	.LFB75:
  408:Generated_Source\PSoC5/NCO_ISR.c **** }
  409:Generated_Source\PSoC5/NCO_ISR.c **** 
  410:Generated_Source\PSoC5/NCO_ISR.c **** 
@@ -1001,6 +1018,9 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  423:Generated_Source\PSoC5/NCO_ISR.c **** *   None
  424:Generated_Source\PSoC5/NCO_ISR.c **** *
  425:Generated_Source\PSoC5/NCO_ISR.c **** * Side Effects:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 18
+
+
  426:Generated_Source\PSoC5/NCO_ISR.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
  427:Generated_Source\PSoC5/NCO_ISR.c **** *   entered (depending on the priority of this interrupt and other pending 
  428:Generated_Source\PSoC5/NCO_ISR.c **** *   interrupts).
@@ -1008,35 +1028,32 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  430:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  431:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_SetPending(void)
  432:Generated_Source\PSoC5/NCO_ISR.c **** {
- 512              		.loc 1 432 0
- 513              		.cfi_startproc
- 514              		@ args = 0, pretend = 0, frame = 0
- 515              		@ frame_needed = 0, uses_anonymous_args = 0
- 516              		@ link register save eliminated.
+ 529              		.loc 1 432 0
+ 530              		.cfi_startproc
+ 531              		@ args = 0, pretend = 0, frame = 0
+ 532              		@ frame_needed = 0, uses_anonymous_args = 0
+ 533              		@ link register save eliminated.
  433:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_SET_PD = NCO_ISR__INTC_MASK;
- 517              		.loc 1 433 0
- 518 0000 0122     		movs	r2, #1
- 519 0002 014B     		ldr	r3, .L47
- 520 0004 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 18
-
-
- 521 0006 7047     		bx	lr
- 522              	.L48:
- 523              		.align	2
- 524              	.L47:
- 525 0008 00E200E0 		.word	-536813056
- 526              		.cfi_endproc
- 527              	.LFE75:
- 528              		.size	NCO_ISR_SetPending, .-NCO_ISR_SetPending
- 529              		.section	.text.NCO_ISR_ClearPending,"ax",%progbits
- 530              		.align	2
- 531              		.global	NCO_ISR_ClearPending
- 532              		.thumb
- 533              		.thumb_func
- 534              		.type	NCO_ISR_ClearPending, %function
- 535              	NCO_ISR_ClearPending:
- 536              	.LFB76:
+ 534              		.loc 1 433 0
+ 535 0000 0122     		movs	r2, #1
+ 536 0002 014B     		ldr	r3, .L47
+ 537 0004 1A60     		str	r2, [r3]
+ 538 0006 7047     		bx	lr
+ 539              	.L48:
+ 540              		.align	2
+ 541              	.L47:
+ 542 0008 00E200E0 		.word	-536813056
+ 543              		.cfi_endproc
+ 544              	.LFE75:
+ 545              		.size	NCO_ISR_SetPending, .-NCO_ISR_SetPending
+ 546              		.section	.text.NCO_ISR_ClearPending,"ax",%progbits
+ 547              		.align	2
+ 548              		.global	NCO_ISR_ClearPending
+ 549              		.thumb
+ 550              		.thumb_func
+ 551              		.type	NCO_ISR_ClearPending, %function
+ 552              	NCO_ISR_ClearPending:
+ 553              	.LFB76:
  434:Generated_Source\PSoC5/NCO_ISR.c **** }
  435:Generated_Source\PSoC5/NCO_ISR.c **** 
  436:Generated_Source\PSoC5/NCO_ISR.c **** 
@@ -1061,1962 +1078,1996 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 1
  455:Generated_Source\PSoC5/NCO_ISR.c **** *******************************************************************************/
  456:Generated_Source\PSoC5/NCO_ISR.c **** void NCO_ISR_ClearPending(void)
  457:Generated_Source\PSoC5/NCO_ISR.c **** {
- 537              		.loc 1 457 0
- 538              		.cfi_startproc
- 539              		@ args = 0, pretend = 0, frame = 0
- 540              		@ frame_needed = 0, uses_anonymous_args = 0
- 541              		@ link register save eliminated.
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 19
+
+
+ 554              		.loc 1 457 0
+ 555              		.cfi_startproc
+ 556              		@ args = 0, pretend = 0, frame = 0
+ 557              		@ frame_needed = 0, uses_anonymous_args = 0
+ 558              		@ link register save eliminated.
  458:Generated_Source\PSoC5/NCO_ISR.c ****     *NCO_ISR_INTC_CLR_PD = NCO_ISR__INTC_MASK;
- 542              		.loc 1 458 0
- 543 0000 0122     		movs	r2, #1
- 544 0002 014B     		ldr	r3, .L50
- 545 0004 1A60     		str	r2, [r3]
- 546 0006 7047     		bx	lr
- 547              	.L51:
- 548              		.align	2
- 549              	.L50:
- 550 0008 80E200E0 		.word	-536812928
- 551              		.cfi_endproc
- 552              	.LFE76:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 19
-
-
- 553              		.size	NCO_ISR_ClearPending, .-NCO_ISR_ClearPending
- 554              		.comm	rx_index,4,4
- 555              		.comm	rx_buffer,80,4
- 556              		.comm	move_queue,1208,4
- 557              		.comm	msg_buff,2006,4
- 558              		.comm	joints,96,4
- 559              		.comm	J1_home,4,4
- 560              		.comm	read_angle_command,2,2
- 561              		.text
- 562              	.Letext0:
- 563              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 564              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 565              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 566              		.file 5 "./joints.h"
- 567              		.file 6 "./comms.h"
- 568              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
- 569              		.file 8 "./as5048.h"
- 570              		.file 9 "Generated_Source\\PSoC5\\J1_EN.h"
- 571              		.file 10 "Generated_Source\\PSoC5\\J2_EN.h"
- 572              		.file 11 "Generated_Source\\PSoC5\\J3_EN.h"
- 573              		.file 12 "Generated_Source\\PSoC5\\J1_DIR.h"
- 574              		.file 13 "Generated_Source\\PSoC5\\J2_DIR.h"
- 575              		.file 14 "Generated_Source\\PSoC5\\J3_DIR.h"
- 576              		.file 15 "Generated_Source\\PSoC5\\J1_STEP.h"
- 577              		.file 16 "Generated_Source\\PSoC5\\J2_STEP.h"
- 578              		.file 17 "Generated_Source\\PSoC5\\J3_STEP.h"
- 579              		.section	.debug_info,"",%progbits
- 580              	.Ldebug_info0:
- 581 0000 C7060000 		.4byte	0x6c7
- 582 0004 0400     		.2byte	0x4
- 583 0006 00000000 		.4byte	.Ldebug_abbrev0
- 584 000a 04       		.byte	0x4
- 585 000b 01       		.uleb128 0x1
- 586 000c D1030000 		.4byte	.LASF80
- 587 0010 0C       		.byte	0xc
- 588 0011 B8010000 		.4byte	.LASF81
- 589 0015 09000000 		.4byte	.LASF82
- 590 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 591 001d 00000000 		.4byte	0
- 592 0021 00000000 		.4byte	.Ldebug_line0
- 593 0025 02       		.uleb128 0x2
- 594 0026 04       		.byte	0x4
- 595 0027 05       		.byte	0x5
- 596 0028 696E7400 		.ascii	"int\000"
- 597 002c 03       		.uleb128 0x3
- 598 002d 04       		.byte	0x4
- 599 002e 07       		.byte	0x7
- 600 002f 84020000 		.4byte	.LASF0
- 601 0033 03       		.uleb128 0x3
- 602 0034 08       		.byte	0x8
- 603 0035 05       		.byte	0x5
- 604 0036 4B010000 		.4byte	.LASF1
- 605 003a 03       		.uleb128 0x3
- 606 003b 08       		.byte	0x8
- 607 003c 04       		.byte	0x4
- 608 003d FE010000 		.4byte	.LASF2
- 609 0041 03       		.uleb128 0x3
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 20
-
-
- 610 0042 01       		.byte	0x1
- 611 0043 06       		.byte	0x6
- 612 0044 3D020000 		.4byte	.LASF3
- 613 0048 03       		.uleb128 0x3
- 614 0049 01       		.byte	0x1
- 615 004a 08       		.byte	0x8
- 616 004b F0010000 		.4byte	.LASF4
- 617 004f 03       		.uleb128 0x3
- 618 0050 02       		.byte	0x2
- 619 0051 05       		.byte	0x5
- 620 0052 88000000 		.4byte	.LASF5
- 621 0056 03       		.uleb128 0x3
- 622 0057 02       		.byte	0x2
- 623 0058 07       		.byte	0x7
- 624 0059 CE020000 		.4byte	.LASF6
- 625 005d 04       		.uleb128 0x4
- 626 005e 87030000 		.4byte	.LASF12
- 627 0062 02       		.byte	0x2
- 628 0063 3F       		.byte	0x3f
- 629 0064 68000000 		.4byte	0x68
- 630 0068 03       		.uleb128 0x3
- 631 0069 04       		.byte	0x4
- 632 006a 05       		.byte	0x5
- 633 006b 88010000 		.4byte	.LASF7
- 634 006f 03       		.uleb128 0x3
- 635 0070 04       		.byte	0x4
- 636 0071 07       		.byte	0x7
- 637 0072 96020000 		.4byte	.LASF8
- 638 0076 03       		.uleb128 0x3
- 639 0077 08       		.byte	0x8
- 640 0078 07       		.byte	0x7
- 641 0079 54020000 		.4byte	.LASF9
- 642 007d 03       		.uleb128 0x3
- 643 007e 04       		.byte	0x4
- 644 007f 07       		.byte	0x7
- 645 0080 A0000000 		.4byte	.LASF10
- 646 0084 03       		.uleb128 0x3
- 647 0085 01       		.byte	0x1
- 648 0086 08       		.byte	0x8
- 649 0087 EF020000 		.4byte	.LASF11
- 650 008b 05       		.uleb128 0x5
- 651 008c 04       		.byte	0x4
- 652 008d 91000000 		.4byte	0x91
- 653 0091 06       		.uleb128 0x6
- 654 0092 04       		.uleb128 0x4
- 655 0093 06030000 		.4byte	.LASF13
- 656 0097 03       		.byte	0x3
- 657 0098 2C       		.byte	0x2c
- 658 0099 5D000000 		.4byte	0x5d
- 659 009d 07       		.uleb128 0x7
- 660 009e 0E030000 		.4byte	.LASF14
- 661 00a2 04       		.byte	0x4
- 662 00a3 E401     		.2byte	0x1e4
- 663 00a5 48000000 		.4byte	0x48
- 664 00a9 07       		.uleb128 0x7
- 665 00aa 2B030000 		.4byte	.LASF15
- 666 00ae 04       		.byte	0x4
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 21
-
-
- 667 00af E501     		.2byte	0x1e5
- 668 00b1 56000000 		.4byte	0x56
- 669 00b5 07       		.uleb128 0x7
- 670 00b6 41030000 		.4byte	.LASF16
- 671 00ba 04       		.byte	0x4
- 672 00bb E601     		.2byte	0x1e6
- 673 00bd 6F000000 		.4byte	0x6f
- 674 00c1 07       		.uleb128 0x7
- 675 00c2 EB000000 		.4byte	.LASF17
- 676 00c6 04       		.byte	0x4
- 677 00c7 E801     		.2byte	0x1e8
- 678 00c9 4F000000 		.4byte	0x4f
- 679 00cd 07       		.uleb128 0x7
- 680 00ce 67030000 		.4byte	.LASF18
- 681 00d2 04       		.byte	0x4
- 682 00d3 E901     		.2byte	0x1e9
- 683 00d5 68000000 		.4byte	0x68
- 684 00d9 03       		.uleb128 0x3
- 685 00da 04       		.byte	0x4
- 686 00db 04       		.byte	0x4
- 687 00dc 27010000 		.4byte	.LASF19
- 688 00e0 03       		.uleb128 0x3
- 689 00e1 08       		.byte	0x8
- 690 00e2 04       		.byte	0x4
- 691 00e3 6D030000 		.4byte	.LASF20
- 692 00e7 07       		.uleb128 0x7
- 693 00e8 5A030000 		.4byte	.LASF21
- 694 00ec 04       		.byte	0x4
- 695 00ed 8E02     		.2byte	0x28e
- 696 00ef F3000000 		.4byte	0xf3
- 697 00f3 08       		.uleb128 0x8
- 698 00f4 9D000000 		.4byte	0x9d
- 699 00f8 07       		.uleb128 0x7
- 700 00f9 C8020000 		.4byte	.LASF22
- 701 00fd 04       		.byte	0x4
- 702 00fe 9002     		.2byte	0x290
- 703 0100 04010000 		.4byte	0x104
- 704 0104 08       		.uleb128 0x8
- 705 0105 B5000000 		.4byte	0xb5
- 706 0109 07       		.uleb128 0x7
- 707 010a 0F020000 		.4byte	.LASF23
- 708 010e 04       		.byte	0x4
- 709 010f A002     		.2byte	0x2a0
- 710 0111 8B000000 		.4byte	0x8b
- 711 0115 09       		.uleb128 0x9
- 712 0116 20       		.byte	0x20
- 713 0117 05       		.byte	0x5
- 714 0118 26       		.byte	0x26
- 715 0119 96010000 		.4byte	0x196
- 716 011d 0A       		.uleb128 0xa
- 717 011e DB000000 		.4byte	.LASF24
- 718 0122 05       		.byte	0x5
- 719 0123 27       		.byte	0x27
- 720 0124 B5000000 		.4byte	0xb5
- 721 0128 00       		.byte	0
- 722 0129 0A       		.uleb128 0xa
- 723 012a 5F040000 		.4byte	.LASF25
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 22
-
-
- 724 012e 05       		.byte	0x5
- 725 012f 28       		.byte	0x28
- 726 0130 84000000 		.4byte	0x84
- 727 0134 04       		.byte	0x4
- 728 0135 0B       		.uleb128 0xb
- 729 0136 64697200 		.ascii	"dir\000"
- 730 013a 05       		.byte	0x5
- 731 013b 29       		.byte	0x29
- 732 013c 84000000 		.4byte	0x84
- 733 0140 05       		.byte	0x5
- 734 0141 0B       		.uleb128 0xb
- 735 0142 706F7300 		.ascii	"pos\000"
- 736 0146 05       		.byte	0x5
- 737 0147 2A       		.byte	0x2a
- 738 0148 CD000000 		.4byte	0xcd
- 739 014c 08       		.byte	0x8
- 740 014d 0A       		.uleb128 0xa
- 741 014e 32030000 		.4byte	.LASF26
- 742 0152 05       		.byte	0x5
- 743 0153 2B       		.byte	0x2b
- 744 0154 B5000000 		.4byte	0xb5
- 745 0158 0C       		.byte	0xc
- 746 0159 0A       		.uleb128 0xa
- 747 015a 59010000 		.4byte	.LASF27
- 748 015e 05       		.byte	0x5
- 749 015f 2C       		.byte	0x2c
- 750 0160 84000000 		.4byte	0x84
- 751 0164 10       		.byte	0x10
- 752 0165 0A       		.uleb128 0xa
- 753 0166 3F010000 		.4byte	.LASF28
- 754 016a 05       		.byte	0x5
- 755 016b 2D       		.byte	0x2d
- 756 016c B5000000 		.4byte	0xb5
- 757 0170 14       		.byte	0x14
- 758 0171 0A       		.uleb128 0xa
- 759 0172 91030000 		.4byte	.LASF29
- 760 0176 05       		.byte	0x5
- 761 0177 2E       		.byte	0x2e
- 762 0178 C1000000 		.4byte	0xc1
- 763 017c 18       		.byte	0x18
- 764 017d 0A       		.uleb128 0xa
- 765 017e E1020000 		.4byte	.LASF30
- 766 0182 05       		.byte	0x5
- 767 0183 2F       		.byte	0x2f
- 768 0184 C1000000 		.4byte	0xc1
- 769 0188 1A       		.byte	0x1a
- 770 0189 0A       		.uleb128 0xa
- 771 018a 3B030000 		.4byte	.LASF31
- 772 018e 05       		.byte	0x5
- 773 018f 30       		.byte	0x30
- 774 0190 84000000 		.4byte	0x84
- 775 0194 1C       		.byte	0x1c
- 776 0195 00       		.byte	0
- 777 0196 04       		.uleb128 0x4
- 778 0197 EA010000 		.4byte	.LASF32
- 779 019b 05       		.byte	0x5
- 780 019c 31       		.byte	0x31
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 23
-
-
- 781 019d 15010000 		.4byte	0x115
- 782 01a1 0C       		.uleb128 0xc
- 783 01a2 5F030000 		.4byte	.LASF83
- 784 01a6 14       		.byte	0x14
- 785 01a7 06       		.byte	0x6
- 786 01a8 1E       		.byte	0x1e
- 787 01a9 D2010000 		.4byte	0x1d2
- 788 01ad 0A       		.uleb128 0xa
- 789 01ae 97030000 		.4byte	.LASF33
- 790 01b2 06       		.byte	0x6
- 791 01b3 1F       		.byte	0x1f
- 792 01b4 A9000000 		.4byte	0xa9
- 793 01b8 00       		.byte	0
- 794 01b9 0A       		.uleb128 0xa
- 795 01ba 00030000 		.4byte	.LASF34
- 796 01be 06       		.byte	0x6
- 797 01bf 20       		.byte	0x20
- 798 01c0 9D000000 		.4byte	0x9d
- 799 01c4 02       		.byte	0x2
- 800 01c5 0A       		.uleb128 0xa
- 801 01c6 26030000 		.4byte	.LASF35
- 802 01ca 06       		.byte	0x6
- 803 01cb 21       		.byte	0x21
- 804 01cc D2010000 		.4byte	0x1d2
- 805 01d0 03       		.byte	0x3
- 806 01d1 00       		.byte	0
- 807 01d2 0D       		.uleb128 0xd
- 808 01d3 9D000000 		.4byte	0x9d
- 809 01d7 E2010000 		.4byte	0x1e2
- 810 01db 0E       		.uleb128 0xe
- 811 01dc 7D000000 		.4byte	0x7d
- 812 01e0 0F       		.byte	0xf
- 813 01e1 00       		.byte	0
- 814 01e2 04       		.uleb128 0x4
- 815 01e3 BC030000 		.4byte	.LASF36
- 816 01e7 06       		.byte	0x6
- 817 01e8 22       		.byte	0x22
- 818 01e9 A1010000 		.4byte	0x1a1
- 819 01ed 0F       		.uleb128 0xf
- 820 01ee D607     		.2byte	0x7d6
- 821 01f0 06       		.byte	0x6
- 822 01f1 24       		.byte	0x24
- 823 01f2 2A020000 		.4byte	0x22a
- 824 01f6 0A       		.uleb128 0xa
- 825 01f7 91020000 		.4byte	.LASF37
- 826 01fb 06       		.byte	0x6
- 827 01fc 25       		.byte	0x25
- 828 01fd 2A020000 		.4byte	0x22a
- 829 0201 00       		.byte	0
- 830 0202 10       		.uleb128 0x10
- 831 0203 E6000000 		.4byte	.LASF38
- 832 0207 06       		.byte	0x6
- 833 0208 26       		.byte	0x26
- 834 0209 A9000000 		.4byte	0xa9
- 835 020d D007     		.2byte	0x7d0
- 836 020f 10       		.uleb128 0x10
- 837 0210 0A020000 		.4byte	.LASF39
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 24
-
-
- 838 0214 06       		.byte	0x6
- 839 0215 27       		.byte	0x27
- 840 0216 A9000000 		.4byte	0xa9
- 841 021a D207     		.2byte	0x7d2
- 842 021c 10       		.uleb128 0x10
- 843 021d EA020000 		.4byte	.LASF40
- 844 0221 06       		.byte	0x6
- 845 0222 28       		.byte	0x28
- 846 0223 A9000000 		.4byte	0xa9
- 847 0227 D407     		.2byte	0x7d4
- 848 0229 00       		.byte	0
- 849 022a 0D       		.uleb128 0xd
- 850 022b E2010000 		.4byte	0x1e2
- 851 022f 3A020000 		.4byte	0x23a
- 852 0233 0E       		.uleb128 0xe
- 853 0234 7D000000 		.4byte	0x7d
- 854 0238 63       		.byte	0x63
- 855 0239 00       		.byte	0
- 856 023a 04       		.uleb128 0x4
- 857 023b 77020000 		.4byte	.LASF41
- 858 023f 06       		.byte	0x6
- 859 0240 29       		.byte	0x29
- 860 0241 ED010000 		.4byte	0x1ed
- 861 0245 09       		.uleb128 0x9
- 862 0246 0C       		.byte	0xc
- 863 0247 06       		.byte	0x6
- 864 0248 2B       		.byte	0x2b
- 865 0249 7E020000 		.4byte	0x27e
- 866 024d 0A       		.uleb128 0xa
- 867 024e 00030000 		.4byte	.LASF34
- 868 0252 06       		.byte	0x6
- 869 0253 2C       		.byte	0x2c
- 870 0254 9D000000 		.4byte	0x9d
- 871 0258 00       		.byte	0
- 872 0259 0A       		.uleb128 0xa
- 873 025a B2000000 		.4byte	.LASF42
- 874 025e 06       		.byte	0x6
- 875 025f 2D       		.byte	0x2d
- 876 0260 9D000000 		.4byte	0x9d
- 877 0264 01       		.byte	0x1
- 878 0265 0A       		.uleb128 0xa
- 879 0266 DB000000 		.4byte	.LASF24
- 880 026a 06       		.byte	0x6
- 881 026b 2E       		.byte	0x2e
- 882 026c B5000000 		.4byte	0xb5
- 883 0270 04       		.byte	0x4
- 884 0271 0A       		.uleb128 0xa
- 885 0272 32030000 		.4byte	.LASF26
- 886 0276 06       		.byte	0x6
- 887 0277 2F       		.byte	0x2f
- 888 0278 B5000000 		.4byte	0xb5
- 889 027c 08       		.byte	0x8
- 890 027d 00       		.byte	0
- 891 027e 04       		.uleb128 0x4
- 892 027f 14030000 		.4byte	.LASF43
- 893 0283 06       		.byte	0x6
- 894 0284 30       		.byte	0x30
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 25
-
-
- 895 0285 45020000 		.4byte	0x245
- 896 0289 0F       		.uleb128 0xf
- 897 028a B804     		.2byte	0x4b8
- 898 028c 06       		.byte	0x6
- 899 028d 34       		.byte	0x34
- 900 028e C6020000 		.4byte	0x2c6
- 901 0292 0A       		.uleb128 0xa
- 902 0293 81030000 		.4byte	.LASF44
- 903 0297 06       		.byte	0x6
- 904 0298 35       		.byte	0x35
- 905 0299 C6020000 		.4byte	0x2c6
- 906 029d 00       		.byte	0
- 907 029e 10       		.uleb128 0x10
- 908 029f E6000000 		.4byte	.LASF38
- 909 02a3 06       		.byte	0x6
- 910 02a4 36       		.byte	0x36
- 911 02a5 A9000000 		.4byte	0xa9
- 912 02a9 B004     		.2byte	0x4b0
- 913 02ab 10       		.uleb128 0x10
- 914 02ac 0A020000 		.4byte	.LASF39
- 915 02b0 06       		.byte	0x6
- 916 02b1 37       		.byte	0x37
- 917 02b2 A9000000 		.4byte	0xa9
- 918 02b6 B204     		.2byte	0x4b2
- 919 02b8 10       		.uleb128 0x10
- 920 02b9 EA020000 		.4byte	.LASF40
- 921 02bd 06       		.byte	0x6
- 922 02be 38       		.byte	0x38
- 923 02bf A9000000 		.4byte	0xa9
- 924 02c3 B404     		.2byte	0x4b4
- 925 02c5 00       		.byte	0
- 926 02c6 0D       		.uleb128 0xd
- 927 02c7 7E020000 		.4byte	0x27e
- 928 02cb D6020000 		.4byte	0x2d6
- 929 02cf 0E       		.uleb128 0xe
- 930 02d0 7D000000 		.4byte	0x7d
- 931 02d4 63       		.byte	0x63
- 932 02d5 00       		.byte	0
- 933 02d6 04       		.uleb128 0x4
- 934 02d7 49020000 		.4byte	.LASF45
- 935 02db 06       		.byte	0x6
- 936 02dc 39       		.byte	0x39
- 937 02dd 89020000 		.4byte	0x289
- 938 02e1 11       		.uleb128 0x11
- 939 02e2 C9000000 		.4byte	.LASF47
- 940 02e6 01       		.byte	0x1
- 941 02e7 A3       		.byte	0xa3
- 942 02e8 00000000 		.4byte	.LFB67
- 943 02ec 10010000 		.4byte	.LFE67-.LFB67
- 944 02f0 01       		.uleb128 0x1
- 945 02f1 9C       		.byte	0x9c
- 946 02f2 99030000 		.4byte	0x399
- 947 02f6 12       		.uleb128 0x12
- 948 02f7 6900     		.ascii	"i\000"
- 949 02f9 01       		.byte	0x1
- 950 02fa AC       		.byte	0xac
- 951 02fb 25000000 		.4byte	0x25
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 26
-
-
- 952 02ff 00000000 		.4byte	.LLST0
- 953 0303 13       		.uleb128 0x13
- 954 0304 64040000 		.4byte	.LASF46
- 955 0308 01       		.byte	0x1
- 956 0309 AD       		.byte	0xad
- 957 030a 99030000 		.4byte	0x399
- 958 030e 13000000 		.4byte	.LLST1
- 959 0312 14       		.uleb128 0x14
- 960 0313 08000000 		.4byte	.LVL0
- 961 0317 5C060000 		.4byte	0x65c
- 962 031b 29030000 		.4byte	0x329
- 963 031f 15       		.uleb128 0x15
- 964 0320 01       		.uleb128 0x1
- 965 0321 50       		.byte	0x50
- 966 0322 05       		.uleb128 0x5
- 967 0323 03       		.byte	0x3
- 968 0324 00000000 		.4byte	move_queue
- 969 0328 00       		.byte	0
- 970 0329 14       		.uleb128 0x14
- 971 032a 30000000 		.4byte	.LVL2
- 972 032e 67060000 		.4byte	0x667
- 973 0332 3C030000 		.4byte	0x33c
- 974 0336 15       		.uleb128 0x15
- 975 0337 01       		.uleb128 0x1
- 976 0338 50       		.byte	0x50
- 977 0339 01       		.uleb128 0x1
- 978 033a 30       		.byte	0x30
- 979 033b 00       		.byte	0
- 980 033c 14       		.uleb128 0x14
- 981 033d 4A000000 		.4byte	.LVL5
- 982 0341 72060000 		.4byte	0x672
- 983 0345 4F030000 		.4byte	0x34f
- 984 0349 15       		.uleb128 0x15
- 985 034a 01       		.uleb128 0x1
- 986 034b 50       		.byte	0x50
- 987 034c 01       		.uleb128 0x1
- 988 034d 30       		.byte	0x30
- 989 034e 00       		.byte	0
- 990 034f 14       		.uleb128 0x14
- 991 0350 66000000 		.4byte	.LVL8
- 992 0354 7D060000 		.4byte	0x67d
- 993 0358 62030000 		.4byte	0x362
- 994 035c 15       		.uleb128 0x15
- 995 035d 01       		.uleb128 0x1
- 996 035e 50       		.byte	0x50
- 997 035f 01       		.uleb128 0x1
- 998 0360 30       		.byte	0x30
- 999 0361 00       		.byte	0
- 1000 0362 16       		.uleb128 0x16
- 1001 0363 E0000000 		.4byte	.LVL11
- 1002 0367 88060000 		.4byte	0x688
- 1003 036b 16       		.uleb128 0x16
- 1004 036c E8000000 		.4byte	.LVL12
- 1005 0370 93060000 		.4byte	0x693
- 1006 0374 16       		.uleb128 0x16
- 1007 0375 F0000000 		.4byte	.LVL13
- 1008 0379 9E060000 		.4byte	0x69e
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 27
-
-
- 1009 037d 16       		.uleb128 0x16
- 1010 037e F6000000 		.4byte	.LVL14
- 1011 0382 A9060000 		.4byte	0x6a9
- 1012 0386 16       		.uleb128 0x16
- 1013 0387 FE000000 		.4byte	.LVL15
- 1014 038b B4060000 		.4byte	0x6b4
- 1015 038f 16       		.uleb128 0x16
- 1016 0390 06010000 		.4byte	.LVL16
- 1017 0394 BF060000 		.4byte	0x6bf
- 1018 0398 00       		.byte	0
- 1019 0399 05       		.uleb128 0x5
- 1020 039a 04       		.byte	0x4
- 1021 039b 9F030000 		.4byte	0x39f
- 1022 039f 08       		.uleb128 0x8
- 1023 03a0 7E020000 		.4byte	0x27e
- 1024 03a4 11       		.uleb128 0x11
- 1025 03a5 48030000 		.4byte	.LASF48
- 1026 03a9 01       		.byte	0x1
- 1027 03aa FF       		.byte	0xff
- 1028 03ab 00000000 		.4byte	.LFB68
- 1029 03af 0C000000 		.4byte	.LFE68-.LFB68
- 1030 03b3 01       		.uleb128 0x1
- 1031 03b4 9C       		.byte	0x9c
- 1032 03b5 D5030000 		.4byte	0x3d5
- 1033 03b9 17       		.uleb128 0x17
- 1034 03ba A1010000 		.4byte	.LASF51
- 1035 03be 01       		.byte	0x1
- 1036 03bf FF       		.byte	0xff
- 1037 03c0 09010000 		.4byte	0x109
- 1038 03c4 01       		.uleb128 0x1
- 1039 03c5 50       		.byte	0x50
- 1040 03c6 18       		.uleb128 0x18
- 1041 03c7 A9010000 		.4byte	.LASF49
- 1042 03cb 01       		.byte	0x1
- 1043 03cc 0101     		.2byte	0x101
- 1044 03ce D5030000 		.4byte	0x3d5
- 1045 03d2 01       		.uleb128 0x1
- 1046 03d3 53       		.byte	0x53
- 1047 03d4 00       		.byte	0
- 1048 03d5 05       		.uleb128 0x5
- 1049 03d6 04       		.byte	0x4
- 1050 03d7 09010000 		.4byte	0x109
- 1051 03db 19       		.uleb128 0x19
- 1052 03dc 2D010000 		.4byte	.LASF53
- 1053 03e0 01       		.byte	0x1
- 1054 03e1 1701     		.2byte	0x117
- 1055 03e3 09010000 		.4byte	0x109
- 1056 03e7 00000000 		.4byte	.LFB69
- 1057 03eb 0C000000 		.4byte	.LFE69-.LFB69
- 1058 03ef 01       		.uleb128 0x1
- 1059 03f0 9C       		.byte	0x9c
- 1060 03f1 04040000 		.4byte	0x404
- 1061 03f5 18       		.uleb128 0x18
- 1062 03f6 A9010000 		.4byte	.LASF49
- 1063 03fa 01       		.byte	0x1
- 1064 03fb 1901     		.2byte	0x119
- 1065 03fd D5030000 		.4byte	0x3d5
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 28
-
-
- 1066 0401 01       		.uleb128 0x1
- 1067 0402 53       		.byte	0x53
- 1068 0403 00       		.byte	0
- 1069 0404 1A       		.uleb128 0x1a
- 1070 0405 74010000 		.4byte	.LASF50
- 1071 0409 01       		.byte	0x1
- 1072 040a 3901     		.2byte	0x139
- 1073 040c 00000000 		.4byte	.LFB70
- 1074 0410 10000000 		.4byte	.LFE70-.LFB70
- 1075 0414 01       		.uleb128 0x1
- 1076 0415 9C       		.byte	0x9c
- 1077 0416 2B040000 		.4byte	0x42b
- 1078 041a 1B       		.uleb128 0x1b
- 1079 041b 66000000 		.4byte	.LASF52
- 1080 041f 01       		.byte	0x1
- 1081 0420 3901     		.2byte	0x139
- 1082 0422 9D000000 		.4byte	0x9d
- 1083 0426 3C000000 		.4byte	.LLST2
- 1084 042a 00       		.byte	0
- 1085 042b 19       		.uleb128 0x19
- 1086 042c 44000000 		.4byte	.LASF54
- 1087 0430 01       		.byte	0x1
- 1088 0431 4F01     		.2byte	0x14f
- 1089 0433 9D000000 		.4byte	0x9d
- 1090 0437 00000000 		.4byte	.LFB71
- 1091 043b 0C000000 		.4byte	.LFE71-.LFB71
- 1092 043f 01       		.uleb128 0x1
- 1093 0440 9C       		.byte	0x9c
- 1094 0441 56040000 		.4byte	0x456
- 1095 0445 1C       		.uleb128 0x1c
- 1096 0446 66000000 		.4byte	.LASF52
- 1097 044a 01       		.byte	0x1
- 1098 044b 5101     		.2byte	0x151
- 1099 044d 9D000000 		.4byte	0x9d
- 1100 0451 5D000000 		.4byte	.LLST3
- 1101 0455 00       		.byte	0
- 1102 0456 1D       		.uleb128 0x1d
- 1103 0457 18010000 		.4byte	.LASF55
- 1104 045b 01       		.byte	0x1
- 1105 045c 6A01     		.2byte	0x16a
- 1106 045e 00000000 		.4byte	.LFB72
- 1107 0462 0C000000 		.4byte	.LFE72-.LFB72
- 1108 0466 01       		.uleb128 0x1
- 1109 0467 9C       		.byte	0x9c
- 1110 0468 1E       		.uleb128 0x1e
- 1111 0469 B7020000 		.4byte	.LASF84
- 1112 046d 01       		.byte	0x1
- 1113 046e 7F01     		.2byte	0x17f
- 1114 0470 9D000000 		.4byte	0x9d
- 1115 0474 00000000 		.4byte	.LFB73
- 1116 0478 10000000 		.4byte	.LFE73-.LFB73
- 1117 047c 01       		.uleb128 0x1
- 1118 047d 9C       		.byte	0x9c
- 1119 047e 1D       		.uleb128 0x1d
- 1120 047f 91010000 		.4byte	.LASF56
- 1121 0483 01       		.byte	0x1
- 1122 0484 9401     		.2byte	0x194
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 29
-
-
- 1123 0486 00000000 		.4byte	.LFB74
- 1124 048a 0C000000 		.4byte	.LFE74-.LFB74
- 1125 048e 01       		.uleb128 0x1
- 1126 048f 9C       		.byte	0x9c
- 1127 0490 11       		.uleb128 0x11
- 1128 0491 92000000 		.4byte	.LASF57
- 1129 0495 01       		.byte	0x1
- 1130 0496 40       		.byte	0x40
- 1131 0497 00000000 		.4byte	.LFB64
- 1132 049b 1C000000 		.4byte	.LFE64-.LFB64
- 1133 049f 01       		.uleb128 0x1
- 1134 04a0 9C       		.byte	0x9c
- 1135 04a1 E2040000 		.4byte	0x4e2
- 1136 04a5 16       		.uleb128 0x16
- 1137 04a6 06000000 		.4byte	.LVL24
- 1138 04aa 7E040000 		.4byte	0x47e
- 1139 04ae 14       		.uleb128 0x14
- 1140 04af 0C000000 		.4byte	.LVL25
- 1141 04b3 A4030000 		.4byte	0x3a4
- 1142 04b7 C5040000 		.4byte	0x4c5
- 1143 04bb 15       		.uleb128 0x15
- 1144 04bc 01       		.uleb128 0x1
- 1145 04bd 50       		.byte	0x50
- 1146 04be 05       		.uleb128 0x5
- 1147 04bf 03       		.byte	0x3
- 1148 04c0 00000000 		.4byte	NCO_ISR_Interrupt
- 1149 04c4 00       		.byte	0
- 1150 04c5 14       		.uleb128 0x14
- 1151 04c6 12000000 		.4byte	.LVL26
- 1152 04ca 04040000 		.4byte	0x404
- 1153 04ce D8040000 		.4byte	0x4d8
- 1154 04d2 15       		.uleb128 0x15
- 1155 04d3 01       		.uleb128 0x1
- 1156 04d4 50       		.byte	0x50
- 1157 04d5 01       		.uleb128 0x1
- 1158 04d6 34       		.byte	0x34
- 1159 04d7 00       		.byte	0
- 1160 04d8 16       		.uleb128 0x16
- 1161 04d9 16000000 		.4byte	.LVL27
- 1162 04dd 56040000 		.4byte	0x456
- 1163 04e1 00       		.byte	0
- 1164 04e2 11       		.uleb128 0x11
- 1165 04e3 AC030000 		.4byte	.LASF58
- 1166 04e7 01       		.byte	0x1
- 1167 04e8 6B       		.byte	0x6b
- 1168 04e9 00000000 		.4byte	.LFB65
- 1169 04ed 1A000000 		.4byte	.LFE65-.LFB65
- 1170 04f1 01       		.uleb128 0x1
- 1171 04f2 9C       		.byte	0x9c
- 1172 04f3 40050000 		.4byte	0x540
- 1173 04f7 1F       		.uleb128 0x1f
- 1174 04f8 A1010000 		.4byte	.LASF51
- 1175 04fc 01       		.byte	0x1
- 1176 04fd 6B       		.byte	0x6b
- 1177 04fe 09010000 		.4byte	0x109
- 1178 0502 74000000 		.4byte	.LLST4
- 1179 0506 16       		.uleb128 0x16
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 30
-
-
- 1180 0507 08000000 		.4byte	.LVL29
- 1181 050b 7E040000 		.4byte	0x47e
- 1182 050f 14       		.uleb128 0x14
- 1183 0510 0E000000 		.4byte	.LVL30
- 1184 0514 A4030000 		.4byte	0x3a4
- 1185 0518 23050000 		.4byte	0x523
- 1186 051c 15       		.uleb128 0x15
- 1187 051d 01       		.uleb128 0x1
- 1188 051e 50       		.byte	0x50
- 1189 051f 02       		.uleb128 0x2
- 1190 0520 74       		.byte	0x74
- 1191 0521 00       		.sleb128 0
- 1192 0522 00       		.byte	0
- 1193 0523 14       		.uleb128 0x14
- 1194 0524 14000000 		.4byte	.LVL31
- 1195 0528 04040000 		.4byte	0x404
- 1196 052c 36050000 		.4byte	0x536
- 1197 0530 15       		.uleb128 0x15
- 1198 0531 01       		.uleb128 0x1
- 1199 0532 50       		.byte	0x50
- 1200 0533 01       		.uleb128 0x1
- 1201 0534 34       		.byte	0x34
- 1202 0535 00       		.byte	0
- 1203 0536 16       		.uleb128 0x16
- 1204 0537 18000000 		.4byte	.LVL32
- 1205 053b 56040000 		.4byte	0x456
- 1206 053f 00       		.byte	0
- 1207 0540 11       		.uleb128 0x11
- 1208 0541 BC000000 		.4byte	.LASF59
- 1209 0545 01       		.byte	0x1
- 1210 0546 89       		.byte	0x89
- 1211 0547 00000000 		.4byte	.LFB66
- 1212 054b 14000000 		.4byte	.LFE66-.LFB66
- 1213 054f 01       		.uleb128 0x1
- 1214 0550 9C       		.byte	0x9c
- 1215 0551 68050000 		.4byte	0x568
- 1216 0555 16       		.uleb128 0x16
- 1217 0556 06000000 		.4byte	.LVL33
- 1218 055a 7E040000 		.4byte	0x47e
- 1219 055e 16       		.uleb128 0x16
- 1220 055f 0C000000 		.4byte	.LVL34
- 1221 0563 A4030000 		.4byte	0x3a4
- 1222 0567 00       		.byte	0
- 1223 0568 1D       		.uleb128 0x1d
- 1224 0569 1C020000 		.4byte	.LASF60
- 1225 056d 01       		.byte	0x1
- 1226 056e AF01     		.2byte	0x1af
- 1227 0570 00000000 		.4byte	.LFB75
- 1228 0574 0C000000 		.4byte	.LFE75-.LFB75
- 1229 0578 01       		.uleb128 0x1
- 1230 0579 9C       		.byte	0x9c
- 1231 057a 1D       		.uleb128 0x1d
- 1232 057b 5F010000 		.4byte	.LASF61
- 1233 057f 01       		.byte	0x1
- 1234 0580 C801     		.2byte	0x1c8
- 1235 0582 00000000 		.4byte	.LFB76
- 1236 0586 0C000000 		.4byte	.LFE76-.LFB76
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 31
-
-
- 1237 058a 01       		.uleb128 0x1
- 1238 058b 9C       		.byte	0x9c
- 1239 058c 20       		.uleb128 0x20
- 1240 058d C4030000 		.4byte	.LASF62
- 1241 0591 07       		.byte	0x7
- 1242 0592 1207     		.2byte	0x712
- 1243 0594 98050000 		.4byte	0x598
- 1244 0598 08       		.uleb128 0x8
- 1245 0599 92000000 		.4byte	0x92
- 1246 059d 21       		.uleb128 0x21
- 1247 059e 05010000 		.4byte	.LASF63
- 1248 05a2 08       		.byte	0x8
- 1249 05a3 20       		.byte	0x20
- 1250 05a4 A9000000 		.4byte	0xa9
- 1251 05a8 05       		.uleb128 0x5
- 1252 05a9 03       		.byte	0x3
- 1253 05aa 00000000 		.4byte	read_angle_command
- 1254 05ae 21       		.uleb128 0x21
- 1255 05af FD000000 		.4byte	.LASF64
- 1256 05b3 05       		.byte	0x5
- 1257 05b4 33       		.byte	0x33
- 1258 05b5 BF050000 		.4byte	0x5bf
- 1259 05b9 05       		.uleb128 0x5
- 1260 05ba 03       		.byte	0x3
- 1261 05bb 00000000 		.4byte	J1_home
- 1262 05bf 08       		.uleb128 0x8
- 1263 05c0 CD000000 		.4byte	0xcd
- 1264 05c4 0D       		.uleb128 0xd
- 1265 05c5 D4050000 		.4byte	0x5d4
- 1266 05c9 D4050000 		.4byte	0x5d4
- 1267 05cd 0E       		.uleb128 0xe
- 1268 05ce 7D000000 		.4byte	0x7d
- 1269 05d2 02       		.byte	0x2
- 1270 05d3 00       		.byte	0
- 1271 05d4 08       		.uleb128 0x8
- 1272 05d5 96010000 		.4byte	0x196
- 1273 05d9 21       		.uleb128 0x21
- 1274 05da E3010000 		.4byte	.LASF65
- 1275 05de 05       		.byte	0x5
- 1276 05df 35       		.byte	0x35
- 1277 05e0 EA050000 		.4byte	0x5ea
- 1278 05e4 05       		.uleb128 0x5
- 1279 05e5 03       		.byte	0x3
- 1280 05e6 00000000 		.4byte	joints
- 1281 05ea 08       		.uleb128 0x8
- 1282 05eb C4050000 		.4byte	0x5c4
- 1283 05ef 21       		.uleb128 0x21
- 1284 05f0 A9000000 		.4byte	.LASF66
- 1285 05f4 06       		.byte	0x6
- 1286 05f5 3B       		.byte	0x3b
- 1287 05f6 00060000 		.4byte	0x600
- 1288 05fa 05       		.uleb128 0x5
- 1289 05fb 03       		.byte	0x3
- 1290 05fc 00000000 		.4byte	msg_buff
- 1291 0600 08       		.uleb128 0x8
- 1292 0601 3A020000 		.4byte	0x23a
- 1293 0605 21       		.uleb128 0x21
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 32
-
-
- 1294 0606 7D000000 		.4byte	.LASF67
- 1295 060a 06       		.byte	0x6
- 1296 060b 3C       		.byte	0x3c
- 1297 060c 16060000 		.4byte	0x616
- 1298 0610 05       		.uleb128 0x5
- 1299 0611 03       		.byte	0x3
- 1300 0612 00000000 		.4byte	move_queue
- 1301 0616 08       		.uleb128 0x8
- 1302 0617 D6020000 		.4byte	0x2d6
- 1303 061b 0D       		.uleb128 0xd
- 1304 061c 2B060000 		.4byte	0x62b
- 1305 0620 2B060000 		.4byte	0x62b
- 1306 0624 0E       		.uleb128 0xe
- 1307 0625 7D000000 		.4byte	0x7d
- 1308 0629 4F       		.byte	0x4f
- 1309 062a 00       		.byte	0
- 1310 062b 08       		.uleb128 0x8
- 1311 062c 84000000 		.4byte	0x84
- 1312 0630 21       		.uleb128 0x21
- 1313 0631 D9010000 		.4byte	.LASF68
- 1314 0635 06       		.byte	0x6
- 1315 0636 3D       		.byte	0x3d
- 1316 0637 41060000 		.4byte	0x641
- 1317 063b 05       		.uleb128 0x5
- 1318 063c 03       		.byte	0x3
- 1319 063d 00000000 		.4byte	rx_buffer
- 1320 0641 08       		.uleb128 0x8
- 1321 0642 1B060000 		.4byte	0x61b
- 1322 0646 21       		.uleb128 0x21
- 1323 0647 00000000 		.4byte	.LASF69
- 1324 064b 06       		.byte	0x6
- 1325 064c 3E       		.byte	0x3e
- 1326 064d 57060000 		.4byte	0x657
- 1327 0651 05       		.uleb128 0x5
- 1328 0652 03       		.byte	0x3
- 1329 0653 00000000 		.4byte	rx_index
- 1330 0657 08       		.uleb128 0x8
- 1331 0658 25000000 		.4byte	0x25
- 1332 065c 22       		.uleb128 0x22
- 1333 065d A8020000 		.4byte	.LASF70
- 1334 0661 A8020000 		.4byte	.LASF70
- 1335 0665 06       		.byte	0x6
- 1336 0666 46       		.byte	0x46
- 1337 0667 22       		.uleb128 0x22
- 1338 0668 F1000000 		.4byte	.LASF71
- 1339 066c F1000000 		.4byte	.LASF71
- 1340 0670 09       		.byte	0x9
- 1341 0671 26       		.byte	0x26
- 1342 0672 22       		.uleb128 0x22
- 1343 0673 F4020000 		.4byte	.LASF72
- 1344 0677 F4020000 		.4byte	.LASF72
- 1345 067b 0A       		.byte	0xa
- 1346 067c 26       		.byte	0x26
- 1347 067d 22       		.uleb128 0x22
- 1348 067e 6B020000 		.4byte	.LASF73
- 1349 0682 6B020000 		.4byte	.LASF73
- 1350 0686 0B       		.byte	0xb
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 33
-
-
- 1351 0687 26       		.byte	0x26
- 1352 0688 22       		.uleb128 0x22
- 1353 0689 9F030000 		.4byte	.LASF74
- 1354 068d 9F030000 		.4byte	.LASF74
- 1355 0691 0C       		.byte	0xc
- 1356 0692 26       		.byte	0x26
- 1357 0693 22       		.uleb128 0x22
- 1358 0694 74030000 		.4byte	.LASF75
- 1359 0698 74030000 		.4byte	.LASF75
- 1360 069c 0D       		.byte	0xd
- 1361 069d 26       		.byte	0x26
- 1362 069e 22       		.uleb128 0x22
- 1363 069f 19030000 		.4byte	.LASF76
- 1364 06a3 19030000 		.4byte	.LASF76
- 1365 06a7 0E       		.byte	0xe
- 1366 06a8 26       		.byte	0x26
- 1367 06a9 22       		.uleb128 0x22
- 1368 06aa 2F020000 		.4byte	.LASF77
- 1369 06ae 2F020000 		.4byte	.LASF77
- 1370 06b2 0F       		.byte	0xf
- 1371 06b3 26       		.byte	0x26
- 1372 06b4 22       		.uleb128 0x22
- 1373 06b5 58000000 		.4byte	.LASF78
- 1374 06b9 58000000 		.4byte	.LASF78
- 1375 06bd 10       		.byte	0x10
- 1376 06be 26       		.byte	0x26
- 1377 06bf 22       		.uleb128 0x22
- 1378 06c0 6F000000 		.4byte	.LASF79
- 1379 06c4 6F000000 		.4byte	.LASF79
- 1380 06c8 11       		.byte	0x11
- 1381 06c9 26       		.byte	0x26
- 1382 06ca 00       		.byte	0
- 1383              		.section	.debug_abbrev,"",%progbits
- 1384              	.Ldebug_abbrev0:
- 1385 0000 01       		.uleb128 0x1
- 1386 0001 11       		.uleb128 0x11
- 1387 0002 01       		.byte	0x1
- 1388 0003 25       		.uleb128 0x25
- 1389 0004 0E       		.uleb128 0xe
- 1390 0005 13       		.uleb128 0x13
- 1391 0006 0B       		.uleb128 0xb
- 1392 0007 03       		.uleb128 0x3
- 1393 0008 0E       		.uleb128 0xe
- 1394 0009 1B       		.uleb128 0x1b
- 1395 000a 0E       		.uleb128 0xe
- 1396 000b 55       		.uleb128 0x55
- 1397 000c 17       		.uleb128 0x17
- 1398 000d 11       		.uleb128 0x11
- 1399 000e 01       		.uleb128 0x1
- 1400 000f 10       		.uleb128 0x10
- 1401 0010 17       		.uleb128 0x17
- 1402 0011 00       		.byte	0
- 1403 0012 00       		.byte	0
- 1404 0013 02       		.uleb128 0x2
- 1405 0014 24       		.uleb128 0x24
- 1406 0015 00       		.byte	0
- 1407 0016 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 34
-
-
- 1408 0017 0B       		.uleb128 0xb
- 1409 0018 3E       		.uleb128 0x3e
- 1410 0019 0B       		.uleb128 0xb
- 1411 001a 03       		.uleb128 0x3
- 1412 001b 08       		.uleb128 0x8
- 1413 001c 00       		.byte	0
- 1414 001d 00       		.byte	0
- 1415 001e 03       		.uleb128 0x3
- 1416 001f 24       		.uleb128 0x24
- 1417 0020 00       		.byte	0
- 1418 0021 0B       		.uleb128 0xb
- 1419 0022 0B       		.uleb128 0xb
- 1420 0023 3E       		.uleb128 0x3e
- 1421 0024 0B       		.uleb128 0xb
- 1422 0025 03       		.uleb128 0x3
- 1423 0026 0E       		.uleb128 0xe
- 1424 0027 00       		.byte	0
- 1425 0028 00       		.byte	0
- 1426 0029 04       		.uleb128 0x4
- 1427 002a 16       		.uleb128 0x16
- 1428 002b 00       		.byte	0
- 1429 002c 03       		.uleb128 0x3
- 1430 002d 0E       		.uleb128 0xe
- 1431 002e 3A       		.uleb128 0x3a
- 1432 002f 0B       		.uleb128 0xb
- 1433 0030 3B       		.uleb128 0x3b
- 1434 0031 0B       		.uleb128 0xb
- 1435 0032 49       		.uleb128 0x49
- 1436 0033 13       		.uleb128 0x13
- 1437 0034 00       		.byte	0
- 1438 0035 00       		.byte	0
- 1439 0036 05       		.uleb128 0x5
- 1440 0037 0F       		.uleb128 0xf
- 1441 0038 00       		.byte	0
- 1442 0039 0B       		.uleb128 0xb
- 1443 003a 0B       		.uleb128 0xb
- 1444 003b 49       		.uleb128 0x49
- 1445 003c 13       		.uleb128 0x13
- 1446 003d 00       		.byte	0
- 1447 003e 00       		.byte	0
- 1448 003f 06       		.uleb128 0x6
- 1449 0040 15       		.uleb128 0x15
- 1450 0041 00       		.byte	0
- 1451 0042 27       		.uleb128 0x27
- 1452 0043 19       		.uleb128 0x19
- 1453 0044 00       		.byte	0
- 1454 0045 00       		.byte	0
- 1455 0046 07       		.uleb128 0x7
- 1456 0047 16       		.uleb128 0x16
- 1457 0048 00       		.byte	0
- 1458 0049 03       		.uleb128 0x3
- 1459 004a 0E       		.uleb128 0xe
- 1460 004b 3A       		.uleb128 0x3a
- 1461 004c 0B       		.uleb128 0xb
- 1462 004d 3B       		.uleb128 0x3b
- 1463 004e 05       		.uleb128 0x5
- 1464 004f 49       		.uleb128 0x49
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 35
-
-
- 1465 0050 13       		.uleb128 0x13
- 1466 0051 00       		.byte	0
- 1467 0052 00       		.byte	0
- 1468 0053 08       		.uleb128 0x8
- 1469 0054 35       		.uleb128 0x35
- 1470 0055 00       		.byte	0
- 1471 0056 49       		.uleb128 0x49
- 1472 0057 13       		.uleb128 0x13
- 1473 0058 00       		.byte	0
- 1474 0059 00       		.byte	0
- 1475 005a 09       		.uleb128 0x9
- 1476 005b 13       		.uleb128 0x13
- 1477 005c 01       		.byte	0x1
- 1478 005d 0B       		.uleb128 0xb
- 1479 005e 0B       		.uleb128 0xb
- 1480 005f 3A       		.uleb128 0x3a
- 1481 0060 0B       		.uleb128 0xb
- 1482 0061 3B       		.uleb128 0x3b
- 1483 0062 0B       		.uleb128 0xb
- 1484 0063 01       		.uleb128 0x1
- 1485 0064 13       		.uleb128 0x13
- 1486 0065 00       		.byte	0
- 1487 0066 00       		.byte	0
- 1488 0067 0A       		.uleb128 0xa
- 1489 0068 0D       		.uleb128 0xd
- 1490 0069 00       		.byte	0
- 1491 006a 03       		.uleb128 0x3
- 1492 006b 0E       		.uleb128 0xe
- 1493 006c 3A       		.uleb128 0x3a
- 1494 006d 0B       		.uleb128 0xb
- 1495 006e 3B       		.uleb128 0x3b
- 1496 006f 0B       		.uleb128 0xb
- 1497 0070 49       		.uleb128 0x49
- 1498 0071 13       		.uleb128 0x13
- 1499 0072 38       		.uleb128 0x38
- 1500 0073 0B       		.uleb128 0xb
- 1501 0074 00       		.byte	0
- 1502 0075 00       		.byte	0
- 1503 0076 0B       		.uleb128 0xb
- 1504 0077 0D       		.uleb128 0xd
- 1505 0078 00       		.byte	0
- 1506 0079 03       		.uleb128 0x3
- 1507 007a 08       		.uleb128 0x8
- 1508 007b 3A       		.uleb128 0x3a
- 1509 007c 0B       		.uleb128 0xb
- 1510 007d 3B       		.uleb128 0x3b
- 1511 007e 0B       		.uleb128 0xb
- 1512 007f 49       		.uleb128 0x49
- 1513 0080 13       		.uleb128 0x13
- 1514 0081 38       		.uleb128 0x38
- 1515 0082 0B       		.uleb128 0xb
- 1516 0083 00       		.byte	0
- 1517 0084 00       		.byte	0
- 1518 0085 0C       		.uleb128 0xc
- 1519 0086 13       		.uleb128 0x13
- 1520 0087 01       		.byte	0x1
- 1521 0088 03       		.uleb128 0x3
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 36
-
-
- 1522 0089 0E       		.uleb128 0xe
- 1523 008a 0B       		.uleb128 0xb
- 1524 008b 0B       		.uleb128 0xb
- 1525 008c 3A       		.uleb128 0x3a
- 1526 008d 0B       		.uleb128 0xb
- 1527 008e 3B       		.uleb128 0x3b
- 1528 008f 0B       		.uleb128 0xb
- 1529 0090 01       		.uleb128 0x1
- 1530 0091 13       		.uleb128 0x13
- 1531 0092 00       		.byte	0
- 1532 0093 00       		.byte	0
- 1533 0094 0D       		.uleb128 0xd
- 1534 0095 01       		.uleb128 0x1
- 1535 0096 01       		.byte	0x1
- 1536 0097 49       		.uleb128 0x49
- 1537 0098 13       		.uleb128 0x13
- 1538 0099 01       		.uleb128 0x1
- 1539 009a 13       		.uleb128 0x13
- 1540 009b 00       		.byte	0
- 1541 009c 00       		.byte	0
- 1542 009d 0E       		.uleb128 0xe
- 1543 009e 21       		.uleb128 0x21
- 1544 009f 00       		.byte	0
- 1545 00a0 49       		.uleb128 0x49
- 1546 00a1 13       		.uleb128 0x13
- 1547 00a2 2F       		.uleb128 0x2f
- 1548 00a3 0B       		.uleb128 0xb
- 1549 00a4 00       		.byte	0
- 1550 00a5 00       		.byte	0
- 1551 00a6 0F       		.uleb128 0xf
- 1552 00a7 13       		.uleb128 0x13
- 1553 00a8 01       		.byte	0x1
- 1554 00a9 0B       		.uleb128 0xb
- 1555 00aa 05       		.uleb128 0x5
- 1556 00ab 3A       		.uleb128 0x3a
- 1557 00ac 0B       		.uleb128 0xb
- 1558 00ad 3B       		.uleb128 0x3b
- 1559 00ae 0B       		.uleb128 0xb
- 1560 00af 01       		.uleb128 0x1
- 1561 00b0 13       		.uleb128 0x13
- 1562 00b1 00       		.byte	0
- 1563 00b2 00       		.byte	0
- 1564 00b3 10       		.uleb128 0x10
- 1565 00b4 0D       		.uleb128 0xd
- 1566 00b5 00       		.byte	0
- 1567 00b6 03       		.uleb128 0x3
- 1568 00b7 0E       		.uleb128 0xe
- 1569 00b8 3A       		.uleb128 0x3a
- 1570 00b9 0B       		.uleb128 0xb
- 1571 00ba 3B       		.uleb128 0x3b
- 1572 00bb 0B       		.uleb128 0xb
- 1573 00bc 49       		.uleb128 0x49
- 1574 00bd 13       		.uleb128 0x13
- 1575 00be 38       		.uleb128 0x38
- 1576 00bf 05       		.uleb128 0x5
- 1577 00c0 00       		.byte	0
- 1578 00c1 00       		.byte	0
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 37
-
-
- 1579 00c2 11       		.uleb128 0x11
- 1580 00c3 2E       		.uleb128 0x2e
- 1581 00c4 01       		.byte	0x1
- 1582 00c5 3F       		.uleb128 0x3f
- 1583 00c6 19       		.uleb128 0x19
- 1584 00c7 03       		.uleb128 0x3
- 1585 00c8 0E       		.uleb128 0xe
- 1586 00c9 3A       		.uleb128 0x3a
- 1587 00ca 0B       		.uleb128 0xb
- 1588 00cb 3B       		.uleb128 0x3b
- 1589 00cc 0B       		.uleb128 0xb
- 1590 00cd 27       		.uleb128 0x27
- 1591 00ce 19       		.uleb128 0x19
- 1592 00cf 11       		.uleb128 0x11
- 1593 00d0 01       		.uleb128 0x1
- 1594 00d1 12       		.uleb128 0x12
- 1595 00d2 06       		.uleb128 0x6
- 1596 00d3 40       		.uleb128 0x40
- 1597 00d4 18       		.uleb128 0x18
- 1598 00d5 9742     		.uleb128 0x2117
- 1599 00d7 19       		.uleb128 0x19
- 1600 00d8 01       		.uleb128 0x1
- 1601 00d9 13       		.uleb128 0x13
- 1602 00da 00       		.byte	0
- 1603 00db 00       		.byte	0
- 1604 00dc 12       		.uleb128 0x12
- 1605 00dd 34       		.uleb128 0x34
- 1606 00de 00       		.byte	0
- 1607 00df 03       		.uleb128 0x3
- 1608 00e0 08       		.uleb128 0x8
- 1609 00e1 3A       		.uleb128 0x3a
- 1610 00e2 0B       		.uleb128 0xb
- 1611 00e3 3B       		.uleb128 0x3b
- 1612 00e4 0B       		.uleb128 0xb
- 1613 00e5 49       		.uleb128 0x49
- 1614 00e6 13       		.uleb128 0x13
- 1615 00e7 02       		.uleb128 0x2
- 1616 00e8 17       		.uleb128 0x17
- 1617 00e9 00       		.byte	0
- 1618 00ea 00       		.byte	0
- 1619 00eb 13       		.uleb128 0x13
- 1620 00ec 34       		.uleb128 0x34
- 1621 00ed 00       		.byte	0
- 1622 00ee 03       		.uleb128 0x3
- 1623 00ef 0E       		.uleb128 0xe
- 1624 00f0 3A       		.uleb128 0x3a
- 1625 00f1 0B       		.uleb128 0xb
- 1626 00f2 3B       		.uleb128 0x3b
- 1627 00f3 0B       		.uleb128 0xb
- 1628 00f4 49       		.uleb128 0x49
- 1629 00f5 13       		.uleb128 0x13
- 1630 00f6 02       		.uleb128 0x2
- 1631 00f7 17       		.uleb128 0x17
- 1632 00f8 00       		.byte	0
- 1633 00f9 00       		.byte	0
- 1634 00fa 14       		.uleb128 0x14
- 1635 00fb 898201   		.uleb128 0x4109
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 38
-
-
- 1636 00fe 01       		.byte	0x1
- 1637 00ff 11       		.uleb128 0x11
- 1638 0100 01       		.uleb128 0x1
- 1639 0101 31       		.uleb128 0x31
- 1640 0102 13       		.uleb128 0x13
- 1641 0103 01       		.uleb128 0x1
- 1642 0104 13       		.uleb128 0x13
- 1643 0105 00       		.byte	0
- 1644 0106 00       		.byte	0
- 1645 0107 15       		.uleb128 0x15
- 1646 0108 8A8201   		.uleb128 0x410a
- 1647 010b 00       		.byte	0
- 1648 010c 02       		.uleb128 0x2
- 1649 010d 18       		.uleb128 0x18
- 1650 010e 9142     		.uleb128 0x2111
- 1651 0110 18       		.uleb128 0x18
- 1652 0111 00       		.byte	0
- 1653 0112 00       		.byte	0
- 1654 0113 16       		.uleb128 0x16
- 1655 0114 898201   		.uleb128 0x4109
- 1656 0117 00       		.byte	0
- 1657 0118 11       		.uleb128 0x11
- 1658 0119 01       		.uleb128 0x1
- 1659 011a 31       		.uleb128 0x31
- 1660 011b 13       		.uleb128 0x13
- 1661 011c 00       		.byte	0
- 1662 011d 00       		.byte	0
- 1663 011e 17       		.uleb128 0x17
- 1664 011f 05       		.uleb128 0x5
- 1665 0120 00       		.byte	0
- 1666 0121 03       		.uleb128 0x3
- 1667 0122 0E       		.uleb128 0xe
- 1668 0123 3A       		.uleb128 0x3a
- 1669 0124 0B       		.uleb128 0xb
- 1670 0125 3B       		.uleb128 0x3b
- 1671 0126 0B       		.uleb128 0xb
- 1672 0127 49       		.uleb128 0x49
- 1673 0128 13       		.uleb128 0x13
- 1674 0129 02       		.uleb128 0x2
- 1675 012a 18       		.uleb128 0x18
- 1676 012b 00       		.byte	0
- 1677 012c 00       		.byte	0
- 1678 012d 18       		.uleb128 0x18
- 1679 012e 34       		.uleb128 0x34
- 1680 012f 00       		.byte	0
- 1681 0130 03       		.uleb128 0x3
- 1682 0131 0E       		.uleb128 0xe
- 1683 0132 3A       		.uleb128 0x3a
- 1684 0133 0B       		.uleb128 0xb
- 1685 0134 3B       		.uleb128 0x3b
- 1686 0135 05       		.uleb128 0x5
- 1687 0136 49       		.uleb128 0x49
- 1688 0137 13       		.uleb128 0x13
- 1689 0138 02       		.uleb128 0x2
- 1690 0139 18       		.uleb128 0x18
- 1691 013a 00       		.byte	0
- 1692 013b 00       		.byte	0
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 39
-
-
- 1693 013c 19       		.uleb128 0x19
- 1694 013d 2E       		.uleb128 0x2e
- 1695 013e 01       		.byte	0x1
- 1696 013f 3F       		.uleb128 0x3f
- 1697 0140 19       		.uleb128 0x19
- 1698 0141 03       		.uleb128 0x3
- 1699 0142 0E       		.uleb128 0xe
- 1700 0143 3A       		.uleb128 0x3a
- 1701 0144 0B       		.uleb128 0xb
- 1702 0145 3B       		.uleb128 0x3b
- 1703 0146 05       		.uleb128 0x5
- 1704 0147 27       		.uleb128 0x27
- 1705 0148 19       		.uleb128 0x19
- 1706 0149 49       		.uleb128 0x49
- 1707 014a 13       		.uleb128 0x13
- 1708 014b 11       		.uleb128 0x11
- 1709 014c 01       		.uleb128 0x1
- 1710 014d 12       		.uleb128 0x12
- 1711 014e 06       		.uleb128 0x6
- 1712 014f 40       		.uleb128 0x40
- 1713 0150 18       		.uleb128 0x18
- 1714 0151 9742     		.uleb128 0x2117
- 1715 0153 19       		.uleb128 0x19
- 1716 0154 01       		.uleb128 0x1
- 1717 0155 13       		.uleb128 0x13
- 1718 0156 00       		.byte	0
- 1719 0157 00       		.byte	0
- 1720 0158 1A       		.uleb128 0x1a
- 1721 0159 2E       		.uleb128 0x2e
- 1722 015a 01       		.byte	0x1
- 1723 015b 3F       		.uleb128 0x3f
- 1724 015c 19       		.uleb128 0x19
- 1725 015d 03       		.uleb128 0x3
- 1726 015e 0E       		.uleb128 0xe
- 1727 015f 3A       		.uleb128 0x3a
- 1728 0160 0B       		.uleb128 0xb
- 1729 0161 3B       		.uleb128 0x3b
- 1730 0162 05       		.uleb128 0x5
- 1731 0163 27       		.uleb128 0x27
- 1732 0164 19       		.uleb128 0x19
- 1733 0165 11       		.uleb128 0x11
- 1734 0166 01       		.uleb128 0x1
- 1735 0167 12       		.uleb128 0x12
- 1736 0168 06       		.uleb128 0x6
- 1737 0169 40       		.uleb128 0x40
- 1738 016a 18       		.uleb128 0x18
- 1739 016b 9742     		.uleb128 0x2117
- 1740 016d 19       		.uleb128 0x19
- 1741 016e 01       		.uleb128 0x1
- 1742 016f 13       		.uleb128 0x13
- 1743 0170 00       		.byte	0
- 1744 0171 00       		.byte	0
- 1745 0172 1B       		.uleb128 0x1b
- 1746 0173 05       		.uleb128 0x5
- 1747 0174 00       		.byte	0
- 1748 0175 03       		.uleb128 0x3
- 1749 0176 0E       		.uleb128 0xe
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 40
-
-
- 1750 0177 3A       		.uleb128 0x3a
- 1751 0178 0B       		.uleb128 0xb
- 1752 0179 3B       		.uleb128 0x3b
- 1753 017a 05       		.uleb128 0x5
- 1754 017b 49       		.uleb128 0x49
- 1755 017c 13       		.uleb128 0x13
- 1756 017d 02       		.uleb128 0x2
- 1757 017e 17       		.uleb128 0x17
- 1758 017f 00       		.byte	0
- 1759 0180 00       		.byte	0
- 1760 0181 1C       		.uleb128 0x1c
- 1761 0182 34       		.uleb128 0x34
- 1762 0183 00       		.byte	0
- 1763 0184 03       		.uleb128 0x3
- 1764 0185 0E       		.uleb128 0xe
- 1765 0186 3A       		.uleb128 0x3a
- 1766 0187 0B       		.uleb128 0xb
- 1767 0188 3B       		.uleb128 0x3b
- 1768 0189 05       		.uleb128 0x5
- 1769 018a 49       		.uleb128 0x49
- 1770 018b 13       		.uleb128 0x13
- 1771 018c 02       		.uleb128 0x2
- 1772 018d 17       		.uleb128 0x17
- 1773 018e 00       		.byte	0
- 1774 018f 00       		.byte	0
- 1775 0190 1D       		.uleb128 0x1d
- 1776 0191 2E       		.uleb128 0x2e
- 1777 0192 00       		.byte	0
- 1778 0193 3F       		.uleb128 0x3f
- 1779 0194 19       		.uleb128 0x19
- 1780 0195 03       		.uleb128 0x3
- 1781 0196 0E       		.uleb128 0xe
- 1782 0197 3A       		.uleb128 0x3a
- 1783 0198 0B       		.uleb128 0xb
- 1784 0199 3B       		.uleb128 0x3b
- 1785 019a 05       		.uleb128 0x5
- 1786 019b 27       		.uleb128 0x27
- 1787 019c 19       		.uleb128 0x19
- 1788 019d 11       		.uleb128 0x11
- 1789 019e 01       		.uleb128 0x1
- 1790 019f 12       		.uleb128 0x12
- 1791 01a0 06       		.uleb128 0x6
- 1792 01a1 40       		.uleb128 0x40
- 1793 01a2 18       		.uleb128 0x18
- 1794 01a3 9742     		.uleb128 0x2117
- 1795 01a5 19       		.uleb128 0x19
- 1796 01a6 00       		.byte	0
- 1797 01a7 00       		.byte	0
- 1798 01a8 1E       		.uleb128 0x1e
- 1799 01a9 2E       		.uleb128 0x2e
- 1800 01aa 00       		.byte	0
- 1801 01ab 3F       		.uleb128 0x3f
- 1802 01ac 19       		.uleb128 0x19
- 1803 01ad 03       		.uleb128 0x3
- 1804 01ae 0E       		.uleb128 0xe
- 1805 01af 3A       		.uleb128 0x3a
- 1806 01b0 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 41
-
-
- 1807 01b1 3B       		.uleb128 0x3b
- 1808 01b2 05       		.uleb128 0x5
- 1809 01b3 27       		.uleb128 0x27
- 1810 01b4 19       		.uleb128 0x19
- 1811 01b5 49       		.uleb128 0x49
- 1812 01b6 13       		.uleb128 0x13
- 1813 01b7 11       		.uleb128 0x11
- 1814 01b8 01       		.uleb128 0x1
- 1815 01b9 12       		.uleb128 0x12
- 1816 01ba 06       		.uleb128 0x6
- 1817 01bb 40       		.uleb128 0x40
- 1818 01bc 18       		.uleb128 0x18
- 1819 01bd 9742     		.uleb128 0x2117
- 1820 01bf 19       		.uleb128 0x19
- 1821 01c0 00       		.byte	0
- 1822 01c1 00       		.byte	0
- 1823 01c2 1F       		.uleb128 0x1f
- 1824 01c3 05       		.uleb128 0x5
- 1825 01c4 00       		.byte	0
- 1826 01c5 03       		.uleb128 0x3
- 1827 01c6 0E       		.uleb128 0xe
- 1828 01c7 3A       		.uleb128 0x3a
- 1829 01c8 0B       		.uleb128 0xb
- 1830 01c9 3B       		.uleb128 0x3b
- 1831 01ca 0B       		.uleb128 0xb
- 1832 01cb 49       		.uleb128 0x49
- 1833 01cc 13       		.uleb128 0x13
- 1834 01cd 02       		.uleb128 0x2
- 1835 01ce 17       		.uleb128 0x17
- 1836 01cf 00       		.byte	0
- 1837 01d0 00       		.byte	0
- 1838 01d1 20       		.uleb128 0x20
- 1839 01d2 34       		.uleb128 0x34
- 1840 01d3 00       		.byte	0
- 1841 01d4 03       		.uleb128 0x3
- 1842 01d5 0E       		.uleb128 0xe
- 1843 01d6 3A       		.uleb128 0x3a
- 1844 01d7 0B       		.uleb128 0xb
- 1845 01d8 3B       		.uleb128 0x3b
- 1846 01d9 05       		.uleb128 0x5
- 1847 01da 49       		.uleb128 0x49
- 1848 01db 13       		.uleb128 0x13
- 1849 01dc 3F       		.uleb128 0x3f
- 1850 01dd 19       		.uleb128 0x19
- 1851 01de 3C       		.uleb128 0x3c
- 1852 01df 19       		.uleb128 0x19
- 1853 01e0 00       		.byte	0
- 1854 01e1 00       		.byte	0
- 1855 01e2 21       		.uleb128 0x21
- 1856 01e3 34       		.uleb128 0x34
- 1857 01e4 00       		.byte	0
- 1858 01e5 03       		.uleb128 0x3
- 1859 01e6 0E       		.uleb128 0xe
- 1860 01e7 3A       		.uleb128 0x3a
- 1861 01e8 0B       		.uleb128 0xb
- 1862 01e9 3B       		.uleb128 0x3b
- 1863 01ea 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 42
-
-
- 1864 01eb 49       		.uleb128 0x49
- 1865 01ec 13       		.uleb128 0x13
- 1866 01ed 3F       		.uleb128 0x3f
- 1867 01ee 19       		.uleb128 0x19
- 1868 01ef 02       		.uleb128 0x2
- 1869 01f0 18       		.uleb128 0x18
- 1870 01f1 00       		.byte	0
- 1871 01f2 00       		.byte	0
- 1872 01f3 22       		.uleb128 0x22
- 1873 01f4 2E       		.uleb128 0x2e
- 1874 01f5 00       		.byte	0
- 1875 01f6 3F       		.uleb128 0x3f
- 1876 01f7 19       		.uleb128 0x19
- 1877 01f8 3C       		.uleb128 0x3c
- 1878 01f9 19       		.uleb128 0x19
- 1879 01fa 6E       		.uleb128 0x6e
- 1880 01fb 0E       		.uleb128 0xe
- 1881 01fc 03       		.uleb128 0x3
- 1882 01fd 0E       		.uleb128 0xe
- 1883 01fe 3A       		.uleb128 0x3a
- 1884 01ff 0B       		.uleb128 0xb
- 1885 0200 3B       		.uleb128 0x3b
- 1886 0201 0B       		.uleb128 0xb
- 1887 0202 00       		.byte	0
- 1888 0203 00       		.byte	0
- 1889 0204 00       		.byte	0
- 1890              		.section	.debug_loc,"",%progbits
- 1891              	.Ldebug_loc0:
- 1892              	.LLST0:
- 1893 0000 68000000 		.4byte	.LVL9
- 1894 0004 DF000000 		.4byte	.LVL11-1
- 1895 0008 0100     		.2byte	0x1
- 1896 000a 53       		.byte	0x53
- 1897 000b 00000000 		.4byte	0
- 1898 000f 00000000 		.4byte	0
- 1899              	.LLST1:
- 1900 0013 08000000 		.4byte	.LVL0
- 1901 0017 2C000000 		.4byte	.LVL1
- 1902 001b 0100     		.2byte	0x1
- 1903 001d 50       		.byte	0x50
- 1904 001e 32000000 		.4byte	.LVL3
- 1905 0022 46000000 		.4byte	.LVL4
- 1906 0026 0100     		.2byte	0x1
- 1907 0028 50       		.byte	0x50
- 1908 0029 4E000000 		.4byte	.LVL6
- 1909 002d 62000000 		.4byte	.LVL7
- 1910 0031 0100     		.2byte	0x1
- 1911 0033 50       		.byte	0x50
- 1912 0034 00000000 		.4byte	0
- 1913 0038 00000000 		.4byte	0
- 1914              	.LLST2:
- 1915 003c 00000000 		.4byte	.LVL20
- 1916 0040 02000000 		.4byte	.LVL21
- 1917 0044 0100     		.2byte	0x1
- 1918 0046 50       		.byte	0x50
- 1919 0047 02000000 		.4byte	.LVL21
- 1920 004b 10000000 		.4byte	.LFE70
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 43
-
-
- 1921 004f 0400     		.2byte	0x4
- 1922 0051 F3       		.byte	0xf3
- 1923 0052 01       		.uleb128 0x1
- 1924 0053 50       		.byte	0x50
- 1925 0054 9F       		.byte	0x9f
- 1926 0055 00000000 		.4byte	0
- 1927 0059 00000000 		.4byte	0
- 1928              	.LLST3:
- 1929 005d 04000000 		.4byte	.LVL22
- 1930 0061 06000000 		.4byte	.LVL23
- 1931 0065 0500     		.2byte	0x5
- 1932 0067 70       		.byte	0x70
- 1933 0068 00       		.sleb128 0
- 1934 0069 35       		.byte	0x35
- 1935 006a 25       		.byte	0x25
- 1936 006b 9F       		.byte	0x9f
- 1937 006c 00000000 		.4byte	0
- 1938 0070 00000000 		.4byte	0
- 1939              	.LLST4:
- 1940 0074 00000000 		.4byte	.LVL28
- 1941 0078 07000000 		.4byte	.LVL29-1
- 1942 007c 0100     		.2byte	0x1
- 1943 007e 50       		.byte	0x50
- 1944 007f 07000000 		.4byte	.LVL29-1
- 1945 0083 1A000000 		.4byte	.LFE65
- 1946 0087 0100     		.2byte	0x1
- 1947 0089 54       		.byte	0x54
- 1948 008a 00000000 		.4byte	0
- 1949 008e 00000000 		.4byte	0
- 1950              		.section	.debug_aranges,"",%progbits
- 1951 0000 7C000000 		.4byte	0x7c
- 1952 0004 0200     		.2byte	0x2
- 1953 0006 00000000 		.4byte	.Ldebug_info0
- 1954 000a 04       		.byte	0x4
- 1955 000b 00       		.byte	0
- 1956 000c 0000     		.2byte	0
- 1957 000e 0000     		.2byte	0
- 1958 0010 00000000 		.4byte	.LFB67
- 1959 0014 10010000 		.4byte	.LFE67-.LFB67
- 1960 0018 00000000 		.4byte	.LFB68
- 1961 001c 0C000000 		.4byte	.LFE68-.LFB68
- 1962 0020 00000000 		.4byte	.LFB69
- 1963 0024 0C000000 		.4byte	.LFE69-.LFB69
- 1964 0028 00000000 		.4byte	.LFB70
- 1965 002c 10000000 		.4byte	.LFE70-.LFB70
- 1966 0030 00000000 		.4byte	.LFB71
- 1967 0034 0C000000 		.4byte	.LFE71-.LFB71
- 1968 0038 00000000 		.4byte	.LFB72
- 1969 003c 0C000000 		.4byte	.LFE72-.LFB72
- 1970 0040 00000000 		.4byte	.LFB73
- 1971 0044 10000000 		.4byte	.LFE73-.LFB73
- 1972 0048 00000000 		.4byte	.LFB74
- 1973 004c 0C000000 		.4byte	.LFE74-.LFB74
- 1974 0050 00000000 		.4byte	.LFB64
- 1975 0054 1C000000 		.4byte	.LFE64-.LFB64
- 1976 0058 00000000 		.4byte	.LFB65
- 1977 005c 1A000000 		.4byte	.LFE65-.LFB65
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 44
-
-
- 1978 0060 00000000 		.4byte	.LFB66
- 1979 0064 14000000 		.4byte	.LFE66-.LFB66
- 1980 0068 00000000 		.4byte	.LFB75
- 1981 006c 0C000000 		.4byte	.LFE75-.LFB75
- 1982 0070 00000000 		.4byte	.LFB76
- 1983 0074 0C000000 		.4byte	.LFE76-.LFB76
- 1984 0078 00000000 		.4byte	0
- 1985 007c 00000000 		.4byte	0
- 1986              		.section	.debug_ranges,"",%progbits
- 1987              	.Ldebug_ranges0:
- 1988 0000 00000000 		.4byte	.LFB67
- 1989 0004 10010000 		.4byte	.LFE67
- 1990 0008 00000000 		.4byte	.LFB68
- 1991 000c 0C000000 		.4byte	.LFE68
- 1992 0010 00000000 		.4byte	.LFB69
- 1993 0014 0C000000 		.4byte	.LFE69
- 1994 0018 00000000 		.4byte	.LFB70
- 1995 001c 10000000 		.4byte	.LFE70
- 1996 0020 00000000 		.4byte	.LFB71
- 1997 0024 0C000000 		.4byte	.LFE71
- 1998 0028 00000000 		.4byte	.LFB72
- 1999 002c 0C000000 		.4byte	.LFE72
- 2000 0030 00000000 		.4byte	.LFB73
- 2001 0034 10000000 		.4byte	.LFE73
- 2002 0038 00000000 		.4byte	.LFB74
- 2003 003c 0C000000 		.4byte	.LFE74
- 2004 0040 00000000 		.4byte	.LFB64
- 2005 0044 1C000000 		.4byte	.LFE64
- 2006 0048 00000000 		.4byte	.LFB65
- 2007 004c 1A000000 		.4byte	.LFE65
- 2008 0050 00000000 		.4byte	.LFB66
- 2009 0054 14000000 		.4byte	.LFE66
- 2010 0058 00000000 		.4byte	.LFB75
- 2011 005c 0C000000 		.4byte	.LFE75
- 2012 0060 00000000 		.4byte	.LFB76
- 2013 0064 0C000000 		.4byte	.LFE76
- 2014 0068 00000000 		.4byte	0
- 2015 006c 00000000 		.4byte	0
- 2016              		.section	.debug_line,"",%progbits
- 2017              	.Ldebug_line0:
- 2018 0000 0D030000 		.section	.debug_str,"MS",%progbits,1
- 2018      0200E401 
- 2018      00000201 
- 2018      FB0E0D00 
- 2018      01010101 
- 2019              	.LASF69:
- 2020 0000 72785F69 		.ascii	"rx_index\000"
- 2020      6E646578 
- 2020      00
- 2021              	.LASF82:
- 2022 0009 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
- 2022      73657273 
- 2022      5C70616A 
- 2022      6F685C70 
- 2022      726F6A65 
- 2023 0036 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
- 2023      646F662E 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 45
-
-
- 2023      63796473 
- 2023      6E00
- 2024              	.LASF54:
- 2025 0044 4E434F5F 		.ascii	"NCO_ISR_GetPriority\000"
- 2025      4953525F 
- 2025      47657450 
- 2025      72696F72 
- 2025      69747900 
- 2026              	.LASF78:
- 2027 0058 4A325F53 		.ascii	"J2_STEP_Write\000"
- 2027      5445505F 
- 2027      57726974 
- 2027      6500
- 2028              	.LASF52:
- 2029 0066 7072696F 		.ascii	"priority\000"
- 2029      72697479 
- 2029      00
- 2030              	.LASF79:
- 2031 006f 4A335F53 		.ascii	"J3_STEP_Write\000"
- 2031      5445505F 
- 2031      57726974 
- 2031      6500
- 2032              	.LASF67:
- 2033 007d 6D6F7665 		.ascii	"move_queue\000"
- 2033      5F717565 
- 2033      756500
- 2034              	.LASF5:
- 2035 0088 73686F72 		.ascii	"short int\000"
- 2035      7420696E 
- 2035      7400
- 2036              	.LASF57:
- 2037 0092 4E434F5F 		.ascii	"NCO_ISR_Start\000"
- 2037      4953525F 
- 2037      53746172 
- 2037      7400
- 2038              	.LASF10:
- 2039 00a0 73697A65 		.ascii	"sizetype\000"
- 2039      74797065 
- 2039      00
- 2040              	.LASF66:
- 2041 00a9 6D73675F 		.ascii	"msg_buff\000"
- 2041      62756666 
- 2041      00
- 2042              	.LASF42:
- 2043 00b2 64697265 		.ascii	"direction\000"
- 2043      6374696F 
- 2043      6E00
- 2044              	.LASF59:
- 2045 00bc 4E434F5F 		.ascii	"NCO_ISR_Stop\000"
- 2045      4953525F 
- 2045      53746F70 
- 2045      00
- 2046              	.LASF47:
- 2047 00c9 4E434F5F 		.ascii	"NCO_ISR_Interrupt\000"
- 2047      4953525F 
- 2047      496E7465 
- 2047      72727570 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 46
-
-
- 2047      7400
- 2048              	.LASF24:
- 2049 00db 74756E69 		.ascii	"tuningWord\000"
- 2049      6E67576F 
- 2049      726400
- 2050              	.LASF38:
- 2051 00e6 68656164 		.ascii	"head\000"
- 2051      00
- 2052              	.LASF17:
- 2053 00eb 696E7431 		.ascii	"int16\000"
- 2053      3600
- 2054              	.LASF71:
- 2055 00f1 4A315F45 		.ascii	"J1_EN_Write\000"
- 2055      4E5F5772 
- 2055      69746500 
- 2056              	.LASF64:
- 2057 00fd 4A315F68 		.ascii	"J1_home\000"
- 2057      6F6D6500 
- 2058              	.LASF63:
- 2059 0105 72656164 		.ascii	"read_angle_command\000"
- 2059      5F616E67 
- 2059      6C655F63 
- 2059      6F6D6D61 
- 2059      6E6400
- 2060              	.LASF55:
- 2061 0118 4E434F5F 		.ascii	"NCO_ISR_Enable\000"
- 2061      4953525F 
- 2061      456E6162 
- 2061      6C6500
- 2062              	.LASF19:
- 2063 0127 666C6F61 		.ascii	"float\000"
- 2063      7400
- 2064              	.LASF53:
- 2065 012d 4E434F5F 		.ascii	"NCO_ISR_GetVector\000"
- 2065      4953525F 
- 2065      47657456 
- 2065      6563746F 
- 2065      7200
- 2066              	.LASF28:
- 2067 013f 61636375 		.ascii	"accumulator\000"
- 2067      6D756C61 
- 2067      746F7200 
- 2068              	.LASF1:
- 2069 014b 6C6F6E67 		.ascii	"long long int\000"
- 2069      206C6F6E 
- 2069      6720696E 
- 2069      7400
- 2070              	.LASF27:
- 2071 0159 6C696D69 		.ascii	"limit\000"
- 2071      7400
- 2072              	.LASF61:
- 2073 015f 4E434F5F 		.ascii	"NCO_ISR_ClearPending\000"
- 2073      4953525F 
- 2073      436C6561 
- 2073      7250656E 
- 2073      64696E67 
- 2074              	.LASF50:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 47
-
-
- 2075 0174 4E434F5F 		.ascii	"NCO_ISR_SetPriority\000"
- 2075      4953525F 
- 2075      53657450 
- 2075      72696F72 
- 2075      69747900 
- 2076              	.LASF7:
- 2077 0188 6C6F6E67 		.ascii	"long int\000"
- 2077      20696E74 
- 2077      00
- 2078              	.LASF56:
- 2079 0191 4E434F5F 		.ascii	"NCO_ISR_Disable\000"
- 2079      4953525F 
- 2079      44697361 
- 2079      626C6500 
- 2080              	.LASF51:
- 2081 01a1 61646472 		.ascii	"address\000"
- 2081      65737300 
- 2082              	.LASF49:
- 2083 01a9 72616D56 		.ascii	"ramVectorTable\000"
- 2083      6563746F 
- 2083      72546162 
- 2083      6C6500
- 2084              	.LASF81:
- 2085 01b8 47656E65 		.ascii	"Generated_Source\\PSoC5\\NCO_ISR.c\000"
- 2085      72617465 
- 2085      645F536F 
- 2085      75726365 
- 2085      5C50536F 
- 2086              	.LASF68:
- 2087 01d9 72785F62 		.ascii	"rx_buffer\000"
- 2087      75666665 
- 2087      7200
- 2088              	.LASF65:
- 2089 01e3 6A6F696E 		.ascii	"joints\000"
- 2089      747300
- 2090              	.LASF32:
- 2091 01ea 4A6F696E 		.ascii	"Joint\000"
- 2091      7400
- 2092              	.LASF4:
- 2093 01f0 756E7369 		.ascii	"unsigned char\000"
- 2093      676E6564 
- 2093      20636861 
- 2093      7200
- 2094              	.LASF2:
- 2095 01fe 6C6F6E67 		.ascii	"long double\000"
- 2095      20646F75 
- 2095      626C6500 
- 2096              	.LASF39:
- 2097 020a 7461696C 		.ascii	"tail\000"
- 2097      00
- 2098              	.LASF23:
- 2099 020f 63796973 		.ascii	"cyisraddress\000"
- 2099      72616464 
- 2099      72657373 
- 2099      00
- 2100              	.LASF60:
- 2101 021c 4E434F5F 		.ascii	"NCO_ISR_SetPending\000"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 48
-
-
- 2101      4953525F 
- 2101      53657450 
- 2101      656E6469 
- 2101      6E6700
- 2102              	.LASF77:
- 2103 022f 4A315F53 		.ascii	"J1_STEP_Write\000"
- 2103      5445505F 
- 2103      57726974 
- 2103      6500
- 2104              	.LASF3:
- 2105 023d 7369676E 		.ascii	"signed char\000"
- 2105      65642063 
- 2105      68617200 
- 2106              	.LASF45:
- 2107 0249 4D6F7665 		.ascii	"Move_Queue\000"
- 2107      5F517565 
- 2107      756500
- 2108              	.LASF9:
- 2109 0254 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2109      206C6F6E 
- 2109      6720756E 
- 2109      7369676E 
- 2109      65642069 
- 2110              	.LASF73:
- 2111 026b 4A335F45 		.ascii	"J3_EN_Write\000"
- 2111      4E5F5772 
- 2111      69746500 
- 2112              	.LASF41:
- 2113 0277 4D657373 		.ascii	"Message_Buff\000"
- 2113      6167655F 
- 2113      42756666 
- 2113      00
- 2114              	.LASF0:
- 2115 0284 756E7369 		.ascii	"unsigned int\000"
- 2115      676E6564 
- 2115      20696E74 
- 2115      00
- 2116              	.LASF37:
- 2117 0291 6D736773 		.ascii	"msgs\000"
- 2117      00
- 2118              	.LASF8:
- 2119 0296 6C6F6E67 		.ascii	"long unsigned int\000"
- 2119      20756E73 
- 2119      69676E65 
- 2119      6420696E 
- 2119      7400
- 2120              	.LASF70:
- 2121 02a8 6D6F7665 		.ascii	"move_queue_get\000"
- 2121      5F717565 
- 2121      75655F67 
- 2121      657400
- 2122              	.LASF84:
- 2123 02b7 4E434F5F 		.ascii	"NCO_ISR_GetState\000"
- 2123      4953525F 
- 2123      47657453 
- 2123      74617465 
- 2123      00
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 49
-
-
- 2124              	.LASF22:
- 2125 02c8 72656733 		.ascii	"reg32\000"
- 2125      3200
- 2126              	.LASF6:
- 2127 02ce 73686F72 		.ascii	"short unsigned int\000"
- 2127      7420756E 
- 2127      7369676E 
- 2127      65642069 
- 2127      6E7400
- 2128              	.LASF30:
- 2129 02e1 616E676C 		.ascii	"angleOld\000"
- 2129      654F6C64 
- 2129      00
- 2130              	.LASF40:
- 2131 02ea 73697A65 		.ascii	"size\000"
- 2131      00
- 2132              	.LASF11:
- 2133 02ef 63686172 		.ascii	"char\000"
- 2133      00
- 2134              	.LASF72:
- 2135 02f4 4A325F45 		.ascii	"J2_EN_Write\000"
- 2135      4E5F5772 
- 2135      69746500 
- 2136              	.LASF34:
- 2137 0300 6A6F696E 		.ascii	"joint\000"
- 2137      7400
- 2138              	.LASF13:
- 2139 0306 696E7433 		.ascii	"int32_t\000"
- 2139      325F7400 
- 2140              	.LASF14:
- 2141 030e 75696E74 		.ascii	"uint8\000"
- 2141      3800
- 2142              	.LASF43:
- 2143 0314 4D6F7665 		.ascii	"Move\000"
- 2143      00
- 2144              	.LASF76:
- 2145 0319 4A335F44 		.ascii	"J3_DIR_Write\000"
- 2145      49525F57 
- 2145      72697465 
- 2145      00
- 2146              	.LASF35:
- 2147 0326 64617461 		.ascii	"data\000"
- 2147      00
- 2148              	.LASF15:
- 2149 032b 75696E74 		.ascii	"uint16\000"
- 2149      313600
- 2150              	.LASF26:
- 2151 0332 64757261 		.ascii	"duration\000"
- 2151      74696F6E 
- 2151      00
- 2152              	.LASF31:
- 2153 033b 686F6D65 		.ascii	"homed\000"
- 2153      6400
- 2154              	.LASF16:
- 2155 0341 75696E74 		.ascii	"uint32\000"
- 2155      333200
- 2156              	.LASF48:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 50
-
-
- 2157 0348 4E434F5F 		.ascii	"NCO_ISR_SetVector\000"
- 2157      4953525F 
- 2157      53657456 
- 2157      6563746F 
- 2157      7200
- 2158              	.LASF21:
- 2159 035a 72656738 		.ascii	"reg8\000"
- 2159      00
- 2160              	.LASF83:
- 2161 035f 6D657373 		.ascii	"message\000"
- 2161      61676500 
- 2162              	.LASF18:
- 2163 0367 696E7433 		.ascii	"int32\000"
- 2163      3200
- 2164              	.LASF20:
- 2165 036d 646F7562 		.ascii	"double\000"
- 2165      6C6500
- 2166              	.LASF75:
- 2167 0374 4A325F44 		.ascii	"J2_DIR_Write\000"
- 2167      49525F57 
- 2167      72697465 
- 2167      00
- 2168              	.LASF44:
- 2169 0381 6D6F7665 		.ascii	"moves\000"
- 2169      7300
- 2170              	.LASF12:
- 2171 0387 5F5F696E 		.ascii	"__int32_t\000"
- 2171      7433325F 
- 2171      7400
- 2172              	.LASF29:
- 2173 0391 616E676C 		.ascii	"angle\000"
- 2173      6500
- 2174              	.LASF33:
- 2175 0397 636F6D6D 		.ascii	"command\000"
- 2175      616E6400 
- 2176              	.LASF74:
- 2177 039f 4A315F44 		.ascii	"J1_DIR_Write\000"
- 2177      49525F57 
- 2177      72697465 
- 2177      00
- 2178              	.LASF58:
- 2179 03ac 4E434F5F 		.ascii	"NCO_ISR_StartEx\000"
- 2179      4953525F 
- 2179      53746172 
- 2179      74457800 
- 2180              	.LASF36:
- 2181 03bc 4D657373 		.ascii	"Message\000"
- 2181      61676500 
- 2182              	.LASF62:
- 2183 03c4 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 2183      52784275 
- 2183      66666572 
- 2183      00
- 2184              	.LASF80:
- 2185 03d1 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2185      43313120 
- 2185      352E342E 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccyrXM3J.s 			page 51
-
-
- 2185      31203230 
- 2185      31363036 
- 2186 0404 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2186      20726576 
- 2186      6973696F 
- 2186      6E203233 
- 2186      37373135 
- 2187 0437 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2187      66756E63 
- 2187      74696F6E 
- 2187      2D736563 
- 2187      74696F6E 
- 2188              	.LASF25:
- 2189 045f 73746570 		.ascii	"step\000"
- 2189      00
- 2190              	.LASF46:
- 2191 0464 6D6F7665 		.ascii	"move\000"
- 2191      00
- 2192              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 559              		.loc 1 458 0
+ 560 0000 0122     		movs	r2, #1
+ 561 0002 014B     		ldr	r3, .L50
+ 562 0004 1A60     		str	r2, [r3]
+ 563 0006 7047     		bx	lr
+ 564              	.L51:
+ 565              		.align	2
+ 566              	.L50:
+ 567 0008 80E200E0 		.word	-536812928
+ 568              		.cfi_endproc
+ 569              	.LFE76:
+ 570              		.size	NCO_ISR_ClearPending, .-NCO_ISR_ClearPending
+ 571              		.comm	TransmitBuffer,80,4
+ 572              		.comm	rx_index,4,4
+ 573              		.comm	rx_buffer,80,4
+ 574              		.comm	move_queue,1208,4
+ 575              		.comm	msg_buff,2006,4
+ 576              		.comm	joints,108,4
+ 577              		.comm	J1_home,4,4
+ 578              		.comm	read_angle_command,2,2
+ 579              		.text
+ 580              	.Letext0:
+ 581              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 582              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 583              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 584              		.file 5 "./joints.h"
+ 585              		.file 6 "./comms.h"
+ 586              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ 587              		.file 8 "./as5048.h"
+ 588              		.file 9 "Generated_Source\\PSoC5\\J1_EN.h"
+ 589              		.file 10 "Generated_Source\\PSoC5\\J2_EN.h"
+ 590              		.file 11 "Generated_Source\\PSoC5\\J3_EN.h"
+ 591              		.file 12 "Generated_Source\\PSoC5\\J1_DIR.h"
+ 592              		.file 13 "Generated_Source\\PSoC5\\J2_DIR.h"
+ 593              		.file 14 "Generated_Source\\PSoC5\\J3_DIR.h"
+ 594              		.file 15 "Generated_Source\\PSoC5\\J1_STEP.h"
+ 595              		.file 16 "Generated_Source\\PSoC5\\J2_STEP.h"
+ 596              		.file 17 "Generated_Source\\PSoC5\\J3_STEP.h"
+ 597              		.section	.debug_info,"",%progbits
+ 598              	.Ldebug_info0:
+ 599 0000 F4060000 		.4byte	0x6f4
+ 600 0004 0400     		.2byte	0x4
+ 601 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 602 000a 04       		.byte	0x4
+ 603 000b 01       		.uleb128 0x1
+ 604 000c E5030000 		.4byte	.LASF82
+ 605 0010 0C       		.byte	0xc
+ 606 0011 C7010000 		.4byte	.LASF83
+ 607 0015 09000000 		.4byte	.LASF84
+ 608 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 609 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 20
+
+
+ 610 0021 00000000 		.4byte	.Ldebug_line0
+ 611 0025 02       		.uleb128 0x2
+ 612 0026 04       		.byte	0x4
+ 613 0027 05       		.byte	0x5
+ 614 0028 696E7400 		.ascii	"int\000"
+ 615 002c 03       		.uleb128 0x3
+ 616 002d 04       		.byte	0x4
+ 617 002e 07       		.byte	0x7
+ 618 002f 93020000 		.4byte	.LASF0
+ 619 0033 03       		.uleb128 0x3
+ 620 0034 08       		.byte	0x8
+ 621 0035 05       		.byte	0x5
+ 622 0036 5A010000 		.4byte	.LASF1
+ 623 003a 03       		.uleb128 0x3
+ 624 003b 08       		.byte	0x8
+ 625 003c 04       		.byte	0x4
+ 626 003d 0D020000 		.4byte	.LASF2
+ 627 0041 03       		.uleb128 0x3
+ 628 0042 01       		.byte	0x1
+ 629 0043 06       		.byte	0x6
+ 630 0044 4C020000 		.4byte	.LASF3
+ 631 0048 03       		.uleb128 0x3
+ 632 0049 01       		.byte	0x1
+ 633 004a 08       		.byte	0x8
+ 634 004b FF010000 		.4byte	.LASF4
+ 635 004f 03       		.uleb128 0x3
+ 636 0050 02       		.byte	0x2
+ 637 0051 05       		.byte	0x5
+ 638 0052 88000000 		.4byte	.LASF5
+ 639 0056 03       		.uleb128 0x3
+ 640 0057 02       		.byte	0x2
+ 641 0058 07       		.byte	0x7
+ 642 0059 E2020000 		.4byte	.LASF6
+ 643 005d 04       		.uleb128 0x4
+ 644 005e 9B030000 		.4byte	.LASF12
+ 645 0062 02       		.byte	0x2
+ 646 0063 3F       		.byte	0x3f
+ 647 0064 68000000 		.4byte	0x68
+ 648 0068 03       		.uleb128 0x3
+ 649 0069 04       		.byte	0x4
+ 650 006a 05       		.byte	0x5
+ 651 006b 97010000 		.4byte	.LASF7
+ 652 006f 03       		.uleb128 0x3
+ 653 0070 04       		.byte	0x4
+ 654 0071 07       		.byte	0x7
+ 655 0072 A5020000 		.4byte	.LASF8
+ 656 0076 03       		.uleb128 0x3
+ 657 0077 08       		.byte	0x8
+ 658 0078 07       		.byte	0x7
+ 659 0079 63020000 		.4byte	.LASF9
+ 660 007d 03       		.uleb128 0x3
+ 661 007e 04       		.byte	0x4
+ 662 007f 07       		.byte	0x7
+ 663 0080 A0000000 		.4byte	.LASF10
+ 664 0084 03       		.uleb128 0x3
+ 665 0085 01       		.byte	0x1
+ 666 0086 08       		.byte	0x8
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 21
+
+
+ 667 0087 03030000 		.4byte	.LASF11
+ 668 008b 05       		.uleb128 0x5
+ 669 008c 04       		.byte	0x4
+ 670 008d 91000000 		.4byte	0x91
+ 671 0091 06       		.uleb128 0x6
+ 672 0092 04       		.uleb128 0x4
+ 673 0093 1A030000 		.4byte	.LASF13
+ 674 0097 03       		.byte	0x3
+ 675 0098 2C       		.byte	0x2c
+ 676 0099 5D000000 		.4byte	0x5d
+ 677 009d 07       		.uleb128 0x7
+ 678 009e 22030000 		.4byte	.LASF14
+ 679 00a2 04       		.byte	0x4
+ 680 00a3 E401     		.2byte	0x1e4
+ 681 00a5 48000000 		.4byte	0x48
+ 682 00a9 07       		.uleb128 0x7
+ 683 00aa 3F030000 		.4byte	.LASF15
+ 684 00ae 04       		.byte	0x4
+ 685 00af E501     		.2byte	0x1e5
+ 686 00b1 56000000 		.4byte	0x56
+ 687 00b5 07       		.uleb128 0x7
+ 688 00b6 55030000 		.4byte	.LASF16
+ 689 00ba 04       		.byte	0x4
+ 690 00bb E601     		.2byte	0x1e6
+ 691 00bd 6F000000 		.4byte	0x6f
+ 692 00c1 07       		.uleb128 0x7
+ 693 00c2 FA000000 		.4byte	.LASF17
+ 694 00c6 04       		.byte	0x4
+ 695 00c7 E801     		.2byte	0x1e8
+ 696 00c9 4F000000 		.4byte	0x4f
+ 697 00cd 07       		.uleb128 0x7
+ 698 00ce 7B030000 		.4byte	.LASF18
+ 699 00d2 04       		.byte	0x4
+ 700 00d3 E901     		.2byte	0x1e9
+ 701 00d5 68000000 		.4byte	0x68
+ 702 00d9 03       		.uleb128 0x3
+ 703 00da 04       		.byte	0x4
+ 704 00db 04       		.byte	0x4
+ 705 00dc 36010000 		.4byte	.LASF19
+ 706 00e0 03       		.uleb128 0x3
+ 707 00e1 08       		.byte	0x8
+ 708 00e2 04       		.byte	0x4
+ 709 00e3 81030000 		.4byte	.LASF20
+ 710 00e7 07       		.uleb128 0x7
+ 711 00e8 6E030000 		.4byte	.LASF21
+ 712 00ec 04       		.byte	0x4
+ 713 00ed 8E02     		.2byte	0x28e
+ 714 00ef F3000000 		.4byte	0xf3
+ 715 00f3 08       		.uleb128 0x8
+ 716 00f4 9D000000 		.4byte	0x9d
+ 717 00f8 07       		.uleb128 0x7
+ 718 00f9 DC020000 		.4byte	.LASF22
+ 719 00fd 04       		.byte	0x4
+ 720 00fe 9002     		.2byte	0x290
+ 721 0100 04010000 		.4byte	0x104
+ 722 0104 08       		.uleb128 0x8
+ 723 0105 B5000000 		.4byte	0xb5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 22
+
+
+ 724 0109 07       		.uleb128 0x7
+ 725 010a 1E020000 		.4byte	.LASF23
+ 726 010e 04       		.byte	0x4
+ 727 010f A002     		.2byte	0x2a0
+ 728 0111 8B000000 		.4byte	0x8b
+ 729 0115 09       		.uleb128 0x9
+ 730 0116 24       		.byte	0x24
+ 731 0117 05       		.byte	0x5
+ 732 0118 26       		.byte	0x26
+ 733 0119 A2010000 		.4byte	0x1a2
+ 734 011d 0A       		.uleb128 0xa
+ 735 011e DB000000 		.4byte	.LASF24
+ 736 0122 05       		.byte	0x5
+ 737 0123 27       		.byte	0x27
+ 738 0124 B5000000 		.4byte	0xb5
+ 739 0128 00       		.byte	0
+ 740 0129 0A       		.uleb128 0xa
+ 741 012a C6020000 		.4byte	.LASF25
+ 742 012e 05       		.byte	0x5
+ 743 012f 28       		.byte	0x28
+ 744 0130 84000000 		.4byte	0x84
+ 745 0134 04       		.byte	0x4
+ 746 0135 0B       		.uleb128 0xb
+ 747 0136 64697200 		.ascii	"dir\000"
+ 748 013a 05       		.byte	0x5
+ 749 013b 29       		.byte	0x29
+ 750 013c 84000000 		.4byte	0x84
+ 751 0140 05       		.byte	0x5
+ 752 0141 0B       		.uleb128 0xb
+ 753 0142 706F7300 		.ascii	"pos\000"
+ 754 0146 05       		.byte	0x5
+ 755 0147 2A       		.byte	0x2a
+ 756 0148 CD000000 		.4byte	0xcd
+ 757 014c 08       		.byte	0x8
+ 758 014d 0A       		.uleb128 0xa
+ 759 014e 73040000 		.4byte	.LASF26
+ 760 0152 05       		.byte	0x5
+ 761 0153 2B       		.byte	0x2b
+ 762 0154 CD000000 		.4byte	0xcd
+ 763 0158 0C       		.byte	0xc
+ 764 0159 0A       		.uleb128 0xa
+ 765 015a 46030000 		.4byte	.LASF27
+ 766 015e 05       		.byte	0x5
+ 767 015f 2C       		.byte	0x2c
+ 768 0160 B5000000 		.4byte	0xb5
+ 769 0164 10       		.byte	0x10
+ 770 0165 0A       		.uleb128 0xa
+ 771 0166 68010000 		.4byte	.LASF28
+ 772 016a 05       		.byte	0x5
+ 773 016b 2D       		.byte	0x2d
+ 774 016c 84000000 		.4byte	0x84
+ 775 0170 14       		.byte	0x14
+ 776 0171 0A       		.uleb128 0xa
+ 777 0172 4E010000 		.4byte	.LASF29
+ 778 0176 05       		.byte	0x5
+ 779 0177 2E       		.byte	0x2e
+ 780 0178 B5000000 		.4byte	0xb5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 23
+
+
+ 781 017c 18       		.byte	0x18
+ 782 017d 0A       		.uleb128 0xa
+ 783 017e A5030000 		.4byte	.LASF30
+ 784 0182 05       		.byte	0x5
+ 785 0183 2F       		.byte	0x2f
+ 786 0184 C1000000 		.4byte	0xc1
+ 787 0188 1C       		.byte	0x1c
+ 788 0189 0A       		.uleb128 0xa
+ 789 018a F5020000 		.4byte	.LASF31
+ 790 018e 05       		.byte	0x5
+ 791 018f 30       		.byte	0x30
+ 792 0190 C1000000 		.4byte	0xc1
+ 793 0194 1E       		.byte	0x1e
+ 794 0195 0A       		.uleb128 0xa
+ 795 0196 4F030000 		.4byte	.LASF32
+ 796 019a 05       		.byte	0x5
+ 797 019b 31       		.byte	0x31
+ 798 019c 84000000 		.4byte	0x84
+ 799 01a0 20       		.byte	0x20
+ 800 01a1 00       		.byte	0
+ 801 01a2 04       		.uleb128 0x4
+ 802 01a3 F9010000 		.4byte	.LASF33
+ 803 01a7 05       		.byte	0x5
+ 804 01a8 32       		.byte	0x32
+ 805 01a9 15010000 		.4byte	0x115
+ 806 01ad 0C       		.uleb128 0xc
+ 807 01ae 73030000 		.4byte	.LASF85
+ 808 01b2 14       		.byte	0x14
+ 809 01b3 06       		.byte	0x6
+ 810 01b4 20       		.byte	0x20
+ 811 01b5 DE010000 		.4byte	0x1de
+ 812 01b9 0A       		.uleb128 0xa
+ 813 01ba AB030000 		.4byte	.LASF34
+ 814 01be 06       		.byte	0x6
+ 815 01bf 21       		.byte	0x21
+ 816 01c0 A9000000 		.4byte	0xa9
+ 817 01c4 00       		.byte	0
+ 818 01c5 0A       		.uleb128 0xa
+ 819 01c6 14030000 		.4byte	.LASF35
+ 820 01ca 06       		.byte	0x6
+ 821 01cb 22       		.byte	0x22
+ 822 01cc 9D000000 		.4byte	0x9d
+ 823 01d0 02       		.byte	0x2
+ 824 01d1 0A       		.uleb128 0xa
+ 825 01d2 3A030000 		.4byte	.LASF36
+ 826 01d6 06       		.byte	0x6
+ 827 01d7 23       		.byte	0x23
+ 828 01d8 DE010000 		.4byte	0x1de
+ 829 01dc 03       		.byte	0x3
+ 830 01dd 00       		.byte	0
+ 831 01de 0D       		.uleb128 0xd
+ 832 01df 9D000000 		.4byte	0x9d
+ 833 01e3 EE010000 		.4byte	0x1ee
+ 834 01e7 0E       		.uleb128 0xe
+ 835 01e8 7D000000 		.4byte	0x7d
+ 836 01ec 0F       		.byte	0xf
+ 837 01ed 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 24
+
+
+ 838 01ee 04       		.uleb128 0x4
+ 839 01ef D0030000 		.4byte	.LASF37
+ 840 01f3 06       		.byte	0x6
+ 841 01f4 24       		.byte	0x24
+ 842 01f5 AD010000 		.4byte	0x1ad
+ 843 01f9 0F       		.uleb128 0xf
+ 844 01fa D607     		.2byte	0x7d6
+ 845 01fc 06       		.byte	0x6
+ 846 01fd 26       		.byte	0x26
+ 847 01fe 36020000 		.4byte	0x236
+ 848 0202 0A       		.uleb128 0xa
+ 849 0203 A0020000 		.4byte	.LASF38
+ 850 0207 06       		.byte	0x6
+ 851 0208 27       		.byte	0x27
+ 852 0209 36020000 		.4byte	0x236
+ 853 020d 00       		.byte	0
+ 854 020e 10       		.uleb128 0x10
+ 855 020f F5000000 		.4byte	.LASF39
+ 856 0213 06       		.byte	0x6
+ 857 0214 28       		.byte	0x28
+ 858 0215 A9000000 		.4byte	0xa9
+ 859 0219 D007     		.2byte	0x7d0
+ 860 021b 10       		.uleb128 0x10
+ 861 021c 19020000 		.4byte	.LASF40
+ 862 0220 06       		.byte	0x6
+ 863 0221 29       		.byte	0x29
+ 864 0222 A9000000 		.4byte	0xa9
+ 865 0226 D207     		.2byte	0x7d2
+ 866 0228 10       		.uleb128 0x10
+ 867 0229 FE020000 		.4byte	.LASF41
+ 868 022d 06       		.byte	0x6
+ 869 022e 2A       		.byte	0x2a
+ 870 022f A9000000 		.4byte	0xa9
+ 871 0233 D407     		.2byte	0x7d4
+ 872 0235 00       		.byte	0
+ 873 0236 0D       		.uleb128 0xd
+ 874 0237 EE010000 		.4byte	0x1ee
+ 875 023b 46020000 		.4byte	0x246
+ 876 023f 0E       		.uleb128 0xe
+ 877 0240 7D000000 		.4byte	0x7d
+ 878 0244 63       		.byte	0x63
+ 879 0245 00       		.byte	0
+ 880 0246 04       		.uleb128 0x4
+ 881 0247 86020000 		.4byte	.LASF42
+ 882 024b 06       		.byte	0x6
+ 883 024c 2B       		.byte	0x2b
+ 884 024d F9010000 		.4byte	0x1f9
+ 885 0251 09       		.uleb128 0x9
+ 886 0252 0C       		.byte	0xc
+ 887 0253 06       		.byte	0x6
+ 888 0254 2D       		.byte	0x2d
+ 889 0255 8A020000 		.4byte	0x28a
+ 890 0259 0A       		.uleb128 0xa
+ 891 025a 14030000 		.4byte	.LASF35
+ 892 025e 06       		.byte	0x6
+ 893 025f 2E       		.byte	0x2e
+ 894 0260 9D000000 		.4byte	0x9d
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 25
+
+
+ 895 0264 00       		.byte	0
+ 896 0265 0A       		.uleb128 0xa
+ 897 0266 B2000000 		.4byte	.LASF43
+ 898 026a 06       		.byte	0x6
+ 899 026b 2F       		.byte	0x2f
+ 900 026c 9D000000 		.4byte	0x9d
+ 901 0270 01       		.byte	0x1
+ 902 0271 0A       		.uleb128 0xa
+ 903 0272 DB000000 		.4byte	.LASF24
+ 904 0276 06       		.byte	0x6
+ 905 0277 30       		.byte	0x30
+ 906 0278 B5000000 		.4byte	0xb5
+ 907 027c 04       		.byte	0x4
+ 908 027d 0A       		.uleb128 0xa
+ 909 027e 46030000 		.4byte	.LASF27
+ 910 0282 06       		.byte	0x6
+ 911 0283 31       		.byte	0x31
+ 912 0284 B5000000 		.4byte	0xb5
+ 913 0288 08       		.byte	0x8
+ 914 0289 00       		.byte	0
+ 915 028a 04       		.uleb128 0x4
+ 916 028b 28030000 		.4byte	.LASF44
+ 917 028f 06       		.byte	0x6
+ 918 0290 32       		.byte	0x32
+ 919 0291 51020000 		.4byte	0x251
+ 920 0295 0F       		.uleb128 0xf
+ 921 0296 B804     		.2byte	0x4b8
+ 922 0298 06       		.byte	0x6
+ 923 0299 36       		.byte	0x36
+ 924 029a D2020000 		.4byte	0x2d2
+ 925 029e 0A       		.uleb128 0xa
+ 926 029f 95030000 		.4byte	.LASF45
+ 927 02a3 06       		.byte	0x6
+ 928 02a4 37       		.byte	0x37
+ 929 02a5 D2020000 		.4byte	0x2d2
+ 930 02a9 00       		.byte	0
+ 931 02aa 10       		.uleb128 0x10
+ 932 02ab F5000000 		.4byte	.LASF39
+ 933 02af 06       		.byte	0x6
+ 934 02b0 38       		.byte	0x38
+ 935 02b1 A9000000 		.4byte	0xa9
+ 936 02b5 B004     		.2byte	0x4b0
+ 937 02b7 10       		.uleb128 0x10
+ 938 02b8 19020000 		.4byte	.LASF40
+ 939 02bc 06       		.byte	0x6
+ 940 02bd 39       		.byte	0x39
+ 941 02be A9000000 		.4byte	0xa9
+ 942 02c2 B204     		.2byte	0x4b2
+ 943 02c4 10       		.uleb128 0x10
+ 944 02c5 FE020000 		.4byte	.LASF41
+ 945 02c9 06       		.byte	0x6
+ 946 02ca 3A       		.byte	0x3a
+ 947 02cb A9000000 		.4byte	0xa9
+ 948 02cf B404     		.2byte	0x4b4
+ 949 02d1 00       		.byte	0
+ 950 02d2 0D       		.uleb128 0xd
+ 951 02d3 8A020000 		.4byte	0x28a
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 26
+
+
+ 952 02d7 E2020000 		.4byte	0x2e2
+ 953 02db 0E       		.uleb128 0xe
+ 954 02dc 7D000000 		.4byte	0x7d
+ 955 02e0 63       		.byte	0x63
+ 956 02e1 00       		.byte	0
+ 957 02e2 04       		.uleb128 0x4
+ 958 02e3 58020000 		.4byte	.LASF46
+ 959 02e7 06       		.byte	0x6
+ 960 02e8 3B       		.byte	0x3b
+ 961 02e9 95020000 		.4byte	0x295
+ 962 02ed 11       		.uleb128 0x11
+ 963 02ee C9000000 		.4byte	.LASF48
+ 964 02f2 01       		.byte	0x1
+ 965 02f3 A3       		.byte	0xa3
+ 966 02f4 00000000 		.4byte	.LFB67
+ 967 02f8 30010000 		.4byte	.LFE67-.LFB67
+ 968 02fc 01       		.uleb128 0x1
+ 969 02fd 9C       		.byte	0x9c
+ 970 02fe A5030000 		.4byte	0x3a5
+ 971 0302 12       		.uleb128 0x12
+ 972 0303 6900     		.ascii	"i\000"
+ 973 0305 01       		.byte	0x1
+ 974 0306 AC       		.byte	0xac
+ 975 0307 25000000 		.4byte	0x25
+ 976 030b 00000000 		.4byte	.LLST0
+ 977 030f 13       		.uleb128 0x13
+ 978 0310 7D040000 		.4byte	.LASF47
+ 979 0314 01       		.byte	0x1
+ 980 0315 AD       		.byte	0xad
+ 981 0316 A5030000 		.4byte	0x3a5
+ 982 031a 13000000 		.4byte	.LLST1
+ 983 031e 14       		.uleb128 0x14
+ 984 031f 08000000 		.4byte	.LVL0
+ 985 0323 89060000 		.4byte	0x689
+ 986 0327 35030000 		.4byte	0x335
+ 987 032b 15       		.uleb128 0x15
+ 988 032c 01       		.uleb128 0x1
+ 989 032d 50       		.byte	0x50
+ 990 032e 05       		.uleb128 0x5
+ 991 032f 03       		.byte	0x3
+ 992 0330 00000000 		.4byte	move_queue
+ 993 0334 00       		.byte	0
+ 994 0335 14       		.uleb128 0x14
+ 995 0336 30000000 		.4byte	.LVL2
+ 996 033a 94060000 		.4byte	0x694
+ 997 033e 48030000 		.4byte	0x348
+ 998 0342 15       		.uleb128 0x15
+ 999 0343 01       		.uleb128 0x1
+ 1000 0344 50       		.byte	0x50
+ 1001 0345 01       		.uleb128 0x1
+ 1002 0346 30       		.byte	0x30
+ 1003 0347 00       		.byte	0
+ 1004 0348 14       		.uleb128 0x14
+ 1005 0349 4A000000 		.4byte	.LVL5
+ 1006 034d 9F060000 		.4byte	0x69f
+ 1007 0351 5B030000 		.4byte	0x35b
+ 1008 0355 15       		.uleb128 0x15
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 27
+
+
+ 1009 0356 01       		.uleb128 0x1
+ 1010 0357 50       		.byte	0x50
+ 1011 0358 01       		.uleb128 0x1
+ 1012 0359 30       		.byte	0x30
+ 1013 035a 00       		.byte	0
+ 1014 035b 14       		.uleb128 0x14
+ 1015 035c 66000000 		.4byte	.LVL8
+ 1016 0360 AA060000 		.4byte	0x6aa
+ 1017 0364 6E030000 		.4byte	0x36e
+ 1018 0368 15       		.uleb128 0x15
+ 1019 0369 01       		.uleb128 0x1
+ 1020 036a 50       		.byte	0x50
+ 1021 036b 01       		.uleb128 0x1
+ 1022 036c 30       		.byte	0x30
+ 1023 036d 00       		.byte	0
+ 1024 036e 16       		.uleb128 0x16
+ 1025 036f 00010000 		.4byte	.LVL11
+ 1026 0373 B5060000 		.4byte	0x6b5
+ 1027 0377 16       		.uleb128 0x16
+ 1028 0378 08010000 		.4byte	.LVL12
+ 1029 037c C0060000 		.4byte	0x6c0
+ 1030 0380 16       		.uleb128 0x16
+ 1031 0381 10010000 		.4byte	.LVL13
+ 1032 0385 CB060000 		.4byte	0x6cb
+ 1033 0389 16       		.uleb128 0x16
+ 1034 038a 16010000 		.4byte	.LVL14
+ 1035 038e D6060000 		.4byte	0x6d6
+ 1036 0392 16       		.uleb128 0x16
+ 1037 0393 1E010000 		.4byte	.LVL15
+ 1038 0397 E1060000 		.4byte	0x6e1
+ 1039 039b 16       		.uleb128 0x16
+ 1040 039c 26010000 		.4byte	.LVL16
+ 1041 03a0 EC060000 		.4byte	0x6ec
+ 1042 03a4 00       		.byte	0
+ 1043 03a5 05       		.uleb128 0x5
+ 1044 03a6 04       		.byte	0x4
+ 1045 03a7 AB030000 		.4byte	0x3ab
+ 1046 03ab 08       		.uleb128 0x8
+ 1047 03ac 8A020000 		.4byte	0x28a
+ 1048 03b0 11       		.uleb128 0x11
+ 1049 03b1 5C030000 		.4byte	.LASF49
+ 1050 03b5 01       		.byte	0x1
+ 1051 03b6 FF       		.byte	0xff
+ 1052 03b7 00000000 		.4byte	.LFB68
+ 1053 03bb 0C000000 		.4byte	.LFE68-.LFB68
+ 1054 03bf 01       		.uleb128 0x1
+ 1055 03c0 9C       		.byte	0x9c
+ 1056 03c1 E1030000 		.4byte	0x3e1
+ 1057 03c5 17       		.uleb128 0x17
+ 1058 03c6 B0010000 		.4byte	.LASF52
+ 1059 03ca 01       		.byte	0x1
+ 1060 03cb FF       		.byte	0xff
+ 1061 03cc 09010000 		.4byte	0x109
+ 1062 03d0 01       		.uleb128 0x1
+ 1063 03d1 50       		.byte	0x50
+ 1064 03d2 18       		.uleb128 0x18
+ 1065 03d3 B8010000 		.4byte	.LASF50
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 28
+
+
+ 1066 03d7 01       		.byte	0x1
+ 1067 03d8 0101     		.2byte	0x101
+ 1068 03da E1030000 		.4byte	0x3e1
+ 1069 03de 01       		.uleb128 0x1
+ 1070 03df 53       		.byte	0x53
+ 1071 03e0 00       		.byte	0
+ 1072 03e1 05       		.uleb128 0x5
+ 1073 03e2 04       		.byte	0x4
+ 1074 03e3 09010000 		.4byte	0x109
+ 1075 03e7 19       		.uleb128 0x19
+ 1076 03e8 3C010000 		.4byte	.LASF54
+ 1077 03ec 01       		.byte	0x1
+ 1078 03ed 1701     		.2byte	0x117
+ 1079 03ef 09010000 		.4byte	0x109
+ 1080 03f3 00000000 		.4byte	.LFB69
+ 1081 03f7 0C000000 		.4byte	.LFE69-.LFB69
+ 1082 03fb 01       		.uleb128 0x1
+ 1083 03fc 9C       		.byte	0x9c
+ 1084 03fd 10040000 		.4byte	0x410
+ 1085 0401 18       		.uleb128 0x18
+ 1086 0402 B8010000 		.4byte	.LASF50
+ 1087 0406 01       		.byte	0x1
+ 1088 0407 1901     		.2byte	0x119
+ 1089 0409 E1030000 		.4byte	0x3e1
+ 1090 040d 01       		.uleb128 0x1
+ 1091 040e 53       		.byte	0x53
+ 1092 040f 00       		.byte	0
+ 1093 0410 1A       		.uleb128 0x1a
+ 1094 0411 83010000 		.4byte	.LASF51
+ 1095 0415 01       		.byte	0x1
+ 1096 0416 3901     		.2byte	0x139
+ 1097 0418 00000000 		.4byte	.LFB70
+ 1098 041c 10000000 		.4byte	.LFE70-.LFB70
+ 1099 0420 01       		.uleb128 0x1
+ 1100 0421 9C       		.byte	0x9c
+ 1101 0422 37040000 		.4byte	0x437
+ 1102 0426 1B       		.uleb128 0x1b
+ 1103 0427 66000000 		.4byte	.LASF53
+ 1104 042b 01       		.byte	0x1
+ 1105 042c 3901     		.2byte	0x139
+ 1106 042e 9D000000 		.4byte	0x9d
+ 1107 0432 3C000000 		.4byte	.LLST2
+ 1108 0436 00       		.byte	0
+ 1109 0437 19       		.uleb128 0x19
+ 1110 0438 44000000 		.4byte	.LASF55
+ 1111 043c 01       		.byte	0x1
+ 1112 043d 4F01     		.2byte	0x14f
+ 1113 043f 9D000000 		.4byte	0x9d
+ 1114 0443 00000000 		.4byte	.LFB71
+ 1115 0447 0C000000 		.4byte	.LFE71-.LFB71
+ 1116 044b 01       		.uleb128 0x1
+ 1117 044c 9C       		.byte	0x9c
+ 1118 044d 62040000 		.4byte	0x462
+ 1119 0451 1C       		.uleb128 0x1c
+ 1120 0452 66000000 		.4byte	.LASF53
+ 1121 0456 01       		.byte	0x1
+ 1122 0457 5101     		.2byte	0x151
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 29
+
+
+ 1123 0459 9D000000 		.4byte	0x9d
+ 1124 045d 5D000000 		.4byte	.LLST3
+ 1125 0461 00       		.byte	0
+ 1126 0462 1D       		.uleb128 0x1d
+ 1127 0463 27010000 		.4byte	.LASF56
+ 1128 0467 01       		.byte	0x1
+ 1129 0468 6A01     		.2byte	0x16a
+ 1130 046a 00000000 		.4byte	.LFB72
+ 1131 046e 0C000000 		.4byte	.LFE72-.LFB72
+ 1132 0472 01       		.uleb128 0x1
+ 1133 0473 9C       		.byte	0x9c
+ 1134 0474 1E       		.uleb128 0x1e
+ 1135 0475 CB020000 		.4byte	.LASF86
+ 1136 0479 01       		.byte	0x1
+ 1137 047a 7F01     		.2byte	0x17f
+ 1138 047c 9D000000 		.4byte	0x9d
+ 1139 0480 00000000 		.4byte	.LFB73
+ 1140 0484 10000000 		.4byte	.LFE73-.LFB73
+ 1141 0488 01       		.uleb128 0x1
+ 1142 0489 9C       		.byte	0x9c
+ 1143 048a 1D       		.uleb128 0x1d
+ 1144 048b A0010000 		.4byte	.LASF57
+ 1145 048f 01       		.byte	0x1
+ 1146 0490 9401     		.2byte	0x194
+ 1147 0492 00000000 		.4byte	.LFB74
+ 1148 0496 0C000000 		.4byte	.LFE74-.LFB74
+ 1149 049a 01       		.uleb128 0x1
+ 1150 049b 9C       		.byte	0x9c
+ 1151 049c 11       		.uleb128 0x11
+ 1152 049d 92000000 		.4byte	.LASF58
+ 1153 04a1 01       		.byte	0x1
+ 1154 04a2 40       		.byte	0x40
+ 1155 04a3 00000000 		.4byte	.LFB64
+ 1156 04a7 1C000000 		.4byte	.LFE64-.LFB64
+ 1157 04ab 01       		.uleb128 0x1
+ 1158 04ac 9C       		.byte	0x9c
+ 1159 04ad EE040000 		.4byte	0x4ee
+ 1160 04b1 16       		.uleb128 0x16
+ 1161 04b2 06000000 		.4byte	.LVL24
+ 1162 04b6 8A040000 		.4byte	0x48a
+ 1163 04ba 14       		.uleb128 0x14
+ 1164 04bb 0C000000 		.4byte	.LVL25
+ 1165 04bf B0030000 		.4byte	0x3b0
+ 1166 04c3 D1040000 		.4byte	0x4d1
+ 1167 04c7 15       		.uleb128 0x15
+ 1168 04c8 01       		.uleb128 0x1
+ 1169 04c9 50       		.byte	0x50
+ 1170 04ca 05       		.uleb128 0x5
+ 1171 04cb 03       		.byte	0x3
+ 1172 04cc 00000000 		.4byte	NCO_ISR_Interrupt
+ 1173 04d0 00       		.byte	0
+ 1174 04d1 14       		.uleb128 0x14
+ 1175 04d2 12000000 		.4byte	.LVL26
+ 1176 04d6 10040000 		.4byte	0x410
+ 1177 04da E4040000 		.4byte	0x4e4
+ 1178 04de 15       		.uleb128 0x15
+ 1179 04df 01       		.uleb128 0x1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 30
+
+
+ 1180 04e0 50       		.byte	0x50
+ 1181 04e1 01       		.uleb128 0x1
+ 1182 04e2 34       		.byte	0x34
+ 1183 04e3 00       		.byte	0
+ 1184 04e4 16       		.uleb128 0x16
+ 1185 04e5 16000000 		.4byte	.LVL27
+ 1186 04e9 62040000 		.4byte	0x462
+ 1187 04ed 00       		.byte	0
+ 1188 04ee 11       		.uleb128 0x11
+ 1189 04ef C0030000 		.4byte	.LASF59
+ 1190 04f3 01       		.byte	0x1
+ 1191 04f4 6B       		.byte	0x6b
+ 1192 04f5 00000000 		.4byte	.LFB65
+ 1193 04f9 1A000000 		.4byte	.LFE65-.LFB65
+ 1194 04fd 01       		.uleb128 0x1
+ 1195 04fe 9C       		.byte	0x9c
+ 1196 04ff 4C050000 		.4byte	0x54c
+ 1197 0503 1F       		.uleb128 0x1f
+ 1198 0504 B0010000 		.4byte	.LASF52
+ 1199 0508 01       		.byte	0x1
+ 1200 0509 6B       		.byte	0x6b
+ 1201 050a 09010000 		.4byte	0x109
+ 1202 050e 74000000 		.4byte	.LLST4
+ 1203 0512 16       		.uleb128 0x16
+ 1204 0513 08000000 		.4byte	.LVL29
+ 1205 0517 8A040000 		.4byte	0x48a
+ 1206 051b 14       		.uleb128 0x14
+ 1207 051c 0E000000 		.4byte	.LVL30
+ 1208 0520 B0030000 		.4byte	0x3b0
+ 1209 0524 2F050000 		.4byte	0x52f
+ 1210 0528 15       		.uleb128 0x15
+ 1211 0529 01       		.uleb128 0x1
+ 1212 052a 50       		.byte	0x50
+ 1213 052b 02       		.uleb128 0x2
+ 1214 052c 74       		.byte	0x74
+ 1215 052d 00       		.sleb128 0
+ 1216 052e 00       		.byte	0
+ 1217 052f 14       		.uleb128 0x14
+ 1218 0530 14000000 		.4byte	.LVL31
+ 1219 0534 10040000 		.4byte	0x410
+ 1220 0538 42050000 		.4byte	0x542
+ 1221 053c 15       		.uleb128 0x15
+ 1222 053d 01       		.uleb128 0x1
+ 1223 053e 50       		.byte	0x50
+ 1224 053f 01       		.uleb128 0x1
+ 1225 0540 34       		.byte	0x34
+ 1226 0541 00       		.byte	0
+ 1227 0542 16       		.uleb128 0x16
+ 1228 0543 18000000 		.4byte	.LVL32
+ 1229 0547 62040000 		.4byte	0x462
+ 1230 054b 00       		.byte	0
+ 1231 054c 11       		.uleb128 0x11
+ 1232 054d BC000000 		.4byte	.LASF60
+ 1233 0551 01       		.byte	0x1
+ 1234 0552 89       		.byte	0x89
+ 1235 0553 00000000 		.4byte	.LFB66
+ 1236 0557 14000000 		.4byte	.LFE66-.LFB66
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 31
+
+
+ 1237 055b 01       		.uleb128 0x1
+ 1238 055c 9C       		.byte	0x9c
+ 1239 055d 74050000 		.4byte	0x574
+ 1240 0561 16       		.uleb128 0x16
+ 1241 0562 06000000 		.4byte	.LVL33
+ 1242 0566 8A040000 		.4byte	0x48a
+ 1243 056a 16       		.uleb128 0x16
+ 1244 056b 0C000000 		.4byte	.LVL34
+ 1245 056f B0030000 		.4byte	0x3b0
+ 1246 0573 00       		.byte	0
+ 1247 0574 1D       		.uleb128 0x1d
+ 1248 0575 2B020000 		.4byte	.LASF61
+ 1249 0579 01       		.byte	0x1
+ 1250 057a AF01     		.2byte	0x1af
+ 1251 057c 00000000 		.4byte	.LFB75
+ 1252 0580 0C000000 		.4byte	.LFE75-.LFB75
+ 1253 0584 01       		.uleb128 0x1
+ 1254 0585 9C       		.byte	0x9c
+ 1255 0586 1D       		.uleb128 0x1d
+ 1256 0587 6E010000 		.4byte	.LASF62
+ 1257 058b 01       		.byte	0x1
+ 1258 058c C801     		.2byte	0x1c8
+ 1259 058e 00000000 		.4byte	.LFB76
+ 1260 0592 0C000000 		.4byte	.LFE76-.LFB76
+ 1261 0596 01       		.uleb128 0x1
+ 1262 0597 9C       		.byte	0x9c
+ 1263 0598 20       		.uleb128 0x20
+ 1264 0599 D8030000 		.4byte	.LASF63
+ 1265 059d 07       		.byte	0x7
+ 1266 059e 1207     		.2byte	0x712
+ 1267 05a0 A4050000 		.4byte	0x5a4
+ 1268 05a4 08       		.uleb128 0x8
+ 1269 05a5 92000000 		.4byte	0x92
+ 1270 05a9 21       		.uleb128 0x21
+ 1271 05aa 14010000 		.4byte	.LASF64
+ 1272 05ae 08       		.byte	0x8
+ 1273 05af 20       		.byte	0x20
+ 1274 05b0 A9000000 		.4byte	0xa9
+ 1275 05b4 05       		.uleb128 0x5
+ 1276 05b5 03       		.byte	0x3
+ 1277 05b6 00000000 		.4byte	read_angle_command
+ 1278 05ba 21       		.uleb128 0x21
+ 1279 05bb 0C010000 		.4byte	.LASF65
+ 1280 05bf 05       		.byte	0x5
+ 1281 05c0 34       		.byte	0x34
+ 1282 05c1 CB050000 		.4byte	0x5cb
+ 1283 05c5 05       		.uleb128 0x5
+ 1284 05c6 03       		.byte	0x3
+ 1285 05c7 00000000 		.4byte	J1_home
+ 1286 05cb 08       		.uleb128 0x8
+ 1287 05cc CD000000 		.4byte	0xcd
+ 1288 05d0 0D       		.uleb128 0xd
+ 1289 05d1 E0050000 		.4byte	0x5e0
+ 1290 05d5 E0050000 		.4byte	0x5e0
+ 1291 05d9 0E       		.uleb128 0xe
+ 1292 05da 7D000000 		.4byte	0x7d
+ 1293 05de 02       		.byte	0x2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 32
+
+
+ 1294 05df 00       		.byte	0
+ 1295 05e0 08       		.uleb128 0x8
+ 1296 05e1 A2010000 		.4byte	0x1a2
+ 1297 05e5 21       		.uleb128 0x21
+ 1298 05e6 F2010000 		.4byte	.LASF66
+ 1299 05ea 05       		.byte	0x5
+ 1300 05eb 36       		.byte	0x36
+ 1301 05ec F6050000 		.4byte	0x5f6
+ 1302 05f0 05       		.uleb128 0x5
+ 1303 05f1 03       		.byte	0x3
+ 1304 05f2 00000000 		.4byte	joints
+ 1305 05f6 08       		.uleb128 0x8
+ 1306 05f7 D0050000 		.4byte	0x5d0
+ 1307 05fb 21       		.uleb128 0x21
+ 1308 05fc A9000000 		.4byte	.LASF67
+ 1309 0600 06       		.byte	0x6
+ 1310 0601 3D       		.byte	0x3d
+ 1311 0602 0C060000 		.4byte	0x60c
+ 1312 0606 05       		.uleb128 0x5
+ 1313 0607 03       		.byte	0x3
+ 1314 0608 00000000 		.4byte	msg_buff
+ 1315 060c 08       		.uleb128 0x8
+ 1316 060d 46020000 		.4byte	0x246
+ 1317 0611 21       		.uleb128 0x21
+ 1318 0612 7D000000 		.4byte	.LASF68
+ 1319 0616 06       		.byte	0x6
+ 1320 0617 3E       		.byte	0x3e
+ 1321 0618 22060000 		.4byte	0x622
+ 1322 061c 05       		.uleb128 0x5
+ 1323 061d 03       		.byte	0x3
+ 1324 061e 00000000 		.4byte	move_queue
+ 1325 0622 08       		.uleb128 0x8
+ 1326 0623 E2020000 		.4byte	0x2e2
+ 1327 0627 0D       		.uleb128 0xd
+ 1328 0628 37060000 		.4byte	0x637
+ 1329 062c 37060000 		.4byte	0x637
+ 1330 0630 0E       		.uleb128 0xe
+ 1331 0631 7D000000 		.4byte	0x7d
+ 1332 0635 4F       		.byte	0x4f
+ 1333 0636 00       		.byte	0
+ 1334 0637 08       		.uleb128 0x8
+ 1335 0638 84000000 		.4byte	0x84
+ 1336 063c 21       		.uleb128 0x21
+ 1337 063d E8010000 		.4byte	.LASF69
+ 1338 0641 06       		.byte	0x6
+ 1339 0642 3F       		.byte	0x3f
+ 1340 0643 4D060000 		.4byte	0x64d
+ 1341 0647 05       		.uleb128 0x5
+ 1342 0648 03       		.byte	0x3
+ 1343 0649 00000000 		.4byte	rx_buffer
+ 1344 064d 08       		.uleb128 0x8
+ 1345 064e 27060000 		.4byte	0x627
+ 1346 0652 21       		.uleb128 0x21
+ 1347 0653 00000000 		.4byte	.LASF70
+ 1348 0657 06       		.byte	0x6
+ 1349 0658 40       		.byte	0x40
+ 1350 0659 63060000 		.4byte	0x663
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 33
+
+
+ 1351 065d 05       		.uleb128 0x5
+ 1352 065e 03       		.byte	0x3
+ 1353 065f 00000000 		.4byte	rx_index
+ 1354 0663 08       		.uleb128 0x8
+ 1355 0664 25000000 		.4byte	0x25
+ 1356 0668 0D       		.uleb128 0xd
+ 1357 0669 84000000 		.4byte	0x84
+ 1358 066d 78060000 		.4byte	0x678
+ 1359 0671 0E       		.uleb128 0xe
+ 1360 0672 7D000000 		.4byte	0x7d
+ 1361 0676 4F       		.byte	0x4f
+ 1362 0677 00       		.byte	0
+ 1363 0678 21       		.uleb128 0x21
+ 1364 0679 E6000000 		.4byte	.LASF71
+ 1365 067d 06       		.byte	0x6
+ 1366 067e 41       		.byte	0x41
+ 1367 067f 68060000 		.4byte	0x668
+ 1368 0683 05       		.uleb128 0x5
+ 1369 0684 03       		.byte	0x3
+ 1370 0685 00000000 		.4byte	TransmitBuffer
+ 1371 0689 22       		.uleb128 0x22
+ 1372 068a B7020000 		.4byte	.LASF72
+ 1373 068e B7020000 		.4byte	.LASF72
+ 1374 0692 06       		.byte	0x6
+ 1375 0693 49       		.byte	0x49
+ 1376 0694 22       		.uleb128 0x22
+ 1377 0695 00010000 		.4byte	.LASF73
+ 1378 0699 00010000 		.4byte	.LASF73
+ 1379 069d 09       		.byte	0x9
+ 1380 069e 26       		.byte	0x26
+ 1381 069f 22       		.uleb128 0x22
+ 1382 06a0 08030000 		.4byte	.LASF74
+ 1383 06a4 08030000 		.4byte	.LASF74
+ 1384 06a8 0A       		.byte	0xa
+ 1385 06a9 26       		.byte	0x26
+ 1386 06aa 22       		.uleb128 0x22
+ 1387 06ab 7A020000 		.4byte	.LASF75
+ 1388 06af 7A020000 		.4byte	.LASF75
+ 1389 06b3 0B       		.byte	0xb
+ 1390 06b4 26       		.byte	0x26
+ 1391 06b5 22       		.uleb128 0x22
+ 1392 06b6 B3030000 		.4byte	.LASF76
+ 1393 06ba B3030000 		.4byte	.LASF76
+ 1394 06be 0C       		.byte	0xc
+ 1395 06bf 26       		.byte	0x26
+ 1396 06c0 22       		.uleb128 0x22
+ 1397 06c1 88030000 		.4byte	.LASF77
+ 1398 06c5 88030000 		.4byte	.LASF77
+ 1399 06c9 0D       		.byte	0xd
+ 1400 06ca 26       		.byte	0x26
+ 1401 06cb 22       		.uleb128 0x22
+ 1402 06cc 2D030000 		.4byte	.LASF78
+ 1403 06d0 2D030000 		.4byte	.LASF78
+ 1404 06d4 0E       		.byte	0xe
+ 1405 06d5 26       		.byte	0x26
+ 1406 06d6 22       		.uleb128 0x22
+ 1407 06d7 3E020000 		.4byte	.LASF79
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 34
+
+
+ 1408 06db 3E020000 		.4byte	.LASF79
+ 1409 06df 0F       		.byte	0xf
+ 1410 06e0 26       		.byte	0x26
+ 1411 06e1 22       		.uleb128 0x22
+ 1412 06e2 58000000 		.4byte	.LASF80
+ 1413 06e6 58000000 		.4byte	.LASF80
+ 1414 06ea 10       		.byte	0x10
+ 1415 06eb 26       		.byte	0x26
+ 1416 06ec 22       		.uleb128 0x22
+ 1417 06ed 6F000000 		.4byte	.LASF81
+ 1418 06f1 6F000000 		.4byte	.LASF81
+ 1419 06f5 11       		.byte	0x11
+ 1420 06f6 26       		.byte	0x26
+ 1421 06f7 00       		.byte	0
+ 1422              		.section	.debug_abbrev,"",%progbits
+ 1423              	.Ldebug_abbrev0:
+ 1424 0000 01       		.uleb128 0x1
+ 1425 0001 11       		.uleb128 0x11
+ 1426 0002 01       		.byte	0x1
+ 1427 0003 25       		.uleb128 0x25
+ 1428 0004 0E       		.uleb128 0xe
+ 1429 0005 13       		.uleb128 0x13
+ 1430 0006 0B       		.uleb128 0xb
+ 1431 0007 03       		.uleb128 0x3
+ 1432 0008 0E       		.uleb128 0xe
+ 1433 0009 1B       		.uleb128 0x1b
+ 1434 000a 0E       		.uleb128 0xe
+ 1435 000b 55       		.uleb128 0x55
+ 1436 000c 17       		.uleb128 0x17
+ 1437 000d 11       		.uleb128 0x11
+ 1438 000e 01       		.uleb128 0x1
+ 1439 000f 10       		.uleb128 0x10
+ 1440 0010 17       		.uleb128 0x17
+ 1441 0011 00       		.byte	0
+ 1442 0012 00       		.byte	0
+ 1443 0013 02       		.uleb128 0x2
+ 1444 0014 24       		.uleb128 0x24
+ 1445 0015 00       		.byte	0
+ 1446 0016 0B       		.uleb128 0xb
+ 1447 0017 0B       		.uleb128 0xb
+ 1448 0018 3E       		.uleb128 0x3e
+ 1449 0019 0B       		.uleb128 0xb
+ 1450 001a 03       		.uleb128 0x3
+ 1451 001b 08       		.uleb128 0x8
+ 1452 001c 00       		.byte	0
+ 1453 001d 00       		.byte	0
+ 1454 001e 03       		.uleb128 0x3
+ 1455 001f 24       		.uleb128 0x24
+ 1456 0020 00       		.byte	0
+ 1457 0021 0B       		.uleb128 0xb
+ 1458 0022 0B       		.uleb128 0xb
+ 1459 0023 3E       		.uleb128 0x3e
+ 1460 0024 0B       		.uleb128 0xb
+ 1461 0025 03       		.uleb128 0x3
+ 1462 0026 0E       		.uleb128 0xe
+ 1463 0027 00       		.byte	0
+ 1464 0028 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 35
+
+
+ 1465 0029 04       		.uleb128 0x4
+ 1466 002a 16       		.uleb128 0x16
+ 1467 002b 00       		.byte	0
+ 1468 002c 03       		.uleb128 0x3
+ 1469 002d 0E       		.uleb128 0xe
+ 1470 002e 3A       		.uleb128 0x3a
+ 1471 002f 0B       		.uleb128 0xb
+ 1472 0030 3B       		.uleb128 0x3b
+ 1473 0031 0B       		.uleb128 0xb
+ 1474 0032 49       		.uleb128 0x49
+ 1475 0033 13       		.uleb128 0x13
+ 1476 0034 00       		.byte	0
+ 1477 0035 00       		.byte	0
+ 1478 0036 05       		.uleb128 0x5
+ 1479 0037 0F       		.uleb128 0xf
+ 1480 0038 00       		.byte	0
+ 1481 0039 0B       		.uleb128 0xb
+ 1482 003a 0B       		.uleb128 0xb
+ 1483 003b 49       		.uleb128 0x49
+ 1484 003c 13       		.uleb128 0x13
+ 1485 003d 00       		.byte	0
+ 1486 003e 00       		.byte	0
+ 1487 003f 06       		.uleb128 0x6
+ 1488 0040 15       		.uleb128 0x15
+ 1489 0041 00       		.byte	0
+ 1490 0042 27       		.uleb128 0x27
+ 1491 0043 19       		.uleb128 0x19
+ 1492 0044 00       		.byte	0
+ 1493 0045 00       		.byte	0
+ 1494 0046 07       		.uleb128 0x7
+ 1495 0047 16       		.uleb128 0x16
+ 1496 0048 00       		.byte	0
+ 1497 0049 03       		.uleb128 0x3
+ 1498 004a 0E       		.uleb128 0xe
+ 1499 004b 3A       		.uleb128 0x3a
+ 1500 004c 0B       		.uleb128 0xb
+ 1501 004d 3B       		.uleb128 0x3b
+ 1502 004e 05       		.uleb128 0x5
+ 1503 004f 49       		.uleb128 0x49
+ 1504 0050 13       		.uleb128 0x13
+ 1505 0051 00       		.byte	0
+ 1506 0052 00       		.byte	0
+ 1507 0053 08       		.uleb128 0x8
+ 1508 0054 35       		.uleb128 0x35
+ 1509 0055 00       		.byte	0
+ 1510 0056 49       		.uleb128 0x49
+ 1511 0057 13       		.uleb128 0x13
+ 1512 0058 00       		.byte	0
+ 1513 0059 00       		.byte	0
+ 1514 005a 09       		.uleb128 0x9
+ 1515 005b 13       		.uleb128 0x13
+ 1516 005c 01       		.byte	0x1
+ 1517 005d 0B       		.uleb128 0xb
+ 1518 005e 0B       		.uleb128 0xb
+ 1519 005f 3A       		.uleb128 0x3a
+ 1520 0060 0B       		.uleb128 0xb
+ 1521 0061 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 36
+
+
+ 1522 0062 0B       		.uleb128 0xb
+ 1523 0063 01       		.uleb128 0x1
+ 1524 0064 13       		.uleb128 0x13
+ 1525 0065 00       		.byte	0
+ 1526 0066 00       		.byte	0
+ 1527 0067 0A       		.uleb128 0xa
+ 1528 0068 0D       		.uleb128 0xd
+ 1529 0069 00       		.byte	0
+ 1530 006a 03       		.uleb128 0x3
+ 1531 006b 0E       		.uleb128 0xe
+ 1532 006c 3A       		.uleb128 0x3a
+ 1533 006d 0B       		.uleb128 0xb
+ 1534 006e 3B       		.uleb128 0x3b
+ 1535 006f 0B       		.uleb128 0xb
+ 1536 0070 49       		.uleb128 0x49
+ 1537 0071 13       		.uleb128 0x13
+ 1538 0072 38       		.uleb128 0x38
+ 1539 0073 0B       		.uleb128 0xb
+ 1540 0074 00       		.byte	0
+ 1541 0075 00       		.byte	0
+ 1542 0076 0B       		.uleb128 0xb
+ 1543 0077 0D       		.uleb128 0xd
+ 1544 0078 00       		.byte	0
+ 1545 0079 03       		.uleb128 0x3
+ 1546 007a 08       		.uleb128 0x8
+ 1547 007b 3A       		.uleb128 0x3a
+ 1548 007c 0B       		.uleb128 0xb
+ 1549 007d 3B       		.uleb128 0x3b
+ 1550 007e 0B       		.uleb128 0xb
+ 1551 007f 49       		.uleb128 0x49
+ 1552 0080 13       		.uleb128 0x13
+ 1553 0081 38       		.uleb128 0x38
+ 1554 0082 0B       		.uleb128 0xb
+ 1555 0083 00       		.byte	0
+ 1556 0084 00       		.byte	0
+ 1557 0085 0C       		.uleb128 0xc
+ 1558 0086 13       		.uleb128 0x13
+ 1559 0087 01       		.byte	0x1
+ 1560 0088 03       		.uleb128 0x3
+ 1561 0089 0E       		.uleb128 0xe
+ 1562 008a 0B       		.uleb128 0xb
+ 1563 008b 0B       		.uleb128 0xb
+ 1564 008c 3A       		.uleb128 0x3a
+ 1565 008d 0B       		.uleb128 0xb
+ 1566 008e 3B       		.uleb128 0x3b
+ 1567 008f 0B       		.uleb128 0xb
+ 1568 0090 01       		.uleb128 0x1
+ 1569 0091 13       		.uleb128 0x13
+ 1570 0092 00       		.byte	0
+ 1571 0093 00       		.byte	0
+ 1572 0094 0D       		.uleb128 0xd
+ 1573 0095 01       		.uleb128 0x1
+ 1574 0096 01       		.byte	0x1
+ 1575 0097 49       		.uleb128 0x49
+ 1576 0098 13       		.uleb128 0x13
+ 1577 0099 01       		.uleb128 0x1
+ 1578 009a 13       		.uleb128 0x13
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 37
+
+
+ 1579 009b 00       		.byte	0
+ 1580 009c 00       		.byte	0
+ 1581 009d 0E       		.uleb128 0xe
+ 1582 009e 21       		.uleb128 0x21
+ 1583 009f 00       		.byte	0
+ 1584 00a0 49       		.uleb128 0x49
+ 1585 00a1 13       		.uleb128 0x13
+ 1586 00a2 2F       		.uleb128 0x2f
+ 1587 00a3 0B       		.uleb128 0xb
+ 1588 00a4 00       		.byte	0
+ 1589 00a5 00       		.byte	0
+ 1590 00a6 0F       		.uleb128 0xf
+ 1591 00a7 13       		.uleb128 0x13
+ 1592 00a8 01       		.byte	0x1
+ 1593 00a9 0B       		.uleb128 0xb
+ 1594 00aa 05       		.uleb128 0x5
+ 1595 00ab 3A       		.uleb128 0x3a
+ 1596 00ac 0B       		.uleb128 0xb
+ 1597 00ad 3B       		.uleb128 0x3b
+ 1598 00ae 0B       		.uleb128 0xb
+ 1599 00af 01       		.uleb128 0x1
+ 1600 00b0 13       		.uleb128 0x13
+ 1601 00b1 00       		.byte	0
+ 1602 00b2 00       		.byte	0
+ 1603 00b3 10       		.uleb128 0x10
+ 1604 00b4 0D       		.uleb128 0xd
+ 1605 00b5 00       		.byte	0
+ 1606 00b6 03       		.uleb128 0x3
+ 1607 00b7 0E       		.uleb128 0xe
+ 1608 00b8 3A       		.uleb128 0x3a
+ 1609 00b9 0B       		.uleb128 0xb
+ 1610 00ba 3B       		.uleb128 0x3b
+ 1611 00bb 0B       		.uleb128 0xb
+ 1612 00bc 49       		.uleb128 0x49
+ 1613 00bd 13       		.uleb128 0x13
+ 1614 00be 38       		.uleb128 0x38
+ 1615 00bf 05       		.uleb128 0x5
+ 1616 00c0 00       		.byte	0
+ 1617 00c1 00       		.byte	0
+ 1618 00c2 11       		.uleb128 0x11
+ 1619 00c3 2E       		.uleb128 0x2e
+ 1620 00c4 01       		.byte	0x1
+ 1621 00c5 3F       		.uleb128 0x3f
+ 1622 00c6 19       		.uleb128 0x19
+ 1623 00c7 03       		.uleb128 0x3
+ 1624 00c8 0E       		.uleb128 0xe
+ 1625 00c9 3A       		.uleb128 0x3a
+ 1626 00ca 0B       		.uleb128 0xb
+ 1627 00cb 3B       		.uleb128 0x3b
+ 1628 00cc 0B       		.uleb128 0xb
+ 1629 00cd 27       		.uleb128 0x27
+ 1630 00ce 19       		.uleb128 0x19
+ 1631 00cf 11       		.uleb128 0x11
+ 1632 00d0 01       		.uleb128 0x1
+ 1633 00d1 12       		.uleb128 0x12
+ 1634 00d2 06       		.uleb128 0x6
+ 1635 00d3 40       		.uleb128 0x40
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 38
+
+
+ 1636 00d4 18       		.uleb128 0x18
+ 1637 00d5 9742     		.uleb128 0x2117
+ 1638 00d7 19       		.uleb128 0x19
+ 1639 00d8 01       		.uleb128 0x1
+ 1640 00d9 13       		.uleb128 0x13
+ 1641 00da 00       		.byte	0
+ 1642 00db 00       		.byte	0
+ 1643 00dc 12       		.uleb128 0x12
+ 1644 00dd 34       		.uleb128 0x34
+ 1645 00de 00       		.byte	0
+ 1646 00df 03       		.uleb128 0x3
+ 1647 00e0 08       		.uleb128 0x8
+ 1648 00e1 3A       		.uleb128 0x3a
+ 1649 00e2 0B       		.uleb128 0xb
+ 1650 00e3 3B       		.uleb128 0x3b
+ 1651 00e4 0B       		.uleb128 0xb
+ 1652 00e5 49       		.uleb128 0x49
+ 1653 00e6 13       		.uleb128 0x13
+ 1654 00e7 02       		.uleb128 0x2
+ 1655 00e8 17       		.uleb128 0x17
+ 1656 00e9 00       		.byte	0
+ 1657 00ea 00       		.byte	0
+ 1658 00eb 13       		.uleb128 0x13
+ 1659 00ec 34       		.uleb128 0x34
+ 1660 00ed 00       		.byte	0
+ 1661 00ee 03       		.uleb128 0x3
+ 1662 00ef 0E       		.uleb128 0xe
+ 1663 00f0 3A       		.uleb128 0x3a
+ 1664 00f1 0B       		.uleb128 0xb
+ 1665 00f2 3B       		.uleb128 0x3b
+ 1666 00f3 0B       		.uleb128 0xb
+ 1667 00f4 49       		.uleb128 0x49
+ 1668 00f5 13       		.uleb128 0x13
+ 1669 00f6 02       		.uleb128 0x2
+ 1670 00f7 17       		.uleb128 0x17
+ 1671 00f8 00       		.byte	0
+ 1672 00f9 00       		.byte	0
+ 1673 00fa 14       		.uleb128 0x14
+ 1674 00fb 898201   		.uleb128 0x4109
+ 1675 00fe 01       		.byte	0x1
+ 1676 00ff 11       		.uleb128 0x11
+ 1677 0100 01       		.uleb128 0x1
+ 1678 0101 31       		.uleb128 0x31
+ 1679 0102 13       		.uleb128 0x13
+ 1680 0103 01       		.uleb128 0x1
+ 1681 0104 13       		.uleb128 0x13
+ 1682 0105 00       		.byte	0
+ 1683 0106 00       		.byte	0
+ 1684 0107 15       		.uleb128 0x15
+ 1685 0108 8A8201   		.uleb128 0x410a
+ 1686 010b 00       		.byte	0
+ 1687 010c 02       		.uleb128 0x2
+ 1688 010d 18       		.uleb128 0x18
+ 1689 010e 9142     		.uleb128 0x2111
+ 1690 0110 18       		.uleb128 0x18
+ 1691 0111 00       		.byte	0
+ 1692 0112 00       		.byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 39
+
+
+ 1693 0113 16       		.uleb128 0x16
+ 1694 0114 898201   		.uleb128 0x4109
+ 1695 0117 00       		.byte	0
+ 1696 0118 11       		.uleb128 0x11
+ 1697 0119 01       		.uleb128 0x1
+ 1698 011a 31       		.uleb128 0x31
+ 1699 011b 13       		.uleb128 0x13
+ 1700 011c 00       		.byte	0
+ 1701 011d 00       		.byte	0
+ 1702 011e 17       		.uleb128 0x17
+ 1703 011f 05       		.uleb128 0x5
+ 1704 0120 00       		.byte	0
+ 1705 0121 03       		.uleb128 0x3
+ 1706 0122 0E       		.uleb128 0xe
+ 1707 0123 3A       		.uleb128 0x3a
+ 1708 0124 0B       		.uleb128 0xb
+ 1709 0125 3B       		.uleb128 0x3b
+ 1710 0126 0B       		.uleb128 0xb
+ 1711 0127 49       		.uleb128 0x49
+ 1712 0128 13       		.uleb128 0x13
+ 1713 0129 02       		.uleb128 0x2
+ 1714 012a 18       		.uleb128 0x18
+ 1715 012b 00       		.byte	0
+ 1716 012c 00       		.byte	0
+ 1717 012d 18       		.uleb128 0x18
+ 1718 012e 34       		.uleb128 0x34
+ 1719 012f 00       		.byte	0
+ 1720 0130 03       		.uleb128 0x3
+ 1721 0131 0E       		.uleb128 0xe
+ 1722 0132 3A       		.uleb128 0x3a
+ 1723 0133 0B       		.uleb128 0xb
+ 1724 0134 3B       		.uleb128 0x3b
+ 1725 0135 05       		.uleb128 0x5
+ 1726 0136 49       		.uleb128 0x49
+ 1727 0137 13       		.uleb128 0x13
+ 1728 0138 02       		.uleb128 0x2
+ 1729 0139 18       		.uleb128 0x18
+ 1730 013a 00       		.byte	0
+ 1731 013b 00       		.byte	0
+ 1732 013c 19       		.uleb128 0x19
+ 1733 013d 2E       		.uleb128 0x2e
+ 1734 013e 01       		.byte	0x1
+ 1735 013f 3F       		.uleb128 0x3f
+ 1736 0140 19       		.uleb128 0x19
+ 1737 0141 03       		.uleb128 0x3
+ 1738 0142 0E       		.uleb128 0xe
+ 1739 0143 3A       		.uleb128 0x3a
+ 1740 0144 0B       		.uleb128 0xb
+ 1741 0145 3B       		.uleb128 0x3b
+ 1742 0146 05       		.uleb128 0x5
+ 1743 0147 27       		.uleb128 0x27
+ 1744 0148 19       		.uleb128 0x19
+ 1745 0149 49       		.uleb128 0x49
+ 1746 014a 13       		.uleb128 0x13
+ 1747 014b 11       		.uleb128 0x11
+ 1748 014c 01       		.uleb128 0x1
+ 1749 014d 12       		.uleb128 0x12
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 40
+
+
+ 1750 014e 06       		.uleb128 0x6
+ 1751 014f 40       		.uleb128 0x40
+ 1752 0150 18       		.uleb128 0x18
+ 1753 0151 9742     		.uleb128 0x2117
+ 1754 0153 19       		.uleb128 0x19
+ 1755 0154 01       		.uleb128 0x1
+ 1756 0155 13       		.uleb128 0x13
+ 1757 0156 00       		.byte	0
+ 1758 0157 00       		.byte	0
+ 1759 0158 1A       		.uleb128 0x1a
+ 1760 0159 2E       		.uleb128 0x2e
+ 1761 015a 01       		.byte	0x1
+ 1762 015b 3F       		.uleb128 0x3f
+ 1763 015c 19       		.uleb128 0x19
+ 1764 015d 03       		.uleb128 0x3
+ 1765 015e 0E       		.uleb128 0xe
+ 1766 015f 3A       		.uleb128 0x3a
+ 1767 0160 0B       		.uleb128 0xb
+ 1768 0161 3B       		.uleb128 0x3b
+ 1769 0162 05       		.uleb128 0x5
+ 1770 0163 27       		.uleb128 0x27
+ 1771 0164 19       		.uleb128 0x19
+ 1772 0165 11       		.uleb128 0x11
+ 1773 0166 01       		.uleb128 0x1
+ 1774 0167 12       		.uleb128 0x12
+ 1775 0168 06       		.uleb128 0x6
+ 1776 0169 40       		.uleb128 0x40
+ 1777 016a 18       		.uleb128 0x18
+ 1778 016b 9742     		.uleb128 0x2117
+ 1779 016d 19       		.uleb128 0x19
+ 1780 016e 01       		.uleb128 0x1
+ 1781 016f 13       		.uleb128 0x13
+ 1782 0170 00       		.byte	0
+ 1783 0171 00       		.byte	0
+ 1784 0172 1B       		.uleb128 0x1b
+ 1785 0173 05       		.uleb128 0x5
+ 1786 0174 00       		.byte	0
+ 1787 0175 03       		.uleb128 0x3
+ 1788 0176 0E       		.uleb128 0xe
+ 1789 0177 3A       		.uleb128 0x3a
+ 1790 0178 0B       		.uleb128 0xb
+ 1791 0179 3B       		.uleb128 0x3b
+ 1792 017a 05       		.uleb128 0x5
+ 1793 017b 49       		.uleb128 0x49
+ 1794 017c 13       		.uleb128 0x13
+ 1795 017d 02       		.uleb128 0x2
+ 1796 017e 17       		.uleb128 0x17
+ 1797 017f 00       		.byte	0
+ 1798 0180 00       		.byte	0
+ 1799 0181 1C       		.uleb128 0x1c
+ 1800 0182 34       		.uleb128 0x34
+ 1801 0183 00       		.byte	0
+ 1802 0184 03       		.uleb128 0x3
+ 1803 0185 0E       		.uleb128 0xe
+ 1804 0186 3A       		.uleb128 0x3a
+ 1805 0187 0B       		.uleb128 0xb
+ 1806 0188 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 41
+
+
+ 1807 0189 05       		.uleb128 0x5
+ 1808 018a 49       		.uleb128 0x49
+ 1809 018b 13       		.uleb128 0x13
+ 1810 018c 02       		.uleb128 0x2
+ 1811 018d 17       		.uleb128 0x17
+ 1812 018e 00       		.byte	0
+ 1813 018f 00       		.byte	0
+ 1814 0190 1D       		.uleb128 0x1d
+ 1815 0191 2E       		.uleb128 0x2e
+ 1816 0192 00       		.byte	0
+ 1817 0193 3F       		.uleb128 0x3f
+ 1818 0194 19       		.uleb128 0x19
+ 1819 0195 03       		.uleb128 0x3
+ 1820 0196 0E       		.uleb128 0xe
+ 1821 0197 3A       		.uleb128 0x3a
+ 1822 0198 0B       		.uleb128 0xb
+ 1823 0199 3B       		.uleb128 0x3b
+ 1824 019a 05       		.uleb128 0x5
+ 1825 019b 27       		.uleb128 0x27
+ 1826 019c 19       		.uleb128 0x19
+ 1827 019d 11       		.uleb128 0x11
+ 1828 019e 01       		.uleb128 0x1
+ 1829 019f 12       		.uleb128 0x12
+ 1830 01a0 06       		.uleb128 0x6
+ 1831 01a1 40       		.uleb128 0x40
+ 1832 01a2 18       		.uleb128 0x18
+ 1833 01a3 9742     		.uleb128 0x2117
+ 1834 01a5 19       		.uleb128 0x19
+ 1835 01a6 00       		.byte	0
+ 1836 01a7 00       		.byte	0
+ 1837 01a8 1E       		.uleb128 0x1e
+ 1838 01a9 2E       		.uleb128 0x2e
+ 1839 01aa 00       		.byte	0
+ 1840 01ab 3F       		.uleb128 0x3f
+ 1841 01ac 19       		.uleb128 0x19
+ 1842 01ad 03       		.uleb128 0x3
+ 1843 01ae 0E       		.uleb128 0xe
+ 1844 01af 3A       		.uleb128 0x3a
+ 1845 01b0 0B       		.uleb128 0xb
+ 1846 01b1 3B       		.uleb128 0x3b
+ 1847 01b2 05       		.uleb128 0x5
+ 1848 01b3 27       		.uleb128 0x27
+ 1849 01b4 19       		.uleb128 0x19
+ 1850 01b5 49       		.uleb128 0x49
+ 1851 01b6 13       		.uleb128 0x13
+ 1852 01b7 11       		.uleb128 0x11
+ 1853 01b8 01       		.uleb128 0x1
+ 1854 01b9 12       		.uleb128 0x12
+ 1855 01ba 06       		.uleb128 0x6
+ 1856 01bb 40       		.uleb128 0x40
+ 1857 01bc 18       		.uleb128 0x18
+ 1858 01bd 9742     		.uleb128 0x2117
+ 1859 01bf 19       		.uleb128 0x19
+ 1860 01c0 00       		.byte	0
+ 1861 01c1 00       		.byte	0
+ 1862 01c2 1F       		.uleb128 0x1f
+ 1863 01c3 05       		.uleb128 0x5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 42
+
+
+ 1864 01c4 00       		.byte	0
+ 1865 01c5 03       		.uleb128 0x3
+ 1866 01c6 0E       		.uleb128 0xe
+ 1867 01c7 3A       		.uleb128 0x3a
+ 1868 01c8 0B       		.uleb128 0xb
+ 1869 01c9 3B       		.uleb128 0x3b
+ 1870 01ca 0B       		.uleb128 0xb
+ 1871 01cb 49       		.uleb128 0x49
+ 1872 01cc 13       		.uleb128 0x13
+ 1873 01cd 02       		.uleb128 0x2
+ 1874 01ce 17       		.uleb128 0x17
+ 1875 01cf 00       		.byte	0
+ 1876 01d0 00       		.byte	0
+ 1877 01d1 20       		.uleb128 0x20
+ 1878 01d2 34       		.uleb128 0x34
+ 1879 01d3 00       		.byte	0
+ 1880 01d4 03       		.uleb128 0x3
+ 1881 01d5 0E       		.uleb128 0xe
+ 1882 01d6 3A       		.uleb128 0x3a
+ 1883 01d7 0B       		.uleb128 0xb
+ 1884 01d8 3B       		.uleb128 0x3b
+ 1885 01d9 05       		.uleb128 0x5
+ 1886 01da 49       		.uleb128 0x49
+ 1887 01db 13       		.uleb128 0x13
+ 1888 01dc 3F       		.uleb128 0x3f
+ 1889 01dd 19       		.uleb128 0x19
+ 1890 01de 3C       		.uleb128 0x3c
+ 1891 01df 19       		.uleb128 0x19
+ 1892 01e0 00       		.byte	0
+ 1893 01e1 00       		.byte	0
+ 1894 01e2 21       		.uleb128 0x21
+ 1895 01e3 34       		.uleb128 0x34
+ 1896 01e4 00       		.byte	0
+ 1897 01e5 03       		.uleb128 0x3
+ 1898 01e6 0E       		.uleb128 0xe
+ 1899 01e7 3A       		.uleb128 0x3a
+ 1900 01e8 0B       		.uleb128 0xb
+ 1901 01e9 3B       		.uleb128 0x3b
+ 1902 01ea 0B       		.uleb128 0xb
+ 1903 01eb 49       		.uleb128 0x49
+ 1904 01ec 13       		.uleb128 0x13
+ 1905 01ed 3F       		.uleb128 0x3f
+ 1906 01ee 19       		.uleb128 0x19
+ 1907 01ef 02       		.uleb128 0x2
+ 1908 01f0 18       		.uleb128 0x18
+ 1909 01f1 00       		.byte	0
+ 1910 01f2 00       		.byte	0
+ 1911 01f3 22       		.uleb128 0x22
+ 1912 01f4 2E       		.uleb128 0x2e
+ 1913 01f5 00       		.byte	0
+ 1914 01f6 3F       		.uleb128 0x3f
+ 1915 01f7 19       		.uleb128 0x19
+ 1916 01f8 3C       		.uleb128 0x3c
+ 1917 01f9 19       		.uleb128 0x19
+ 1918 01fa 6E       		.uleb128 0x6e
+ 1919 01fb 0E       		.uleb128 0xe
+ 1920 01fc 03       		.uleb128 0x3
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 43
+
+
+ 1921 01fd 0E       		.uleb128 0xe
+ 1922 01fe 3A       		.uleb128 0x3a
+ 1923 01ff 0B       		.uleb128 0xb
+ 1924 0200 3B       		.uleb128 0x3b
+ 1925 0201 0B       		.uleb128 0xb
+ 1926 0202 00       		.byte	0
+ 1927 0203 00       		.byte	0
+ 1928 0204 00       		.byte	0
+ 1929              		.section	.debug_loc,"",%progbits
+ 1930              	.Ldebug_loc0:
+ 1931              	.LLST0:
+ 1932 0000 68000000 		.4byte	.LVL9
+ 1933 0004 FF000000 		.4byte	.LVL11-1
+ 1934 0008 0100     		.2byte	0x1
+ 1935 000a 53       		.byte	0x53
+ 1936 000b 00000000 		.4byte	0
+ 1937 000f 00000000 		.4byte	0
+ 1938              	.LLST1:
+ 1939 0013 08000000 		.4byte	.LVL0
+ 1940 0017 2C000000 		.4byte	.LVL1
+ 1941 001b 0100     		.2byte	0x1
+ 1942 001d 50       		.byte	0x50
+ 1943 001e 32000000 		.4byte	.LVL3
+ 1944 0022 46000000 		.4byte	.LVL4
+ 1945 0026 0100     		.2byte	0x1
+ 1946 0028 50       		.byte	0x50
+ 1947 0029 4E000000 		.4byte	.LVL6
+ 1948 002d 62000000 		.4byte	.LVL7
+ 1949 0031 0100     		.2byte	0x1
+ 1950 0033 50       		.byte	0x50
+ 1951 0034 00000000 		.4byte	0
+ 1952 0038 00000000 		.4byte	0
+ 1953              	.LLST2:
+ 1954 003c 00000000 		.4byte	.LVL20
+ 1955 0040 02000000 		.4byte	.LVL21
+ 1956 0044 0100     		.2byte	0x1
+ 1957 0046 50       		.byte	0x50
+ 1958 0047 02000000 		.4byte	.LVL21
+ 1959 004b 10000000 		.4byte	.LFE70
+ 1960 004f 0400     		.2byte	0x4
+ 1961 0051 F3       		.byte	0xf3
+ 1962 0052 01       		.uleb128 0x1
+ 1963 0053 50       		.byte	0x50
+ 1964 0054 9F       		.byte	0x9f
+ 1965 0055 00000000 		.4byte	0
+ 1966 0059 00000000 		.4byte	0
+ 1967              	.LLST3:
+ 1968 005d 04000000 		.4byte	.LVL22
+ 1969 0061 06000000 		.4byte	.LVL23
+ 1970 0065 0500     		.2byte	0x5
+ 1971 0067 70       		.byte	0x70
+ 1972 0068 00       		.sleb128 0
+ 1973 0069 35       		.byte	0x35
+ 1974 006a 25       		.byte	0x25
+ 1975 006b 9F       		.byte	0x9f
+ 1976 006c 00000000 		.4byte	0
+ 1977 0070 00000000 		.4byte	0
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 44
+
+
+ 1978              	.LLST4:
+ 1979 0074 00000000 		.4byte	.LVL28
+ 1980 0078 07000000 		.4byte	.LVL29-1
+ 1981 007c 0100     		.2byte	0x1
+ 1982 007e 50       		.byte	0x50
+ 1983 007f 07000000 		.4byte	.LVL29-1
+ 1984 0083 1A000000 		.4byte	.LFE65
+ 1985 0087 0100     		.2byte	0x1
+ 1986 0089 54       		.byte	0x54
+ 1987 008a 00000000 		.4byte	0
+ 1988 008e 00000000 		.4byte	0
+ 1989              		.section	.debug_aranges,"",%progbits
+ 1990 0000 7C000000 		.4byte	0x7c
+ 1991 0004 0200     		.2byte	0x2
+ 1992 0006 00000000 		.4byte	.Ldebug_info0
+ 1993 000a 04       		.byte	0x4
+ 1994 000b 00       		.byte	0
+ 1995 000c 0000     		.2byte	0
+ 1996 000e 0000     		.2byte	0
+ 1997 0010 00000000 		.4byte	.LFB67
+ 1998 0014 30010000 		.4byte	.LFE67-.LFB67
+ 1999 0018 00000000 		.4byte	.LFB68
+ 2000 001c 0C000000 		.4byte	.LFE68-.LFB68
+ 2001 0020 00000000 		.4byte	.LFB69
+ 2002 0024 0C000000 		.4byte	.LFE69-.LFB69
+ 2003 0028 00000000 		.4byte	.LFB70
+ 2004 002c 10000000 		.4byte	.LFE70-.LFB70
+ 2005 0030 00000000 		.4byte	.LFB71
+ 2006 0034 0C000000 		.4byte	.LFE71-.LFB71
+ 2007 0038 00000000 		.4byte	.LFB72
+ 2008 003c 0C000000 		.4byte	.LFE72-.LFB72
+ 2009 0040 00000000 		.4byte	.LFB73
+ 2010 0044 10000000 		.4byte	.LFE73-.LFB73
+ 2011 0048 00000000 		.4byte	.LFB74
+ 2012 004c 0C000000 		.4byte	.LFE74-.LFB74
+ 2013 0050 00000000 		.4byte	.LFB64
+ 2014 0054 1C000000 		.4byte	.LFE64-.LFB64
+ 2015 0058 00000000 		.4byte	.LFB65
+ 2016 005c 1A000000 		.4byte	.LFE65-.LFB65
+ 2017 0060 00000000 		.4byte	.LFB66
+ 2018 0064 14000000 		.4byte	.LFE66-.LFB66
+ 2019 0068 00000000 		.4byte	.LFB75
+ 2020 006c 0C000000 		.4byte	.LFE75-.LFB75
+ 2021 0070 00000000 		.4byte	.LFB76
+ 2022 0074 0C000000 		.4byte	.LFE76-.LFB76
+ 2023 0078 00000000 		.4byte	0
+ 2024 007c 00000000 		.4byte	0
+ 2025              		.section	.debug_ranges,"",%progbits
+ 2026              	.Ldebug_ranges0:
+ 2027 0000 00000000 		.4byte	.LFB67
+ 2028 0004 30010000 		.4byte	.LFE67
+ 2029 0008 00000000 		.4byte	.LFB68
+ 2030 000c 0C000000 		.4byte	.LFE68
+ 2031 0010 00000000 		.4byte	.LFB69
+ 2032 0014 0C000000 		.4byte	.LFE69
+ 2033 0018 00000000 		.4byte	.LFB70
+ 2034 001c 10000000 		.4byte	.LFE70
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 45
+
+
+ 2035 0020 00000000 		.4byte	.LFB71
+ 2036 0024 0C000000 		.4byte	.LFE71
+ 2037 0028 00000000 		.4byte	.LFB72
+ 2038 002c 0C000000 		.4byte	.LFE72
+ 2039 0030 00000000 		.4byte	.LFB73
+ 2040 0034 10000000 		.4byte	.LFE73
+ 2041 0038 00000000 		.4byte	.LFB74
+ 2042 003c 0C000000 		.4byte	.LFE74
+ 2043 0040 00000000 		.4byte	.LFB64
+ 2044 0044 1C000000 		.4byte	.LFE64
+ 2045 0048 00000000 		.4byte	.LFB65
+ 2046 004c 1A000000 		.4byte	.LFE65
+ 2047 0050 00000000 		.4byte	.LFB66
+ 2048 0054 14000000 		.4byte	.LFE66
+ 2049 0058 00000000 		.4byte	.LFB75
+ 2050 005c 0C000000 		.4byte	.LFE75
+ 2051 0060 00000000 		.4byte	.LFB76
+ 2052 0064 0C000000 		.4byte	.LFE76
+ 2053 0068 00000000 		.4byte	0
+ 2054 006c 00000000 		.4byte	0
+ 2055              		.section	.debug_line,"",%progbits
+ 2056              	.Ldebug_line0:
+ 2057 0000 0D030000 		.section	.debug_str,"MS",%progbits,1
+ 2057      0200E401 
+ 2057      00000201 
+ 2057      FB0E0D00 
+ 2057      01010101 
+ 2058              	.LASF70:
+ 2059 0000 72785F69 		.ascii	"rx_index\000"
+ 2059      6E646578 
+ 2059      00
+ 2060              	.LASF84:
+ 2061 0009 433A5C55 		.ascii	"C:\\Users\\pajoh\\projects\\Turret\\PSoC\\turret_ps"
+ 2061      73657273 
+ 2061      5C70616A 
+ 2061      6F685C70 
+ 2061      726F6A65 
+ 2062 0036 6F635C33 		.ascii	"oc\\3dof.cydsn\000"
+ 2062      646F662E 
+ 2062      63796473 
+ 2062      6E00
+ 2063              	.LASF55:
+ 2064 0044 4E434F5F 		.ascii	"NCO_ISR_GetPriority\000"
+ 2064      4953525F 
+ 2064      47657450 
+ 2064      72696F72 
+ 2064      69747900 
+ 2065              	.LASF80:
+ 2066 0058 4A325F53 		.ascii	"J2_STEP_Write\000"
+ 2066      5445505F 
+ 2066      57726974 
+ 2066      6500
+ 2067              	.LASF53:
+ 2068 0066 7072696F 		.ascii	"priority\000"
+ 2068      72697479 
+ 2068      00
+ 2069              	.LASF81:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 46
+
+
+ 2070 006f 4A335F53 		.ascii	"J3_STEP_Write\000"
+ 2070      5445505F 
+ 2070      57726974 
+ 2070      6500
+ 2071              	.LASF68:
+ 2072 007d 6D6F7665 		.ascii	"move_queue\000"
+ 2072      5F717565 
+ 2072      756500
+ 2073              	.LASF5:
+ 2074 0088 73686F72 		.ascii	"short int\000"
+ 2074      7420696E 
+ 2074      7400
+ 2075              	.LASF58:
+ 2076 0092 4E434F5F 		.ascii	"NCO_ISR_Start\000"
+ 2076      4953525F 
+ 2076      53746172 
+ 2076      7400
+ 2077              	.LASF10:
+ 2078 00a0 73697A65 		.ascii	"sizetype\000"
+ 2078      74797065 
+ 2078      00
+ 2079              	.LASF67:
+ 2080 00a9 6D73675F 		.ascii	"msg_buff\000"
+ 2080      62756666 
+ 2080      00
+ 2081              	.LASF43:
+ 2082 00b2 64697265 		.ascii	"direction\000"
+ 2082      6374696F 
+ 2082      6E00
+ 2083              	.LASF60:
+ 2084 00bc 4E434F5F 		.ascii	"NCO_ISR_Stop\000"
+ 2084      4953525F 
+ 2084      53746F70 
+ 2084      00
+ 2085              	.LASF48:
+ 2086 00c9 4E434F5F 		.ascii	"NCO_ISR_Interrupt\000"
+ 2086      4953525F 
+ 2086      496E7465 
+ 2086      72727570 
+ 2086      7400
+ 2087              	.LASF24:
+ 2088 00db 74756E69 		.ascii	"tuningWord\000"
+ 2088      6E67576F 
+ 2088      726400
+ 2089              	.LASF71:
+ 2090 00e6 5472616E 		.ascii	"TransmitBuffer\000"
+ 2090      736D6974 
+ 2090      42756666 
+ 2090      657200
+ 2091              	.LASF39:
+ 2092 00f5 68656164 		.ascii	"head\000"
+ 2092      00
+ 2093              	.LASF17:
+ 2094 00fa 696E7431 		.ascii	"int16\000"
+ 2094      3600
+ 2095              	.LASF73:
+ 2096 0100 4A315F45 		.ascii	"J1_EN_Write\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 47
+
+
+ 2096      4E5F5772 
+ 2096      69746500 
+ 2097              	.LASF65:
+ 2098 010c 4A315F68 		.ascii	"J1_home\000"
+ 2098      6F6D6500 
+ 2099              	.LASF64:
+ 2100 0114 72656164 		.ascii	"read_angle_command\000"
+ 2100      5F616E67 
+ 2100      6C655F63 
+ 2100      6F6D6D61 
+ 2100      6E6400
+ 2101              	.LASF56:
+ 2102 0127 4E434F5F 		.ascii	"NCO_ISR_Enable\000"
+ 2102      4953525F 
+ 2102      456E6162 
+ 2102      6C6500
+ 2103              	.LASF19:
+ 2104 0136 666C6F61 		.ascii	"float\000"
+ 2104      7400
+ 2105              	.LASF54:
+ 2106 013c 4E434F5F 		.ascii	"NCO_ISR_GetVector\000"
+ 2106      4953525F 
+ 2106      47657456 
+ 2106      6563746F 
+ 2106      7200
+ 2107              	.LASF29:
+ 2108 014e 61636375 		.ascii	"accumulator\000"
+ 2108      6D756C61 
+ 2108      746F7200 
+ 2109              	.LASF1:
+ 2110 015a 6C6F6E67 		.ascii	"long long int\000"
+ 2110      206C6F6E 
+ 2110      6720696E 
+ 2110      7400
+ 2111              	.LASF28:
+ 2112 0168 6C696D69 		.ascii	"limit\000"
+ 2112      7400
+ 2113              	.LASF62:
+ 2114 016e 4E434F5F 		.ascii	"NCO_ISR_ClearPending\000"
+ 2114      4953525F 
+ 2114      436C6561 
+ 2114      7250656E 
+ 2114      64696E67 
+ 2115              	.LASF51:
+ 2116 0183 4E434F5F 		.ascii	"NCO_ISR_SetPriority\000"
+ 2116      4953525F 
+ 2116      53657450 
+ 2116      72696F72 
+ 2116      69747900 
+ 2117              	.LASF7:
+ 2118 0197 6C6F6E67 		.ascii	"long int\000"
+ 2118      20696E74 
+ 2118      00
+ 2119              	.LASF57:
+ 2120 01a0 4E434F5F 		.ascii	"NCO_ISR_Disable\000"
+ 2120      4953525F 
+ 2120      44697361 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 48
+
+
+ 2120      626C6500 
+ 2121              	.LASF52:
+ 2122 01b0 61646472 		.ascii	"address\000"
+ 2122      65737300 
+ 2123              	.LASF50:
+ 2124 01b8 72616D56 		.ascii	"ramVectorTable\000"
+ 2124      6563746F 
+ 2124      72546162 
+ 2124      6C6500
+ 2125              	.LASF83:
+ 2126 01c7 47656E65 		.ascii	"Generated_Source\\PSoC5\\NCO_ISR.c\000"
+ 2126      72617465 
+ 2126      645F536F 
+ 2126      75726365 
+ 2126      5C50536F 
+ 2127              	.LASF69:
+ 2128 01e8 72785F62 		.ascii	"rx_buffer\000"
+ 2128      75666665 
+ 2128      7200
+ 2129              	.LASF66:
+ 2130 01f2 6A6F696E 		.ascii	"joints\000"
+ 2130      747300
+ 2131              	.LASF33:
+ 2132 01f9 4A6F696E 		.ascii	"Joint\000"
+ 2132      7400
+ 2133              	.LASF4:
+ 2134 01ff 756E7369 		.ascii	"unsigned char\000"
+ 2134      676E6564 
+ 2134      20636861 
+ 2134      7200
+ 2135              	.LASF2:
+ 2136 020d 6C6F6E67 		.ascii	"long double\000"
+ 2136      20646F75 
+ 2136      626C6500 
+ 2137              	.LASF40:
+ 2138 0219 7461696C 		.ascii	"tail\000"
+ 2138      00
+ 2139              	.LASF23:
+ 2140 021e 63796973 		.ascii	"cyisraddress\000"
+ 2140      72616464 
+ 2140      72657373 
+ 2140      00
+ 2141              	.LASF61:
+ 2142 022b 4E434F5F 		.ascii	"NCO_ISR_SetPending\000"
+ 2142      4953525F 
+ 2142      53657450 
+ 2142      656E6469 
+ 2142      6E6700
+ 2143              	.LASF79:
+ 2144 023e 4A315F53 		.ascii	"J1_STEP_Write\000"
+ 2144      5445505F 
+ 2144      57726974 
+ 2144      6500
+ 2145              	.LASF3:
+ 2146 024c 7369676E 		.ascii	"signed char\000"
+ 2146      65642063 
+ 2146      68617200 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 49
+
+
+ 2147              	.LASF46:
+ 2148 0258 4D6F7665 		.ascii	"Move_Queue\000"
+ 2148      5F517565 
+ 2148      756500
+ 2149              	.LASF9:
+ 2150 0263 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2150      206C6F6E 
+ 2150      6720756E 
+ 2150      7369676E 
+ 2150      65642069 
+ 2151              	.LASF75:
+ 2152 027a 4A335F45 		.ascii	"J3_EN_Write\000"
+ 2152      4E5F5772 
+ 2152      69746500 
+ 2153              	.LASF42:
+ 2154 0286 4D657373 		.ascii	"Message_Buff\000"
+ 2154      6167655F 
+ 2154      42756666 
+ 2154      00
+ 2155              	.LASF0:
+ 2156 0293 756E7369 		.ascii	"unsigned int\000"
+ 2156      676E6564 
+ 2156      20696E74 
+ 2156      00
+ 2157              	.LASF38:
+ 2158 02a0 6D736773 		.ascii	"msgs\000"
+ 2158      00
+ 2159              	.LASF8:
+ 2160 02a5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2160      20756E73 
+ 2160      69676E65 
+ 2160      6420696E 
+ 2160      7400
+ 2161              	.LASF72:
+ 2162 02b7 6D6F7665 		.ascii	"move_queue_get\000"
+ 2162      5F717565 
+ 2162      75655F67 
+ 2162      657400
+ 2163              	.LASF25:
+ 2164 02c6 73746570 		.ascii	"step\000"
+ 2164      00
+ 2165              	.LASF86:
+ 2166 02cb 4E434F5F 		.ascii	"NCO_ISR_GetState\000"
+ 2166      4953525F 
+ 2166      47657453 
+ 2166      74617465 
+ 2166      00
+ 2167              	.LASF22:
+ 2168 02dc 72656733 		.ascii	"reg32\000"
+ 2168      3200
+ 2169              	.LASF6:
+ 2170 02e2 73686F72 		.ascii	"short unsigned int\000"
+ 2170      7420756E 
+ 2170      7369676E 
+ 2170      65642069 
+ 2170      6E7400
+ 2171              	.LASF31:
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 50
+
+
+ 2172 02f5 616E676C 		.ascii	"angleOld\000"
+ 2172      654F6C64 
+ 2172      00
+ 2173              	.LASF41:
+ 2174 02fe 73697A65 		.ascii	"size\000"
+ 2174      00
+ 2175              	.LASF11:
+ 2176 0303 63686172 		.ascii	"char\000"
+ 2176      00
+ 2177              	.LASF74:
+ 2178 0308 4A325F45 		.ascii	"J2_EN_Write\000"
+ 2178      4E5F5772 
+ 2178      69746500 
+ 2179              	.LASF35:
+ 2180 0314 6A6F696E 		.ascii	"joint\000"
+ 2180      7400
+ 2181              	.LASF13:
+ 2182 031a 696E7433 		.ascii	"int32_t\000"
+ 2182      325F7400 
+ 2183              	.LASF14:
+ 2184 0322 75696E74 		.ascii	"uint8\000"
+ 2184      3800
+ 2185              	.LASF44:
+ 2186 0328 4D6F7665 		.ascii	"Move\000"
+ 2186      00
+ 2187              	.LASF78:
+ 2188 032d 4A335F44 		.ascii	"J3_DIR_Write\000"
+ 2188      49525F57 
+ 2188      72697465 
+ 2188      00
+ 2189              	.LASF36:
+ 2190 033a 64617461 		.ascii	"data\000"
+ 2190      00
+ 2191              	.LASF15:
+ 2192 033f 75696E74 		.ascii	"uint16\000"
+ 2192      313600
+ 2193              	.LASF27:
+ 2194 0346 64757261 		.ascii	"duration\000"
+ 2194      74696F6E 
+ 2194      00
+ 2195              	.LASF32:
+ 2196 034f 686F6D65 		.ascii	"homed\000"
+ 2196      6400
+ 2197              	.LASF16:
+ 2198 0355 75696E74 		.ascii	"uint32\000"
+ 2198      333200
+ 2199              	.LASF49:
+ 2200 035c 4E434F5F 		.ascii	"NCO_ISR_SetVector\000"
+ 2200      4953525F 
+ 2200      53657456 
+ 2200      6563746F 
+ 2200      7200
+ 2201              	.LASF21:
+ 2202 036e 72656738 		.ascii	"reg8\000"
+ 2202      00
+ 2203              	.LASF85:
+ 2204 0373 6D657373 		.ascii	"message\000"
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 51
+
+
+ 2204      61676500 
+ 2205              	.LASF18:
+ 2206 037b 696E7433 		.ascii	"int32\000"
+ 2206      3200
+ 2207              	.LASF20:
+ 2208 0381 646F7562 		.ascii	"double\000"
+ 2208      6C6500
+ 2209              	.LASF77:
+ 2210 0388 4A325F44 		.ascii	"J2_DIR_Write\000"
+ 2210      49525F57 
+ 2210      72697465 
+ 2210      00
+ 2211              	.LASF45:
+ 2212 0395 6D6F7665 		.ascii	"moves\000"
+ 2212      7300
+ 2213              	.LASF12:
+ 2214 039b 5F5F696E 		.ascii	"__int32_t\000"
+ 2214      7433325F 
+ 2214      7400
+ 2215              	.LASF30:
+ 2216 03a5 616E676C 		.ascii	"angle\000"
+ 2216      6500
+ 2217              	.LASF34:
+ 2218 03ab 636F6D6D 		.ascii	"command\000"
+ 2218      616E6400 
+ 2219              	.LASF76:
+ 2220 03b3 4A315F44 		.ascii	"J1_DIR_Write\000"
+ 2220      49525F57 
+ 2220      72697465 
+ 2220      00
+ 2221              	.LASF59:
+ 2222 03c0 4E434F5F 		.ascii	"NCO_ISR_StartEx\000"
+ 2222      4953525F 
+ 2222      53746172 
+ 2222      74457800 
+ 2223              	.LASF37:
+ 2224 03d0 4D657373 		.ascii	"Message\000"
+ 2224      61676500 
+ 2225              	.LASF63:
+ 2226 03d8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2226      52784275 
+ 2226      66666572 
+ 2226      00
+ 2227              	.LASF82:
+ 2228 03e5 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2228      43313120 
+ 2228      352E342E 
+ 2228      31203230 
+ 2228      31363036 
+ 2229 0418 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2229      20726576 
+ 2229      6973696F 
+ 2229      6E203233 
+ 2229      37373135 
+ 2230 044b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2230      66756E63 
+ 2230      74696F6E 
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cceS9geT.s 			page 52
+
+
+ 2230      2D736563 
+ 2230      74696F6E 
+ 2231              	.LASF26:
+ 2232 0473 706F734F 		.ascii	"posOffset\000"
+ 2232      66667365 
+ 2232      7400
+ 2233              	.LASF47:
+ 2234 047d 6D6F7665 		.ascii	"move\000"
+ 2234      00
+ 2235              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

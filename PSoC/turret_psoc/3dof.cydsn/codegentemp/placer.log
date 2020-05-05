@@ -6,7 +6,7 @@
 
 #Build Date:         Dec  5 2017 15:35:27
 
-#File Generated:     May 3 2020 23:31:04
+#File Generated:     May 4 2020 21:08:06
 
 #Purpose:            
 
@@ -84,17 +84,17 @@ Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.6 MHz
 Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.6 MHz
-Clock: Clock_1              | Frequency:  60.7 MHz | Target:   1.0 MHz
+Clock: Clock_1              | Frequency:  71.2 MHz | Target:   1.0 MHz
 Clock: Clock_2              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_2(routed)      | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3(routed)      | Frequency: N/A       | Target:   0.0 MHz
-Clock: CyBUS_CLK            | Frequency:  64.9 MHz | Target:  72.0 MHz
+Clock: CyBUS_CLK            | Frequency:  82.1 MHz | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  72.0 MHz
-Clock: UART_1_IntClock      | Frequency:  57.2 MHz | Target:   0.9 MHz
+Clock: UART_1_IntClock      | Frequency:  70.2 MHz | Target:   0.9 MHz
 Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 
 ======================================================================
@@ -112,17 +112,17 @@ Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.6 MHz
 Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.6 MHz
-Clock: Clock_1              | Frequency:  58.5 MHz | Target:   1.0 MHz
+Clock: Clock_1              | Frequency:  68.2 MHz | Target:   1.0 MHz
 Clock: Clock_2              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_2(routed)      | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3(routed)      | Frequency: N/A       | Target:   0.0 MHz
-Clock: CyBUS_CLK            | Frequency:   4.9 MHz | Target:  72.0 MHz
+Clock: CyBUS_CLK            | Frequency:   5.9 MHz | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  72.0 MHz
-Clock: UART_1_IntClock      | Frequency:   4.9 MHz | Target:   0.9 MHz
+Clock: UART_1_IntClock      | Frequency:   5.9 MHz | Target:   0.9 MHz
 Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 
 ======================================================================
@@ -163,17 +163,17 @@ Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.6 MHz
 Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.6 MHz
-Clock: Clock_1              | Frequency:  52.4 MHz | Target:   1.0 MHz
+Clock: Clock_1              | Frequency:  65.7 MHz | Target:   1.0 MHz
 Clock: Clock_2              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_2(routed)      | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3(routed)      | Frequency: N/A       | Target:   0.0 MHz
-Clock: CyBUS_CLK            | Frequency:   5.2 MHz | Target:  72.0 MHz
+Clock: CyBUS_CLK            | Frequency:   5.9 MHz | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  72.0 MHz
-Clock: UART_1_IntClock      | Frequency:   5.2 MHz | Target:   0.9 MHz
+Clock: UART_1_IntClock      | Frequency:   5.9 MHz | Target:   0.9 MHz
 Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 
 ======================================================================
@@ -185,5 +185,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 1.1 sec.
+I2076: Total run-time: 1.2 sec.
 

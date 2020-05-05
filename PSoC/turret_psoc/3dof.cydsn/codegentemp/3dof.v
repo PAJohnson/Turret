@@ -1,6 +1,6 @@
 // ======================================================================
 // 3dof.v generated from TopDesign.cysch
-// 05/03/2020 at 23:31
+// 05/04/2020 at 21:08
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -2070,7 +2070,7 @@ module top ;
 
 	cy_psoc3_pins_v1_10
 		#(.id("1425177d-0d0e-4468-8bcc-e638e5509a9b"),
-		  .drive_mode(3'b001),
+		  .drive_mode(3'b011),
 		  .ibuf_enabled(1'b1),
 		  .init_dr_st(1'b0),
 		  .input_clk_en(0),

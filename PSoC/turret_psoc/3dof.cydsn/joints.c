@@ -22,6 +22,7 @@ void joint_init(Joint volatile * joints){
         joints[i].duration = 0;
         joints[i].limit = 0;
         joints[i].pos = 0;
+        joints[i].posOffset = 0;
         joints[i].step = 0;
         joints[i].tuningWord = 0;
         joints[i].homed = 0;
@@ -48,7 +49,9 @@ void joint_home(Joint volatile * joints, char joint){
         }
         //joint homed
         joints[0].duration = 0; //kill current motion sequence
+        joints[0].posOffset = joints[0].pos;
         J1_EN_Write(1);
+        
     }
     else if(joint == 2){
         J2_EN_Write(0);
@@ -58,6 +61,7 @@ void joint_home(Joint volatile * joints, char joint){
         while(joints[1].limit != 1){
             ;//wait
         }
+        joints[1].posOffset = joints[1].pos;
         joints[1].duration = 0;
         joints[2].duration = 0;
         J2_EN_Write(1);
@@ -70,6 +74,7 @@ void joint_home(Joint volatile * joints, char joint){
         while(joints[2].limit != 1){
             ;//wait
         }
+        joints[2].posOffset = joints[2].pos;
         joints[2].duration = 0;
         J2_EN_Write(1);
         J3_EN_Write(1);
@@ -77,6 +82,10 @@ void joint_home(Joint volatile * joints, char joint){
     else{
         //do nothing   
     }
+}
+
+int32 joint_getPosition(char joint){
+    return joints[joint-1].pos-joints[joint-1].posOffset;   
 }
 
 void set_velocity(int joint, int32 tuningWord, char direction){

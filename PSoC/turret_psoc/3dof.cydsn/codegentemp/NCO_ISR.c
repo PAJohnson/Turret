@@ -169,6 +169,7 @@ CY_ISR(NCO_ISR_Interrupt)
     /*  Place your Interrupt code here. */
     /* `#START NCO_ISR_Interrupt` */
     //accumulator tuningwords
+    int i;
     Move volatile * move;
     //get the most recent move from the queue
     move = move_queue_get(&move_queue);
@@ -176,81 +177,50 @@ CY_ISR(NCO_ISR_Interrupt)
     if(move != 0){
         switch(move->joint){
             case 1:
-                J1_dir = move->direction;
-                J1_tuningWord = move->tuningWord;
-                J1_duration = move->duration;
+                joints[0].dir = move->direction;
+                joints[0].tuningWord = move->tuningWord;
+                joints[0].duration = move->duration;
                 J1_EN_Write(0);
             break;
             case 2:
-                J2_dir = move->direction;
-                J2_tuningWord = move->tuningWord;
-                J2_duration = move->duration;
+                joints[1].dir = move->direction;
+                joints[1].tuningWord = move->tuningWord;
+                joints[1].duration = move->duration;
                 J2_EN_Write(0);
             break;
             case 3:
-                J3_dir = move->direction;
-                J3_tuningWord = move->tuningWord;
-                J3_duration = move->duration;
+                joints[2].dir = move->direction;
+                joints[2].tuningWord = move->tuningWord;
+                joints[2].duration = move->duration;
                 J3_EN_Write(0);
             break;
             default:
             break;
         }
     }
-    J1_accumulator += J1_tuningWord;
-    J2_accumulator += J2_tuningWord;
-    J3_accumulator += J3_tuningWord;
-    //toggle step pins if they were on already
-    if(J1_step != 0){
-        J1_step = 0;   
-    }
-    if(J2_step != 0){
-        J2_step = 0;   
-    }
-    if(J3_step != 0){
-        J3_step = 0;   
-    }
-    //wrap accumulators
-    if(J1_accumulator > 16777215){
-        J1_accumulator -= 16777215;
-        J1_step = 1;
-    }
-    if(J2_accumulator > 16777215){
-        J2_accumulator -= 16777215;
-        J2_step = 1;
-    }
-    if(J3_accumulator > 16777215){
-        J3_accumulator -= 16777215;
-        J3_step = 1;
+    for(i = 0; i < NUM_JOINTS; i++){
+        joints[i].accumulator += joints[i].tuningWord;
+        if(joints[i].step != 0){
+            joints[i].step = 0;   
+        }
+        if(joints[i].accumulator > 16777215){
+            joints[i].accumulator -= 16777215;
+            joints[i].step = 1;
+        }
+        if(joints[i].duration != 0){
+            joints[i].duration -= 1;   
+        }
+        if(joints[i].duration == 0){
+            joints[i].tuningWord = 0;
+        }
     }
     //write directions and step pins
-    J1_DIR_Write(J1_dir);
-    J2_DIR_Write(J2_dir);
-    J3_DIR_Write(J3_dir);
-    J1_STEP_Write(J1_step);
-    J2_STEP_Write(J2_step);
-    J3_STEP_Write(J3_step);
-    
-    //count down duration timers
-    if(J1_duration != 0){
-        J1_duration -= 1;   
-    }
-    if(J2_duration != 0){
-        J2_duration -= 1;   
-    }
-    if(J3_duration != 0){
-        J3_duration -= 1;   
-    }
-    //disable NCOs when duration is up, per joint.
-    if(J1_duration == 0){
-        J1_tuningWord = 0;
-    }
-    if(J2_duration == 0){
-        J2_tuningWord = 0;   
-    }
-    if(J3_duration == 0){
-        J3_tuningWord = 0;   
-    }
+    J1_DIR_Write(joints[0].dir);
+    J2_DIR_Write(joints[1].dir);
+    J3_DIR_Write(joints[2].dir);
+    J1_STEP_Write(joints[0].step);
+    J2_STEP_Write(joints[1].step);
+    J3_STEP_Write(joints[2].step);
     /* `#END` */
 }
 

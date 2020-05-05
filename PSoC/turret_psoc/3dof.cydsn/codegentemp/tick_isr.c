@@ -182,11 +182,39 @@ CY_ISR(tick_isr_Interrupt)
         joints[0].limit = 0;   
     }
     //joint 2, limit is switch and position is SPI encoder
+    //need wrapping for position
     joints[1].limit = !(J2_LIM_Read());
-    //joints[1].pos = get_angle(0);
+    joints[1].angle = send_cmd(SPI_ANGLE|SPI_CMD_READ,0) & 0x3FFF;
+    if(joints[1].angle - joints[1].angleOld > 10000){
+        //angle decreasing, crossed over 0
+        joints[1].pos = joints[1].pos + (joints[1].angle - (joints[1].angleOld + 16384));
+    }
+    else if(joints[1].angle - joints[1].angleOld < -10000){
+        joints[1].pos = joints[1].pos + ((joints[1].angle - joints[1].angleOld) + 16384) % 16384;
+    }
+    else{
+        joints[1].pos = joints[1].pos + joints[1].angle - joints[1].angleOld;   
+    }
+    joints[1].angleOld = joints[1].angle;
+    
+    
+    
     //joint 3, limit is switch and position is SPI encoder
     joints[2].limit = !(J3_LIM_Read());
-    //joints[2].pos = get_angle(1);
+    joints[2].angle = send_cmd(SPI_ANGLE|SPI_CMD_READ,1) & 0x3FFF;
+    if(joints[2].angle - joints[2].angleOld > 10000){
+        //angle decreasing, crossed over 0
+        joints[2].pos = joints[2].pos + (joints[2].angle - (joints[2].angleOld + 16384));
+    }
+    else if(joints[2].angle - joints[2].angleOld < -10000){
+        joints[2].pos = joints[2].pos + ((joints[2].angle - joints[2].angleOld) + 16384) % 16384;
+    }
+    else{
+        joints[2].pos = joints[2].pos + joints[2].angle - joints[2].angleOld;   
+    }
+    joints[2].angleOld = joints[2].angle;
+    
+    //timing for other things
     tick2 += 1;
     if(tick2 >= 10){
         tick = 1;

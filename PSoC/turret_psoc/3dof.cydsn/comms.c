@@ -73,6 +73,13 @@ void message_buff_execute(Message_Buff volatile * msg_buff){
         msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
         msg_buff->size -= 1;
     }
+    if(msg_buff->msgs[msg_buff->tail].command == GET_POSITION){
+        joint = msg_buff->msgs[msg_buff->tail].joint;
+        sprintf(TransmitBuffer,"%ld\r\n",joint_getPosition(joint));
+        UART_1_PutString(TransmitBuffer);
+        msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
+        msg_buff->size -= 1;
+    }
 }
 
 void move_queue_init(Move_Queue volatile * move_queue){

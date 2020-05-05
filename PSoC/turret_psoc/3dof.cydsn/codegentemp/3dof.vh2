@@ -2,7 +2,7 @@
 --	Conversion of 3dof.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Sun May 03 23:31:03 2020
+--	Mon May 04 21:08:05 2020
 --
 
 USE cypress.cypress.all;
@@ -2808,7 +2808,7 @@ J3_DIR:cy_psoc3_pins_v1_10
 		interrupt=>Net_90);
 Rx_1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"1425177d-0d0e-4468-8bcc-e638e5509a9b",
-		drive_mode=>"001",
+		drive_mode=>"011",
 		ibuf_enabled=>"1",
 		init_dr_st=>"0",
 		input_sync=>"1",

@@ -175,6 +175,7 @@ CY_ISR(rx_isr_Interrupt)
     Message tmp_msg;
     int i;
     ch = UART_1_GetByte();
+    UART_1_PutChar(ch);
     rx_buffer[rx_index] = ch;
     rx_index++;
     if(rx_buffer[rx_index-1] == '\r'){

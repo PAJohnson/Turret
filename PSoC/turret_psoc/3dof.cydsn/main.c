@@ -15,7 +15,7 @@
 #include "joints.h"
 #include "as5048.h"
 
-#define BUFF_SIZE 80
+
 #define TRUE 1
 #define FALSE 0
 
@@ -36,7 +36,7 @@ char J3_ctrl_val = 0;
 
 //UART stuff
 uint8 Ch;
-char TransmitBuffer[BUFF_SIZE];
+extern char TransmitBuffer[BUFF_SIZE];
 
 
 extern volatile Message_Buff msg_buff;
@@ -84,7 +84,7 @@ int main(void)
             tick = 0;
             //sprintf(TransmitBuffer,"LIM1: %d, LIM2: %d, LIM3: %d\n\r",joints[0].limit,joints[1].limit,joints[2].limit);
             //UART_1_PutString(TransmitBuffer);
-            //sprintf(TransmitBuffer,"J1 Pos: %ld, J2 Pos: %ld, J3 Pos: %ld\n\r",joints[0].pos,joints[1].pos,joints[2].pos);
+            //sprintf(TransmitBuffer,"J1 Pos: %ld, J2 Pos: %ld, J3 Pos: %ld\n\r",joints[0].pos-joints[0].posOffset,joints[1].pos-joints[1].posOffset,joints[2].pos-joints[2].posOffset);
             //UART_1_PutString(TransmitBuffer);
         }
     }

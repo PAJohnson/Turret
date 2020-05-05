@@ -40,6 +40,7 @@ typedef struct{
     char step;
     char dir;
     int32 pos;
+    int32 posOffset;
     uint32 duration;
     char limit;
     uint32 accumulator;
@@ -56,6 +57,7 @@ void joint_init(Joint volatile * joints);
 void joint_home(Joint volatile * joints, char joint);
 void set_velocity(int joint, int32 tuningWord, char direction);
 uint32 vel_to_tuningWord(uint32 velocity);
+int32 joint_getPosition(char joint);
     
 #endif
 

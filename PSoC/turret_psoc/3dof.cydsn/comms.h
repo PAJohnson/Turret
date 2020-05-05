@@ -16,10 +16,12 @@
 #include "cytypes.h"
 #include "stdio.h"
 #include "joints.h"
+#include "UART_1.h"
 
 #define MSG_BUFF_SIZE 100
 #define RX_SIZE 80
 #define DATA_SIZE 16
+#define BUFF_SIZE 80
 
 //communication variables and types
 #define HOME_JOINT 0x484A //home joint
@@ -60,6 +62,7 @@ volatile Message_Buff msg_buff;
 volatile Move_Queue move_queue;
 volatile char rx_buffer[RX_SIZE];
 volatile int rx_index;
+char TransmitBuffer[BUFF_SIZE];
 
 void message_buff_init(Message_Buff volatile * msg_buff);
 void message_buff_add(Message_Buff volatile * msg_buff, Message * msg);

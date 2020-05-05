@@ -1,5 +1,5 @@
 -- Project:   3dof
--- Generated: 05/03/2020 23:31:04
+-- Generated: 05/04/2020 21:08:06
 -- PSoC Creator  4.2
 
 ENTITY \3dof\ IS
@@ -2288,7 +2288,7 @@ BEGIN
 
     Rx_1:logicalport
         GENERIC MAP(
-            drive_mode => "001",
+            drive_mode => "011",
             ibuf_enabled => "1",
             id => "1425177d-0d0e-4468-8bcc-e638e5509a9b",
             init_dr_st => "0",
