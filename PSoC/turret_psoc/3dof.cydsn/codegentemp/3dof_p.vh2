@@ -1,5 +1,5 @@
 -- Project:   3dof
--- Generated: 05/04/2020 21:08:06
+-- Generated: 05/05/2020 00:05:10
 -- PSoC Creator  4.2
 
 ENTITY \3dof\ IS
@@ -651,12 +651,12 @@ BEGIN
             dclk_0 => \ADC_DelSig_1:Net_93_local\,
             dclk_glb_1 => Net_14,
             dclk_1 => Net_14_local,
-            dclk_glb_2 => \UART_1:Net_9\,
-            dclk_2 => \UART_1:Net_9_local\,
             aclk_glb_0 => \ADC_DelSig_1:Net_488\,
             aclk_0 => \ADC_DelSig_1:Net_488_local\,
             clk_a_dig_glb_0 => \ADC_DelSig_1:Net_488_adig\,
             clk_a_dig_0 => \ADC_DelSig_1:Net_488_adig_local\,
+            dclk_glb_2 => \UART_1:Net_9\,
+            dclk_2 => \UART_1:Net_9_local\,
             dclk_glb_3 => Net_97,
             dclk_3 => Net_97_local,
             dclk_glb_4 => Net_101,
@@ -2288,7 +2288,7 @@ BEGIN
 
     Rx_1:logicalport
         GENERIC MAP(
-            drive_mode => "011",
+            drive_mode => "001",
             ibuf_enabled => "1",
             id => "1425177d-0d0e-4468-8bcc-e638e5509a9b",
             init_dr_st => "0",

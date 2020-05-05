@@ -763,7 +763,7 @@
 #define rx_isr__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
 #define rx_isr__INTC_MASK 0x02u
 #define rx_isr__INTC_NUMBER 1u
-#define rx_isr__INTC_PRIOR_NUM 7u
+#define rx_isr__INTC_PRIOR_NUM 4u
 #define rx_isr__INTC_PRIOR_REG CYREG_NVIC_PRI_1
 #define rx_isr__INTC_SET_EN_REG CYREG_NVIC_SETENA0
 #define rx_isr__INTC_SET_PD_REG CYREG_NVIC_SETPEND0
@@ -908,7 +908,7 @@
 #define NCO_ISR__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
 #define NCO_ISR__INTC_MASK 0x01u
 #define NCO_ISR__INTC_NUMBER 0u
-#define NCO_ISR__INTC_PRIOR_NUM 4u
+#define NCO_ISR__INTC_PRIOR_NUM 3u
 #define NCO_ISR__INTC_PRIOR_REG CYREG_NVIC_PRI_0
 #define NCO_ISR__INTC_SET_EN_REG CYREG_NVIC_SETENA0
 #define NCO_ISR__INTC_SET_PD_REG CYREG_NVIC_SETPEND0
@@ -918,7 +918,7 @@
 #define tick_isr__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
 #define tick_isr__INTC_MASK 0x04u
 #define tick_isr__INTC_NUMBER 2u
-#define tick_isr__INTC_PRIOR_NUM 7u
+#define tick_isr__INTC_PRIOR_NUM 5u
 #define tick_isr__INTC_PRIOR_REG CYREG_NVIC_PRI_2
 #define tick_isr__INTC_SET_EN_REG CYREG_NVIC_SETENA0
 #define tick_isr__INTC_SET_PD_REG CYREG_NVIC_SETPEND0

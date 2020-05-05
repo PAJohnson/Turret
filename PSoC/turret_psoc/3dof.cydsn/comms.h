@@ -18,7 +18,7 @@
 #include "joints.h"
 #include "UART_1.h"
 
-#define MSG_BUFF_SIZE 100
+#define MSG_BUFF_SIZE 50
 #define RX_SIZE 80
 #define DATA_SIZE 16
 #define BUFF_SIZE 80

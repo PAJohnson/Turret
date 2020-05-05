@@ -54,6 +54,7 @@ void message_buff_execute(Message_Buff volatile * msg_buff){
     if(msg_buff->msgs[msg_buff->tail].command == SET_VELOCITY){
         //add message to move queue
         //move queue is global
+        msg_buff->msgs[msg_buff->tail].command = NOP;
         joint = msg_buff->msgs[msg_buff->tail].joint;
         direction = msg_buff->msgs[msg_buff->tail].data[0];
         tuningWord =    (msg_buff->msgs[msg_buff->tail].data[1]<<16) + \
@@ -68,12 +69,14 @@ void message_buff_execute(Message_Buff volatile * msg_buff){
         msg_buff->size -= 1;
     }
     if(msg_buff->msgs[msg_buff->tail].command == HOME_JOINT){
+        msg_buff->msgs[msg_buff->tail].command = NOP;
         joint = msg_buff->msgs[msg_buff->tail].joint;
         joint_home(joints,joint);
         msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
         msg_buff->size -= 1;
     }
     if(msg_buff->msgs[msg_buff->tail].command == GET_POSITION){
+        msg_buff->msgs[msg_buff->tail].command = NOP;
         joint = msg_buff->msgs[msg_buff->tail].joint;
         sprintf(TransmitBuffer,"%ld\r\n",joint_getPosition(joint));
         UART_1_PutString(TransmitBuffer);

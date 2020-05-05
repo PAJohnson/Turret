@@ -12099,7 +12099,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  763              	.set rx_isr__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
  764              	.set rx_isr__INTC_MASK, 0x02
  765              	.set rx_isr__INTC_NUMBER, 1
- 766              	.set rx_isr__INTC_PRIOR_NUM, 7
+ 766              	.set rx_isr__INTC_PRIOR_NUM, 4
  767              	.set rx_isr__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
  768              	.set rx_isr__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
  769              	.set rx_isr__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
@@ -12253,7 +12253,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  908              	.set NCO_ISR__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
  909              	.set NCO_ISR__INTC_MASK, 0x01
  910              	.set NCO_ISR__INTC_NUMBER, 0
- 911              	.set NCO_ISR__INTC_PRIOR_NUM, 4
+ 911              	.set NCO_ISR__INTC_PRIOR_NUM, 3
  912              	.set NCO_ISR__INTC_PRIOR_REG, CYREG_NVIC_PRI_0
  913              	.set NCO_ISR__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
  914              	.set NCO_ISR__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
@@ -12263,7 +12263,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  918              	.set tick_isr__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
  919              	.set tick_isr__INTC_MASK, 0x04
  920              	.set tick_isr__INTC_NUMBER, 2
- 921              	.set tick_isr__INTC_PRIOR_NUM, 7
+ 921              	.set tick_isr__INTC_PRIOR_NUM, 5
  922              	.set tick_isr__INTC_PRIOR_REG, CYREG_NVIC_PRI_2
  923              	.set tick_isr__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
  924              	.set tick_isr__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0

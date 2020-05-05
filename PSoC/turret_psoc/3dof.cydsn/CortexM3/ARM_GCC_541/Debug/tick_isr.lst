@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
   28:Generated_Source\PSoC5/tick_isr.c **** ********************************************************************************/
   29:Generated_Source\PSoC5/tick_isr.c **** /* `#START tick_isr_intc` */
   30:Generated_Source\PSoC5/tick_isr.c **** #include "project.h"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 2
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 2
 
 
   31:Generated_Source\PSoC5/tick_isr.c **** #include "joints.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
   85:Generated_Source\PSoC5/tick_isr.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
   86:Generated_Source\PSoC5/tick_isr.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
   87:Generated_Source\PSoC5/tick_isr.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 3
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 3
 
 
   88:Generated_Source\PSoC5/tick_isr.c **** *  the interrupt to the interrupt controller.
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  142:Generated_Source\PSoC5/tick_isr.c ****     /* Set the ISR to point to the passive one. */
  143:Generated_Source\PSoC5/tick_isr.c ****     tick_isr_SetVector(&IntDefaultHandler);
  144:Generated_Source\PSoC5/tick_isr.c **** }
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 4
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 4
 
 
  145:Generated_Source\PSoC5/tick_isr.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
   50 001c 00D5     		bpl	.L3
   51 001e 0F34     		adds	r4, r4, #15
   52              	.L3:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 5
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 5
 
 
   53 0020 2411     		asrs	r4, r4, #4
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
   95 006a B4F84030 		ldrh	r3, [r4, #64]
   96 006e 1AB2     		sxth	r2, r3
   97 0070 B4F84230 		ldrh	r3, [r4, #66]
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 6
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 6
 
 
   98 0074 1BB2     		sxth	r3, r3
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  147              	.L8:
  194:Generated_Source\PSoC5/tick_isr.c ****     }
  195:Generated_Source\PSoC5/tick_isr.c ****     else{
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 7
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 7
 
 
  196:Generated_Source\PSoC5/tick_isr.c ****         joints[1].pos = joints[1].pos + joints[1].angle - joints[1].angleOld;   
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  190 0144 1BB2     		sxth	r3, r3
  191 0146 03F58043 		add	r3, r3, #16384
  192 014a D31A     		subs	r3, r2, r3
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 8
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 8
 
 
  193 014c 0344     		add	r3, r3, r0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  214:Generated_Source\PSoC5/tick_isr.c ****     }
  215:Generated_Source\PSoC5/tick_isr.c ****     joints[2].angleOld = joints[2].angle;
  241              		.loc 1 215 0
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 9
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 9
 
 
  242 01b0 094B     		ldr	r3, .L16
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  227:Generated_Source\PSoC5/tick_isr.c **** /*******************************************************************************
  228:Generated_Source\PSoC5/tick_isr.c **** * Function Name: tick_isr_SetVector
  229:Generated_Source\PSoC5/tick_isr.c **** ********************************************************************************
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 10
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 10
 
 
  230:Generated_Source\PSoC5/tick_isr.c **** *
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  308              		.thumb
  309              		.thumb_func
  310              		.type	tick_isr_GetVector, %function
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 11
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 11
 
 
  311              	tick_isr_GetVector:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  286:Generated_Source\PSoC5/tick_isr.c **** 
  287:Generated_Source\PSoC5/tick_isr.c **** 
  288:Generated_Source\PSoC5/tick_isr.c **** /*******************************************************************************
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 12
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 12
 
 
  289:Generated_Source\PSoC5/tick_isr.c **** * Function Name: tick_isr_SetPriority
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  315:Generated_Source\PSoC5/tick_isr.c **** }
  316:Generated_Source\PSoC5/tick_isr.c **** 
  317:Generated_Source\PSoC5/tick_isr.c **** 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 13
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 13
 
 
  318:Generated_Source\PSoC5/tick_isr.c **** /*******************************************************************************
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  344:Generated_Source\PSoC5/tick_isr.c **** 
  345:Generated_Source\PSoC5/tick_isr.c **** /*******************************************************************************
  346:Generated_Source\PSoC5/tick_isr.c **** * Function Name: tick_isr_Enable
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 14
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 14
 
 
  347:Generated_Source\PSoC5/tick_isr.c **** ********************************************************************************
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  376:Generated_Source\PSoC5/tick_isr.c **** *   None
  377:Generated_Source\PSoC5/tick_isr.c **** *
  378:Generated_Source\PSoC5/tick_isr.c **** * Return:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 15
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 15
 
 
  379:Generated_Source\PSoC5/tick_isr.c **** *   1 if enabled, 0 if disabled.
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  402:Generated_Source\PSoC5/tick_isr.c **** *******************************************************************************/
  403:Generated_Source\PSoC5/tick_isr.c **** void tick_isr_Disable(void)
  404:Generated_Source\PSoC5/tick_isr.c **** {
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 16
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 16
 
 
  452              		.loc 1 404 0
@@ -948,7 +948,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  491              	.LVL15:
   73:Generated_Source\PSoC5/tick_isr.c **** 
  492              		.loc 1 73 0
- 493 000c 0720     		movs	r0, #7
+ 493 000c 0520     		movs	r0, #5
  494 000e FFF7FEFF 		bl	tick_isr_SetPriority
  495              	.LVL16:
   76:Generated_Source\PSoC5/tick_isr.c **** }
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  499 0016 08BD     		pop	{r3, pc}
  500              	.L44:
  501              		.align	2
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 17
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 17
 
 
  502              	.L43:
@@ -996,7 +996,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  531              	.LVL20:
  116:Generated_Source\PSoC5/tick_isr.c **** 
  532              		.loc 1 116 0
- 533 000e 0720     		movs	r0, #7
+ 533 000e 0520     		movs	r0, #5
  534 0010 FFF7FEFF 		bl	tick_isr_SetPriority
  535              	.LVL21:
  119:Generated_Source\PSoC5/tick_isr.c **** }
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  138:Generated_Source\PSoC5/tick_isr.c ****     /* Disable this interrupt. */
  551              		.loc 1 138 0
  552              		.cfi_startproc
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 18
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 18
 
 
  553              		@ args = 0, pretend = 0, frame = 0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  430:Generated_Source\PSoC5/tick_isr.c **** void tick_isr_SetPending(void)
  431:Generated_Source\PSoC5/tick_isr.c **** {
  582              		.loc 1 431 0
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 19
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 19
 
 
  583              		.cfi_startproc
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  457:Generated_Source\PSoC5/tick_isr.c ****     *tick_isr_INTC_CLR_PD = tick_isr__INTC_MASK;
  612              		.loc 1 457 0
  613 0000 0422     		movs	r2, #4
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 20
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 20
 
 
  614 0002 014B     		ldr	r3, .L55
@@ -1158,7 +1158,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  628              		.comm	rx_index,4,4
  629              		.comm	rx_buffer,80,4
  630              		.comm	move_queue,1208,4
- 631              		.comm	msg_buff,2006,4
+ 631              		.comm	msg_buff,1006,4
  632              		.comm	read_angle_command,2,2
  633              		.bss
  634              		.set	.LANCHOR0,. + 0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  668 0028 696E7400 		.ascii	"int\000"
  669 002c 03       		.uleb128 0x3
  670 002d 04       		.byte	0x4
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 21
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 21
 
 
  671 002e 07       		.byte	0x7
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  725 0091 06       		.uleb128 0x6
  726 0092 04       		.uleb128 0x4
  727 0093 B5020000 		.4byte	.LASF13
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 22
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 22
 
 
  728 0097 03       		.byte	0x3
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  782 0111 8B000000 		.4byte	0x8b
  783 0115 09       		.uleb128 0x9
  784 0116 F8020000 		.4byte	.LASF82
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 23
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 23
 
 
  785 011a 14       		.byte	0x14
@@ -1357,7 +1357,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  818 015c 24       		.byte	0x24
  819 015d 15010000 		.4byte	0x115
  820 0161 0D       		.uleb128 0xd
- 821 0162 D607     		.2byte	0x7d6
+ 821 0162 EE03     		.2byte	0x3ee
  822 0164 05       		.byte	0x5
  823 0165 26       		.byte	0x26
  824 0166 9E010000 		.4byte	0x19e
@@ -1372,29 +1372,29 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  833 017b 05       		.byte	0x5
  834 017c 28       		.byte	0x28
  835 017d A9000000 		.4byte	0xa9
- 836 0181 D007     		.2byte	0x7d0
+ 836 0181 E803     		.2byte	0x3e8
  837 0183 0E       		.uleb128 0xe
  838 0184 EB010000 		.4byte	.LASF30
  839 0188 05       		.byte	0x5
  840 0189 29       		.byte	0x29
  841 018a A9000000 		.4byte	0xa9
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 24
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 24
 
 
- 842 018e D207     		.2byte	0x7d2
+ 842 018e EA03     		.2byte	0x3ea
  843 0190 0E       		.uleb128 0xe
  844 0191 A5020000 		.4byte	.LASF31
  845 0195 05       		.byte	0x5
  846 0196 2A       		.byte	0x2a
  847 0197 A9000000 		.4byte	0xa9
- 848 019b D407     		.2byte	0x7d4
+ 848 019b EC03     		.2byte	0x3ec
  849 019d 00       		.byte	0
  850 019e 0B       		.uleb128 0xb
  851 019f 56010000 		.4byte	0x156
  852 01a3 AE010000 		.4byte	0x1ae
  853 01a7 0C       		.uleb128 0xc
  854 01a8 7D000000 		.4byte	0x7d
- 855 01ac 63       		.byte	0x63
+ 855 01ac 31       		.byte	0x31
  856 01ad 00       		.byte	0
  857 01ae 04       		.uleb128 0x4
  858 01af 4D020000 		.4byte	.LASF32
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  896 01f9 B9010000 		.4byte	0x1b9
  897 01fd 0D       		.uleb128 0xd
  898 01fe B804     		.2byte	0x4b8
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 25
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 25
 
 
  899 0200 05       		.byte	0x5
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  953 026f 28       		.byte	0x28
  954 0270 84000000 		.4byte	0x84
  955 0274 04       		.byte	0x4
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 26
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 26
 
 
  956 0275 10       		.uleb128 0x10
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1010 02e1 00       		.byte	0
  1011 02e2 04       		.uleb128 0x4
  1012 02e3 B6010000 		.4byte	.LASF46
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 27
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 27
 
 
  1013 02e7 06       		.byte	0x6
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1067 035d 01       		.uleb128 0x1
  1068 035e 50       		.byte	0x50
  1069 035f 03       		.uleb128 0x3
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 28
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 28
 
 
  1070 0360 0A       		.byte	0xa
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1124 03ca 19       		.uleb128 0x19
  1125 03cb 2B010000 		.4byte	.LASF50
  1126 03cf 01       		.byte	0x1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 29
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 29
 
 
  1127 03d0 3801     		.2byte	0x138
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1181 0455 9C       		.byte	0x9c
  1182 0456 11       		.uleb128 0x11
  1183 0457 F8000000 		.4byte	.LASF57
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 30
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 30
 
 
  1184 045b 01       		.byte	0x1
@@ -1770,7 +1770,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1210 0499 01       		.uleb128 0x1
  1211 049a 50       		.byte	0x50
  1212 049b 01       		.uleb128 0x1
- 1213 049c 37       		.byte	0x37
+ 1213 049c 35       		.byte	0x35
  1214 049d 00       		.byte	0
  1215 049e 14       		.uleb128 0x14
  1216 049f 16000000 		.4byte	.LVL17
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1238 04d6 0E000000 		.4byte	.LVL20
  1239 04da 6A030000 		.4byte	0x36a
  1240 04de E9040000 		.4byte	0x4e9
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 31
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 31
 
 
  1241 04e2 13       		.uleb128 0x13
@@ -1816,7 +1816,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1253 04f7 01       		.uleb128 0x1
  1254 04f8 50       		.byte	0x50
  1255 04f9 01       		.uleb128 0x1
- 1256 04fa 37       		.byte	0x37
+ 1256 04fa 35       		.byte	0x35
  1257 04fb 00       		.byte	0
  1258 04fc 14       		.uleb128 0x14
  1259 04fd 18000000 		.4byte	.LVL22
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1295 0553 AC030000 		.4byte	.LASF62
  1296 0557 07       		.byte	0x7
  1297 0558 1207     		.2byte	0x712
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 32
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 32
 
 
  1298 055a 5E050000 		.4byte	0x55e
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1352 05d2 DC050000 		.4byte	0x5dc
  1353 05d6 05       		.uleb128 0x5
  1354 05d7 03       		.byte	0x3
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 33
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 33
 
 
  1355 05d8 00000000 		.4byte	rx_index
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1409 0653 01       		.byte	0x1
  1410 0654 21       		.byte	0x21
  1411 0655 84000000 		.4byte	0x84
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 34
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 34
 
 
  1412 0659 05       		.uleb128 0x5
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1466 0012 00       		.byte	0
  1467 0013 02       		.uleb128 0x2
  1468 0014 24       		.uleb128 0x24
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 35
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 35
 
 
  1469 0015 00       		.byte	0
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1523 004b 3A       		.uleb128 0x3a
  1524 004c 0B       		.uleb128 0xb
  1525 004d 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 36
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 36
 
 
  1526 004e 05       		.uleb128 0x5
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1580 0084 49       		.uleb128 0x49
  1581 0085 13       		.uleb128 0x13
  1582 0086 2F       		.uleb128 0x2f
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 37
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 37
 
 
  1583 0087 0B       		.uleb128 0xb
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1637 00bd 13       		.uleb128 0x13
  1638 00be 38       		.uleb128 0x38
  1639 00bf 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 38
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 38
 
 
  1640 00c0 00       		.byte	0
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1694 00fe 00       		.byte	0
  1695 00ff 00       		.byte	0
  1696 0100 15       		.uleb128 0x15
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 39
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 39
 
 
  1697 0101 898201   		.uleb128 0x4109
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1751 0139 01       		.uleb128 0x1
  1752 013a 12       		.uleb128 0x12
  1753 013b 06       		.uleb128 0x6
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 40
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 40
 
 
  1754 013c 40       		.uleb128 0x40
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1808 0174 0B       		.uleb128 0xb
  1809 0175 3B       		.uleb128 0x3b
  1810 0176 05       		.uleb128 0x5
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 41
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 41
 
 
  1811 0177 49       		.uleb128 0x49
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1865 01af 1E       		.uleb128 0x1e
  1866 01b0 05       		.uleb128 0x5
  1867 01b1 00       		.byte	0
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 42
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 42
 
 
  1868 01b2 03       		.uleb128 0x3
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1922 01e8 0B       		.uleb128 0xb
  1923 01e9 49       		.uleb128 0x49
  1924 01ea 13       		.uleb128 0x13
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 43
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 43
 
 
  1925 01eb 3F       		.uleb128 0x3f
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  1979 0040 0100     		.2byte	0x1
  1980 0042 50       		.byte	0x50
  1981 0043 07000000 		.4byte	.LVL19-1
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 44
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 44
 
 
  1982 0047 1A000000 		.4byte	.LFE65
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2036 002c 0C000000 		.4byte	.LFE72
  2037 0030 00000000 		.4byte	.LFB73
  2038 0034 18000000 		.4byte	.LFE73
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 45
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 45
 
 
  2039 0038 00000000 		.4byte	.LFB74
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2070      756500
  2071              	.LASF5:
  2072 0078 73686F72 		.ascii	"short int\000"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 46
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 46
 
 
  2072      7420696E 
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2097              	.LASF63:
  2098 0118 72656164 		.ascii	"read_angle_command\000"
  2098      5F616E67 
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 47
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 47
 
 
  2098      6C655F63 
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2124 01b6 4A6F696E 		.ascii	"Joint\000"
  2124      7400
  2125              	.LASF54:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 48
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 48
 
 
  2126 01bc 7469636B 		.ascii	"tick_isr_GetPriority\000"
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2148      00
  2149              	.LASF8:
  2150 026c 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 49
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 49
 
 
  2150      20756E73 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2180 02ed 7469636B 		.ascii	"tick2\000"
  2180      3200
  2181              	.LASF21:
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 50
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 50
 
 
  2182 02f3 72656738 		.ascii	"reg8\000"
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 1
  2208      61676500 
  2209              	.LASF83:
  2210 039a 7469636B 		.ascii	"tick_isr_GetState\000"
-ARM GAS  C:\Users\pajoh\AppData\Local\Temp\ccJp29Le.s 			page 51
+ARM GAS  C:\Users\pajoh\AppData\Local\Temp\cchXgO6X.s 			page 51
 
 
  2210      5F697372 

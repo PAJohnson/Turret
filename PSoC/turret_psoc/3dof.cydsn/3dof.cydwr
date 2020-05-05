@@ -376,8 +376,10 @@
       <Data key="f546eaa1-2bd7-45ce-bbc2-ed92c1fd1d82" value="Clock_2" />
     </Group>
     <Group key="Interrupt">
+      <Data key="0ed2224e-03a3-4619-8105-25332a16e4cf" value="tick_isr" />
       <Data key="2f29d2aa-691d-489c-95cb-2c792268cf19" value="NCO_ISR" />
       <Data key="2fe5c473-43a5-466f-bc02-a0f05f091abb/b6592af9-e743-4dfd-a597-27f9102033ee" value="ADC_DelSig_1_IRQ" />
+      <Data key="ee9d352e-0d56-4444-9fee-46139a025d32" value="rx_isr" />
     </Group>
     <Group key="Pin">
       <Data key="0b20e87b-c804-4057-aaba-2d874b7f0666" value="J2_STEP" />
@@ -3486,7 +3488,21 @@
     </Group>
   </Group>
   <Group key="Interrupt">
+    <Group key="0ed2224e-03a3-4619-8105-25332a16e4cf">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="5" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
     <Group key="2f29d2aa-691d-489c-95cb-2c792268cf19">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="3" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
+    <Group key="ee9d352e-0d56-4444-9fee-46139a025d32">
       <Group key="CortexM3">
         <Data key="Assigned" value="True" />
         <Data key="Priority" value="4" />

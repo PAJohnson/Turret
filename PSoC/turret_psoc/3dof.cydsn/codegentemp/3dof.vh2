@@ -2,7 +2,7 @@
 --	Conversion of 3dof.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon May 04 21:08:05 2020
+--	Tue May 05 00:05:10 2020
 --
 
 USE cypress.cypress.all;
@@ -1067,7 +1067,7 @@ Net_85D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 		id=>"2fe5c473-43a5-466f-bc02-a0f05f091abb/edd15f43-b66b-457b-be3a-5342345270c8",
 		source_clock_id=>"61737EF6-3B74-48f9-8B91-F7473A442AE7",
 		divisor=>0,
-		period=>"1562500000",
+		period=>"325520833.333333",
 		is_direct=>'0',
 		is_digital=>'0')
 	PORT MAP(clock_out=>\ADC_DelSig_1:Net_488\,
@@ -1572,7 +1572,7 @@ Clock_1:cy_clock_v1_0
 		id=>"d25d8f46-1855-4458-bc33-7f08ca66486e",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"1000000000",
+		period=>"100000000",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_14,
@@ -2808,7 +2808,7 @@ J3_DIR:cy_psoc3_pins_v1_10
 		interrupt=>Net_90);
 Rx_1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"1425177d-0d0e-4468-8bcc-e638e5509a9b",
-		drive_mode=>"011",
+		drive_mode=>"001",
 		ibuf_enabled=>"1",
 		init_dr_st=>"0",
 		input_sync=>"1",

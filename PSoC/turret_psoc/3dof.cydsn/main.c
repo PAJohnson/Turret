@@ -62,14 +62,14 @@ int main(void)
     SPIM_1_Start();
     ADC_DelSig_1_Start();
     ADC_DelSig_1_StartConvert();
-    NCO_ISR_Start();
+    //NCO_ISR_Start();
     
     message_buff_init(&msg_buff);
     move_queue_init(&move_queue);
     joint_init(joints);
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
 
-    UART_1_PutString("COM port open");
+    //UART_1_PutString("COM port open");
     send_cmd(SPI_REG_CLRERR|SPI_CMD_READ,0);
     send_cmd(SPI_REG_CLRERR|SPI_CMD_READ,1);
     tick_isr_Start();

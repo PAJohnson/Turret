@@ -175,28 +175,31 @@ CY_ISR(rx_isr_Interrupt)
     Message tmp_msg;
     int i;
     ch = UART_1_GetByte();
-    UART_1_PutChar(ch);
+    //UART_1_PutChar(ch);
     rx_buffer[rx_index] = ch;
     rx_index++;
     if(rx_buffer[rx_index-1] == '\r'){
         //delimiter has been found
         tmp_msg.command = (rx_buffer[0]<<8)+rx_buffer[1];
         tmp_msg.joint = rx_buffer[2] - 0x30;
-        if(3+rx_index-3 >= DATA_SIZE){
+        if(rx_index >= DATA_SIZE){
             //unterminated command. Restart sequence on PC side.
-            UART_1_PutString("NO");
+            //UART_1_PutString("NO");
             rx_index = 0;
         }
         else{
-            for(i = 3; i < 3 + rx_index - 3; i++){
+            for(i = 3; i < rx_index - 1; i++){
                 tmp_msg.data[i-3] = rx_buffer[i] - 0x30;
             }
             message_buff_add(&msg_buff,&tmp_msg);
             rx_index = 0;
-            for(i = 0; i < DATA_SIZE; i++){
-                tmp_msg.data[i] = 0;   
-            }
+            //for(i = 0; i < DATA_SIZE; i++){
+            //    tmp_msg.data[i] = 0;   
+            //}
         }
+    }
+    if(rx_index >= RX_SIZE){
+        rx_index = 0;   
     }
     
     

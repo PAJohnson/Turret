@@ -6,7 +6,7 @@
 
 #Build Date:         Dec  5 2017 15:35:27
 
-#File Generated:     May 4 2020 21:08:06
+#File Generated:     May 5 2020 00:05:10
 
 #Purpose:            
 
@@ -82,9 +82,9 @@ analysis after routing.
 Number of clocks: 16
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  72.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.6 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.6 MHz
-Clock: Clock_1              | Frequency:  71.2 MHz | Target:   1.0 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   3.1 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   3.1 MHz
+Clock: Clock_1              | Frequency:  71.2 MHz | Target:  10.3 MHz
 Clock: Clock_2              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_2(routed)      | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3              | Frequency: N/A       | Target:   0.0 MHz
@@ -110,9 +110,9 @@ Phase 7
 Number of clocks: 16
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  72.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.6 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.6 MHz
-Clock: Clock_1              | Frequency:  68.2 MHz | Target:   1.0 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   3.1 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   3.1 MHz
+Clock: Clock_1              | Frequency:  68.2 MHz | Target:  10.3 MHz
 Clock: Clock_2              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_2(routed)      | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3              | Frequency: N/A       | Target:   0.0 MHz
@@ -161,9 +161,9 @@ analysis after routing.
 Number of clocks: 16
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  72.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  72.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.6 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.6 MHz
-Clock: Clock_1              | Frequency:  65.7 MHz | Target:   1.0 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   3.1 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   3.1 MHz
+Clock: Clock_1              | Frequency:  65.7 MHz | Target:  10.3 MHz
 Clock: Clock_2              | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_2(routed)      | Frequency: N/A       | Target:   0.0 MHz
 Clock: Clock_3              | Frequency: N/A       | Target:   0.0 MHz
