@@ -47,8 +47,7 @@ volatile char tick;
 
 void home_joints(void);
 void update_positions(void);
-void set_velocity(int joint, int32 tuningWord, char direction);
-uint32 vel_to_tuningWord(uint32 velocity);
+
 
 int main(void)
 {
@@ -85,8 +84,8 @@ int main(void)
             tick = 0;
             //sprintf(TransmitBuffer,"LIM1: %d, LIM2: %d, LIM3: %d\n\r",joints[0].limit,joints[1].limit,joints[2].limit);
             //UART_1_PutString(TransmitBuffer);
-            sprintf(TransmitBuffer,"J1 Pos: %ld, J2 Pos: %ld, J3 Pos: %ld\n\r",joints[0].pos,joints[1].pos,joints[2].pos);
-            UART_1_PutString(TransmitBuffer);
+            //sprintf(TransmitBuffer,"J1 Pos: %ld, J2 Pos: %ld, J3 Pos: %ld\n\r",joints[0].pos,joints[1].pos,joints[2].pos);
+            //UART_1_PutString(TransmitBuffer);
         }
     }
 }
@@ -96,7 +95,6 @@ void home_joints(void){
     J1_EN_Write(0);
     J2_EN_Write(0);
     J3_EN_Write(0);
-    update_positions();
     while(joints[0].pos > J1_home + 100 || joints[0].pos < J1_home - 100){
         //home J1
         update_positions();
@@ -130,25 +128,5 @@ void home_joints(void){
     return;
 }
 
-void update_positions(void){
-    //joint 1, pot for position and home
-    if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_WAIT_FOR_RESULT)){
-        joints[0].pos = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());   
-    }
-    //joint 2, SPI for position
-    joints[1].limit = J2_LIM_Read();
-    //joint 3, SPI for position
-    joints[2].limit = J3_LIM_Read();
-}
 
-void set_velocity(int joint, int32 tuningWord, char direction){
-    //set tuning word for each joint
-    joints[joint-1].tuningWord = tuningWord;
-    joints[joint-1].dir = direction;
-}
-
-uint32 vel_to_tuningWord(uint32 velocity){
-    uint64 tw = ((uint64)velocity * 16777216) / 10000;
-    return (uint32)tw;
-}
 /* [] END OF FILE */

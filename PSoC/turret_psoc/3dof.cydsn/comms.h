@@ -15,6 +15,7 @@
 
 #include "cytypes.h"
 #include "stdio.h"
+#include "joints.h"
 
 #define MSG_BUFF_SIZE 100
 #define RX_SIZE 80

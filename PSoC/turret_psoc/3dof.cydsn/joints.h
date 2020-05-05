@@ -15,6 +15,10 @@
 
 #include "cytypes.h"
 #include "as5048.h"
+#include "J1_EN.h"
+#include "J2_EN.h"
+#include "J3_EN.h"
+#include "comms.h"
 
 //definition for joint variables
     
@@ -41,6 +45,7 @@ typedef struct{
     uint32 accumulator;
     int16 angle;
     int16 angleOld;
+    char homed;
 } Joint;
 
 volatile int32 J1_home;
@@ -48,6 +53,9 @@ volatile int32 J1_home;
 volatile Joint joints[3]; //declare array of joints
 
 void joint_init(Joint volatile * joints);
+void joint_home(Joint volatile * joints, char joint);
+void set_velocity(int joint, int32 tuningWord, char direction);
+uint32 vel_to_tuningWord(uint32 velocity);
     
 #endif
 

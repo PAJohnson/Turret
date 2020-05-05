@@ -48,21 +48,6 @@
 <v>turret_psoc\3dof\Generated_Source\PSoC5\UART_1</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>turret_psoc</v>
-<v>turret_psoc\3dof</v>
-<v>turret_psoc\3dof\TopDesign</v>
-<v>turret_psoc\3dof\3dof.cydwr</v>
-<v>turret_psoc\3dof\3dof.cydwr\Pins</v>
-<v>turret_psoc\3dof\3dof.cydwr\Analog</v>
-<v>turret_psoc\3dof\3dof.cydwr\Clocks</v>
-<v>turret_psoc\3dof\3dof.cydwr\Interrupts</v>
-<v>turret_psoc\3dof\3dof.cydwr\DMA</v>
-<v>turret_psoc\3dof\3dof.cydwr\System</v>
-<v>turret_psoc\3dof\3dof.cydwr\Directives</v>
-<v>turret_psoc\3dof\3dof.cydwr\Flash Security</v>
-<v>turret_psoc\3dof\3dof.cydwr\EEPROM</v>
-<v>turret_psoc\3dof\Header Files</v>
-<v>turret_psoc\3dof\Header Files\as5048.h</v>
 <v>turret_psoc\3dof\Header Files\comms.h</v>
 <v>turret_psoc\3dof\Header Files\cyapicallbacks.h</v>
 <v>turret_psoc\3dof\Header Files\joints.h</v>
@@ -87,6 +72,21 @@
 <v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2\CS_J2.h</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2\CS_J2_aliases.h</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J3</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cy_boot</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_DIR</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_EN</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_POT</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_STEP</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_DIR</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_EN</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_LIM</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_STEP</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_DIR</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_EN</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_LIM</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_STEP</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\MISO</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">

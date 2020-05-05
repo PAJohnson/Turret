@@ -32,13 +32,16 @@ void message_buff_init(Message_Buff volatile * msg_buff){
 void message_buff_add(Message_Buff volatile * msg_buff, Message * msg){
     //figure this out later
     int i;
-    msg_buff->msgs[msg_buff->head].command = msg->command;
-    msg_buff->msgs[msg_buff->head].joint = msg->joint;
-    for(i = 0; i < DATA_SIZE; i++){
-        msg_buff->msgs[msg_buff->head].data[i] = msg->data[i];
+    if((msg->command == HOME_JOINT || msg->command == SET_VELOCITY || msg->command == GET_POSITION) \
+        && (msg->joint == 1 || msg->joint == 2 || msg->joint == 3)){
+        msg_buff->msgs[msg_buff->head].command = msg->command;
+        msg_buff->msgs[msg_buff->head].joint = msg->joint;
+        for(i = 0; i < DATA_SIZE; i++){
+            msg_buff->msgs[msg_buff->head].data[i] = msg->data[i];
+        }
+        msg_buff->head = (msg_buff->head + 1) % MSG_BUFF_SIZE;
+        msg_buff->size += 1;
     }
-    msg_buff->head = (msg_buff->head + 1) % MSG_BUFF_SIZE;
-    msg_buff->size += 1;
     return;
 }
 
@@ -61,6 +64,12 @@ void message_buff_execute(Message_Buff volatile * msg_buff){
                         (msg_buff->msgs[msg_buff->tail].data[6]<<8) + \
                         msg_buff->msgs[msg_buff->tail].data[7];
         move_queue_add(&move_queue,joint,direction,tuningWord,duration);
+        msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
+        msg_buff->size -= 1;
+    }
+    if(msg_buff->msgs[msg_buff->tail].command == HOME_JOINT){
+        joint = msg_buff->msgs[msg_buff->tail].joint;
+        joint_home(joints,joint);
         msg_buff->tail = (msg_buff->tail + 1) % MSG_BUFF_SIZE;
         msg_buff->size -= 1;
     }
