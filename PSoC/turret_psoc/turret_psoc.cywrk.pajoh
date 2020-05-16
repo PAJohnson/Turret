@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="turret_psoc">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="turret_psoc\3dof\Generated_Source\PSoC5\cyfitter_cfg.c">
 <ExpandedNodeIds>
 <v>turret_psoc</v>
 <v>turret_psoc\3dof</v>
@@ -41,52 +41,48 @@
 <v>turret_psoc\3dof\Generated_Source</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_EN</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_POT</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J1_STEP</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_DIR</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_EN</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_LIM</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J2_STEP</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_DIR</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_EN</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_LIM</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\J3_STEP</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\MISO</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\MOSI</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\NCO_ISR</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\rx_isr</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\SCLK</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\SPIM_1</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\tick_isr</v>
 <v>turret_psoc\3dof\Generated_Source\PSoC5\UART_1</v>
-</ExpandedNodeIds>
-<VisibleNodeIds>
-<v>turret_psoc</v>
-<v>turret_psoc\3dof</v>
-<v>turret_psoc\3dof\TopDesign</v>
-<v>turret_psoc\3dof\3dof.cydwr</v>
-<v>turret_psoc\3dof\3dof.cydwr\Pins</v>
-<v>turret_psoc\3dof\3dof.cydwr\Analog</v>
-<v>turret_psoc\3dof\3dof.cydwr\Clocks</v>
-<v>turret_psoc\3dof\3dof.cydwr\Interrupts</v>
-<v>turret_psoc\3dof\3dof.cydwr\DMA</v>
-<v>turret_psoc\3dof\3dof.cydwr\System</v>
-<v>turret_psoc\3dof\3dof.cydwr\Directives</v>
-<v>turret_psoc\3dof\3dof.cydwr\Flash Security</v>
-<v>turret_psoc\3dof\3dof.cydwr\EEPROM</v>
-<v>turret_psoc\3dof\Header Files</v>
-<v>turret_psoc\3dof\Header Files\as5048.h</v>
-<v>turret_psoc\3dof\Header Files\comms.h</v>
-<v>turret_psoc\3dof\Header Files\cyapicallbacks.h</v>
-<v>turret_psoc\3dof\Header Files\joints.h</v>
-<v>turret_psoc\3dof\Source Files</v>
-<v>turret_psoc\3dof\Source Files\as5048.c</v>
-<v>turret_psoc\3dof\Source Files\comms.c</v>
-<v>turret_psoc\3dof\Source Files\joints.c</v>
-<v>turret_psoc\3dof\Source Files\main.c</v>
-<v>turret_psoc\3dof\Generated_Source</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\ADC_DelSig_1</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\ADC_DelSig_1_AMux</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\ADC_DelSig_1_Bypass_P03</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\ADC_DelSig_1_Ext_CP_Clk</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\ADC_DelSig_1_IRQ</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\ADC_DelSig_1_theACLK</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\Clock_1</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\Clock_2</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\Clock_3</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2\CS_J2.c</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2\CS_J2.h</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J2\CS_J2_aliases.h</v>
-<v>turret_psoc\3dof\Generated_Source\PSoC5\CS_J3</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\UART_1_IntClock</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydevice.h</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cyfitter.h</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\cymetadata.c</v>
+<v>turret_psoc\3dof\Generated_Source\PSoC5\project.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -212,6 +208,7 @@
 <v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_DIR.lst</v>
 <v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_EN.lst</v>
 <v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_LIM.lst</v>
+<v>turret_psoc\3dof\CortexM3\ARM_GCC_541\Debug\Listing Files\J2_STEP.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -273,6 +270,10 @@
 <name v=".\3dof.cydsn\Generated_Source\PSoC5\tick_isr.c" />
 <name v=".\3dof.cydsn\joints.h" />
 <name v=".\3dof.cydsn\joints.c" />
+<name v=".\3dof.cydsn\as5048.h" />
+<name v=".\3dof.cydsn\as5048.c" />
+<name v=".\3dof.cydsn\Generated_Source\PSoC5\SPIM_1.c" />
+<name v=".\3dof.cydsn\Generated_Source\PSoC5\J1_EN.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -280,7 +281,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1072, 631" SelectedTabbedMdiWindow="6bb0e37c-1aa8-4e91-8a86-3c0dcac0248f"><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\TopDesign\TopDesign.cysch" Guid="6bb0e37c-1aa8-4e91-8a86-3c0dcac0248f" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\3dof.cydwr" Guid="50ce6c69-e588-41c1-a195-a8c416edd5bb" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\main.c" Guid="56791872-78b6-4480-a074-9f19561e2ad0" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\UART_1.c" Guid="283c13a4-1314-4dba-8eb4-b3c6d80be01c" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\NCO_ISR.c" Guid="71f0f98a-d5b8-4d75-b20c-0acf6b812db7" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\comms.h" Guid="41bad923-89f5-4ef4-9559-37448b9bbc56" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\comms.c" Guid="569b270d-7832-4caa-b82c-b432a19ad606" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\rx_isr.c" Guid="7c066516-035b-4bfa-be1d-fc24afdab5c3" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\tick_isr.c" Guid="cb5981f5-dee9-4267-92f0-26fc9a7811f1" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\joints.h" Guid="0b2ffbbf-3014-4916-82ac-81fe55eb2e90" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\joints.c" Guid="899c79af-1032-458b-9fc9-49e43af3385c" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1051, 542" SelectedTabbedMdiWindow="569b270d-7832-4caa-b82c-b432a19ad606"><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\TopDesign\TopDesign.cysch" Guid="6bb0e37c-1aa8-4e91-8a86-3c0dcac0248f" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\3dof.cydwr" Guid="50ce6c69-e588-41c1-a195-a8c416edd5bb" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\main.c" Guid="56791872-78b6-4480-a074-9f19561e2ad0" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\UART_1.c" Guid="283c13a4-1314-4dba-8eb4-b3c6d80be01c" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\NCO_ISR.c" Guid="71f0f98a-d5b8-4d75-b20c-0acf6b812db7" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\comms.h" Guid="41bad923-89f5-4ef4-9559-37448b9bbc56" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\comms.c" Guid="569b270d-7832-4caa-b82c-b432a19ad606" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\rx_isr.c" Guid="7c066516-035b-4bfa-be1d-fc24afdab5c3" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\tick_isr.c" Guid="cb5981f5-dee9-4267-92f0-26fc9a7811f1" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\joints.h" Guid="0b2ffbbf-3014-4916-82ac-81fe55eb2e90" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\joints.c" Guid="899c79af-1032-458b-9fc9-49e43af3385c" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\as5048.h" Guid="8061da7a-b5f6-4b46-89f9-a46a58e2caba" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\as5048.c" Guid="be7c0c4f-8e32-4c1a-990f-4fa52bf87785" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\SPIM_1.c" Guid="b553348f-e035-40e7-a9dc-29bab4f10fd6" /><DocumentWindow Key="C:\Users\pajoh\projects\Turret\PSoC\turret_psoc\3dof.cydsn\Generated_Source\PSoC5\J1_EN.c" Guid="bf6fc106-d232-4ad1-93d2-1b79f13933c8" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
